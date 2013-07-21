@@ -1,0 +1,7 @@
+#!/usr/local/bin/tcsh
+#foreach i ( $1*.skip )
+#	rm -f $i
+pst_nj456 $1
+foreach i ( $1*.dat_grf )
+        echo "Skip." >! $i:r\.skip
+        end

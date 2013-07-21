@@ -1,0 +1,13 @@
+#!/bin/tcsh -f
+set prob = $1:r
+echo Generate parameter file
+@ param = `grep "^    Number of parameters" $prob.rec | awk 'BEGIN {FS = ":"} {print $2}'`
+echo 'Number of parameters: ' $param
+set line = `grep -n -i "Current parameter values" $prob.rec | awk 'BEGIN {FS = ":"} {printf "%d ", $1}'`
+@ i = 0
+foreach l ( $line )
+	@ i = $i + 1
+	@ ll = $l + 1
+	echo "double point" > $prob\_iter_$i.par
+	tail +$ll $prob.rec | head -$param | awk '{print $1, $2, 1, 0}' >> $prob\_iter_$i.par
+end

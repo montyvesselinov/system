@@ -1,0 +1,3 @@
+#!/bin/tcsh -f
+/usr/local/bin/zip -u s2 /scr2/monty/pest/*/*.rec /scr2/monty/pest/*/*.rst >& /dev/null
+/usr/local/bin/zip -u s3 /scr3/monty/pest/*/*.rec /scr3/monty/pest/*/*.rst >& /dev/null

@@ -1,0 +1,4 @@
+#!/bin/tcsh -f 
+foreach i ( $1*$2 )
+       	echo "Skip." >! $i:r\.skip
+end

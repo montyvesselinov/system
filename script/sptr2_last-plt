@@ -1,0 +1,4 @@
+#!/bin/tcsh -f
+echo 'variables="x [m]", "y [m]", "z [m]", "Time [a]", "zone #", "particle #", "particle ID"'
+echo 'zone t="'$1 last'"'
+sptr2_last $1

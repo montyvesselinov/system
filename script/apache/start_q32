@@ -1,0 +1,4 @@
+#!/usr/local/bin/tcsh
+cd /scr3/monty/pest
+qsub -q lapis_32p12h r32 
+cd ~

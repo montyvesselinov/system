@@ -1,0 +1,8 @@
+#!/bin/sh
+grep -l nan m*/*/*plt|
+while read line
+do
+	echo $line
+	sed "s/nan      / -999.99 /g" $line > temp.plt
+	mv temp.plt $line
+done

@@ -1,0 +1,2 @@
+alias	tecplot		"\tecplot -c ~/tecplot/tecplot.cfg -qm ~/tecplot/tecplot.mcr \!* &"
+alias   teccheck        "/usr/local/tecplot/tlm/tlmusage"

@@ -1,0 +1,5 @@
+sed "s/$1/$2/g;23,24s/1\.0/0\.0/g" $1.pst > $2.pst
+sed "s/$1/$2/g" $1-data.tpl > $2-data.tpl
+sed "s/$1/$2/g" $1.his-grf.in > $2.his-grf.in
+cpprob $1 $2
+cat $2.pst

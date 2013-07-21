@@ -1,0 +1,17 @@
+#!/bin/tcsh
+echo test
+set names = `sed 1d $1 | tr 'p|_' ' ' | awk '{print $2}' | sort | uniq`
+echo $names
+foreach i ( $names )
+grep $i $1 >!  $1-$i
+gnuplot -persist << EOF
+set ylabel "Water-level elevation [m]"
+set title "Well $i Case $1"
+plot "< cat $1-$i | tr 'p|_' ' ' | awk '{print \$1, \$5}'" using 1:2 title "Observed" with lines, \
+     "< cat $1-$i | tr 'p|_' ' ' | awk '{print \$1, \$6}'" using 1:2 title "Simulated" with lines
+set terminal emf
+set output "$1-$i.emf"
+replot
+EOF
+rm -f $1-$i
+end

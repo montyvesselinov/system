@@ -1,0 +1,10 @@
+#!/usr/local/bin/tcsh
+source ~/.login
+@
+set nj = 1
+set nj = `/usr/bin/ps -f -o'args' -umonty | grep "^gaz" | wc | awk '{print $1}'`
+if ( $nj == 0 ) then
+	gaz_start 
+else
+	echo no
+endif

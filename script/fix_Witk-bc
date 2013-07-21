@@ -1,0 +1,5 @@
+#!/bin/tcsh -f
+foreach i (  `grep -l "Streams" * ` )
+	sed "s/\/scratch\/stoshu1\/Witk\/Espanola\/2000\/Streams/..\/..\/fehm\/bc/g" $i >! $i-tmp
+	mv -f $i-tmp $i
+	end

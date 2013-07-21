@@ -1,0 +1,5 @@
+#!/bin/csh 
+foreach i ( $1*$2 )
+	echo $i
+       	echo "Skip." >! $i:r\.skip
+end

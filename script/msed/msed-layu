@@ -1,0 +1,6 @@
+#!/bin/sh
+ls *.lay|
+while read line
+do
+	sed "s/uniformi/uniform/" $line > `echo $line|sed "s;lay;layn;"`
+done

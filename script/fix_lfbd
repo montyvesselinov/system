@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+foreach i ( $argv )
+	ll $i
+	( head -1 $i; echo '$'"\!VarSet |LFBD| = '.'"; tail +3 $i ) >! $i-temp
+	mv -f $i-temp $i
+	end

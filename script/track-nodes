@@ -1,0 +1,18 @@
+#!/bin/tcsh -f
+# rm -f $1-$2
+# touch $1-$2
+@ j = 0
+foreach i ( `cat $2` )
+@ j++
+echo $j $i
+#	grep $i'$' $1 >> $1-$2
+#	grep ' '$i' ' $1 >> $1-$2
+#	grep '^0*'$i $1 >> $1-$2
+#	grep '^'$i $1 >> $1-$2
+#	grep '^'$i $1
+# 	grep ' '$i $1
+# 	grep '^ *'$i $1
+	grep ' '$i'[ $]' $1
+	grep ' '$i' $' $1
+	grep ' '$i'$' $1
+	end

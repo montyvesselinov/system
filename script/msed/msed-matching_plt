@@ -1,0 +1,8 @@
+#!/bin/sh
+grep -l "Injection interval" *plt|
+while read line
+do
+	echo $line
+	sed "s/Injection interval/Injection interval open/g" $line > temp.plt
+	mv temp.plt $line
+done

@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+set p = $1:r
+echo "LaGriT runs" $p
+printf "input %s\nfinish\n" $p.in >! $p-in
+xlagrit < $p-in > & ! $p-out 
+rm -f $p-in

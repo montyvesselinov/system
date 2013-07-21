@@ -1,0 +1,12 @@
+#!/bin/tcsh -f
+if( ! -e $1.in ) then
+	if( ! -e $1.files ) then
+		echo $1.in and $1.files are missing!
+		exit
+	else
+		echo $1.files >! $1.in
+	endif
+endif
+xfehm -Wl,-T12,-T21,-T92 < $1.in >&! $1.out
+tail $1.outp
+avs-tecza $1 2

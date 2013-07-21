@@ -1,0 +1,44 @@
+#!/bin/tcsh -f
+# Jeff Johnson - CIC-6 ICN Consulting Office
+# Script to demonstrate determination of assigned hosts, total processors,
+# and performing a task for each host.  
+# Date: 1/12/1999
+
+#Place BSUB options here
+
+set debug                                       # this will print debugging info
+set assigned_hosts=( )                          # initialize variable
+set procs=0
+if ( $?LSB_MCPU_HOSTS ) then                    # is this an LSF job?
+    foreach x ($LSB_MCPU_HOSTS)         # look at each entry
+        if ( $x =~ [a-zA-Z]* ) then             # hostnames
+            set assigned_hosts=( $assigned_hosts $x )   # add host to list
+        else if ( $x =~ [0-9]* ) then         # number of procs
+            @ procs = $procs + $x
+        endif 
+    end
+   if ( $?debug) then
+        echo Job assigned to hosts $assigned_hosts # print out hosts
+        echo Running on $procs processors
+   endif
+else
+    if ($?debug) echo This does not appear to be an LSF job, no hosts found.
+endif
+
+# either modify the if statement above to do something for each host,
+# or use the following section
+
+foreach host ($assigned_hosts)
+    # this section will loop for each assigned host,
+    # assigning the hostname to the $host variable
+    # the following lines, when uncommented, will copy a file from
+    # the user's home directory to that user's scratch directory on
+    # each host.
+    #
+    if ($?debug) echo Copying file to $host 
+    cp -f ~/mytestfile.txt /n/$host/scratch/$USER/myfilename.txt
+end
+
+#continue with the LSF script here
+#
+###############################

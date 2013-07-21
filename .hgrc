@@ -1,0 +1,23 @@
+[ui]
+username = Velimir Vesselinov <vvv@lanl.gov>
+merge = vimdiff
+
+[extensions]
+hgext.graphlog = 
+ 
+[merge-tools]
+vimdiff.executable = vim
+vimdiff.args = -d $base $local $output $other +close +close
+kdiff3.args = $base $local $other -o $output
+
+[http_proxy]
+# host = proxyout.lanl.gov:8080
+no = agni.lanl.gov
+no = software.lanl.gov
+no = ancho.lanl.gov
+no = well.lanl.gov
+no = 128.165.12.81
+no = 128.65.52.179
+
+[web]
+allow_archive = bz2, gz, zip

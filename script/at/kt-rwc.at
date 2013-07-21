@@ -1,0 +1,3 @@
+cd /scr3/monty/apache/krige/param
+rm krwc-mb-out
+nohup kt <krwc-mb-in >krwc-mb-out

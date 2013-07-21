@@ -1,0 +1,78 @@
+#!/bin/tcsh -f
+#echo SMARTRST2-START
+set root = $1:r
+set ext = `pest_extensions $root`
+# echo Extesnions: $ext
+if( -e $root.lambda_runs ) then
+	setenv lambda
+	unsetenv jacobian
+	setenv new
+else if( -e $root.jacobian_runs ) then 
+	unsetenv lambda
+	setenv jacobian 
+	setenv new
+	endif
+endif
+if( $1 == $root ) then
+	setenv lambda
+	unsetenv jacobian
+	unsetenv new
+endif
+if( ${?lambda} ) then 
+# Lambda
+	if( ${?new} ) then
+		if( $1:e == 1 ) then
+			\cp -fp $root.lambda_runs $root-lambda.runs
+			if( -e $root-jacobian.zip ) then
+				@ nJRuns = `cat $root-jacobian.runs`
+				\mv -f $root-jacobian.zip $root-jacobian_$nJRuns.zip
+			endif
+		endif
+		while( -e $root.parallel_wait ) 
+			sleep 1
+		end
+		touch $root.parallel_wait
+		set noglob
+		set line = `( echo ' '$ext ) | sed 's/ / '$root'\.\*\./g'`
+		unset noglob
+		zip -u $root-lambda.zip $line >& /dev/null
+		set line = `( echo ' '$ext ) | sed 's/ / '$1'\./g'`
+		zip -o $root-lambda.zip $line >& /dev/null
+		\rm -f $root.parallel_wait
+	else
+		if( -e $root-jacobian.zip ) then
+			@ nJRuns = `cat $root-jacobian.runs`
+			\mv -f $root-jacobian.zip $root-jacobian_$nJRuns.zip
+		endif
+		@ iLRuns = `cat $root-lambda.runs`
+		set ofin = `fin-out $root`
+		echo mv $ofin $ofin:r.$iLRuns.$ofin:e 
+		\mv -f $ofin $ofin:r.$iLRuns.$ofin:e
+		foreach i ( $ext )
+			\cp -fp $root.$i $root.$iLRuns.$i
+			zip -um $root-lambda.zip $root.$iLRuns.$i >& /dev/null
+		end
+	endif
+	zip -u $root-lambda.zip $root.lambda_runs 
+else
+# Jacobian
+	if( $1:e == 1 ) then
+		if( -e $root-lambda.zip ) then
+			@ nJRuns = `cat $root-jacobian.runs`
+			\mv -f $root-lambda.zip $root-lambda_$nJRuns.zip
+		endif
+	endif
+	while( -e $root.parallel_wait )
+		sleep 1
+	end
+	touch $root.parallel_wait
+	set noglob
+	set line = `( echo ' '$ext ) | sed 's/ / '$root'\.\*\./g'`
+	unset noglob
+	zip -u $root-jacobian.zip $line >& /dev/null
+	set line = `( echo ' '$ext ) | sed 's/ / '$1'\./g'`
+	zip -f $root-jacobian.zip $line >& /dev/null
+	\rm -f $root.parallel_wait
+endif
+#echo SMARTRST2-END
+exit 0

@@ -1,0 +1,2 @@
+#!/bin/tcsh -f
+awk '{if(NR==1){nx=$1; ny=$2; nz=$3;} if(NR==2){xi=$1; yi=$2; zi=$3;} if(NR==3){dx=$1/(nx-1); dy=$2/(ny-1); dz=$3/(nz-1);} } END { for(k=0;k<nz;k++) for(j=0;j<ny;j++) for(i=0;i<nx;i++) printf "%g %g %g\n", xi+i*dx, yi+j*dx, zi+k*dz }' $1

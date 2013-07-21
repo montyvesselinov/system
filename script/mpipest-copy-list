@@ -1,0 +1,8 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+        echo need problem root name
+        exit
+endif  
+foreach i ( $1*.zip $1*runs* $1*.rec $1*.rst $1*.jst $1*.jac $1*.jco $1*.seo $1*.sen $1*.res $1*.par $1.hld $1.fin-i )
+	echo $i >> $2
+	end

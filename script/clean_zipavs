@@ -1,0 +1,6 @@
+#!/bin/sh
+unzip $1-avs
+rm -f $1*_vec_node
+rm -f $1*_geo
+rm -f $1-avs.zip
+zip -um9 $1-avs $1.1*

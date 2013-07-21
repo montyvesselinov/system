@@ -1,0 +1,16 @@
+#!/bin/tcsh -f
+set prob = $1:r
+echo Zip files
+@ skip = `ll $prob-jacobian_skip*.zip | wc | awk '{print $1}'`
+if( $skip > 0 ) then
+	rm -f $prob-jacobian_skip*.zip
+	echo $skip skip files deleted!
+endif
+set zip = `lt $prob-jacobian*.zip | tail -1 | awk '{print $9}'`
+if( -e $zip ) then
+	@ serial = `ll $prob-serial*.zip | wc | awk '{print $1}'`
+	if( $serial > 0 ) then
+		zip -um $zip $prob-serial*.zip
+		echo $zip updated!
+	endif
+endif

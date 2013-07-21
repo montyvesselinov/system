@@ -1,0 +1,6 @@
+#!/bin/sh
+ls tqrb[12]*-data|
+while read line
+do
+	sed "s/10\.0 1\.6/7\.0 3\.6/g" $line > `echo $line|sed "s;tqrb;tqrbu;"`
+done

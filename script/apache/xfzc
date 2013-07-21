@@ -1,0 +1,18 @@
+#!/bin/tcsh
+#
+# USAGE: xfz Problem_Name
+
+# FEHM
+(/scr2/monty/fehm/bin/xfehm < $1-in >! $1-out ) >& /dev/null
+
+# AVS-TEC and AVS-GMV
+printf "%s\n" $1 > $1-$$
+# /scr3/monty/c/avs-gmv/avs-gmv_2dv < $1-$$ >& /dev/null
+/scr3/monty/c/avs-tec.uns/avs-tecza < $1-$$ >& /dev/null
+rm -f $1-$$ > /dev/null
+
+# ZIP
+rm -f $1.10001_geo >& /dev/null
+rm -f $1.*_vec_node $1.10001_vec_head >& /dev/null
+zipavs $1
+# zipgmv $1

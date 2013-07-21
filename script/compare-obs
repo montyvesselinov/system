@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+cp -f $1 $1-new
+awk '{print $1}' $1 >! $1.name
+awk '{print $1}' $2 >! $2.name
+( diff -e $1.name $2.name; echo w ) >! ed.macro
+ed $1-new < ed.macro >& /dev/null

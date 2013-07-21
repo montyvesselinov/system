@@ -1,0 +1,3 @@
+#!/bin/tcsh -f
+echo 'variables="particle number", "x [m]", "y [m]", "z [m]", "Time [a]", "zone number", "node number in", "node number out"'
+sed "1,3d" $1 | awk '{printf "%i %g %g %g %g %i %i %i\n", $1, $2, $3, $4, $5/365, $6, $7, $8}'

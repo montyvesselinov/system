@@ -1,0 +1,7 @@
+#!/bin/sh
+ls $1*|
+while read line
+do
+        sed "s/$1/$2/g" $line > `echo $line|sed "s/$1/$2/"`
+        rm -f $line
+done

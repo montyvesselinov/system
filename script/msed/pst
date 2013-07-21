@@ -1,0 +1,5 @@
+#!/usr/local/bin/tcsh
+foreach line ( *.pst )
+	set name = `echo $line | sed 's/\.pst//g'`
+	( cat hhead; ../N-param ../p4C/$name; cat wpor; head -27 ../p4C/$line | tail -11; tail -6 $line ) >$line-n
+end

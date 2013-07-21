@@ -1,0 +1,4 @@
+#!/bin/sh
+sed "17s/ 1\.0 / 0\.5 /g" $1 > "temp.pst"
+mv -f temp.pst $1
+grep wpor $1

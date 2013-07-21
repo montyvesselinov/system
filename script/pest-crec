@@ -1,0 +1,8 @@
+#!/bin/tcsh -f
+foreach file ( $1/*/*rst )
+	set prob = $file:r
+	if( -e $prob\.rec ) then
+		ll $prob\.rec
+	endif
+	unset prob
+	end

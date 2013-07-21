@@ -1,0 +1,12 @@
+#!/bin/tcsh -f
+        if( -e $1-serial.runs ) then
+                @ nSRuns = `cat $1-serial.runs`
+        else
+                @ nSRuns = 0
+        endif
+	@ nSRuns = $nSRuns + 1
+	touch $1.pest
+	rm -f $1_$nSRuns-serial.zip
+	zip $1_$nSRuns-serial.zip $1.pest
+	echo 'Serial run number ' $nSRuns
+	echo $nSRuns >! $1-serial.runs

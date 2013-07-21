@@ -1,0 +1,3 @@
+#!/bin/tcsh -f
+echo 'variables="particle number", "x [m]", "y [m]", "z [m]", "Time [a]", "zone number", "node number in", "node number out"'
+sed "1,3d" $1 | nawk -v tmin=$2 -v tmax=$3 'BEGIN{nn=0} {i=$1;time=$5/365.0; if(i>nn) {nn=i;printf "%d %g %g %g %g %i %i %i\n", $1,$2,$3,$4,time,$6,$7,$8;} else {if(time>tmin && time<tmax) { pn[i]=0; printf "%i %g %g %g %g %i %i %i\n", $1,$2,$3,$4,time,$6,$7,$8} else { pn[i]=$1;x[i]=$2;y[i]=$3;z[i]=$4;t[i]=time;zn[i]=$6;ni[i]=$7;no[i]=$8 } } } END { for(i=1;i<=nn;i++) if(pn[i]!=0) printf "%i %g %g %g %g %i %i %i\n", pn[i],x[i],y[i],z[i],t[i],zn[i],ni[i],no[i] }'

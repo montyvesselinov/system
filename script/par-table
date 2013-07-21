@@ -1,0 +1,26 @@
+#!/bin/tcsh
+echo Processed files: $*
+foreach i ( $* )
+	( sed '1d' $i | awk '{printf "%-6s %5.2f\n", $1, $2}' ) >! ~/$i-temp
+	set phi = `grep 'ie phi' $i:r.rec | awk 'BEGIN {FS = "="} {print $2}'`
+	if( $#phi > 0 ) then
+	echo Phi_i $phi[1] >> ~/$i-temp
+	else
+	echo Phi_i started >> ~/$i-temp
+	endif
+	if( $#phi > 1 ) then
+	echo Phi_e $phi[2] >> ~/$i-temp
+	else
+	set phi2 = `grep "Starting phi" $i:r.rec | awk 'BEGIN {FS = ":"} {printf "%.2f\n", $2}' | sort -n | head -1`
+	echo Phi_r $phi2 >> ~/$i-temp
+	endif
+	if( -e ~/$$-temp ) then
+		paste ~/$$-temp ~/$i-temp >! ~/$$-tempa
+		mv -f ~/$$-tempa ~/$$-temp
+		rm -f ~/$i-temp
+	else
+		mv -f ~/$i-temp ~/$$-temp
+	endif
+end
+cat ~/$$-temp
+rm -f ~/$$-temp

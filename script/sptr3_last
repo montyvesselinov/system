@@ -1,0 +1,2 @@
+#!/bin/tcsh -f
+sed "1,3d" $1 | awk 'BEGIN{nn=0} { if($2>nn) {nn=$2} i=$2; t[i]=$1/365.0; pid[i]=$2; zn[i]=$4; nl[i]=$5 } END { for(i=1;i<=nn;i++) printf "%i %g %i %i\n", i,t[i],pid[i],zn[i],nl[i] }'

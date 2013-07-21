@@ -1,0 +1,5 @@
+#!/bin/tcsh -f
+foreach i (*.ps)
+	echo $i
+	ps2ps $i
+	end

@@ -1,0 +1,30 @@
+#!/bin/ksh
+param=`head -4 $1.pst | tail -1 | awk '{print $1}'`
+totline=`wc $1.pst | awk '{print $1}'`
+line=`grep -n parameter $1.pst | sed 's/:/ /g' | awk '{print $1}'`
+let headline=line+param
+let tailline=totline-headline
+Rread-param $1 > c1.temp
+head -$headline $1.pst | tail -$param > c2.temp
+paste c2.temp c1.temp | awk '{
+        name[NR]=$1
+	none[NR]=$2
+        rel[NR]=$3
+        iv[NR]=$4
+	ll[NR]=$5
+	ul[NR]=$6
+	gr[NR]=$7
+	s1[NR]=$8
+	s2[NR]=$9
+	fv[NR]=$10
+        NP=NR
+}
+END{
+        for( i = 1; i <= NP; i++ )
+                printf( "%-4s %-4s %-10s %12g %+12e %+12e %-4s %12f %12f\n", name[i], none[i], rel[i], fv[i], ll[i], ul[i], gr[i], s1[i], s2[i] );
+}' >cc.temp
+( head -$line $1.pst; cat cc.temp; tail -$tailline $1.pst ) >$1-restart.pst
+rm -f c1.temp c2.temp cc.temp
+unset line
+unset totline
+unset tailline

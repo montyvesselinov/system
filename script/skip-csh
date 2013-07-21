@@ -1,0 +1,21 @@
+#!/bin/csh
+@ line = `grep -n "\* model command line" $1.pst | awk 'BEGIN {FS = ":"} {print $1}'`
+@ line = $line + 1
+set root = `head -$line $1.pst | tail -1 | awk '{print $3}'`
+echo Root: $root
+if( -e $root-jacobian.zip ) then
+	unzip -u $root-jacobian.zip
+	rm -f $root-jacobian_skip.zip
+	cp -f $root-jacobian.zip $root-jacobian_skip.zip
+	@ ntpl = `head -5 $1.pst | tail -1 | awk '{print $1}'`
+	@ nins = `head -5 $1.pst | tail -1 | awk '{print $2}'`
+	@ line = `grep -n "\* model input\/output" $1.pst | awk 'BEGIN {FS = ":"} {print $1}'`
+	@ line = $line + $ntpl + $nins
+	set outfile = `head -$line $1.pst | tail -1 | awk '{print $2}'`
+	set outextension = $outfile:e
+	echo Extension: $outextension
+	foreach i ( $root.*.$outextension )
+		echo Skip $i:r:e
+		echo "Skip." >! $i:r\.skip
+	end
+endif

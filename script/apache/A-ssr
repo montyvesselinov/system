@@ -1,0 +1,4 @@
+#!/usr/local/bin/tcsh
+cd $1
+S-ssr >! $1-ssr
+cat $1-ssr

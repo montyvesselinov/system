@@ -1,0 +1,6 @@
+#!/bin/sh
+ls $1*|
+while read line
+do
+	cp $line `echo $line|sed "s;$1;$2;"`
+done

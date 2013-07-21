@@ -1,0 +1,10 @@
+#!/bin/sh
+ls c*rec |
+while read line
+do
+	inschek_sgi ../P4-match.ins $line
+	echo '0    0.0' > ../P4-match.temp1 
+	sed "s/ o1       /0.1 /g;s/ o2       /0.3 /g;s/ o3       /0.7 /g;s/ o4       /1.0 /g;s/ o5       /2.0 /g;s/ o6       /3.0 /g;s/ o7       /4.0 /g" ../P4-match.obs > ../P4-match.temp2
+	cat ../P4-match.temp1 ../P4-match.temp2 > `echo $line|sed "s;.rec;-match;"`
+	rm -f ../P4-match.temp1 ../P4-match.temp2 ../P4-match.obs
+done

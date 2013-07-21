@@ -1,0 +1,805 @@
+#! /usr/bin/perl
+use DBI;
+
+$numArgs = $#ARGV + 1;
+if ($numArgs < 2) {
+	die "USAGE: create-fehm new_case_name old_case_name\n";
+}
+
+$ARGV[0]=~ s/\.[^.]*$//;
+$ARGV[1]=~ s/\.[^.]*$//;
+print "New case root $ARGV[0]\n";
+print "Old case root $ARGV[1]\n";
+
+# Read in control file
+my($ctlflnm) = $ARGV[0] . ".ctl";
+open(ctlfl, "<$ctlflnm") || die "Can't read control file: $ctlflnm!\n";
+my(@input) = <ctlfl>;
+close(ctlfl);
+
+# Determine whether plots are desired
+@segs = split(/:/, $input[0]);
+my($boolplot) = $segs[1];
+
+# Collect production well names in @wells
+my(@wells) = ();
+@segs = split(/:/, $input[1]);
+$segs[1]=~ s/^\s+//;
+$segs[1]=~ s/\s+$//;
+@nsegs = split(/[ ,\t]+/, $segs[1]);
+for($i=0;$i<@nsegs;$i++) {
+	chomp($nsegs[$i]);
+	$wells[$i] = $nsegs[$i];
+}
+
+# Collect observation well names as @points
+my(@points) = ();
+@segs = split(/:/, $input[2]);
+$segs[1]=~ s/^\s+//;
+$segs[1]=~ s/\s+$//;
+@nsegs = split(/[ ,\t]+/, $segs[1]);
+for($i=0;$i<@nsegs;$i++) {
+	chomp($nsegs[$i]);
+	$points[$i] = $nsegs[$i];
+}
+
+# Collect screen numbers for observation wells
+my(@portdesc) = ();
+@segs = split(/:/, $input[3]);
+$segs[1]=~ s/^\s+//;
+$segs[1]=~ s/\s+$//;
+@nsegs = split(/[ ,\t]+/, $segs[1]);
+for($i=0;$i<@nsegs;$i++) {
+	chomp($nsegs[$i]);
+	$portdesc[$i] = $nsegs[$i];
+}
+
+# Collect barometric efficiencies of observation wells
+my(@bcorr) = ();
+@segs = split(/:/, $input[4]);
+$segs[1]=~ s/^\s+//;
+$segs[1]=~ s/\s+$//;
+@nsegs = split(/[ ,\t]+/, $segs[1]);
+for($i=0;$i<@nsegs;$i++) {
+	chomp($nsegs[$i]);
+	$bcorr[$i] = $nsegs[$i];
+	print $bcorr[$i];
+}
+
+# Collect the begin and end time of the simulation
+@segs = split(/:/, $input[5]);
+chomp($segs[1]);
+my($begin) = $segs[1];
+@segs = split(/:/, $input[6]);
+chomp($segs[1]);
+my($end) = $segs[1];
+print "Begin date $begin\n";
+print "End   date $end\n";
+
+# Create mysql connection variables
+my $driver   = "mysql";
+my $server   = "localhost";
+my $database = "LocalWork";
+my $url      = "DBI:$driver:$database:$server";
+my $user     = "perl";
+my $password = "script";
+
+# Connect to database using handle
+my $dbh = DBI->connect( $url, $user, $password ); 
+
+# Initialize variables
+my($time);
+my($firstpumptime) = 1e20; # Earliest pumping time
+my($lastpumptime) = 0; # Latest pumping time
+my($rate);	# Flow rate variable
+my(@srate);
+my(@sttime);
+my($count) = 0;
+my($prev_zero) = 0;
+
+# Find the time range of the pumping well data
+for($i=0;$i<@wells;$i++){
+	printf "Pumping well %i $wells[$i]\n", $i+1;
+
+	# Prepare and execute query for volume pumped each day
+	$sth4 = $dbh->prepare("SELECT datediff(date(time),\'1899-12-30\'),productiongal from ProdDaily20080111 WHERE wellname REGEXP \"$wells[$i]\" and time > $begin and time < $end");
+	$sth4->execute() or die "SQL Error: $DBI::errstr\n";
+	if ($sth4->rows == 0) {
+        	die print "No matches for daily production for $wells[$i]!\n";
+	}
+	while (@prodvol = $sth4->fetchrow_array()) {
+		if($prodvol[0] < $firstpumptime) { $firstpumptime = $prodvol[0]; }
+		if($prodvol[0] > $lastpumptime) { $lastpumptime = $prodvol[0]; }
+	}
+	$sth4 = ();
+}
+
+# Find the time range of the observation well data
+my($firstobstime) = 1e20;
+my($lastobstime) = 0;
+for ($i=0;$i<@points;$i++) {
+	printf "Monitoring Well %i $points[$i] Port $portdesc[$i]\n", $i+1;
+
+	if ($portdesc[$i] eq '0') {
+		$sth3 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time,piezometricWLft,temperatureC,time(time) FROM GroundWaterLevelData WHERE probeno < 10 AND wellname REGEXP \'^$points[$i]\$\' AND dataqualcode REGEXP \'^\$|V|VR|VQ|VRVQ\' and time > $begin AND time < $end GROUP BY time");
+	} else {
+		$sth3 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time,piezometricWLft,temperatureC,time(time) FROM GroundWaterLevelData WHERE portdesc REGEXP \'$portdesc[$i]\' AND probeno < 10 AND wellname REGEXP \'^$points[$i]\$\' AND dataqualcode REGEXP \'^\$|V|VR|VQ|VRVQ\' and time > $begin AND time < $end GROUP BY time");
+	}
+	$sth3->execute() or die "SQL Error: $DBI::errstr\n";
+	$c = $sth3->rows;
+	if ($sth3->rows == 0) {
+	        die print "No observations for observation well $points[$i] at port $portdesc[$i]!\n";
+	}
+	else { 
+		print "Number of min observations $c\n";
+	}
+
+	while(@entry = $sth3->fetchrow_array()) {
+		# Convert time to decimal days and add to days since 1900
+		$otime = $entry[0];
+		if($otime < $firstobstime) { $firstobstime = $otime; }
+		if($otime > $lastobstime) { $lastobstime = $otime; }
+	}
+	$sth3 = ();
+}
+$firstsimtime = $firstobstime - 10;
+$lastsimtime = $lastobstime + 1;
+$simperiod = $lastsimtime-$firstsimtime;
+print "Pumping time     [d] First " . $firstpumptime . " Last " . $lastpumptime . "\n";
+print "Observation time [d] First " . $firstobstime . " Last " . $lastobstime . "\n";
+print "Simulation  time [d] First " . $firstsimtime . " Last " . $lastsimtime . "\n";
+
+# Start creatime a time file
+$outflname = $ARGV[0] . ".time";
+open(outfl, ">$outflname") || die "Can't open output file\n";
+print outfl "time # $firstsimtime";
+
+# Start creatime a perm tpl file
+$outflname = $ARGV[0] . ".gstat_perm_tpl";
+open(gstatfl, ">$outflname") || die "Can't open output file\n";
+print gstatfl "ptf #\n";
+
+my(@psttarget) = ();
+my(@pstvar) = ();
+my(@pstgroup) = ();
+my(@pstinithead) = ();
+my($pstcount) = 0;
+my($obscount) = 0;
+my($firstobstime) = 1e20;
+my($lastobstime) = 0;
+for ($i=0;$i<@points;$i++) {
+	printf "Monitoring Well %i $points[$i] Port $portdesc[$i]\n", $i+1;
+
+	if ($portdesc[$i] eq '0') { $pointname = lc($points[$i]); }
+	else { $pointname = lc("$points[$i]_$portdesc[$i]"); }
+	$pointname =~ s/cdv-r/c/;
+	$pointname =~ s/-//;
+	# Open INS file and initialize
+	$insflname = "$ARGV[0]-$pointname.ins";
+	open(insfl, ">$insflname") || die "Can't open PEST instruction file\n";
+	print insfl "pif @\n";
+
+	# Prepare and execute query for well coordinates
+	$sth1 = $dbh->prepare("SELECT X_COORD,Y_COORD from WQDBLocation20080310 WHERE LOCATION_NAME REGEXP \'$points[$i]\'");
+	$sth1->execute() or die "SQL Error: $DBI::errstr\n";
+	@pcoords = $sth1->fetchrow_array();
+	$pxcoord = $pcoords[0]*0.3048;
+	$pycoord = $pcoords[1]*0.3048;
+	print gstatfl "$pxcoord $pycoord # k_" . $pointname . "         #\n";
+	if ($sth1->rows == 0) {
+	        die print "No coordinate matches for observation well $points[$i]!\n";
+	}
+	$sth1 = ();
+
+	# Collect well elevation
+	$sth2 = $dbh->prepare("SELECT SURFACE_ELEVATION,ELEV_UOM FROM WQDBLocation20080310 WHERE LOCATION_NAME REGEXP \'$points[$i]\'");
+	$sth2->execute() or die "SQL Error: $DBI::errstr\n";
+	@elevwell = $sth2->fetchrow_array();
+	if ($elevwell[1] ne ft) { 
+		die "Surface elevation units $elevwell[1] not feet for $points[$i]\n";
+	} 
+	if ($sth2->rows == 0) {
+		print "No well elevaiton match for $points[$i]\n";
+	}
+	$sth2 = ();
+	#
+	# Prepare and execute query for ALL head measurements
+	#
+	if ($portdesc[$i] eq '0') {
+		$sth3 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time,piezometricWLft,temperatureC,time(time) FROM GroundWaterLevelData WHERE probeno < 10 AND wellname REGEXP \'^$points[$i]\$\' AND dataqualcode REGEXP \'^\$|V|VR|VQ|VRVQ\' and time > $begin AND time < $end GROUP BY time");
+	} else {
+		$sth3 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time,piezometricWLft,temperatureC,time(time) FROM GroundWaterLevelData WHERE portdesc REGEXP \'$portdesc[$i]\' AND probeno < 10 AND wellname REGEXP \'^$points[$i]\$\' AND dataqualcode REGEXP \'^\$|V|VR|VQ|VRVQ\' and time > $begin AND time < $end GROUP BY time");
+	}
+	$sth3->execute() or die "SQL Error: $DBI::errstr\n";
+	$c = $sth3->rows;
+	if ($sth3->rows == 0) { die print "No observations for observation well $points[$i] at port $portdesc[$i]!\n"; }
+	else { print "Number of all observations $c\n"; }
+
+	$pltflnm = "$ARGV[0]-$pointname-ALL.dat";
+	open(pltfl, ">$pltflnm") || die "Can't open PLT file: $pltflnm\n";
+	# Collect entries from query
+	@day = ();
+	@heads = ();
+	@uncheads = ();
+	my($diffday) = 0;
+	my($count) = 0;
+	while(@entry = $sth3->fetchrow_array()) {
+		# Convert time to decimal days and add to days since 1900
+		my(@time) = split(/:/, $entry[4]); # time
+		my($dectime) = (($time[2]/60 + $time[1])/60 + $time[0])/24;
+		$obstime[$count] = $entry[0] + $dectime;
+		
+		# Collect days since 1900
+		$day[$count] = $entry[0];
+
+		if($count>0) { $diffday = $day[$count]-$day[$count-1]; }
+		else { $diffday = 0; }
+		# Convert feet to meters
+		$uncheads[$count] = $entry[2]*0.3048; # Save uncorrected heads
+		# Correct for barometric pressure
+		if($bcorr[$i]>0) {
+			$heads[$count] = &AdjBaroTA54($obstime[$count],$entry[1],$entry[2],$entry[3],$elevwell[0],$bcorr[$i])*0.3048;
+			if($heads[$count] == 0)	{ next; }
+			# Shift corrected heads according to calibrated reading, likely the first reading after a break in readings
+			if($count==0||$diffday>1.1) {
+				$adjcorr = $uncheads[$count] - $heads[$count];
+				$heads[$count] = $uncheads[$count];
+			} else {
+				$heads[$count] = $heads[$count]+$adjcorr;
+			}
+		}
+		else { $heads[$count] = $uncheads[$count]; }
+		if($diffday>1.1) {print pltfl "\n";}
+		$o = $obstime[$count] + 2415019;
+		print pltfl "$obstime[$count] $o $uncheads[$count] $heads[$count]\n";
+		$count++;
+	}
+	$sth3 = ();
+	close(pltfl);
+	print "Begin $day[0] End $day[$count-1] Number of records $count\n";
+	
+	# Prepare and execute query for daily averaged head measurements
+	if ( &AdjBaroTA54AVGset() == 0 ) { print "Baro data is not averaged!\n"; }
+	if ($portdesc[$i] eq '0') {
+		$sth3 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time,AVG(piezometricWLft),temperatureC,time(time) FROM GroundWaterLevelData WHERE probeno < 10 AND wellname REGEXP \'^$points[$i]\$\' AND dataqualcode REGEXP \'^\$|V|VR|VQ|VRVQ\' and time > $begin AND time < $end GROUP BY date(time)");
+	} else {
+		$sth3 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time,AVG(piezometricWLft),temperatureC,time(time) FROM GroundWaterLevelData WHERE portdesc REGEXP \'$portdesc[$i]\' AND probeno < 10 AND wellname REGEXP \'^$points[$i]\$\' AND dataqualcode REGEXP \'^\$|V|VR|VQ|VRVQ\' and time > $begin AND time < $end GROUP BY date(time)");
+	}
+	$sth3->execute() or die "SQL Error: $DBI::errstr\n";
+	$c = $sth3->rows;
+	if ($sth3->rows == 0) { die print "No observations for observation well $points[$i] at port $portdesc[$i]!\n"; }
+	else { print "Number of mean daily observations $c\n"; }
+
+	$pltflnm = "$ARGV[0]-$pointname-AVG.dat";
+	open(pltfl, ">$pltflnm") || die "Can't open PLT file: $pltflnm\n";
+	# Collect entries from query
+	@day = ();
+	@heads = ();
+	@uncheads = ();
+	my($diffday) = 0;
+	my($count) = 0;
+	while(@entry = $sth3->fetchrow_array()) {
+		# Convert time to decimal days and add to days since 1900
+		my(@time) = split(/:/, $entry[4]); # time
+		my($dectime) = (($time[2]/60 + $time[1])/60 + $time[0])/24;
+		$day[$count] = $entry[0];
+		$obstime[$count] = $entry[0] + $dectime;
+		
+		if( $obstime[$count] > $lastsimtime) { last; }
+		if( $obstime[$count] < $firstsimtime) { next; }
+	
+		if($count>0) { $diffday = $day[$count]-$day[$count-1]; }
+		else { $diffday = 0; }
+		# Convert feet to meters
+		$uncheads[$count] = $entry[2]*0.3048; # Save uncorrected heads
+		# Correct for barometric pressure
+		if($bcorr[$i]>0) {
+			$heads[$count] = &AdjBaroTA54AVGrun($entry[0],$entry[1],$entry[2],$entry[3],$elevwell[0],$bcorr[$i])*0.3048;
+			if($heads[$count] == 0)	{
+				next;
+			}
+			# Shift corrected heads according to calibrated reading, likely the first reading after a break in readings
+			if($count==0||$diffday>1.1) {
+				$adjcorr = $uncheads[$count] - $heads[$count];
+				$heads[$count] = $uncheads[$count];
+			} else {
+				$heads[$count] = $heads[$count]+$adjcorr;
+			}
+		}
+		else { $heads[$count] = $uncheads[$count]; }
+		if($diffday>1.1) {print pltfl "\n";}
+		$o = $obstime[$count] + 2415019;
+		print pltfl "$obstime[$count] $o $uncheads[$count] $heads[$count]\n";
+		$count++;
+	}
+	$sth3 = ();
+	print "Begin $day[0] End $day[$count-1] Number of records $count\n";
+	close(pltfl);
+	$sth2 = ();
+	#
+	# Prepare and execute query for MIN head measurements
+	#
+	if ($portdesc[$i] eq '0') {
+		$sth3 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time,piezometricWLft,temperatureC,MIN(time(time)) FROM GroundWaterLevelData WHERE probeno < 10 AND wellname REGEXP \'^$points[$i]\$\' AND dataqualcode REGEXP \'^\$|V|VR|VQ|VRVQ\' and time > $begin AND time < $end GROUP BY date(time)");
+	} else {
+		$sth3 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time,piezometricWLft,temperatureC,MIN(time(time)) FROM GroundWaterLevelData WHERE portdesc REGEXP \'$portdesc[$i]\' AND probeno < 10 AND wellname REGEXP \'^$points[$i]\$\' AND dataqualcode REGEXP \'^\$|V|VR|VQ|VRVQ\' and time > $begin AND time < $end GROUP BY date(time)");
+	}
+	$sth3->execute() or die "SQL Error: $DBI::errstr\n";
+	$c = $sth3->rows;
+	if ($sth3->rows == 0) { die print "No observations for observation well $points[$i] at port $portdesc[$i]!\n"; }
+	else { print "Number of min observations $c\n"; }
+
+	$pltflnm = "$ARGV[0]-$pointname-MIN.dat";
+	open(pltfl, ">$pltflnm") || die "Can't open PLT file: $pltflnm\n";
+	# Collect entries from query
+	@day = ();
+	@heads = ();
+	@uncheads = ();
+	my($diffday) = 0;
+	my($count) = 0;
+	while(@entry = $sth3->fetchrow_array()) {
+		
+		# Convert time to decimal days and add to days since 1900
+		my(@time) = split(/:/, $entry[4]); # time
+		my($dectime) = (($time[2]/60 + $time[1])/60 + $time[0])/24;
+		$day[$count] = $entry[0];
+		$obstime[$count] = $entry[0] + $dectime;
+		
+		if( $obstime[$count] > $lastsimtime) { last; }
+		if( $obstime[$count] < $firstsimtime) { next; }
+	
+		if($count>0) { $diffday = $day[$count]-$day[$count-1]; }
+		else { $diffday = 0; }
+		# Convert feet to meters
+		$uncheads[$count] = $entry[2]*0.3048; # Save uncorrected heads
+		# Correct for barometric pressure
+		if($bcorr[$i]>0) {
+			$heads[$count] = &AdjBaroTA54($obstime[$count],$entry[1],$entry[2],$entry[3],$elevwell[0],$bcorr[$i])*0.3048;
+			if($heads[$count] == 0)	{
+				next;
+			}
+			# Shift corrected heads according to calibrated reading, likely the first reading after a break in readings
+			if($count==0||$diffday>1.1) {
+				$adjcorr = $uncheads[$count] - $heads[$count];
+				$heads[$count] = $uncheads[$count];
+			} else {
+				$heads[$count] = $heads[$count]+$adjcorr;
+			}
+		}
+		else { $heads[$count] = $uncheads[$count]; }
+		if($diffday>1.1) {print pltfl "\n";}
+		$o = $obstime[$count] + 2415019;
+		print pltfl "$obstime[$count] $o $uncheads[$count] $heads[$count]\n";
+		$count++;
+	}
+	$sth3 = ();
+	close(pltfl);
+
+	print "Begin $day[0] End $day[$count-1] Number of records $count\n";
+	if( $i== 0 ) {
+		print outfl " $pointname" . " " . @day . "\n"; }
+	else {
+		print outfl "time $pointname" . " " . @day . "\n"; }
+        print outfl "1e-6 $simperiod 10000 001 2008 1 0\n";
+	# Print observation times to TPL and INS files and collect observations for PST file
+        for ($j=0;$j<@day;$j++) {
+		$psttarget[$pstcount] = $heads[$j];
+		$o = $day[$j] - $firstsimtime;
+		$pstvar[$pstcount] = sprintf "P%.1f_$pointname", $o;
+		if($j==@day-1) {$o=10;} else {$o=$obstime[$j+1]-$obstime[$j]; }
+                printf outfl "%.2f -10 1 1 %f\n", $obstime[$j] - $firstsimtime, $o;
+                printf insfl "\@ %.2f\@ w ", $obstime[$j] - $firstsimtime;
+#		for ($k=0;$k<$i;$k++) { print insfl "w "; }
+                print insfl "!" . $pstvar[$pstcount] . "!\n";
+		$pstcount++;
+        }
+	# Create observation group name for PST file and collect final index
+	$pstgroup[$i] = "head_$pointname";
+	$pstgrpcnt[$i] = $pstcount - 1;	
+	$pstinithead[$i] = $heads[0];
+	close(insfl);
+	# Find the last observation time
+	if($obstime[@day-1] > $lastobstime) { $lastobstime = $obstime[@day-1] };
+	if($obstime[0] < $firstobstime) { $firstobstime = $obstime[0] };
+}
+print outfl "\n\n";
+close(outfl);
+# Start creatime a time file
+$outflname = $ARGV[0] . ".time";
+system( "convert-time", $outflname );
+#system( "sort -k 1n", $outflname, "| uniq | echo '\n\n' >", $outflname-temp );
+#system( "sed '{1d;N;3s/\n/ /;N;4s/\n/ /}'", $outflname-temp, ">", $outflname-temp2 );
+print "Observation time [d] First " . $firstobstime . " Last " . $lastobstime . "\n";
+
+# Set output boun file
+$outflname = $ARGV[0] . ".boun";
+open(outfl, ">$outflname") || die "Can't open output file\n";
+print outfl "boun # First time in days since 1990 " . $firstsimtime . "\n";
+
+print "OLD Pumping time [d] First " . $firstpumptime . " Last " . $lastpumptime . "\n";
+my($firstpumptime) = 1e20; # Earliest pumping time
+my($lastpumptime) = 0; # Latest pumping time
+# Collect pumping well data
+for($i=0;$i<@wells;$i++){
+	printf "Pumping well %i $wells[$i]\n", $i+1;
+
+	# Prepare and execute query for pumping capacity of well pump
+	$sth1 = $dbh->prepare("SELECT pumprategpm from PumpRate20080111 WHERE wellname REGEXP \'$wells[$i]\'");
+	$sth1->execute() or die "SQL Error: $DBI::errstr\n";
+	$prate = $sth1->fetchrow_array();
+	$prate = $prate*60*24/264.172;	# Convert from gpm to m3/day
+	if ($sth1->rows == 0) { die print "No match for pumping capacity of $wells[$i]!\n"; }
+	$sth1 = ();
+
+	# Prepare and execute query for well coordinates
+	$sth2 = $dbh->prepare("SELECT X_COORD,Y_COORD from WQDBLocation20080310 WHERE LOCATION_NAME REGEXP \'$wells[$i]\'");
+	$sth2->execute() or die "SQL Error: $DBI::errstr\n";
+	@coords = $sth2->fetchrow_array();
+	$xcoord = $coords[0]*0.3048;   # Convert feet to meters
+	$ycoord = $coords[1]*0.3048;
+	$wellname = lc($wells[$i]);
+	$wellname =~ s/-0//;
+	print gstatfl "$xcoord $ycoord # k_" . $wellname . "         #\n";
+	if ($sth2->rows == 0) { die print "No matches for coordinates for $wells[$i]!\n"; }
+	$sth2 = ();
+
+	# Prepare and execute queary for well radius
+	$sth3 = $dbh->prepare("SELECT INNER_DIAM from ScreenData20080310 WHERE WELL_NAME REGEXP \'$wells[$i]\'"); 
+	$sth3->execute() or die "SQL Error: $DBI::errstr\n";
+	@radiusin = $sth3->fetchrow_array();
+	$radiusm = $radiusin[0]*0.0254;   # Convert inches to meters
+	if ($sth3->rows == 0) { die print "No match for well radius for $wells[$i]!\n"; }
+	$sth3 = ();
+
+	# Prepare and execute query for volume pumped each day
+	$sth4 = $dbh->prepare("SELECT datediff(date(time),\'1899-12-30\'),productiongal from ProdDaily20080111 WHERE wellname REGEXP \"$wells[$i]\" and time > $begin and time < $end");
+	$sth4->execute() or die "SQL Error: $DBI::errstr\n";
+	if ($sth4->rows == 0) { die print "No matches for daily production for $wells[$i]!\n"; }
+
+	if($boolplot == 2) {
+		# Open PLT file for plotting pumping well production
+		my($pltflnm) = $ARGV[0] . "-$wellname.dat";
+		open(pltfl, ">$pltflnm") || die "Can't open PLT file: $pltflnm\n";
+	}
+	$count = 0;
+	@srate = ();
+	@sttime = ();
+        $wellno = $i + 1;
+	$prev_zero = 0;
+	while (@prodvol = $sth4->fetchrow_array()) {
+		if($prodvol[0] < $firstsimtime ) { next; }
+		if($prodvol[0] > $lastsimtime ) { last; }
+		if($prodvol[0] < $firstpumptime) { $firstpumptime = $prodvol[0]; }
+		if($prodvol[0] > $lastpumptime) { $lastpumptime = $prodvol[0]; }
+		$volgal = $prodvol[1]/264.172;	# Convert gal to m^3
+		if($boolplot == 2) { 
+			$o = $prodvol[0] + 2415019;
+			print pltfl "$prodvol[0] $o $prodvol[1] \n"; };
+		$time = $volgal/$prate; # Start at 4th column of infl
+		if($time > 0.95 || ($time == 0 && $prev_zero == 0)){
+		       $srate[$count] = $volgal; 		#Pumping rate equal to the total volume produced
+		       $sttime[$count] = $prodvol[0];	# Use day since 1900 for time
+		       $count = $count + 1;
+		       if($time==0) { $prev_zero = 1; }
+		       else { $prev_zero = 0; }
+	       } elsif ( $time != 0 ) {
+		       $srate[$count] = $prate;
+		       $sttime[$count] = $prodvol[0];
+		       $count = $count + 1;
+		       $srate[$count] = 0;
+		       $sttime[$count] = $prodvol[0] + $time;
+		       $count = $count + 1;
+		       $prev_zero = 1;
+	       }
+	}
+	$sth4 = ();
+	print "Begin $sttime[0] End $sttime[$count-1] Number of records $count\n";
+	
+	printf outfl "model %i $wells[$i]\n", $i+1;
+	print outfl "time\n";
+	print outfl "$count\n";
+	for($j=0;$j<@srate;$j++){
+		print outfl $sttime[$j] - $firstsimtime . "\n";
+	}
+	print outfl "sw\n";
+	for($j=0;$j<@srate;$j++){
+		print outfl $srate[$j]*1000/(24*3600) . "\n";
+	}
+}
+close(gstatfl);
+print outfl "end\n";
+for($i=0;$i<@wells;$i++) {
+	$zoneid = $wells[$i];
+	$zoneid =~ s/-//;
+	$zoneid =~ s/PM0/21/;
+	$zoneid =~ s/O0/20/;
+	printf outfl "-%s 0 0 %i # $wells[$i]\n", $zoneid, $i+1;
+}
+print outfl "\n";
+close(outfl);
+
+print "NEW Pumping time [d] First " . $firstpumptime . " Last " . $lastpumptime . "\n";
+print "Observation time [d] First " . $firstobstime . " Last " . $lastobstime . "\n";
+print "Simulation  time [d] First " . $firstsimtime . " Last " . $lastsimtime . "\n";
+printf "Simulation period  [d] %f\n", $lastobstime-$firstpumptime;
+printf "Simulation period  [d] %f\n", $lastsimtime-$firstsimtime;
+
+if($boolplot == 2) {close(pltfl)};
+
+# Disconnect from database
+$dbh->disconnect;
+
+close(outfl);
+
+# Create new pest control file
+
+# Initialize pest control file using old pest control file input as $ARGV[1]
+my($oldpstnm) = $ARGV[1] . ".pst";
+open(oldpst, "<$oldpstnm") || die "Can't open old pest control file: $oldpstnm!\n";
+my(@pstin) = <oldpst>;
+close(oldpst);
+
+# Locate observation data limits and search old case name and replace with new case name
+$obsdata5 = 0;
+for ($i=0;$i<@pstin;$i++) {
+	if ($pstin[$i] =~ m/\*\sparameter\sdata/) {
+		$obsdata1 = $i;
+	}
+	if ($pstin[$i] =~ m/\*\sobservation\sgroups/) {
+		$obsdata2 = $i;
+	}
+	if ($pstin[$i] =~ m/\*\sobservation\sdata/) {
+		$obsdata3 = $i;
+	}
+	if ($pstin[$i] =~ m/\*\smodel\scommand\sline/) {
+		$obsdata4 = $i;
+	}
+	if ($obsdata5 == 0 && $pstin[$i] =~ m/\.ins/) {
+		$obsdata5 = $i;
+	}
+	$pstin[$i] =~ s/$ARGV[1]/$ARGV[0]/g;
+}
+
+# Change number of parameters and observations in line 4 of control file
+@segs = split(/\s+/, $pstin[3]);
+chomp($segs[4]);
+if (@points > 1) {
+	$nwells = 2*@wells + 3*@points;
+} else {
+	$nwells = 2*@wells + @points;
+}
+$pstin[3] = $nwells . "\t" . @pstvar . "\t" . $segs[2] . "\t" . $segs[3] . "\t" . @pstgroup . "\n";
+
+# Create new pest control file
+my($newpstnm) = $ARGV[0] . ".pst";
+open(newpst, ">$newpstnm") || die "Can't open new pest control file: $newpstnm!\n";
+
+# Print initial lines up to parameter data from the OLD PST File
+for ($i=0;$i<$obsdata1+1;$i++) {
+	print newpst $pstin[$i];
+}
+
+# Print parameter data using typical values
+if(@wells > 1 ) {
+	for ($i=0;$i<@wells;$i++) {
+		$wellname = lc($wells[$i]);
+		$wellname =~ s/-0//;
+		print newpst "k_" . $wellname . "	none	relative	-11.5	-16	8	perm	1.0	0.0	1\n";
+	#	print newpst "s_" . $wellname . "	none	relative	-3.5	-9	-1	stor	1.0	0.0	1\n";
+	#	print newpst "h_" . $wellname . "	none	relative	1780	1000	3000	head	1.0	0.0	1\n";
+	}
+	print newpst "s0	none	relative	-3.5	-9	-1	stor	1.0	0.0	1\n";
+}
+else {
+	print newpst "k0 	none	relative	-11.5	-16	8	perm	1.0	0.0	1\n";
+	print newpst "s0	none	relative	-3.5	-9	-1	stor	1.0	0.0	1\n";
+}
+
+for ($i=0;$i<@points;$i++) {
+	if ($portdesc[$i] eq '0') { $pointname = lc($points[$i]); }
+	else { $pointname = lc("$points[$i]_$portdesc[$i]"); }
+	$pointname =~ s/cdv-r/c/;
+	$pointname =~ s/-//;
+	if (@points > 1) {
+		print newpst "k_" . $pointname . "	none	relative	-11.5	-16	8	perm	1.0	0.0	1\n";
+		print newpst "s_" . $pointname . "	none	relative	-3.5	-9	-1	stor	1.0	0.0	1\n";
+		printf newpst "h0" . $pointname . "	none	relative	%.2f	1000	3000	head	1.0	0.0	1\n", $pstinithead[$i];
+	}
+	else {
+		printf newpst "h0 	none	relative	%.2f	1000	3000	head	1.0	0.0	1\n", $pstinithead[$i];
+	}
+}
+
+# Print observation groups section
+print newpst "* observation groups\n";
+for ($i=0;$i<@pstgroup;$i++) {
+	print newpst "$pstgroup[$i]\n";
+}
+print newpst "* observation data\n";
+
+# Print observation data
+$j = 0;
+for ($i=0;$i<@pstvar;$i++) {
+	if ($i > $pstgrpcnt[$j]) {$j++};
+		print newpst $pstvar[$i] .  "	" . $psttarget[$i] . " 	1	$pstgroup[$j]\n";
+}
+
+# Print remainder of pest file
+print newpst $pstin[$obsdata4];
+@segs = split(/[\s\t]+/, $pstin[$obsdata4+1]);
+# print newpst "run-model $ARGV[0]\n";
+# print newpst "* model input/output\n";
+# Print TPL files from the OLD PST File
+for ($i=$obsdata4+1;$i<$obsdata5;$i++) {
+	print newpst $pstin[$i];
+}
+#print newpst "$ARGV[0].perm_tpl    $ARGV[0].perm\n";
+#print newpst "$ARGV[0].stor_tpl    $ARGV[0].stor\n";
+#print newpst "$ARGV[0].head_tpl    $ARGV[0].head\n";
+
+# Create NODE file and add correspoding INS file in the PST file 
+$outflnm = "$ARGV[0].node";
+open(outfl, ">$outflnm") || die "Can't open file: $outflnm\n";
+print outfl "node\nazone\n";
+for ($i=0;$i<@points;$i++) {
+	if ($portdesc[$i] eq '0') { $pointname = lc($points[$i]); }
+	else { $pointname = lc("$points[$i]_$portdesc[$i]"); }
+	$pointname =~ s/cdv-r/c/;
+	$pointname =~ s/-//;
+	print newpst "$ARGV[0]-$pointname.ins    $ARGV[0].$pointname\_obs\n";
+	$name = $pointname;
+	$pointname =~ s/r/3/;
+	print outfl "-$pointname 0 0 # $name\n";
+}
+print outfl "\n\n";
+close (outfl);
+
+if($boolplot >= 1) {
+	# Plot observation well heads and pumping production
+	for($i=0;$i<@points;$i++) {
+		if ($portdesc[$i] eq '0') { $pointname = lc($points[$i]); }
+		else { $pointname = lc("$points[$i]_$portdesc[$i]"); }
+		$pointname =~ s/cdv-r/c/;
+		$pointname =~ s/-//;
+		$pltflnm = "$ARGV[0]-$pointname-ALL.dat";
+		@args = ("head-plotm","$pltflnm","$pointname","lines");
+		system(@args) == 0 || die "system @args failed!!!\n";
+		$pltflnm = "$ARGV[0]-$pointname-AVG.dat";
+		@args = ("head-plotm","$pltflnm","$pointname","lines");
+		system(@args) == 0 || die "system @args failed!!!\n";
+		$pltflnm = "$ARGV[0]-$pointname-MIN.dat";
+		@args = ("head-plotm","$pltflnm","$pointname","lines");
+		system(@args) == 0 || die "system @args failed!!!\n";
+#		unlink("$ARGV[0]-$points[$i].dat");
+	}
+}
+if($boolplot == 2) {
+	for ($i=0;$i<@wells;$i++) {
+		$wellname = lc($wells[$i]);
+		$wellname =~ s/-0//;
+		@args = ("prod-plotm","$ARGV[0]-$wellname.dat","$wells[$i]","impulses");
+		system(@args) == 0 || die "system @args failed for $wells[$i]!!!\n";
+#		unlink("$ARGV[0]-$wells[$i].dat");
+	}
+}
+print "\nUpdate parameter data section of $newpstnm if necessary!!!\n\n";
+
+sub AdjBaroTA54AVGset {
+	# Collect barometric pressure at TA-54 at $gwtime
+        $sth2 = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),AVG(pressmb),tempC FROM TA54BaroData GROUP BY date(time)"); 
+	$sth2->execute() or die "SQL Error: $DBI::errstr\n";
+	if ($sth2->rows == 0) { print "No barometric pressure data !\n"; return 0; }
+	@data = $sth2->fetchrow_array();
+	return 1;
+}
+
+sub AdjBaroTA54AVGrun {
+	# Create variable for TA54 elevation
+	my($elevta54) = 6548;
+	
+	# Create variable for average barometric pressure for TA54 (calculated from database)
+	my($avgpress) = 26.79;	
+		
+	# Assign arguments to variables
+	my($tdec) = $_[0];
+	my($gwtime) = $_[1];
+	my($uncorrWL) = $_[2];
+	my($welltemp) = $_[3];
+	my($elevwell) = $_[4];
+	my($baroeff) = $_[5];
+
+	# Collect values
+#	print "new $tdec, $data[0], \n";
+	if( $tdec < $data[0] ) { 
+		print "Missing barometric data for TA-54 near $gwtime $tdec!!!\n"; 
+		return 0; } 
+	while( $tdec > $data[0] ) {
+		if( $tdec == $data[0] ) { last; }
+		@data = $sth2->fetchrow_array();
+	}
+#	print "col $data[0], $data[1], $data[2], $data[3], \n";
+
+        $pressmb = $data[1];
+
+	# Convert mbar to feet
+	my($pressft) = $pressmb*0.0145037*2.304;
+	
+	# Calculate the barometric pressure in the well at $time
+	my($presswell) = $pressft*exp(-9.80665/(3.281*287.04)*(($elevwell-$elevta54)/(275.1)+($uncorrWL-$elevwell)/($welltemp+273.15)));
+
+	# Calculate the average barometric pressure in the well (average temp for all wells is used for avg well temp)
+	my($avgpresswell) = $avgpress*exp(-9.80665/(3.281*287.04)*(($elevwell-$elevta54)/(275.1)+(6590-$elevwell)/(287.4)));	
+
+	# Calculate corrected water level
+	my($presscorr) = $avgpresswell-$presswell;
+	my($corrWL) = $uncorrWL-$presscorr*$baroeff;
+
+	return $corrWL;
+}
+
+sub AdjBaroTA54 {
+	# Create variable for TA54 elevation
+	my($elevta54) = 6548;
+	
+	# Create variable for average barometric pressure for TA54 (calculated from database)
+	my($avgpress) = 26.79;	
+		
+	# Assign arguments to variables
+	my($tdec) = $_[0];
+	my($gwtime) = $_[1];
+	my($uncorrWL) = $_[2];
+	my($welltemp) = $_[3];
+	my($elevwell) = $_[4];
+	my($baroeff) = $_[5];
+
+	# Collect barometric pressure at TA-54 at $gwtime
+        my($sth2) = $dbh->prepare("SELECT datediff(time,\'1899-12-30\'),time(time),pressmb,tempC FROM TA54BaroData WHERE time BETWEEN ADDTIME(\'$gwtime\',\'-0 00:15:00\') AND ADDTIME(\'$gwtime\',\'0 00:15:00\')"); 
+	$sth2->execute() or die "SQL Error: $DBI::errstr\n";
+	if ($sth2->rows == 0) { print "No barometric pressure data at $gwtime!\n" };
+			
+	# Collect upper and lower values for interpation
+	my(@lower) = $sth2->fetchrow_array();
+	my(@upper) = $sth2->fetchrow_array();
+
+	# Convert time to decimal days and add to days since 1900
+	my(@time) = split(/:/, $lower[1]);
+	my($dectime) = (($time[2]/60 + $time[1])/60 + $time[0])/24;
+	my($ltime) = $lower[0] + $dectime;
+
+	# Convert time to decimal days and add to days since 1900
+	my(@time) = split(/:/, $upper[1]);
+	my($dectime) = (($time[2]/60 + $time[1])/60 + $time[0])/24;
+	my($utime) = $upper[0] + $dectime;
+
+	# Check that @lower and @upper exist
+        if($lower[2] == 0 && $upper[2] != 0) {
+                $pressmb = $upper[2];
+        } elsif($upper[2] == 0 && $lower[2] != 0) {
+                $pressmb = $lower[2];
+        } elsif($lower[2] == 0 && $upper[2] == 0) {
+        #        print "Missing barometric data for TA-54 near $gwtime $utime!!!\n";
+		return 0;
+        } else {
+                # Perform linear interpolation
+                $pressmb = ($tdec-$ltime)*($upper[2]-$lower[2])/($utime-$ltime)+$lower[2];
+#                $tempta54 = ($tdec-$ltime)*($upper[3]-$lower[3])/($utime-$ltime)+$lower[3];
+        }
+
+	# Convert mbar to feet
+	my($pressft) = $pressmb*0.0145037*2.304;
+	
+	# Calculate the barometric pressure in the well
+	my($presswell) = $pressft*exp(-9.80665/(3.281*287.04)*(($elevwell-$elevta54)/(275.1)+($uncorrWL-$elevwell)/($welltemp+273.15)));
+
+	# Calculate the average barometric pressure in the well (average temp for all wells is used for avg well temp)
+	my($avgpresswell) = $avgpress*exp(-9.80665/(3.281*287.04)*(($elevwell-$elevta54)/(275.1)+(6590-$elevwell)/(287.4)));	
+
+	# Calculate corrected water level
+	my($presscorr) = $avgpresswell-$presswell;
+	if($presscorr > 0.2 ) { return 0; }
+	my($corrWL) = $uncorrWL-$presscorr*$baroeff;
+	
+	$sth2 = ();
+
+	return $corrWL;
+}

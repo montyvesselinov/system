@@ -1,0 +1,5 @@
+cat ../P4.tpl ../p4a.node/co$2.node ../stop.0 > co$2-data.tpl
+sed "s/$1/$2/g" co$1.pst > co$2.pst
+sed "s/$1/$2/g;s/t3a/p4a/g" co$1.his-grf.in   > co$2.his-grf.in
+cpprob co$1 co$2
+vi co$2.pst

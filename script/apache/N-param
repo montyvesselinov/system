@@ -1,0 +1,22 @@
+#!/bin/ksh
+ssr=`grep "ie phi" $1.rec | awk '{print $9}' | tail -1`
+line=`grep -n RESULTS $1.rec | awk '{print $1}' | sed 's/://g'`
+param=`head -4 $1.pst | tail -1 | awk '{print $1}'`
+totline=`wc $1.rec | awk '{print $1}'`
+let tailline=totline-line
+lineres=`tail -$tailline $1.rec | grep -n value | head -1 | awk '{print $1}' | sed 's/://g'`
+let line=line+lineres
+let tailline=totline-line
+tail -$tailline $1.rec | head -$param | awk '{
+	est[NR]=$2
+	ll[NR]=$3
+	ul[NR]=$4
+	NP=NR
+}
+END{
+	printf( "per none relative     %9.3e     1.000000E-25   1.000000E-12 per    1.00       .0\n", est[1] );
+	printf( "por none relative     %9.3e     1.000000E-05   5.000000E-01 por    1.00       .0\n", est[2] );
+}'
+unset line
+unset totline
+unset tailline

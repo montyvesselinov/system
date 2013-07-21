@@ -1,0 +1,27 @@
+#!/bin/ksh
+param=`head -4 $1.pst | tail -1 | awk '{print $1}'`
+totline=`wc $1.rec | awk '{print $1}'`
+line=`grep -n RESULTS $1.rec | awk '{print $1}' | sed 's/://g'`
+ssr=`grep "ie phi" $1.rec | awk '{print $9}' | tail -1`
+let tailline=totline-line
+lineres=`tail -$tailline $1.rec | grep -n value | head -1 | awk '{print $1}' | sed 's/://g'`
+let line=line+lineres
+let tailline=totline-line
+printf "%-20s: %10s" $1 $ssr
+tail -$tailline $1.rec | head -$param | awk '{
+	est[NR]=$2
+	ll[NR]=$3
+	ul[NR]=$4
+	NP=NR
+}
+END{
+	for( i = 1; i <= NP; i++ )
+		if( ( ul[i] - ll[i] ) == 0.0 )
+			printf( " %.3e/         ", est[i] );
+		else
+			printf( " %.3e/%.3e", est[i], ( ul[i] - ll[i] ) / 2 );
+	printf( "\n" );
+}'
+unset line
+unset totline
+unset tailline

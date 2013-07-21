@@ -1,0 +1,9 @@
+#!/usr/local/bin/tcsh
+if( -e $1-dat_grf.zip ) then
+	unzip -u $1-dat_grf.zip
+	mv -f $1-dat_grf.zip $1-dat_grf_skip.zip
+endif
+pst_nj4 $1
+foreach i ( $1*.*.dat_grf )
+        echo "Skip." >! $i:r\.skip
+        end

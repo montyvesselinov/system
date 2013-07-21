@@ -1,0 +1,23 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then 
+        echo usage:   mpipest-copy-back prob_name problem-directory scratch
+        exit
+endif
+# usage:   mpipest-copy-back prob_name problem-directory scratch
+# example: mpipest-copy-back st16-fwd espanola/pest/sub-tr t04
+#
+# copy back from scratch
+#
+echo "Copying back from scratch" $3
+cd ~/$2
+\rm -f $1-jacobian.zip $1-jacobian.runs $1-jacobian.runs_restart $1-serial.runs $1-serial.runs_restart $1.hld
+\rm -f $1-serial*.zip
+lt $1*
+cd /n/$3/scratch/montyv/$2
+\cp -pf $1-jacobian.runs $1-jacobian.runs_restart $1-serial.runs $1-serial.runs_restart $1.mtt $1.rec $1.rst $1.jst $1.jac $1.jco $1.seo $1.sen $1.res $1.par $1.hld $1.fin-i ~/$2
+\cp -pf $1-jacobian*.zip ~/$2
+\cp -pf $1-serial*.zip ~/$2
+#rm -f $1*
+cd ~/$2 
+lt $1*
+echo "Copying back completed!"

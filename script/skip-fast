@@ -1,0 +1,22 @@
+#!/bin/tcsh -f
+if( ! -e $1.pst ) then
+	echo "$1.pst is missing!"
+	exit
+endif
+@ line = `grep -n "\* model command line" $1.pst | awk 'BEGIN {FS = ":"} {print $1}'`
+@ line = $line + 1
+set root = `head -$line $1.pst | tail -1 | awk '{print $3}'`
+echo Root: $root
+@ ntpl = `head -5 $1.pst | tail -1 | awk '{print $1}'`
+@ nins = `head -5 $1.pst | tail -1 | awk '{print $2}'`
+@ line = `grep -n "\* model input\/output" $1.pst | awk 'BEGIN {FS = ":"} {print $1}'`
+@ line = $line + $ntpl + $nins
+set insline = `head -$line $1.pst | tail -1`
+set infile = `echo $insline | awk '{print $1}'`
+set outfile = `echo $insline | awk '{print $2}'`
+set outextension = $outfile:e
+echo Extension: $outextension
+foreach i ( $root.*.$outextension )
+	echo Skip $i:r:e
+	echo "Skip." >! $i:r\.skip
+end

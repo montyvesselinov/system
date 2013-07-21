@@ -1,0 +1,2 @@
+alias st1 "cd /n/t01/scratch/montyv; ls -al"
+alias st2 "cd /n/t02/scratch/montyv; ls -al"

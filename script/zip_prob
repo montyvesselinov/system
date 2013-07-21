@@ -1,0 +1,2 @@
+#!/bin/sh
+zip -um9 $1-avs $1.1*

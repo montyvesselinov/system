@@ -1,0 +1,56 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+        echo "mpipest-static-ap: No problem root name"
+        exit
+endif
+echo "Full Parallel Pesting ..."
+rm -f $1.parallel_wait
+if( -e $1.rst && -Z $1.rst < 100 ) then
+	@ finished = `grep RESULTS $1.rec | wc -l`
+	if( $finished == 1 ) then
+		echo "mpipest-static-ap: STOP $1 completed!"
+		exit
+	else
+		echo "mpipest-static-ap: FRESH START"
+		rm -f $1.rst
+	endif
+endif
+if( ! -e $1.rst ) then
+	echo "mpipest-static-ap: START"
+	echo 0 >! $1-jacobian.runs
+	rm -f $1-lambda.runs $1-jacobian.runs $1.jst $1.jac $1.jco $1.mtt
+	/users/montyv/pest_m/02linux-ap/mpest $1
+	exit
+endif
+if( -e $1.lambda_runs ) then
+	@ nJRuns = `cat $1-jacobian.runs`
+	echo "mpipest-static-ap: RESTART lambda runs after jacobian run " $nJRuns >> $1.rec
+	echo 'mpipest-static-ap: RESTART lambda runs after jacobian run ' $nJRuns
+        if( ! -e $1-lambda.zip ) then
+		echo "mpipest-static-ap: No previous lambda runs\!"
+	else
+        	unzip -u $1-lambda.zip
+		\cp -f $1-lambda.zip $1-lambda_skip_$nJRuns.zip
+	endif
+	skip $1
+	sleep 1
+	if( -e $1.jac ) then
+		echo 'mpipest-static-ap: RESTART using J'
+		/users/montyv/pest_m/02linux-ap/mpest $1 /j
+	else
+		echo "mpipest-static-ap: $1.jac is missing! Quit!"
+	endif
+else
+	@ nJRuns = `cat $1-jacobian.runs` + 1
+	echo "mpipest-static-ap: RESTART jacobian run " $nJRuns >> $1.rec
+	echo 'mpipest-static-ap: RESTART jacobian run ' $nJRuns
+        if( ! -e $1-jacobian.zip ) then
+		echo "mpipest-static-ap: No previous jacobian runs\!"
+	else
+        	unzip -u $1-jacobian.zip
+		\cp -f $1-jacobian.zip $1-jacobian_skip_$nJRuns.zip
+	endif
+	skip $1
+	sleep 1
+	/users/montyv/pest_m/02linux-ap/mpest $1 /r
+endif

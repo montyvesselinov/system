@@ -1,0 +1,30 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+        echo need problem root name
+        exit
+endif  
+#
+# Get number of processors
+#
+if ( $?LSB_MCPU_HOSTS ) then
+	@ nproc = `printenv LSB_MCPU_HOSTS | awk '{print $2}'`
+else
+	@ nproc = 0
+endif
+if( $nproc <= 0 ) then
+	if( $2 != "" && $2 >= 0 ) then
+		@ nproc = $2
+	else
+		@ nproc = 1
+	endif
+endif
+echo Number of processors $nproc
+@ line = `grep -n mprun $1.pst | awk 'BEGIN {FS = ":"} {print $1}'`
+@ linep = $line + 1
+@ linem = $line - 1
+rm -f $1.pst-$$
+touch $1.pst-$$
+head -$linem $1.pst >> $1.pst-$$
+( head -$line $1.pst | tail -1 | awk -v anproc=$nproc '{print $1, $2, $3, anproc}' ) >> $1.pst-$$
+tail +$linep $1.pst >> $1.pst-$$
+mv -f $1.pst-$$ $1.pst

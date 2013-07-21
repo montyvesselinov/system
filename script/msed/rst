@@ -1,0 +1,5 @@
+#!/usr/local/bin/tcsh
+echo /scr1/monty/pest:
+crst /scr1/monty/pest
+echo /scr3/monty/pest:
+crst /scr3/monty/pest

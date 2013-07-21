@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *-files|
+while read line
+do
+	sed "s/y2a/w3a/g;s/p4/p7/g" $line > temp-files
+	mv temp-files $line
+done

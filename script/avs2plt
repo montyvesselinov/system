@@ -1,0 +1,25 @@
+#!/usr/lanl/bin/tcsh
+# gunzip -c $1.inp.gz >! $1.inp
+set n = `head -1 $1.inp` 
+@ nn = $n[1]
+@ ne = $n[2]
+echo number of nodes: $nn
+echo number of elements: $ne
+@ le = $nn + 2
+set n = `tail +$le $1.inp | head -1`
+if( $n[3] == "quad" ) then
+	( echo "variables=x,y,z"; echo "zone n=$nn e=$ne et=QUADRILATERAL f=fepoint" ) > $1.plt
+else if( $n[3] == "hex" ) then
+        ( echo "variables=x,y,z"; echo "zone n=$nn e=$ne et=BRICK f=fepoint" ) > $1.plt
+else
+	( echo "variables=x,y,z"; echo "zone n=$nn e=$ne et=TRIANGLE f=fepoint" ) > $1.plt
+endif
+@ ln = $nn + 1
+( head -$ln $1.inp | sed '1d' | awk '{printf "%g %g %g\n", $2, $3, $4}' ) >> $1.plt
+if( $n[3] == "quad" ) then
+	tail +$le $1.inp | head -$ne | awk '{printf "%d %d %d %d\n", $4, $5, $6, $7}' >> $1.plt
+else if( $n[3] == "hex" ) then
+        tail +$le $1.inp | head -$ne | awk '{printf "%d %d %d %d %d %d %d %d\n", $4, $5, $6, $7, $8, $9, $10, $11}' >> $1.plt
+else
+	tail +$le $1.inp | head -$ne | awk '{printf "%d %d %d\n", $4, $5, $6}' >> $1.plt
+endif

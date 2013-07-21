@@ -1,0 +1,28 @@
+#!/usr/local/bin/perl
+
+################################################################################
+# Munge (actually just prepend or append) a path (without duplication.)
+
+   die "usage: mungepath path prepath apppath\n" unless ($#ARGV == 2);
+
+   my($var, $prepath, $apppath) = @ARGV;
+
+   my(@VAR) = split(':', $ENV{$var});
+
+   my($dir, $changed);
+
+   foreach $dir (reverse split(':', $prepath)) { # preserve the order
+      next unless (-d "$dir");                   # skip non-existent dirs
+      @VAR = grep(!/^$dir$/, @VAR);              # rip out any other occurances
+      unshift(@VAR, $dir);                       # and prepend $dir
+      $changed++;
+   }
+
+   foreach $dir (split(':', $apppath)) {         # preserve the order
+      next unless (-d "$dir");                   # skip non-existent dirs
+      @VAR = grep(!/^$dir$/, @VAR);              # rip out any other occurances
+      push(@VAR, $dir);                          # and apppend $dir
+      $changed++;
+   }
+
+   print "setenv $var " . join(':', @VAR) . ";\n" if $changed;

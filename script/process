@@ -1,0 +1,10 @@
+#!/bin/tcsh -f
+@ i = 0
+while( $i <= $2 )
+@ i++
+echo $1 $2 $i
+avs-tecza $1 $i
+\tecplot -b $1-a.plt -q ~/tecplot/extract.mcr
+\mv -f y-134500.plt $1-$i-y-134500.plt
+\mv -f feb.plt $1-$i-feb.plt
+end

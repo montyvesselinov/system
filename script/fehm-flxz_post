@@ -1,0 +1,15 @@
+#!/bin/tcsh -f
+echo FEHM-FLXZ post
+if( $1 == "" ) then
+	echo USAGE fehm-flxz_post fehm_output_file
+	exit
+	endif
+if( ! -e $1 ) then
+	echo $1 does not exist!
+	echo USAGE fehm-flxz_post fehm_output_file
+	exit
+	endif
+set lines = `grep -n '^   16 (' $1 | awk 'BEGIN{FS=":"} {print $1}'`
+foreach l ( $lines )
+	head -$l $1 | tail -12 | awk '{source+=$4;sink+=$5;net+=$6;bound+=$7}END{print source, sink, net, bound}'
+	end

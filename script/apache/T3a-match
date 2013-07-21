@@ -1,0 +1,31 @@
+#!/bin/sh
+inschek_sgi ../T3a-match.ins $1
+cat ../T3a-match.obs | nawk '
+{
+	array[NR] = $2 
+	save_NR = NR 
+}
+
+END{
+	t_array[1] = 0.1
+	t_array[2] = 0.3
+	t_array[3] = 0.7
+	t_array[4] = 1.0
+	t_array[5] = 2.0
+	t_array[6] = 3.0
+	t_array[7] = 4.0
+	t_array[8] = 5.0
+
+	for ( j = 0; j <= 8; j++ )
+	{
+		printf ( "%g ", t_array[j] )
+		k = j;
+		for ( i = 1; i <= save_NR / 8; i++ )
+		{
+			printf ( "%g ", array[k] );
+			if( k != 0 ) k += 8;
+		}
+		printf ( "\n" )
+	}
+}' > `echo $1|sed "s;.rec;-match;"`
+rm -f ../T3a-match.obs

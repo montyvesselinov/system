@@ -1,0 +1,4 @@
+alias bbbran    'rdump -u -0 -ftransport.hwr:/dev/rmt0 -d 1600 -s 365 /home'
+alias bb        "find /scr3 /scr4 /scr1 /scr2 -print | backup -ipvf/dev/rmt0"
+alias bbb       "find /scr3 /scr4 /scr1 /scr2 -print | backup -ipvqf/dev/rmt0 | gzip -f >&! /home/backup-files.gz; restore -Tqf/dev/rmt0 | gzip -f >&! /home/restore-files.gz &"
+alias bbm       "find /home/monty /scr3/monty /scr4/monty /scr1/monty /scr2/monty -print | backup -ipvqf/dev/rmt0 | gzip -f >&! /home/backup-files.gz; restore -Tqf/dev/rmt0 | gzip -f >&! /home/restore-files.gz &"

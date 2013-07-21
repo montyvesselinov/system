@@ -1,0 +1,129 @@
+#!/bin/tcsh -f
+set root = $1:r
+if( -e $root.STOP ) then
+        exit 1
+endif
+if( -e $1.skip ) then
+        rm -f $1.skip
+	smartrst2 $1
+        exit 1 
+endif
+if( -e $root.serial_runs ) then
+	setenv serial
+	unsetenv jacobian
+	setenv new
+else if( -e $root.jacobian_runs ) then
+	unsetenv serial
+	setenv jacobian
+	setenv new
+	endif
+endif
+if( $1 == $root ) then
+	setenv serial
+	unsetenv jacobian
+	unsetenv new
+endif
+if( ${?serial} ) then
+# Serial
+	if( -e $root-jacobian.runs_restart ) then
+		@ rJRuns = `cat $root-jacobian.runs_restart`
+		if( $rJRuns == 0 || -e $root-jacobian_$rJRuns.zip ) then
+			unzip -o $root-jacobian_$rJRuns.zip
+			@ nSRuns = `ls $root-serial_*.zip | wc | awk '{print $1}'`
+			echo $nSRuns >! $root-serial.runs
+			@ rSRuns = 0
+			echo $rSRuns >! $root-serial.runs_restart
+			@ rJRuns = $rJRuns + 1
+			echo $rJRuns >! $root-jacobian.runs_restart
+		endif
+	else
+        if( -e $root-jacobian.zip ) then
+		zip -u $root-jacobian.zip $root.rst $root.mtt $root.res $root.jst $root.jac $root.jco $root.par >& /dev/null
+                @ nJRuns = `cat $root-jacobian.runs`
+                @ nJRuns = $nJRuns + 1
+		echo 'Jacobian run number ' $nJRuns ' completed'
+                \mv -f $root-jacobian.zip $root-jacobian_$nJRuns.zip
+                echo $nJRuns >! $root-jacobian.runs
+        endif
+        endif
+        if( -e $root-serial.runs ) then
+                @ nSRuns = `cat $root-serial.runs`
+        else
+                @ nSRuns = 0
+                echo $nSRuns >! $root-serial.runs
+        endif
+        if( $nSRuns == 0 ) then
+		rm -f $root-serial.runs_restart
+        endif
+        if( -e $root-serial.runs_restart ) then
+                @ rSRuns = `cat $root-serial.runs_restart`
+                if( $rSRuns != $nSRuns ) then
+                        @ rSRuns = $rSRuns + 1
+			echo $rSRuns >! $root-serial.runs_restart
+                        unzip -o $root-serial_$rSRuns.zip
+			if( { skip-serial $root } ) then	
+	                        echo 'Skip serial run number ' $rSRuns
+				rm -f $root.skip
+                        	exit 3
+			else
+				echo 'Rerun serial run number ' $rSRuns
+				rm -f $root-serial.runs_restart
+			endif
+                else
+                        rm -f $root-serial.runs_restart
+                endif
+        endif
+else
+# Jacobian
+	if( -e $root-jacobian.runs_restart ) then
+		@ rJRuns = `cat $root-jacobian.runs_restart`
+		if( -e $root-jacobian_$rJRuns.zip ) then
+			if( $1:e == 1 ) then
+				unzip -o $root-jacobian_$rJRuns.zip
+				@ nSRuns = `ls $root-serial_*.zip | wc | awk '{print $1}'`
+				echo $nSRuns >! $root-serial.runs
+				@ rSRuns = 0
+				echo $rSRuns >! $root-serial.runs_restart
+				@ rJRuns = $rJRuns + 1
+				echo $rJRuns >! $root-jacobian.runs_restart
+			endif
+			exit 4
+		else
+			if( $1:e == 1 ) then
+				rm -f $root-jacobian.runs_restart
+			endif
+			if( -e $root-jacobian.zip ) then
+				set files = `unzip -l $root-jacobian.zip | awk '{print $4}' | grep $1'\.'`
+				if( ${#files} != 0 ) then
+					if( $files[1] != '' ) then
+						unzip -o $root-jacobian.zip $files
+						if( { skip-serial $1 } ) then
+							echo Skip jacobian run $1:e
+							exit 3
+						endif
+					endif
+				endif
+				echo Run jacobian run $1:e
+				exit 0
+			endif
+		endif
+	else 
+	if( -e $root-serial.runs && $1:e == 1 ) then
+#		best-fin $root
+		@ nSRuns = `cat $root-serial.runs`
+		rm -f $root-serial.runs_restart $root-serial.runs
+		@ nJRuns = `cat $root-jacobian.runs`
+		@ loop = 0
+		while( $nSRuns > $loop )
+			@ loop = $loop + 1
+			zip -um $root-jacobian_$nJRuns.zip $root-serial_$loop.zip >& /dev/null
+		end
+		zip -u $root-jacobian_$nJRuns.zip $root.mtt $root.seo $root.jst $root.jac $root.jco $root.par >& /dev/null
+	else
+		if( $1:e != 1 ) then
+			sleep 1
+		endif
+	endif
+	endif
+endif
+exit 0

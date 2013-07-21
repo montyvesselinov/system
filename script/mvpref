@@ -1,0 +1,18 @@
+#!/bin/sh
+#-----------------------------------------------------------------------
+#
+#                Move Prefexed Files to New Prefex
+#                *********************************
+#
+#       $1 is current prefex
+#
+#       $2 is new preffex
+#
+#       mvpref for f            renames for* to f*
+#
+#-----------------------------------------------------------------------
+ls -d $1*|
+while read line
+do
+	mv $line `echo $line|sed "s/$1/$2/"`
+done

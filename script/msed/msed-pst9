@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *pst|
+while read line
+do
+	sed "s/per relative 0.01/per relative 0.1/g;s/por relative 0.01/por relative 0.1/g" $line > "temp.pst"
+	mv -f temp.pst $line
+done

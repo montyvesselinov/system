@@ -1,0 +1,13 @@
+#!/bin/sh
+host=$1
+case $host in
+  lambda|ees-mail)
+    ssh $host -l lxzm -X
+    exit
+  ;;
+  eesint|eesext|128.165.92.49)
+    ssh $host -l web -X
+    exit
+  ;;
+esac
+ssh monty@$host -X

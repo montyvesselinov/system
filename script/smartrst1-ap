@@ -1,0 +1,216 @@
+#!/bin/tcsh -f
+#echo SMARTRST1-START
+set root = $1:r
+if( -e $root.STOP ) then
+        exit 1
+endif
+if( -e $1.skip ) then
+        \rm -f $1.skip
+	smartrst2-ap $1
+        exit 1 
+endif
+set ext = `pest_extensions $root`
+# echo Extesnions: $ext
+if( -e $root.lambda_runs ) then
+	setenv lambda
+	unsetenv jacobian
+	setenv new
+else if( -e $root.jacobian_runs ) then
+	unsetenv lambda
+	setenv jacobian
+	setenv new
+	endif
+endif
+if( $1 == $root ) then
+	setenv lambda
+	unsetenv jacobian
+	unsetenv new
+endif
+if( ${?lambda} ) then
+# Lambda
+	if( ${?new} ) then
+		@ lambda_parallel = `head -1 $root.lambda_runs` 
+	else
+		@ lambda_parallel = 1
+	endif
+	if( $lambda_parallel == 1 ) then
+		echo The lambda search is serial!
+		setenv lambda_serial
+		if( -e $root-lambda.runs ) then
+			set l = `wc $root-lambda.runs`
+			if( $l[1] != 1 ) then
+				@ iLRuns = 0
+			else
+				@ iLRuns = `cat $root-lambda.runs`
+			endif
+		else
+			@ iLRuns = 0
+		endif
+		if( $iLRuns == 0 ) then
+			\rm -f $root-lambda.runs_restart
+		endif
+		@ iLRuns = $iLRuns + 1
+		echo $iLRuns >! $root-lambda.runs
+	else
+		unsetenv lambda_serial
+	endif
+	if( -e $root-jacobian.runs_restart ) then
+		if( $1:e == 1 || ${?lambda_serial} ) then
+			touch $root.parallel_wait
+			set l = `wc $root-jacobian.runs_restart`
+			if( $l[1] == 0 ) then
+				echo The pest run is restarted from the begining!
+				\rm -f $root-lambda.runs_restart 
+				@ iLRuns = 1
+				echo $iLRuns >! $root-lambda.runs
+				@ rJRuns = 0
+				echo $rJRuns >! $root-jacobian.runs_restart
+			else
+				@ rJRuns = `cat $root-jacobian.runs_restart`
+			endif
+			if( -e $root-lambda_$rJRuns.zip ) then
+				if( ${?lambda_serial} ) then
+					if( -e $root-lambda.runs_restart ) then
+						@ rLRuns = `cat $root-lambda.runs_restart`
+					else
+						@ rLRuns = 0
+						unzip -o $root-lambda_$rJRuns.zip
+					endif
+					@ rLRuns = $rLRuns + 1
+					echo Skip lambda run $rLRuns post jacobian $rJRuns
+					echo $rLRuns >! $root-lambda.runs_restart
+					foreach i ( $ext )
+						\mv -f $root.$rLRuns.$i $root.$i
+					end
+				else if( $1:e == 1 ) then
+					\rm -f $root-lambda.runs_restart
+					echo Skip all lambda runs post jacobian $rJRuns
+					unzip -o $root-lambda_$rJRuns.zip
+				endif
+				\rm -f $root.parallel_wait
+				exit 4
+			else
+				\mv -f $root-jacobian.runs_restart $root-jacobian.runs
+				\rm -f $root.parallel_wait
+				echo $root-lambda_$rJRuns.zip is not availble!
+				echo No more previous runs to skip!
+			endif
+		else
+			sleep 0.2
+			while( -e $root.parallel_wait ) 
+				sleep 1
+			end
+			if( -e $root-jacobian.runs_restart ) then
+				exit 4
+			endif
+		endif
+	endif
+	if( ! ${?new} || $1:e == 1 ) then
+        	if( -e $root-jacobian.zip ) then
+			if( -e $root-jacobian.runs ) then
+				@ nJRuns = `cat $root-jacobian.runs`
+				@ nJRuns = $nJRuns + 1
+			else
+				@ nJRuns = 0
+				echo $nJRuns >! $root-jacobian.runs
+			endif
+			\mv -f $root-jacobian.zip $root-jacobian_$nJRuns.zip
+	                echo $nJRuns >! $root-jacobian.runs
+			zip -u $root-jacobian_$nJRuns.zip $root.rst $root.mtt $root.res $root.jst $root.jac $root.jco $root.par >& /dev/null
+			echo "Jacobian run number $nJRuns completed and saved"
+		endif
+	endif
+	if( -e $root-lambda.zip ) then
+		set files = `unzip -l $root-lambda.zip | awk '{print $4}' | grep $1'\.'`
+		if( ${#files} != 0 ) then
+			if( $files[1] != '' ) then
+				unzip -o $root-lambda.zip $files
+				if( { skip-run $1 } ) then
+					echo Skip lambda run number $1:e
+					\rm -f $1.skip
+					exit 3
+				endif
+			endif
+		endif
+		unset files
+		echo Rerun lambda run number $1:e
+		exit 0
+	endif
+else
+# Jacobian
+	if( $1:e == 1 && -e $root-lambda.runs_restart ) then
+		\rm -f $root-lambda.runs_restart
+	endif
+	if( -e $root-jacobian.runs_restart ) then
+		if( $1:e == 1 ) then
+			touch $root.parallel_wait
+			\rm -f $root-lambda.runs
+			@ rJRuns = `cat $root-jacobian.runs_restart`
+			@ rJRuns = $rJRuns + 1
+			if( ! -e $root-jacobian_$rJRuns.zip ) then
+				\mv -f $root-jacobian.runs_restart $root-jacobian.runs
+				\rm -f $root.parallel_wait
+				echo $root-jacobian_$rJRuns.zip is not availble!
+				echo No more previous runs to skip!
+			else	
+				echo Skip jacobian $rJRuns
+				unzip -o $root-jacobian_$rJRuns.zip
+				echo $rJRuns >! $root-jacobian.runs_restart
+				\rm -f $root.parallel_wait
+				exit 4
+			endif
+		else
+			sleep 0.2
+			while( -e $root.parallel_wait ) 
+				sleep 1
+			end
+			if( -e $root-jacobian.runs_restart ) then
+				exit 4
+			endif
+		endif
+	endif
+	if( $1:e == 1 ) then
+		touch $root.parallel_wait
+		best-fin $root
+		\rm -f $root.parallel_wait
+		\rm -f $root-lambda.runs
+		if( -e $root-jacobian.runs ) then
+			@ nJRuns = `cat $root-jacobian.runs`
+		else
+			@ nJRuns = 0
+			echo $nJRuns >! $root-jacobian.runs
+		endif
+		if( -e $root-lambda.zip ) then
+			\mv -f $root-lambda.zip $root-lambda_$nJRuns.zip
+			zip -u $root-lambda_$nJRuns.zip $root.rst $root.mtt $root.res $root.jst $root.jac $root.jco $root.par $root.lambda_runs >& /dev/null
+			if( $nJRuns == 0 ) then
+				echo "Initial run completed and saved"
+			else
+				echo "Lambda runs post jacobian run number $nJRuns completed and saved"
+			endif
+		endif
+	else
+		sleep 0.2
+		while( -e $root.parallel_wait ) 
+			sleep 1
+		end
+	endif
+	if( -e $root-jacobian.zip ) then
+		set files = `unzip -l $root-jacobian.zip | awk '{print $4}' | grep $1'\.'`
+		if( ${#files} != 0 ) then
+			if( $files[1] != '' ) then
+				unzip -o $root-jacobian.zip $files
+				if( { skip-run $1 } ) then
+					echo Skip jacobian run number $1:e
+					\rm -f $1.skip
+					exit 3
+				endif
+			endif
+		endif
+		unset files
+		echo Rerun jacobian run number $1:e
+		exit 0
+	endif
+endif
+#echo SMARTRST1-END
+exit 0

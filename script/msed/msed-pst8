@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *pst|
+while read line
+do
+	sed "s/wpor/ipor/g" $line > "temp.pst"
+	mv -f temp.pst $line
+done

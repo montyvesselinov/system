@@ -1,0 +1,48 @@
+#!/bin/tcsh -f
+set prob = $1:r
+echo Matrices
+if( ! -e $prob.rec ) then
+	echo $prob.rec is missing!
+	exit
+endif
+@ param = `grep "^    Number of adjustable parameters" $prob.rec | awk 'BEGIN {FS = ":"} {print $2}'`
+@ line1 = `grep -n -i "Covariance matrix and parameter confidence intervals cannot be determined" $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+if( $line1 != 0 ) then
+	echo There is no matrix information in $prob.rec!
+	exit
+endif
+rm -f $1_cov.grd $1_cor.grd $1_evec.grd $1_maxevec.dat $1_eval.dat
+@ line1 = `grep -n -i "Covariance Matrix" $prob.rec | head -1 | awk 'BEGIN {FS = ":"} {print $1}'`
+if( $line1 == 0 ) then
+        echo There is no matrix information in $prob.rec!
+        exit
+endif
+@ line2 = `grep -i -n "Correlation Coefficient Matrix" $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+@ line3 = `grep -n " Normalized eigenvectors" $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+@ line4 = `grep -n Eigen $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+@ line5 = `grep -n "Model Stat" $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+@ tline = $line1 + 1
+@ bline = $line2 - 1
+sed "1,$tline d;$bline,$ d" $prob.rec >! $prob-temp
+combinelines < $prob-temp | sed '1d;s/^ *[^\ ]*//g;' >! $prob-cov
+@ tline = $line2 + 1
+@ bline = $line3 - 1
+sed "1,$tline d;$bline,$ d" $prob.rec >! $prob-temp
+combinelines < $prob-temp | sed '1d;s/^ *[^\ ]*//g;' >! $prob-cor
+@ tline = $line3 + 1
+@ bline = $line4 - 1
+sed "1,$tline d;$bline,$ d" $prob.rec >! $prob-temp
+combinelines < $prob-temp | sed '1d;s/^ *[^\ ]*//g;' >! $prob-evec
+@ tline = $line4 + 1
+@ bline = $line5 - 1
+if( $bline == -1 ) then
+	sed "1,$tline d" $prob.rec >! $prob-eval
+else
+	sed "1,$tline d;$bline,$ d" $prob.rec >! $prob-eval
+endif
+mat_proc $param $prob-cov $1_cov.grd
+mat_proc $param $prob-cor $1_cor.grd
+mat_proc $param $prob-evec $1_evec.grd
+evec_proc $param $prob-evec $1_maxevec.dat
+eval_proc $param $prob-eval $1_eval.dat
+rm -f $prob-temp $prob-cov $prob-cor $prob-evec $prob-eval

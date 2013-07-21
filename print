@@ -1,0 +1,5 @@
+# setenv PRINTER data
+alias pr "enscript -P data"
+alias prf "enscript -P data -G -2r -fCourier-Bold8"
+alias prs "enscript -P data -fCourier-Bold8"
+alias lpr "lpr -P data -h"

@@ -1,0 +1,7 @@
+#!/bin/tcsh -f
+set p = $1:r
+echo "LaGriT runs" $p
+printf "input %s\nfinish\n" $p.in >! $p-in
+# /home/cwg/bin/bin_sun/xlagrit_010130 < $p-in > & ! $p-out 
+/home/tam/bin/bin_sol/lagrit_opt < $p-in > & ! $p-out
+rm -f $p-in

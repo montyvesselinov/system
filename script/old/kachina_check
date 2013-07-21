@@ -1,0 +1,7 @@
+#!/usr/local/bin/tcsh 
+set nj = 1
+set nj = `/usr/bin/ps -f -o'args' -umonty | grep "^mpest" | wc | awk '{print $1}'`
+if ( $nj == 0 ) then
+	source ~/.login
+	kachina_start 
+endif

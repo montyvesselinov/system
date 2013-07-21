@@ -1,0 +1,5 @@
+cat WY2.tpl $2.node stop.0 > $2-data.tpl
+sed "s/$1/$2/g;s/fper/per/g;s/fpor/por/g;s/.xkw-perm/-data/g;s/..\/..\/c\/xkw-fehm\///g;s/\.inp//g;s/xfehm_pest/xfehm_pest-cc/g" $1.pst > $2.pst
+sed "s/$1/$2/g" $1.his-grf.in   > $2.his-grf.in
+cpprob $1 $2
+vi $2.pst

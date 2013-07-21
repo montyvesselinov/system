@@ -1,0 +1,13 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+	echo USAGE $0 suff1 text1 suff2 text2
+	echo EXAMPLE $0 dat '\/scratch\/peclet4\/robinson\/la3d2000\/props' dat1 '\.\.\/la3d2000-props'
+	exit
+	endif
+echo $1 $2 $3 $4
+foreach i ( *$1 )
+	set j = `echo $i | sed "s/$1/$3/"`
+	echo CHANGE $i to $j
+        sed 's/'$2/$4'/g' $i >! $j
+	diff $i $j
+end

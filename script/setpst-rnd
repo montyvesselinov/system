@@ -1,0 +1,2 @@
+#!/bin/tcsh -f
+( echo 1 ; echo p ; echo 'p 0.44' ; head -72 ../logk_rnd.dat ; echo 'p 0.44' ; head -72 ../logn_rnd.dat ) >! $1

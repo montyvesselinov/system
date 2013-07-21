@@ -1,0 +1,11 @@
+#!/usr/local/bin/tcsh
+#
+# USAGE: rz Problem_Name
+
+unzip $1-avs.zip >/dev/null
+rm -f $1.*_vec_node $1.10001_vec_head >/dev/null
+ln -s ../t.10001_geo $1.10001_geo
+avs-tecz $1 >/dev/null
+rm -f $1.10001_geo >/dev/null
+zipavs $1 >/dev/null
+# zipgmv $1 >/dev/null

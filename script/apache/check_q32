@@ -1,0 +1,5 @@
+#!/usr/local/bin/tcsh
+set nj = `qla | grep monty | grep lapis_32p12h | wc | awk '{print $1}'`
+if ( $nj == 0 ) then
+	start_q32
+endif

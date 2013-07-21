@@ -1,0 +1,37 @@
+#!/bin/tcsh -f
+echo FEHM-PEST_post
+set prob = $1:r
+if( $prob == "" ) then
+	echo USAGE fehm-pest_post ROOT
+	exit
+	endif
+if( ! -e $prob.tr-post_pest ) then
+	echo $prob.tr-post_pest does not exist!
+	echo USAGE fehm-pest_post ROOT
+	exit
+	endif
+grep -n Time $prob.tr-post_pest >! $prob.tr-post_pest-time
+set lines = `awk 'BEGIN{FS=":"} {print $1}' $prob.tr-post_pest-time`
+set times = `awk '{print $3/365+1945}' $prob.tr-post_pest-time`
+rm -f $prob.tr-post_pest-time $prob-curve.plt
+touch $prob-curve.plt
+@ l2 = 0
+@ j = 0
+foreach t ( $times )
+	@ j += 1
+	@ l1 = $lines[$j]
+	if( $j == 1 ) then
+		@ j1 = $j + 1
+		@ l2 = $lines[$j1]
+		@ d = ( $l2 - $l1 ) - 1
+		endif
+	@ ls = $l1 + $d 
+	if( $j == 1 ) then
+		set var = `head -$ls $prob.tr-post_pest | tail -$d | awk '{print $1}'`
+		echo variables=Time $var | sed "s/ /,/g" >> $prob-curve.plt
+		echo zone t=$prob >> $prob-curve.plt
+		endif
+	set data = `head -$ls $prob.tr-post_pest | tail -$d | awk '{print $2}'`
+	echo $t $data >> $prob-curve.plt
+	end
+echo $prob-curve.plt created successfully!

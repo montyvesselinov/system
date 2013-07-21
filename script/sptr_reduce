@@ -1,0 +1,2 @@
+#!/bin/tcsh -f
+nawk -v dt=$2 'BEGIN{nn=0} {if($1>nn) {nn=$1;f[$1]=$5;print $0;} else {d=$5-f[$1]; if(d>=dt) { f[$1]+=d; print $0; }  } }' $1

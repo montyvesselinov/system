@@ -1,0 +1,4 @@
+#!/bin/tcsh -f
+cd /scr3/monty/pest
+echo $cwd\:
+cpar

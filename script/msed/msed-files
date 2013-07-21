@@ -1,0 +1,8 @@
+#!/bin/sh
+grep -l vm */*-files|
+while read line
+do
+	echo $line
+	sed "s/vm/v/g" $line > temp-files
+	mv temp-files $line
+done

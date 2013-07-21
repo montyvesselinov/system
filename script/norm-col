@@ -1,0 +1,2 @@
+#!/bin/tcsh -f
+nawk '{nL=NR;nC=NF;for(j=1;j<=nC;j++)t[j,NR]=$j} END{for(j=1;j<=nC;j++) {a=t[j,1];max_col[j]=a;min_col[j]=a} for(j=1;j<=nC;j++) for(i=1;i<=nL;i++) { a=t[j,i]; if( a>max_col[j]) max_col[j]=a; else if( a<min_col[j] ) min_col[j]=a; } for(i=1;i<=nL;i++) { for(j=1;j<=nC;j++) { printf("%g ", ( t[j,i] - min_col[j]) / (max_col[j] - min_col[j] ) ) } printf( "\n" ); } }' $1

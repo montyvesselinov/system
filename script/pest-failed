@@ -1,0 +1,8 @@
+#!/bin/tcsh -f
+set prob = $1
+@ line1 = `grep -n RESULTS $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+if( ! $line1 > 0 ) then
+	touch $prob.failed
+else
+	rm -f $prob.failed
+endif

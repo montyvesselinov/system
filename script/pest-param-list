@@ -1,0 +1,17 @@
+#!/bin/tcsh -f
+set prob = $1:r
+if( -e $prob.param ) then
+echo Parameters lists - normal
+awk '{print $1}' $prob.param
+echo Parameters lists - reversed
+cat -n $prob.param | sort -n -r | awk '{print $2}'
+else
+if( ! -e $prob.pst ) then
+	echo $prob.pst and $prob.param are missing!
+	exit
+endif
+echo Parameters lists - normal
+egrep "log|none" $prob.pst | awk '{print $1}'
+echo Parameters lists - reversed
+egrep "log|none" $prob.pst | awk '{print $1}' | cat -n | sort -n -r | awk '{print $2}'
+endif

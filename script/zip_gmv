@@ -1,0 +1,2 @@
+#!/bin/csh
+zip -m9 $1-gmv $1*gmv >& /dev/null

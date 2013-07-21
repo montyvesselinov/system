@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+foreach i ( `grep " l[1-9]*\." /etc/hosts | awk '{print $3}'i` )
+	printf "%s " $i
+	rsh $i psm | grep xfehm
+	printf "\n"
+	end

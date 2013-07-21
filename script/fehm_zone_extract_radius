@@ -1,0 +1,30 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+	echo "Usage:" $0 "[FEHM zone file] [capture radius]"
+	exit
+endif
+if( ! -e $1 ) then
+	echo "Usage:" $0 "[FEHM zone file] [capture radius]"
+	exit
+endif
+@ sum = 0
+set lines = `more $1 | egrep -n "nnum|stop" | awk 'BEGIN {FS = ":"} {print $1}'`
+@ zones = $#lines - 1
+@ i = 0
+while ( $i < $zones )
+	@ i++
+        @ line = $lines[$i] - 1
+        set nzone = `/usr/bin/tail +$line $1 | head -1 | awk '{print $1}'`
+        @ line = $line + 2
+        @ nnode = `/usr/bin/tail +$line $1 | head -1 | awk '{print $1}'`
+	@ line = $line + 1
+	@ i1 = $i + 1
+	@ endline = $lines[$i1] - $lines[$i] + 3
+	( /usr/bin/tail +$line $1 | head -$endline | sed -e 's/  */ /g' | tr ' ' '\n' | sort -n | uniq  | sed "1d" ) >! $1_z$i
+        echo "Zone " $nzone "(of $zones) : number of nodes = " $nnode "starts at line = " $line
+	@ sum = $sum + $nnode
+end
+echo "Total number of zones" $zones
+echo "Total number of nodes" $sum
+( echo $sum; cat $1_z* | awk -v r=$2 '{print $1, r}' ) >! $1_sptr_radius
+rm -f $1_z*

@@ -1,0 +1,4 @@
+rsh lapis pssm | grep 'xfehm$'
+rsh lapis pssm | grep mpirun
+rsh lapis sar
+rsh lapis w

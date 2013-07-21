@@ -1,0 +1,7 @@
+rm -f *-data *-out *.chk *-pout *.rst *.par *.his *.pest.hlt *.dat_grf fehmn.* 
+rm -f *.inp-*
+rm -f *_4*.inp
+rm -f *_5*.inp
+rm -f *_6*.inp
+rm -f *.inp
+rm -f fort.80

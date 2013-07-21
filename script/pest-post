@@ -1,0 +1,14 @@
+#!/bin/tcsh -f
+foreach i ( $* )
+echo $i
+set prob = $1:r
+if( ! -e $prob.rec ) then
+	echo $prob.rec is missing!
+	exit
+endif
+pest-phi $i
+pest-param $i
+pest-obs $i
+pest-jacobian $i
+pest-matrices $i
+end

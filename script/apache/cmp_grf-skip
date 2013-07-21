@@ -1,0 +1,13 @@
+#/usr/local/bin/tcsh
+rm -f $1-OUT-grf
+touch $1-OUT-grf
+foreach i ( $1*.dat_grf )
+	echo $i:r >> $1-OUT-grf
+	end
+rm -f $1-OUT-skip
+touch $1-OUT-skip
+foreach i ( $1*.skip )
+	echo $i:r >> $1-OUT-skip
+	end
+diff $1-OUT-grf $1-OUT-skip 
+rm -f $1-OUT-grf $1-OUT-skip

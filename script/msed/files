@@ -1,0 +1,8 @@
+#!/bin/sh
+ls o*files|
+while read line
+do
+	head $line
+	sed "s/ta-zone/\.\.\/\.\.\/model\/t3a\.zone/g" $line > "t.tpl"
+	mv -f t.tpl $line
+done

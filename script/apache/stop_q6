@@ -1,0 +1,3 @@
+#!/usr/local/bin/tcsh
+qdel -k -h lapis `qla | grep monty | grep lapis_6p24h | awk '{print $1}'`
+#kill_lapis

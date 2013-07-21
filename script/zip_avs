@@ -1,0 +1,3 @@
+#!/bin/csh
+rm -f $1-avs.zip >& /dev/null
+zip -m9 $1-avs $1.1* >& /dev/null

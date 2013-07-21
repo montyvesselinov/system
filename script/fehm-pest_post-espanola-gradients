@@ -1,0 +1,58 @@
+#!/bin/tcsh -f
+echo FEHM-PEST_post-gradients
+set prob = $1:r
+if( $prob == "" ) then
+	echo USAGE fehm-pest_post ROOT
+	exit
+	endif
+if( ! -e $prob.post_pest ) then
+	echo $prob.post_pest does not exist!
+	echo USAGE fehm-pest_post ROOT
+	exit
+	endif
+egrep "Time|$2|$3" $prob.post_pest >! $prob.post_pest-new
+grep -n Time $prob.post_pest-new >! $prob.post_pest-time
+set lines = `awk 'BEGIN{FS=":"} {print $1}' $prob.post_pest-time`
+set times = `awk '{print $3/365+1947}' $prob.post_pest-time` 
+rm -f $prob-gradient-$2-$3.dat 
+touch $prob-gradient-$2-$3.dat
+@ l2 = 0
+@ j = 0
+foreach t ( $times )
+	echo Time $t
+	@ j += 1
+	@ l1 = $lines[$j]
+	if( $j == 1 ) then
+		@ j1 = $j + 1
+		@ l2 = $lines[$j1]
+		@ d = ( $l2 - $l1 ) - 1
+	endif
+	@ ls = $l1 + $d 
+	if( $j == 1 ) then
+		set var = `head -$ls $prob.post_pest-new | tail -$d | awk '{print $1}'`
+		echo variables=Time $var | sed "s/ /,/g" >> $prob-gradient-$2-$3.dat
+		echo zone t=$prob >> $prob-gradient-$2-$3.dat
+	else
+		printf "%g" $t >> $prob-gradient-$2-$3.dat
+		@ line = $l1
+		while( $line < $ls )
+			@ line = $line + 1
+			set obs = `sed -n $line\p $prob.post_pest-new`
+			@ nobs = $#obs
+			if( $nobs == 3 || $nobs == 5 ) then
+				set v = $obs[3]
+			else
+				set v = $obs[2]
+			endif
+			printf " %g" $v >> $prob-gradient-$2-$3.dat
+		end
+		printf "\n" >> $prob-gradient-$2-$3.dat
+	endif
+	end
+( echo ",$2-$3"; echo ''; sed "1,2d" $prob-gradient-$2-$3.dat | awk -v dist=$4 '{print ($2-$3)/dist }' ) >! $prob-gradient-$2-$3.dat2
+paste -d " " $prob-gradient-$2-$3.dat $prob-gradient-$2-$3.dat2 >! $prob-gradient-$2-$3.plt
+rm -f $prob-gradient-$2-$3.dat $prob-gradient-$2-$3.dat2 $prob.post_pest-new $prob.post_pest-time
+echo $prob-gradient-$2-$3.plt created successfully!
+head $prob-gradient-$2-$3.plt
+echo ...
+tail $prob-gradient-$2-$3.plt

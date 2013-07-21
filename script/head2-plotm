@@ -1,0 +1,28 @@
+#!/bin/tcsh
+cat >> plot.$$ << EOF
+set ylabel "Water-level elevation [m]"
+set title "Water level"
+set xdata time
+set timefmt "%s"
+set format x "%m-%Y"
+EOF
+echo -n "plot " >> plot.$$
+@ n = $#argv
+@ k = 1;
+foreach i ( $* )
+echo $i
+if( $k != $n ) then
+echo \"'< awk ' \''{print ($1-25569)*86400, $3}'\' $i\" using 1:2 title \"$i\" with lines, \\ >> plot.$$ 
+else
+echo \"'< awk ' \''{print ($1-25569)*86400, $3}'\' $i\" using 1:2 title \"$i\" with lines >> plot.$$ 
+endif
+@ k++
+end
+cat >> plot.$$ << EOF
+set terminal emf
+set output "$1.emf"
+replot
+EOF
+cat plot.$$
+gnuplot -persist < plot.$$
+rm -f plot.$$

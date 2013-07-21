@@ -1,0 +1,27 @@
+#!/bin/tcsh
+#
+# USAGE: xprob Test_Number Problem_Name
+
+# FEHM
+/scr2/monty/fehm/bin/xfehm < $2-in >! $2-out
+
+# HIS-GRF
+printf "%s%i\n%s\n%s\n" $2 $1 $2 $2 >$2-$$
+../his-grf <$2-$$ >/dev/null
+rm -f $2-$$ >/dev/null
+
+# AVS-TEC and AVS-GMV
+printf "%s\n" $2 >$2-$$
+../avs-tec <$2-$$ >/dev/null
+../avs-gmv <$2-$$ >/dev/null
+rm -f $2-$$ >/dev/null
+
+# ZIP
+zipgmv $2 >/dev/null
+mv -f $2-gmv.zip /scr1/monty/gmv/Test$1
+
+gzip $2.10001_geo >/dev/null
+mv -f $2.10001_geo.gz /scr1/monty/avs/Test$1/geo
+
+zipavs $2 >/dev/null
+mv -f $2-avs.zip /scr1/monty/avs/Test$1

@@ -1,0 +1,4 @@
+#!/bin/tcsh -f
+set file = `unzip -l $1 | awk '{print $4}' | grep $2`
+echo $file
+unzip $1 $file

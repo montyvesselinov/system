@@ -1,0 +1,49 @@
+#!/bin/tcsh -f
+set prob = $1:r
+echo Jacobian
+rm -f $prob-jacobian.grd $prob-jacobian_norm-col.grd $prob-jacobian_norm-row.grd $prob-jacobian_weighted.grd
+if( -e $prob.jco ) then
+	jacwrit $prob.jco $prob.jca
+else
+	echo $prob.jco is missing!
+endif
+if( ! -e $prob.jca ) then
+	echo $prob.jca is missing!
+	exit
+endif
+@ param = `grep "^    Number of adjustable parameters" $prob.rec | awk 'BEGIN {FS = ":"} {print $2}'`
+@ obs = `grep "^    Number of observations" $prob.rec | awk 'BEGIN {FS = ":"} {print $2}'`
+#
+# Jacobian grid file
+#
+@ nv = $param + 2
+sed '1d;s/^ *[^\ ]*//g;s/  */ /g' $prob.jca > ! $prob.jca-temp
+# sed 's/  */ /g' $prob.jca | cut -f 3-$nv -d' ' | tail -$obs > ! $prob.jca-temp
+awk '{nL=NR;nC=NF;for(j=1;j<=nC;j++)t[j,NR]=$j} END{min=t[1,1];max=min;for(j=1;j<=nC;j++)for(i=1;i<=nL;i++){a=t[j,i];if( a>max ) max=a; else if( a<min ) min=a;} print min, max}' $prob.jca-temp >! $prob.jca-minmax
+( printf "DSAA\n%d %d\n0 %d\n0 %d\n" $param $obs $param $obs; cat $prob.jca-minmax; cat $prob.jca-temp ) >! $prob-jacobian.grd
+#
+# Normalized Jacobian grid file
+#
+awk '{nL=NR;nC=NF;for(j=1;j<=nC;j++)t[j,NR]=$j} END{for(j=1;j<=nC;j++) {a=t[j,1];max_col[j]=a;min_col[j]=a} for(j=1;j<=nC;j++) for(i=1;i<=nL;i++) { a=t[j,i]; if( a>max_col[j]) max_col[j]=a; else if( a<min_col[j] ) min_col[j]=a; } for(j=1;j<=nC;j++) printf("%g ", min_col[j] ); printf("\n"); for(j=1;j<=nC;j++) printf("%g ", max_col[j] ); printf("\n"); }' $prob.jca-temp >! $prob.jca-minmax
+cat $prob.jca-minmax $prob.jca-temp >! $prob.jca-awk
+awk '{nL=NR;nC=NF;for(j=1;j<=nC;j++)t[j,NR]=$j} END{for(i=3;i<=nL;i++){ for(j=1;j<=nC;j++){ a=t[j,i]; if( a == 0.0 ) printf("%g ",a ); else{ if( a > 0.0 ) printf("%g ",a/t[j,2]); else printf("%g ",-a/t[j,1] ) } } printf("\n") } }' $prob.jca-awk >! $prob.wjca-temp
+( printf "DSAA\n%d %d\n0 %d\n0 %d\n%g %g\n" $param $obs $param $obs -1 1; cat $prob.wjca-temp ) >! $prob-jacobian_norm-col.grd
+#
+awk '{nL=NR;nC=NF;for(j=1;j<=nC;j++)t[j,NR]=$j} END{for(i=1;i<=nL;i++) {a=t[1,i];max_row[i]=a;min_row[i]=a} for(j=1;j<=nC;j++) for(i=1;i<=nL;i++) { a=t[j,i]; if( a>max_row[i]) max_row[i]=a; else if( a<min_row[i] ) min_row[i]=a; } for(i=1;i<=nL;i++) printf("%g %g\n", min_row[i], max_row[i] ); }' $prob.jca-temp >! $prob.jca-minmax
+paste $prob.jca-minmax $prob.jca-temp >! $prob.jca-awk
+awk '{nL=NR;nC=NF;for(j=1;j<=nC;j++)t[j,NR]=$j} END{for(i=1;i<=nL;i++){ for(j=3;j<=nC;j++){ a=t[j,i]; if( a == 0.0 ) printf("%g ",a ); else{ if( a > 0.0 ) printf("%g ",a/t[2,i]); else printf("%g ",-a/t[1,i] ) } } printf("\n") } }' $prob.jca-awk >! $prob.wjca-temp
+( printf "DSAA\n%d %d\n0 %d\n0 %d\n%g %g\n" $param $obs $param $obs -1 1; cat $prob.wjca-temp ) >! $prob-jacobian_norm-row.grd
+#
+# Weighted Jacobian grid file
+#
+if( ! -e $prob.res ) then
+	echo $prob.res is missing!
+	rm -f $prob.res-temp $prob.jca-awk $prob.jca-temp $prob.wjca-temp $prob.jca-minmax $prob.wjca-minmax 
+	exit
+endif
+sed 's/  */ /g' $prob.res | cut -f 7 -d' ' | tail -$obs > ! $prob.res-temp
+paste $prob.res-temp $prob.jca-temp >! $prob.jca-awk
+awk '{nL=NR;nC=NF;for(j=1;j<=nC;j++)t[j,NR]=$j} END{for(i=1;i<=nL;i++){w=sqrt(t[1,i]);for(j=2;j<=nC;j++){printf("%g ",t[j,i]*w)}printf("\n")}}' $prob.jca-awk >! $prob.wjca-temp
+awk 'BEGIN{FS=" "} {nL=NR;nC=NF;for(j=1;j<=nC;j++)t[j,NR]=$j} END{min=t[1,1];max=min;for(j=1;j<=nC;j++)for(i=1;i<=nL;i++){a=t[j,i];if( a>max ) max=a; else if( a<min ) min=a;} print min, max}' $prob.wjca-temp >! $prob.wjca-minmax
+( printf "DSAA\n%d %d\n0 %d\n0 %d\n" $param $obs $param $obs; cat $prob.wjca-minmax; cat $prob.wjca-temp ) >! $prob-jacobian_weighted.grd
+rm -f $prob.res-temp $prob.jca-awk $prob.jca-temp $prob.wjca-temp $prob.jca-minmax $prob.wjca-minmax 

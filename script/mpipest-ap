@@ -1,0 +1,13 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then 
+        echo need problem root name
+        exit
+endif
+#
+# Set number of processors
+#
+mpipest-processors $1
+#
+# Call mpipest
+#
+mpipest-static-ap $1

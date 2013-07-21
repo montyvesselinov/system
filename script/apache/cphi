@@ -1,0 +1,15 @@
+#!/usr/local/bin/tcsh
+foreach file ( *rec )
+	set prob = `echo $file | sed "s/\.rec//g"`
+	@ fsize = `ls -al $prob\.rst | awk '{print $5}'`
+	echo $fsize
+	if( $fsize <= 16 ) then
+		/scr1/monty/apache/pest/S-phi $prob
+	else
+		printf "%-20sR " $prob
+		echo `head -1 $prob\.par`
+	endif
+	unset prob
+	unset fsize
+	end
+echo ' '

@@ -1,0 +1,9 @@
+#!/bin/tcsh -f
+foreach file ( $1 )
+	echo $file
+	@ line = `grep -n "max to" $file | awk 'BEGIN {FS = ":"} {print $1}'`
+	if( $line != 0 ) then
+        @ line = $line + 1
+        tail +$line $file | head -1 
+	endif
+end

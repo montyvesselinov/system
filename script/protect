@@ -1,0 +1,8 @@
+chmod -R go-rwx /home/monty
+chmod -R go-rwx /scr1/monty
+chmod -R go-rwx /scr2/monty
+chmod -R go-rwx /scr3/monty
+chmod -R go-rwx /scr4/monty
+chmod go+rX /home/monty
+chmod -R go+rX /home/monty/public_html
+chmod go+r ~/.htpasswd*

@@ -1,0 +1,14 @@
+#!/bin/tcsh -f
+set prob = $1:r
+echo Observations
+rm -f $prob.obs
+@ obs = `grep "^    Number of observations" $prob.rec | awk 'BEGIN {FS = ":"} {print $2}'`
+echo 'Number of observations' $obs
+@ line1 = `grep -n "Observations --" $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+if( $line1 <= 1 ) then
+	echo "There is no observation data!"
+	exit
+endif
+@ tline = $line1 + 3
+@ bline = $line1 + $obs + 4
+sed "1,$tline d;$bline,$ d" $prob.rec >! $prob.obs

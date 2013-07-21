@@ -1,0 +1,5 @@
+#!/bin/tcsh -f
+foreach i ( *.$1 )
+	echo '***' $i
+	diff $i $2/$i | m
+	end

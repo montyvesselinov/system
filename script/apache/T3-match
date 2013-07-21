@@ -1,0 +1,10 @@
+#!/bin/sh
+ls c*rec |
+while read line
+do
+	inschek_sgi ../T3-match.ins $line
+	echo '0    0.0' > ../T3-match.temp1
+	sed "s/ o1       /0.1 /g;s/ o2       /0.3 /g;s/ o3       /0.7 /g;s/ o4       /1.0 /g;s/ o5       /2.0 /g;s/ o6       /3.0 /g;s/ o7       /4.0 /g;s/ o8       /5.0 /g" ../T3-match.obs > ../T3-match.temp2
+	cat ../T3-match.temp1 ../T3-match.temp2 > `echo $line|sed "s;.rec;-match;"`
+	rm -f ../T3-match.temp1 ../T3-match.temp2 ../T3-match.obs
+done

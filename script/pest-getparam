@@ -1,0 +1,7 @@
+#!/bin/ksh
+line=`grep -n RESULTS $1.rec | awk '{print $1}' | sed 's/://g'`
+line2=`grep -n "Note: confidence limits provide" $1.rec | awk '{print $1}' | sed 's/://g'`
+lineres=`tail +$line $1.rec | grep -n value | head -1 | awk '{print $1}' | sed 's/://g'`
+let line=line+lineres
+let param=line2-line-1
+tail +$line $1.rec | head -$param | awk '{ printf "%s %g %g", $1, $2, ($4-$3)/2; if($2>0) printf " %g %g", log($2)/log(10), log($4/$3)/log(10); printf "\n"}'

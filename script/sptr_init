@@ -1,0 +1,2 @@
+#!/bin/tcsh -f
+sed "1,3d" $1 | awk 'BEGIN{nn=0} {if($1>nn) {nn=$1; line[nn]=$0;} else nextfile } END { for(i=1;i<=nn;i++) printf "%s\n", line[i] }'

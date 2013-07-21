@@ -1,0 +1,1 @@
+rm -f $1.aux $1.lof $1.lot $1.log $1.dvi $1.ps $1.bbl $1.blg $1.toc $1.ttt $1.fff

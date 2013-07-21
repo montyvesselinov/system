@@ -1,0 +1,7 @@
+#!/usr/local/bin/tcsh
+foreach line ( *.tpl )
+	@ tot=`wc $line | awk '{print $1}'`
+	echo $tot
+	@ tl=$tot - 32
+	( head -1 $line; cat ../p4-ndata; tail -$tl $line ) >$line-n
+end

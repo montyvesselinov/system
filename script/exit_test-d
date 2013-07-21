@@ -1,0 +1,8 @@
+#!/bin/tcsh -f
+if( ! { exit_test } ) then
+	echo ok
+	exit 1
+else
+	echo not ok
+	exit 2
+endif

@@ -1,0 +1,7 @@
+sed "s/$1/$2/g" $1.pst > $2.pst
+sed "s/$1/$2/g" $1.xkw-perm.tpl > $2.xkw-perm.tpl
+sed "s/$1/$2/g" $1.xkw-rock.tpl > $2.xkw-rock.tpl
+sed "s/$1/$2/g" $1.his-grf.in   > $2.his-grf.in
+cpprob $1 $2
+echo 'Edit *.pst & *.his-grf.in'
+echo 'Create *.node'

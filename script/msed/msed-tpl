@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *.tpl|
+while read line
+do
+	sed "s/\/p4-/\/p4n-/g" $line > "temp.tpl"
+	mv -f temp.tpl $line
+done

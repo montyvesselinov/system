@@ -1,0 +1,11 @@
+#!/bin/sh
+num_files='ls | wc -l'
+echo $num_files
+i=1
+print "i" i
+ls -tc *$1|
+while read line
+do
+	printf "a%i.$1" i
+	i=i+1
+done

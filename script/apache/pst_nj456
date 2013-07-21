@@ -1,0 +1,32 @@
+#!/usr/local/bin/tcsh
+\rm -f RERUN 
+foreach i ($1_4.*.dat_grf)
+	\rm -f pest.tmp
+        inschek ../p4A-log.dat_grf.ins $i >& /dev/null
+        @ error = `cat pest.tmp`
+        if( $error == 1 ) then
+                echo $i
+                \rm -f $i
+		touch RERUN
+        endif
+	end
+foreach i ($1_5.*.dat_grf)
+	\rm -f pest.tmp
+	inschek ../p5A-log.dat_grf.ins $i >& /dev/null
+	@ error = `cat pest.tmp`
+	if( $error == 1 ) then
+		echo $i
+		\rm -f $i
+		touch RERUN
+	endif
+	end
+foreach i ($1_6.*.dat_grf)
+	\rm -f pest.tmp
+        inschek ../p6A-log.dat_grf.ins $i >& /dev/null
+        @ error = `cat pest.tmp`
+        if( $error == 1 ) then
+                echo $i
+                \rm -f $i
+		touch RERUN
+        endif
+	end

@@ -1,0 +1,37 @@
+#!/bin/tcsh -f
+foreach i ( $* )
+set prob = $i:r
+printf "%-20s" $prob
+if( $prob == "" ) then
+	echo "No arguments!"
+	exit
+endif
+set phi = `grep "ie phi" $prob.rec | awk '{printf "%g\n", $9}'`
+set ni = `grep "OPTIMISATION ITERATION NO." $prob.rec | tail -1 | awk 'BEGIN {FS = ":"} {printf " %-3i", $2}'`
+echo -n "\t"$ni"\t"
+@ nphi = $#phi
+if( $nphi == 0 ) then
+	echo -n "No information!" 
+	rm -f $prob.rec-phi
+else
+	if( $nphi == 1 ) then
+		set phi2 = `grep "Starting phi" $prob.rec | awk 'BEGIN {FS = ":"} {printf "%.2f\n", $2}' | sort -n | head -1; echo "(still running or failed)"`
+	else
+		set phi2 = $phi[2]
+	endif
+	echo -n $phi[1] "->" $phi2
+	echo $phi[1] "->" $phi2 >! $prob.rec-phi
+endif
+if( $nphi == 2 ) then
+	@ line1 = `grep -n "Objective function -" $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+	@ line2 = `grep -n "Correlation Coefficient -" $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+	@ tline = $line1 + 2
+	@ bline = $line2 - 2
+	sed "1,$tline d;$bline,$ d" $prob.rec >! $prob.rec-group
+#	echo -n "\t(" `cat $prob.rec-group | awk 'BEGIN {FS = "= *"} {print $2}'` ")"
+endif
+if( -e $prob.par ) then
+#	echo -n "\t(" `sed "1d" $prob.par | awk '{printf "%s=%.2f ", $1, $2}'` ")"
+endif
+echo ""
+end

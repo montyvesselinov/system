@@ -1,0 +1,8 @@
+#!/bin/tcsh -f
+
+@ N=0
+
+foreach line ( *.jpg )
+@	N++
+	mv $line `printf "%s%i.jgp" c $N`
+end

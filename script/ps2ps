@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+ps2epsi $1
+set fn = `echo $1|sed "s/\.ps/\.epsi/g"`
+sed "s/`grep BoundingBox $1`/`grep BoundingBox $fn | head -1`/g" $1 > ! temp.ps
+mv -f temp.ps $1
+rm -f $fn

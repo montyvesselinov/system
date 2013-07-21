@@ -1,0 +1,44 @@
+#!/bin/sh
+ls $1.files |
+while read line
+do
+        echo "Changing $line ..."
+	if [ -f $line ] 
+	then
+        sed "s/$1/$2/g" $line > `echo $line|sed "s/$1/$2/"`
+        grep "^$1" $line |
+        while read line2
+        do
+          echo "Changing $line2 ..."
+	  if [ -f $line2 ] 
+	  then
+          sed "s/$1/$2/g" $line2 > `echo $line2|sed "s/$1/$2/"`
+          grep "^$1" $line2 |
+          while read line3
+          do
+            echo "Changing $line3 ..."
+	    if [ -f $line3 ] 
+	    then
+            sed "s/$1/$2/g" $line3 > `echo $line3|sed "s/$1/$2/"`
+            grep "^$1" $line3 |
+            while read line4
+            do
+              echo "Changing $line4 ..."
+              sed "s/$1/$2/g" $line4 > `echo $line4|sed "s/$1/$2/"`
+            done
+	    fi
+          done
+	  fi
+        done
+	fi
+done
+ls $1.lay |
+while read line
+do
+        echo "Changing $line ..."
+        if [ -f $line ]
+	        then
+        sed "s/$1/$2/g" $line > `echo $line|sed "s/$1/$2/"`
+	fi
+done
+cp -l $1*geo `echo $1*geo|sed "s/$1/$2/"`

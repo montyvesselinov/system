@@ -1,0 +1,1 @@
+rm -f $1-data $1-out $1.chk $1-pout $1.rst $1.par $1.his $1.pest.hlt $1.dat_grf $1.inp 

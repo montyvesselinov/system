@@ -1,0 +1,53 @@
+#!/bin/tcsh -f
+echo FEHM-PEST_post
+set prob = $1:r
+if( $prob == "" ) then
+	echo USAGE fehm-pest_post ROOT
+	exit
+	endif
+if( ! -e $prob.post_pest ) then
+	echo $prob.post_pest does not exist!
+	echo USAGE fehm-pest_post ROOT
+	exit
+	endif
+grep -n Time $prob.post_pest >! $prob.post_pest-time
+set lines = `awk 'BEGIN{FS=":"} {print $1}' $prob.post_pest-time`
+set times = `awk '{print $3}' $prob.post_pest-time` 
+rm -f $prob.post_pest-time 
+rm -f $prob-curve.plt $prob-abs.dat
+touch $prob-curve.plt $prob-abs.dat
+@ l2 = 0
+@ j = 0
+foreach t ( $times )
+	echo Time $t
+	@ j += 1
+	@ l1 = $lines[$j]
+	if( $j == 1 ) then
+		@ j1 = $j + 1
+		@ l2 = $lines[$j1]
+		@ d = ( $l2 - $l1 ) - 1
+	endif
+	@ ls = $l1 + $d 
+	if( $j == 1 ) then
+		set var = `head -$ls $prob.post_pest | tail -$d | awk '{print $1}'`
+		echo variables=Time $var | sed "s/ /,/g" >> $prob-curve.plt
+		echo zone t=$prob >> $prob-curve.plt
+	else
+		printf "%g" $t >> $prob-curve.plt
+		@ line = $l1
+		while( $line < $ls )
+			@ line = $line + 1
+			set obs = `sed -n $line\p $prob.post_pest`
+			@ nobs = $#obs
+			if( $nobs == 3 || $nobs == 5 ) then
+				set v = $obs[3]
+			else
+				set v = $obs[2]
+			endif
+			printf " %g" $v >> $prob-curve.plt
+			echo $obs[1] $t $v >> $prob-abs.dat
+		end
+		printf "\n" >> $prob-curve.plt
+	endif
+	end
+echo $prob-curve.plt created successfully!

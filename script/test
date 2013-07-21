@@ -1,0 +1,5 @@
+echo m
+source .login
+echo m
+set monty = 1
+setenv mmmm  1

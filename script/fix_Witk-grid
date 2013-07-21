@@ -1,0 +1,5 @@
+#!/bin/tcsh -f
+foreach i ( `grep -l "Grid_gen" *` )
+	sed "s/\/scratch\/stoshu1\/Witk\/Espanola\/2000\/Grid_gen/..\/..\/fehm\/grid/g" $i >! $i-tmp
+	mv -f $i-tmp $i
+	end

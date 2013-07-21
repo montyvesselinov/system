@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+                        if( { skip-serial-t $1 } ) then
+                                echo 'Reset serial run number ' 
+                        else
+                                echo 'Rerun serial run number '
+                        endif

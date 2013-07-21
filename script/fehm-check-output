@@ -1,0 +1,9 @@
+#!/bin/tcsh -f
+if( ! -e $1 ) then
+	echo "Usage:" $0 "[FEHM dat file]"
+	exit
+endif
+foreach line ( `more $1 | grep -n "^file" | awk 'BEGIN {FS = ":"} {print $1}'` )
+        @ line = $line + 1
+	head -$line $1 | tail -1
+end

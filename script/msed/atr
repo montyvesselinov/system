@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *atr|
+while read line
+do
+	sed "s/cycleflag 1/cycleflag 0/g;s/globfieldmax 10 2.527700e-01/globfieldmax 10 0.16/g" $line > "temp.pst"
+	mv -f temp.pst $line
+done

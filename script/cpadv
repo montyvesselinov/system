@@ -1,0 +1,21 @@
+#!/bin/tcsh -f
+if( $1 == $2 ) then
+	echo \'$1\' and \'$2\' should not be the same!
+	exit
+	endif
+while( 1 )
+	set old = $<
+	echo $old
+	if( $old == "" ) exit
+	if( -e $old ) then
+		set new = `echo $old | sed "s/$1/$2/"`
+		if( -e $new ) then
+			echo $new exist! Skipped!
+			continue
+		endif
+		sed "s/$1/$2/g" $old >! $new
+	else
+		echo $old does not exist!
+		continue
+	endif
+end

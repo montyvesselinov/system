@@ -1,0 +1,15 @@
+gnuplot -persist << EOF
+set ylabel "Water-level elevation [m]"
+# set y2label "Water-level elevation [ft]"
+# set noautoscale y2
+# set y2range [ymin/.3048:ymax/.3048]
+set title "$2 Water level ($1)"
+set xdata time
+set timefmt "%s"
+set format x "%m-%Y"
+plot "< awk '{print (\$1-25569)*86400, \$3}' $1 " using 1:2 title "Raw data" with $3, \
+     "< awk '{print (\$1-25569)*86400, \$4}' $1 " using 1:2 title "Corrected values" with $3
+set terminal emf
+set output "$1.emf"
+replot
+EOF

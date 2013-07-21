@@ -1,0 +1,11 @@
+if( $SYSTEM == "SunOS" ) then
+echo "SunOS"
+alias pine "/n/lanl_solaris5.7/packages/pine4.40/bin/pine"
+alias pico "/n/lanl_solaris5.7/packages/pine4.40/bin/pico"
+alias pilot "/n/lanl_solaris5.7/packages/pine4.40/bin/pilot"
+alias imapd "/n/lanl_solaris5.7/packages/pine4.40/bin/imapd"
+alias ipop2d "/n/lanl_solaris5.7/packages/pine4.40/bin/ipop2d"
+alias ipop3d "/n/lanl_solaris5.7/packages/pine4.40/bin/ipop3d"
+alias rpdump "/n/lanl_solaris5.7/packages/pine4.40/bin/rpdump"
+alias rpload "/n/lanl_solaris5.7/packages/pine4.40/bin/rpload"
+endif

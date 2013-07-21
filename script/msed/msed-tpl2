@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *tpl|
+while read line
+do
+	sed "s/null-ty2a/t3-ty2i/g" $line > "temp.tpl"
+	mv -f temp.tpl $line
+done

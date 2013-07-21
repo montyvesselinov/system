@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *.pst|
+while read line
+do
+	sed "s/\.\.\/\.\.\/xkw-fehm\///g;s/P4/p4/g" $line > "temp.pst"
+	mv -f temp.pst $line
+done

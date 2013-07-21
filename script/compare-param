@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+if( ! -e $1 || ! -e $2 ) then
+	echo "Usage:" $0 "[file1.param file2.param]"
+	exit
+endif
+paste $1 $2 | awk '{printf "%15s %10g %10g %10g\n", $1, $2, $6, $2-$6}'

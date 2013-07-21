@@ -1,0 +1,23 @@
+#!/bin/tcsh -f
+echo $1 $2
+bjobs
+@ job = $1
+while( $job != 0 )
+	set status = `bjobs | grep "^"$job" " | awk '{print $3}'`
+	if( $status == PEND ) then
+		bjobs -l $job | tr -d '\n' | sed -e 's/   *//g' | tr ',' '\n' | grep Dependency | tr '<>()' ' ' |  awk '{print $4}'
+		@ njob = `bjobs -l $job | tr -d '\n' | sed -e 's/   *//g' | tr ',' '\n' | grep Dependency | tr '<>()' ' ' |  awk '{print $4 }'`
+		echo $job "->" $njob
+		bmod $2 $job
+		@ job = $njob
+	else
+		@ njob = `bjobs | grep "^"$job" " | awk '{print $1}'`
+		if( $njob != 0 ) then
+			echo Job $job is running!
+		else
+			echo Job $job is missing!
+		endif
+		@ job = 0
+	endif
+end
+bjobs

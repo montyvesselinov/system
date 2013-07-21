@@ -1,0 +1,21 @@
+#!/bin/ksh
+p=0
+i=1
+let nf=$2+1
+cat $1*|
+while read line
+do
+        if test $p = 0
+        then
+                echo $line > $1_$i
+		chmod u+x $1_$i
+        else
+                echo $line >> $1_$i
+        fi
+	let i=i+1
+	if test $i = $nf 
+	then 
+		i=1 
+		p=1
+	fi
+done

@@ -1,0 +1,4 @@
+#!/usr/local/bin/tcsh
+@ line=`wc $1\.par | awk '{print $1}'`
+@ line = $line - 1
+tail -$line $1\.par | awk '{print $2}'

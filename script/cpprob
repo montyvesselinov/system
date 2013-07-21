@@ -1,0 +1,5 @@
+#!/bin/sh
+sed "s/$1/$2/g" $1-files > $2-files
+sed "s/$1/$2/g" $1-in > $2-in
+cat $2-files
+cat $2-in

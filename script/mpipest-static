@@ -1,0 +1,37 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+        echo need problem root name
+        exit
+endif
+echo "Pesting ..."
+if( ! -e $1.rst ) then
+	echo "Start"
+	echo 0 >! $1-jacobian.runs
+	rm -f $1-serial.runs $1-jacobian.runs $1.jst $1.jac $1.jco $1.mtt
+	mpest $1
+	exit
+endif
+if( -Z $1.rst < 100 ) then
+	echo "Pest run $1 is completed!"
+	echo "mpipest quits!"
+	exit
+endif
+if( -e $1-serial.runs ) then
+	echo "Restart serial run (" `cat $1-serial.runs` ")"
+	rm -f $1-jacobian.zip
+        echo 0 >! $1-serial.runs_restart
+	sleep 1
+	mpest $1 /j
+else
+	@ nJRuns = `cat $1-jacobian.runs` + 1
+	echo 'Restart jacobian run ' $nJRuns
+        if( ! -e $1-jacobian.zip ) then
+		echo "No previous jacobian runs\!"
+	else
+        	unzip -u $1-jacobian.zip
+		\cp -fp $1-jacobian.zip $1-jacobian_skip_$nJRuns.zip
+	endif
+	skip $1
+	sleep 1
+	mpest $1 /r
+endif

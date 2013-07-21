@@ -1,0 +1,8 @@
+#!/usr/local/bin/tcsh
+set line = `grep -n Residual $1.rec | awk '{print $1}' | sed 's/://g'`
+@ line = $line + 1
+sed "1,$line d" $1.rec | head -380 >! $1-obs
+paste ../p4.data/AW_s4 $1-obs > ! $1-awk
+awk 'BEGIND{ssq=0}{d=$2-$6;wd=d*d*$3;d=sqrt(wd);ssq=ssq+wd;if($2!=0)rd=d/$2*100;else rd=0;printf "%-5s %10.3f %10.3f %8.3f %10.3f %10.3f %10.3f\n", $1, $2, $6, $3, d, wd, rd} END {print ssq}' $1-awk > ! $1-ssq
+rm -f $1-$$ pest.tmp $1-awk $1-obs
+tail -1 $1-ssq

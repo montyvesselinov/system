@@ -1,0 +1,9 @@
+#!/usr/local/bin/tcsh
+foreach file ( */*rst )
+	set prob = $file:r
+	printf "%-20s:  " $prob
+	if( -e $prob\.par ) then
+		echo `head -1 $prob\.par`
+	endif
+	unset prob
+	end

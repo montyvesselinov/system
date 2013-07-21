@@ -1,0 +1,11 @@
+#!/bin/sh
+\cp -f $1.ctl $2.ctl
+cpfehmprob $1 $2
+ls $1.pst $1.gst $1.dat-* $1.data $1.def_* $1*.files $1.fehm_*files $1.dat_*tpl $1*.ins $1.*tpl $1*.lay |
+while read line
+do
+        sed "s/$1/$2/g" $line > `echo $line|sed "s/$1/$2/"`
+done
+\cp -f $1.fin-i $2.fin-i
+parrep $1.par $2.pst $2.pst-tempcppestprob
+\mv -f $2.pst-tempcppestprob $2.pst

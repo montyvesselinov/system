@@ -1,0 +1,49 @@
+alias system        'vi ~/.cshrc ~/source/*; source ~/.cshrc'
+
+alias purge         'cat /usr/local/share/purge/purge.montyv'
+
+alias viw           'vi `where \!*`'
+alias catw          'cat `where \!*`'
+
+alias h             "history \!* | more"
+alias hs            "history | grep \!*"
+alias m              more
+
+alias bk            'cd -'
+alias .             'echo $cwd'
+alias ..            'cd ..'
+
+switch( $HOSTTYPE )
+case i386-linux:
+case x86_64-linux:
+	alias ls            'ls-F --color -h'
+        breaksw
+case powermac:
+case intel-mac:
+	alias ls            'ls-F -G'
+        breaksw
+endsw
+alias la            'ls -a'
+alias ll            'ls -al'
+alias lm            "ls -al \!* | more"
+alias ldir          "ls -al \!* | grep / | more"
+alias lsdir         "ls-F -1 \!* | grep / | sed 's/\///g'"
+alias le            "ls -al \!* | grep '*' | more"
+alias lse           "ls-F -1 -a \!* | grep '*' | sed 's/\*//g'"
+alias lln           "ls -al \!* | grep -- '->' | more"
+alias lsln          "ls-F -1 -a \!* | grep '\@' | sed 's/\@//g'"
+alias lg            "ls -al"
+alias lt            'ls -altr'
+alias ltt           "ls -altr \!* | tail"
+alias lttt          "ls -altr \!* | tail -30"
+# alias tree          "ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/\|/'"
+
+alias r              rlogin
+alias xl            'xlock -mode flame -nice 40 -delay 600000'
+
+alias week          "echo `date +%j` / 7 + 1 | bc"
+alias srch-file     'find . -type f -name \!^ -print'
+alias srch-dir      'find . -type d -name \!^ -print'
+alias srch-var      'find . -type f -print -exec grep -in \!^ {} \;'
+
+alias cdrom         'mount -v cdrfs -o ro /dev/cd0 /cdrom'

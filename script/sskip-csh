@@ -1,0 +1,10 @@
+#!/bin/csh 
+echo $0 $1 $2
+echo Shell $shell
+echo $cwd
+ls -al
+foreach i ( $1*$2 )
+	echo $i
+       	echo "Skip." >! $i:r\.skip
+end
+ls -al

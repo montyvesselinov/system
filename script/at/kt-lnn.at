@@ -1,0 +1,3 @@
+cd /scr3/monty/apache/krige/param
+rm klnn-mb-out
+nohup kt <klnn-mb-in >klnn-mb-out

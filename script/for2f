@@ -1,0 +1,9 @@
+dir=`ls *.for`
+for name in $dir
+do
+  newname=`expr $name : '\(.*\)...'`
+  newname=$newname'f'
+  mv $name $newname
+done
+ls -l
+

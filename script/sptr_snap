@@ -1,0 +1,2 @@
+#!/bin/tcsh -f
+nawk -v t=$2 'BEGIN{nn=0} {if($1>nn) {nn=$1;f[nn]=t} dt=t-$5; if(dt<0) {dt*=-1}; if(dt<=f[$1]) {f[$1]=dt;line[$1]=$0;} } END { for(i=1;i<=nn;i++) printf "%s\n", line[i] }' $1

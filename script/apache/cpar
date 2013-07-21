@@ -1,0 +1,16 @@
+#!/usr/local/bin/tcsh
+foreach file ( */*rst )
+	set prob = $file:r
+	@ fsize = `ls -al $file | awk '{print $5}'`
+	if( $fsize == 16 ) then
+		if( -e $prob\.rec ) then
+			S-param $prob
+		endif
+	else
+		if( -e $prob\.par ) then
+			printf "%-20s:RUNNING... " $prob
+			echo `head -1 $prob\.par; awk '{print $2}' $prob\.par | sed "s/point//g"`
+		endif
+	endif
+	unset prob
+	end

@@ -1,0 +1,5 @@
+#!/bin/tcsh -f
+foreach i ( $* )
+	echo $i
+	(dos2unix -k $i $i )>& /dev/null
+	end

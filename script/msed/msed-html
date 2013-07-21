@@ -1,0 +1,6 @@
+#!/bin/sh
+ls *.html|
+while read line
+do
+	sed "s/tan_paper/\.\.\/tan_paper/g" $line > `echo $line|sed "s;html;htm;"`
+done

@@ -1,0 +1,22 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+	echo "Usage:" $0 "[FEHM zone file]"
+	exit
+endif
+if( ! -e $1 ) then
+	echo "Usage:" $0 "[FEHM zone file]"
+	exit
+endif
+@ sum = 0
+@ zones = 0
+foreach line ( `more $1 | grep -n nnum | awk 'BEGIN {FS = ":"} {print $1}'` )
+	@ zones++
+        @ line = $line - 1
+        set nzone = `/usr/bin/tail +$line $1 | head -1 | awk '{print $1}'`
+        @ line = $line + 2
+        @ nnode = `/usr/bin/tail +$line $1 | head -1 | awk '{print $1}'`
+        echo "Zone " $nzone "(of $zones) : number of nodes = " $nnode " starts at line = " $line
+	@ sum = $sum + $nnode
+end
+echo "Total number of zones" $zones
+echo "Total number of nodes" $sum

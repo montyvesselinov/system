@@ -1,0 +1,6 @@
+#!/bin/tcsh -f
+foreach line ( *.pst )
+	set file = `echo $line | sed 's/\.pst//g'`
+	set filer = `printf "%s" $file`
+	( head -17 $line; cat ../$1.data/$filer; tail -7 $line ) >$line-n
+end

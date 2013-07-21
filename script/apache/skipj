@@ -1,0 +1,8 @@
+#!/usr/local/bin/tcsh
+set njac = `ll $1.*.$2 | wc | awk '{print $1}'`
+if( $njac == 0 ) then
+	unzip -u $1-jacobian.zip
+endif
+foreach i ( $1.*.$2 )
+	echo "Skip." >! $i:r\.skip
+	end

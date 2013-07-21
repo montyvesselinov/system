@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *pst|
+while read line
+do
+	sed "s/    2    11/    2    12/g" $line > "temp.pst"
+	mv -f temp.pst $line
+done

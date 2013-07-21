@@ -1,0 +1,15 @@
+#!/bin/tcsh -f
+set prob = $1
+if( ! -e $prob.rec ) then
+	echo $prob.rec is missing!
+	exit
+endif
+@ param = `grep "^    Number of parameters" $prob.rec | awk 'BEGIN {FS = ":"} {print $2}'`
+@ line = `grep -n RESULTS $prob.rec | awk '{print $1}' | sed 's/://g'`
+@ lineres = `tail +$line $prob.rec | grep -n value | head -1 | awk '{print $1}' | sed 's/://g'`
+@ line = $line + $lineres
+echo "double point" >! $prob-final.par
+tail +$line $prob.rec | head -$param | awk '{ printf "%s %g 1 0\n", $1, $2 }' >> $prob-final.par
+if( ! -e $prob.par ) then
+	mv $prob-final.par $prob.par
+endif

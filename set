@@ -1,0 +1,35 @@
+# The builtin command "ls-F" list filenames such that a slash (/) is put
+# after the filename if the file is a directory, an asterisk (*) if the
+# file is executable, and an ampersand (@) if the file is a symbolic link.
+# Setting the shell variable "showdots" will make "ls-F" work like "ls -aF".
+set showdots
+
+# Allow CTRL-D from terminating the shell.
+unset ignoreeof
+
+# Inform immediately when a background shell job finishes.
+set notify
+
+# Beep during filename completions.
+unset nobeep
+
+set autocorrect=1set autocorrect=1set autocorrect=1
+set autolist=ambiguous
+set complete=enhance
+set correct=cmd
+set echo_style=both
+set ellipsis
+set fignore=(.o \~)
+set histdup=erase
+set history=500
+set savehist=( $history merge )
+set listjobs=long
+set listmaxrows=23
+# set symlinks=expand
+set filec
+set noclobber
+
+unset autologout
+#set noglob
+#set mail = $MAIL
+limit coredumpsize 0

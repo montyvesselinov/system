@@ -1,0 +1,37 @@
+#!/bin/tcsh -f
+set prob = $1:r
+echo Parameters
+rm -f $prob.param $prob.all_param
+@ param1 = `grep "^    Number of parameters" $prob.rec | awk 'BEGIN {FS = ":"} {print $2}'`
+@ param2 = `grep "^    Number of adjustable parameters" $prob.rec | awk 'BEGIN {FS = ":"} {print $2}'`
+echo 'Number of parameters: ' $param1
+echo 'Number of adjustable parameters: ' $param2
+@ line1 = `grep -n -i "Covariance matrix and parameter confidence intervals cannot be determined" $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+if( $line1 != 0 ) then
+	echo "No parameter confidence intervals!"
+	@ invervals = 1
+	@ param = $param1
+else
+	@ invervals = 0
+	@ param = $param2
+endif
+@ line1 = `grep -n RESULTS $prob.rec | awk 'BEGIN {FS = ":"} {print $1}'`
+if( ! $line1 > 0 ) then
+	echo "There is no parameter info!"
+	rm -f $prob.all_param
+	exit
+endif
+@ line2 = `tail +$line1 $prob.rec | grep -n value | head -1 | awk 'BEGIN {FS = ":"} {print $1}'`
+@ tline = $line1 + $line2 - 1
+@ bline = $tline + $param + 1
+sed "1,$tline d;$bline,$ d" $prob.rec >! $prob.param
+if( $invervals ) exit
+awk 'BEGIN {FS = " "}{ printf "%s %g", $1, ($4-$3)/2; if($2>0) printf " %g %g", log($2)/log(10), log($4/$3)/log(10); printf "\n" }' $prob.param >! $prob.all_param
+sed "1,1 d" $prob.par | awk '{printf "%s %g\n", $1, $2}' >! $prob.par-temp
+awk 'BEGIN {FS = " "}{print $1}' $prob.par-temp >! $prob.par-name
+awk 'BEGIN {FS = " "}{print $1}' $prob.param >! $prob.param-name
+( diff -e $prob.param-name $prob.par-name; echo w ) >! $prob.ed-macro
+ed $prob.all_param < $prob.ed-macro >& /dev/null
+sed "1,$ s/^[a-z,1-9,-]*//g" $prob.all_param >! $prob.all_param-temp
+paste $prob.par-temp $prob.all_param-temp >! $prob.all_param
+rm -f $prob.par-name $prob.param-name $prob.ed-macro $prob.par-temp $prob.all_param-temp

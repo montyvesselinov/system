@@ -1,0 +1,3 @@
+#!/usr/local/bin/tcsh
+cd /scratch/er/monty/espanola/pest/st08-time
+mpipest st08-min

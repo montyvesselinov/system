@@ -1,0 +1,7 @@
+#!/usr/local/bin/tcsh
+cd $1
+foreach line ( *.pst )
+	set file = `echo $line | sed 's/-//g;s/\.pst//g'`
+	diff $line ../p4.data/$file
+end
+cd ..

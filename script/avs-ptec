@@ -1,0 +1,14 @@
+#!/bin/tcsh -f
+if( ! -e $1_sca_node ) then
+	echo "$1_sca_node is missing!"
+	exit
+endif
+( sed "1,2d" $1_sca_node | awk '{printf "%g\n", $2}' ) >! $1_sca_node-s
+if( -e $1_vec_node ) then
+	( sed "1,2d" $1_vec_node | awk '{printf "%g %g %g\n", $2, $3, $4}' ) >! $1_vec_node-s
+	paste $1_sca_node-s $1_vec_node-s >! $1.dat
+else
+	rm -f $1_vec_node-s
+	mv $1_sca_node-s $1.dat
+endif
+gzip $1.dat

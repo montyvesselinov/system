@@ -1,0 +1,4 @@
+#!/bin/tcsh -f
+# wc $1
+echo 'variables="particle number", "x [m]", "y [m]", "z [m]", "Time [a]", "zone number", "node number in", "node number out"'
+sed "1,3d" $1 | nawk 'BEGIN{l=0;nn=0} { l++; if($1>nn) {nn=$1} i=$1; pn[i]=$1; x[i]=$2; y[i]=$3; z[i]=$4; t[i]=$5/365.0; zn[i]=$6; ni[i]=$7; no[i]=$8 } END { for(i=1;i<=nn;i++) printf "%i %g %g %g %g %i %i %i\n", pn[i],x[i],y[i],z[i],t[i],zn[i],ni[i],no[i] }'

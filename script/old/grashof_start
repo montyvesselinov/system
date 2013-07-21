@@ -1,0 +1,3 @@
+#!/usr/local/bin/tcsh
+cd /scratch/er/monty/espanola/pest2003/sub-tr
+mpipest st14

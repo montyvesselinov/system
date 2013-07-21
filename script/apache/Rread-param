@@ -1,0 +1,11 @@
+#!/usr/local/bin/tcsh
+if( -e $1\.rst ) then
+	@ fsize = `ls -al $1\.rst | awk '{print $4}'`
+	if( $fsize>16 ) then 
+		Rpar-param $1
+	else 
+		Rrec-param $1
+	endif
+else
+	Rrec-param $1
+endif

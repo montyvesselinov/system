@@ -1,0 +1,7 @@
+#!/bin/sh
+ls *.lay|
+while read line
+do
+	sed "s/All intervals/All intervals open/g" $line > temp.lay
+	mv -f temp.lay $line
+done

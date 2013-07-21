@@ -1,0 +1,40 @@
+#!/bin/tcsh -f
+set root=$1:r
+if( ! -e $root.pst ) then
+	echo "$root.pst is missing!"
+	exit
+endif
+@ line = `grep -n "\* model command line" $root.pst | awk 'BEGIN {FS = ":"} {print $1}'`
+@ line = $line + 1
+set rroot = `head -$line $root.pst | tail -1 | awk '{print $3}'`
+echo Root: $rroot
+@ ntpl = `head -5 $root.pst | tail -1 | awk '{print $1}'`
+@ nins = `head -5 $root.pst | tail -1 | awk '{print $2}'`
+@ line = `grep -n "\* model input\/output" $root.pst | awk 'BEGIN {FS = ":"} {print $1}'`
+@ line = $line + $ntpl + $nins 
+@ ok = 0
+@ loop = 0
+while( $nins > $loop )
+	@ temp = $line - $loop
+	set insline = `head -$temp $root.pst | tail -1`
+	set infile = `echo $insline | awk '{print $1}'`
+	set outfile = `echo $insline | awk '{print $2}'`
+	set outextension = $outfile:e
+	echo Extension: $outextension
+	@ skip = `inschek $infile $1.$outextension | grep obf | wc | awk '{print $1}'`
+	if( $skip == 1 ) then
+		@ ok = $ok + 1
+	else
+		rm -f $1.$outextension
+	endif
+	@ loop = $loop + 1
+end
+if( $ok == $nins ) then
+	echo "Serial run skipped\!"
+	echo Skip >! $1.skip
+	exit 0
+else
+	echo "Serial run cannot be skipped\!"
+	rm -f $1.skip
+	exit 3
+endif

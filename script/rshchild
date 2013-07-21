@@ -1,0 +1,31 @@
+#!/bin/tcsh -f
+@ n = $#
+if( $n < 3 ) then
+	echo rshchild: Incorrect use of rshchild!
+	exit
+endif
+set host = $1
+set dir = $2
+shift
+shift
+# @ rshstatus = { rsh -n $host "cd $dir; if ( ! { $argv } ) echo ERROR" >&! $2.rsh-output-$$ }
+@ rshstatus = { rsh -n $host "cd $dir; if ( ! { $argv } ) echo ERROR >&! $2.rsh-output-$$" }
+if ( ! $rshstatus ) then
+	echo rshchild: $host is not accessible	
+	rm -f $2.rsh-output-$$
+	exit 1
+endif
+sleep 1
+if( ! -e $2.rsh-output-$$ ) then
+	echo rshchild: $2 output file is missing
+	exit 1
+endif
+cat $2.rsh-output-$$
+@ done = `grep -n ERROR $2.rsh-output-$$ | wc | awk '{print $1}'`
+rm -f $2.rsh-output-$$
+if( $done == 0 ) then
+	exit 0
+else
+	echo rshchild: $2 run failed!
+	exit 1
+endif

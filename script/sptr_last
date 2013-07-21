@@ -1,0 +1,2 @@
+#!/bin/tcsh -f
+nawk 'BEGIN{nn=0} {i=$1; line[i]=$0; if($1>nn) {nn=$1}} END { for(i=1;i<=nn;i++) printf "%s\n", line[i] }' $1

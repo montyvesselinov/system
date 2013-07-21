@@ -1,0 +1,2 @@
+#!/bin/tcsh
+rsh lapis kill -CONT `rsh lapis pssm | awk '{print $2}'`

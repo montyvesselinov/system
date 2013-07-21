@@ -1,0 +1,3 @@
+#!/usr/local/bin/tcsh
+cd /scratch/er/monty/espanola/pest2003/conv
+( gaz > ! gaz-out ) > & ! gaz-err

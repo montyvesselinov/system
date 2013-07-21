@@ -1,0 +1,34 @@
+#!/bin/tcsh -f
+if( $1 != 0 ) then
+	@ job = `bjobs | grep "^"$1" " | awk '{print $1}'`
+	echo Previous job $job
+else
+	@ job = 0
+	echo No previous job exits!
+endif
+@ i = 0
+while ( $i < $2 )
+	@ i++
+	@ try = 0
+	@ new_job = 0
+	while ( $new_job == 0 && $try != 5 )
+		if( $job == 0 ) then
+			bsub -L /bin/tcsh $3 >&! bsub-out
+		else
+			bsub -L /bin/tcsh -w"ended($job)" $3 >&! bsub-out
+		endif
+		@ new_job = `awk 'BEGIN{FS="<|>"}{print $2}' bsub-out`
+		if( $new_job == 0 ) then
+			cat bsub-out
+		endif
+		@ try++
+	end
+	if( $new_job == 0 ) then
+		echo Submission failed in 5 attampts
+		rm -f bsub-out
+		exit
+	endif
+	echo '('$i')' $new_job '<-' $job
+	@ job = $new_job
+end
+rm -f bsub-out

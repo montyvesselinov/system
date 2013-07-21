@@ -1,0 +1,102 @@
+#!/bin/tcsh -f
+set root = $1:r
+if( -e $root.STOP ) then
+        exit 1
+endif
+if( -e $1.skip ) then
+        rm -f $1.skip
+	smartrst2 $1
+        exit 2
+endif
+if( $1 == $1:r ) then
+# Serial
+	if( -e $root-jacobian.runs_restart )
+		@ rJRuns = `cat $root-jacobian.runs_restart`
+		if( $rJRuns == 0 )
+			if( -e $root-jacobian_$rJRuns.zip )
+				unzip $root-jacobian_$rJRuns.zip
+				@ nSRuns = `ls $root-serial_*.zip | wc | awk '{print $1}'`
+				echo $nSRuns >! $root-serial.runs
+				@ rSRuns = $nSRuns - 1
+				echo $rSRuns >! $root-serial.runs_restart
+				@ rJRuns = $rJRuns + 1
+				echo rJRuns >! $root-jacobian.runs_restart
+			else
+				rn -f $root-jacobian.runs_restart
+			endif
+		endif
+	else
+        	if( -e $root-jacobian.zip ) then
+			zip -u $root-jacobian.zip $root.mtt
+	                @ nJRuns = `cat $root-jacobian.runs`
+       		        @ nJRuns = $nJRuns + 1
+			echo 'Jacobian run number ' $nJRuns ' already completed'
+	       	        mv -f $root-jacobian.zip $root-jacobian_$nJRuns.zip
+       		 	echo $nJRuns >! $root-jacobian.runs
+	        endif
+        endif
+	if( -e $root-serial.runs ) then
+              	@ nSRuns = `cat $root-serial.runs`
+        else
+	        @ nSRuns = 0
+       		echo $nSRuns >! $root-serial.runs
+        endif
+	if( $nSRuns == 0 ) then
+		rm -f $root-serial.runs_restart
+       	endif
+        if( -e $root-serial.runs_restart ) then
+                @ rSRuns = `cat $root-serial.runs_restart`
+                if( $rSRuns != $nSRuns ) then
+                        @ rSRuns = $rSRuns + 1
+			echo $rSRuns >! $root-serial.runs_restart
+                        unzip -o $root-serial_$rSRuns.zip
+			if( { skip-serial $root } ) then	
+	                        echo 'Reset serial run number ' $rSRuns
+				rm -f $root.skip
+                        	exit 3
+			else
+				rm -f $root-serial.runs_restart
+			endif
+                else
+                        rm -f $root-serial.runs_restart
+                endif
+        endif
+else
+# Jacobian
+	if( -e $root-jacobian.runs_restart ) then
+		if( $1:e == 1 ) then
+			@ rJRuns = `cat $root-jacobian.runs_restart`
+			if( -e $root-jacobian_$rJRuns.zip ) then
+				unzip $root-jacobian_$rJRuns.zip
+				@ nSRuns = `ls $root-serial_*.zip | wc | awk '{print $1}'`
+				echo $nSRuns >! $root-serial.runs
+				@ rSRuns = 0
+				echo $rSRuns >! $root-serial.runs_restart
+				@ rJRuns = $rJRuns + 1
+				echo rJRuns >! $root-jacobian.runs_restart
+			else
+				rm -f $root-jacobian.runs_restart
+			        if( -e $1-jacobian.zip ) then
+					@ nJRuns = $rJRuns
+					echo $nJRuns >! $root-jacobian.runs
+					unzip -u $1-jacobian.zip
+				endif
+				skip $1
+			endif
+		endif
+		exit 4
+	else 
+	if( -e $root-serial.runs && $1:e == 1 ) then
+		@ nSRuns = `cat $root-serial.runs`
+		@ nJRuns = `cat $root-jacobian.runs`
+		@ loop = 0
+		while( $nSRuns > $loop )
+			@ loop = $loop + 1
+			zip -um $root-jacobian_$nJRuns.zip $root-serial_$loop.zip
+		end
+		zip -u $root-jacobian_$nJRuns.zip $root-serial.runs
+	        rm -f $root-serial.runs_restart $root-serial.runs
+	endif
+	endif
+endif
+exit 0

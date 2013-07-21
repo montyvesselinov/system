@@ -1,0 +1,8 @@
+#!/usr/local/bin/tcsh
+if( $cwd == `echo $cwd | grep ex` ) then
+	set dir=t3
+else
+	set dir=p4
+endif
+echo $dir
+printf "../p4a.node/%s\n%s\n%s\n" `echo $1 | sed 's/c[aoin]//g'` $1 $1 >! $1-$$

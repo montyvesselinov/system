@@ -1,0 +1,44 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+        echo usage:   mpipest-copy-back prob_name problem-directory scratch
+        exit
+endif  
+# usage:   mpipest-copy-forward prob_name problem-directory scratch
+# example: mpipest-copy-forward st16-fwd espanola/pest/sub-tr t04
+#
+# copy to the scratch
+#
+echo "Copying to scratch" $3 ...
+rm -f ~/$2/$1.scratch-copy
+cd /n/$3/scratch/montyv
+if( ! -e $2:h:h ) then
+	mkdir $2:h:h
+endif
+cd $2:h:h
+if( ! -e fehm ) then
+	echo ... fehm
+	\cp -pfr ~/$2:h:h/fehm .
+endif
+if( ! -e pest ) then
+	echo ... pest
+	mkdir pest
+endif
+cd pest
+\cp -pfr ~/$2:h:h/pest/def* .
+\cp -pfr ~/$2:h:h/pest/ins* .
+\cp -pfr ~/$2:h:h/pest/tpl* .
+\cp -pf  ~/$2:h:h/pest/fwd* .
+if( ! -e $2:t ) then
+	echo ... $2:t
+	mkdir $2:t
+endif
+set size = $2:t:s/-/./:r
+if( ! -e $size-nop.temp ) then
+	\cp -pf ~/$2:h:h/pest/$size-nop.temp .
+endif
+ln -sf ../$size-nop.temp $2:t/nop.temp
+cd $2:t
+\rm -f $1*
+\cp -pf ~/$2/$1* .
+lt $1*
+echo "Copying to scratch completed!"

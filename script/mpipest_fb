@@ -1,0 +1,36 @@
+#!/bin/tcsh -f
+if( $1 == "" ) then
+        echo usage:   mpipest prob_name problem-directory 
+        exit
+endif
+# usage:   mpipest prob_name problem-directory
+# example: mpipest st16-fwd espanola/pest/sub-tr
+#
+if( -e ~/$2/$1.scratch-copy ) then
+	set machine = `cat ~/$2/$1.scratch-copy`
+	mpipest-copy-back $1 $2 $machine
+	rm -f ~/$2/$1.scratch-copy
+	sleep 5
+endif
+#
+set machine = `printenv LSB_MCPU_HOSTS | awk '{print $1}'`
+#
+# copy to the scratch
+#
+mpipest-copy-forward $1 $2 $machine
+echo $machine >! ~/$2/$1.scratch-copy
+sleep 5
+cd /n/$machine/scratch/montyv/$2
+#
+# Set number of processors
+#
+mpipest-processors $1
+#
+# Call mpipest
+#
+mpipest-static $1
+#
+# copy back
+#
+mpipest-copy-back $1 $2 $machine
+rm -f ~/$2/$1.scratch-copy

@@ -1,0 +1,2 @@
+alias fehm_gaz "cd /home/gaz/fehm/fehm90_mar00; ls"
+alias fehm_m   "cd /scratch/nusselt1/monty/fehm_m; ll"

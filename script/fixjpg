@@ -1,0 +1,8 @@
+#!/bin/tcsh -f
+rm -f index.list
+touch index.list
+foreach i ( *.jpg )
+	set p = $i:r
+	djpeg -scale 1/8 -gif $p.jpg >! $p.gif
+	echo '<a href="'$i'"><img SRC="'$p.gif'" BORDER=0></a>' >> index.list
+	end
