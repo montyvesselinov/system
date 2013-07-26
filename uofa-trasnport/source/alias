@@ -1,0 +1,31 @@
+alias system        'vi ~/.cshrc ~/source/*; source ~/.cshrc'
+
+umask 077
+
+alias h             "history \!* | more"
+alias m              more
+
+alias cd            'set old=$cwd; chdir \!*'
+alias bk            'set back=$old; cd $back; unset back'
+alias .             'echo $cwd'
+alias ..            'cd ..'
+
+alias ls            'ls -F'
+alias la            'ls -a'
+alias ll            'ls -al'
+alias lm            "ls -al \!* | more"
+alias ldir          "ls -al \!* | grep  /  | more"
+alias le            "ls -al \!* | grep '*' | more"
+
+alias cp            'cp -i'
+alias mv            'mv -i'
+alias rm            'rm -i'
+
+alias r              rlogin
+alias xl            'xlock -mode flame -nice 40 -delay 600000'
+
+alias week          "echo `date +%j` / 7 + 1 | bc"
+alias srch-file     'find . -type f -name \!^ -print'
+alias srch-var      'find . -type f -print -exec grep -in \!^ {} \;'
+
+alias cdrom         'mount -v cdrfs -o ro /dev/cd0 /cdrom'

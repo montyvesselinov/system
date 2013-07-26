@@ -1,0 +1,5 @@
+alias moon "xsetroot -bitmap /usr/local/xbm/fullmoon.xbm &"
+alias moom "xsetroot -bitmap /usr/local/xbm/fullmoom.xbm &"
+alias farside "xsetroot -bitmap /usr/local/xbm/far_side.xbm &"
+alias closed "xsetroot -bitmap /usr/local/xbm/closed.xbm &"
+

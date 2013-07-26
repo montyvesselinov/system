@@ -1,0 +1,9 @@
+set cdpath=(~ /scr1/monty /scr2/monty /scr3/monty /scr4/monty )
+set filec
+set noclobber
+set notify
+# set ignoreeof
+set history=500
+set savehist=200
+unset autologout
+limit coredumpsize 0

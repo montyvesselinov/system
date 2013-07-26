@@ -1,0 +1,5 @@
+setenv MP_SET_NUMTHREADS 32
+alias qqa	qstat -a -h quartz
+alias qqb	qstat -b -h quartz
+alias qla	qstat -a -h lapis
+alias qlb	qstat -b -h lapis

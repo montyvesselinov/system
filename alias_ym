@@ -1,0 +1,4 @@
+alias ymro "/home/monty/bin/YoSucker --config=~/.yosucker/rumi-out.conf"
+alias ymri "/home/monty/bin/YoSucker --config=~/.yosucker/rumi-in.conf"
+alias ymmo "/home/monty/bin/YoSucker --config=~/.yosucker/monty-out.conf"
+alias ymmi "/home/monty/bin/YoSucker --config=~/.yosucker/monty-in.conf"

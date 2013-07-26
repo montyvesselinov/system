@@ -1,0 +1,7 @@
+set prompt="%S `whoami`@%m %s %T %~ \[\!\] "
+# Prompt HWR 597A
+# set hn = 'hostname | sed -e 's/\..*//''
+# set wai = 'whoami'
+# set prompt = \[!\]"[\$wai\:$hn] $cwd"
+# Prompt TRANSPORT
+# set prompt = "%S %n@%m %s %T %~ \[!\] "

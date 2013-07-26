@@ -1,0 +1,1 @@
+set path = ( /usr/lanl/bin ~/bin-lanl $path . ~/bin-sun ~/script ~/pest_m/02sun )

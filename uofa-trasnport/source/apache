@@ -1,0 +1,3 @@
+alias apache "cd /scr3/monty/apache"
+alias apachep "cd /scr3/monty/apache/pest"
+alias apachem "cd /scr3/monty/apache/model"
