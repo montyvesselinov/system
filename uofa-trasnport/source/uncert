@@ -1,0 +1,6 @@
+setenv UNCERT /scr3/monty/uncert
+setenv UNCERT_TMPDIR $UNCERT/tmp
+setenv UNCERT_HELP_DIR $UNCERT/help/
+setenv XAPPLESDIR $UNCERT/app-defaults/
+
+if ( $path[$#path] != $UNCERT/bin ) set path = ($path $UNCERT/bin)

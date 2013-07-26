@@ -1,0 +1,13 @@
+setenv TLMHOST @transport.hwr.arizona.edu
+setenv TEC7HOME /scr3/tecplot
+
+# TECPLOT 6
+# alias tecport "/usr/local/tec3d/tecplot -h /usr/local/tecplot -c $HOME/tec/tec.cfg.port.4 -p $HOME/tec/back1.mcr &"
+# alias tecland "/usr/local/tec3d/tecplot -h /usr/local/tecplot -c $HOME/tec/tec.cfg.land.4 -p $HOME/tec/back1.mcr &"
+# alias tecplot "/usr/local/tecplot/tecplot -h /usr/local/tecplot -c $HOME/tecplot.cfg &"
+# TECPLOT 7
+alias tecplot	"/scr3/tecplot/bin/tecplot -h /scr3/tecplot \!* &"
+alias tecpp     "$TEC7HOME/bin/tecplot -b -p /scr3/monty/apache/pest/tecplot/print.mcr -r test.ps \!*"
+alias tecpl	"/scr3/tecplot/bin/tecplot -qm /scr3/monty/apache/pest/tecplot/reset-axis.mcr -h /scr3/tecplot \!* &"
+alias preplot	"/scr3/tecplot/bin/preplot \!* &"
+alias cnvtec	"/scr3/tecplot/bin/cnvtec \!* &"

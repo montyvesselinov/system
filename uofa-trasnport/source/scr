@@ -1,0 +1,4 @@
+alias s1 "cd /scr1/monty; ls -al"
+alias s2 "cd /scr2/monty; ls -al"
+alias s3 "cd /scr3/monty; ls -al"
+alias s4 "cd /scr4/monty; ls -al"

@@ -1,0 +1,8 @@
+alias win "aixterm -fg Black -bg White -rv -sb -T TRANSPORT &"
+alias pc "aixterm -e pcsim -go -fg Black -bg White -rv &" 
+alias vt "aixterm -v -fg Black -bg White -rv &"
+alias vt100 "aixterm -v  -name VT100 -n VT100 -T VT100 -sf -fg Black -bg White -rv -fn erg14 &"
+alias wtheis "aixterm -v  -name VT100 -n VT100 -T theis -n theis -sf -fg Black -bg White -rv -fn erg14 -i -ib /usr/include/X11/bitmaps/flagup &"
+alias wran "aixterm -v  -name VT100 -n VT100 -T random -n random -sf -fg Black -bg White -rv -fn erg14 -i -ib /usr/include/X11/bitmaps/flagup &"
+alias wtran "aixterm -v  -name VT100 -n VT100 -T transport -n transport -sf -fg Black -bg White -rv -fn erg14 -i -ib /usr/include/X11/bitmaps/flagup &"
+alias wuofa "aixterm -v  -name VT100 -n VT100 -T UofA -n UofA -sf -fg Black -bg White -rv -fn erg14 -i -ib /usr/include/X11/bitmaps/flagup &"

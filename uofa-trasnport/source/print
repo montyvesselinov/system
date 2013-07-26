@@ -1,0 +1,7 @@
+setenv PRINTER psb
+alias pr1 "enscript -d psb"
+alias pr2 "enscript -d psc"
+alias prf "enscript -d psb -G -2r -fCourier-Bold6"
+alias prs "enscript -d psb -fCourier-Bold6"
+alias lpr1 "lpr -P psb -h"
+alias lpr2 "lpr -P psc -h"

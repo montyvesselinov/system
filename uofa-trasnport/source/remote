@@ -1,0 +1,20 @@
+#	University of Arizona
+#	transport
+alias strans        "ssh transport.hwr.arizona.edu"
+alias dtrans        "setenv DISPLAY transport.hwr.arizona.edu:0.0"
+alias rtrans        "rsh transport.hwr.arizona.edu"
+alias ftrans        "ftp transport.hwr.arizona.edu"
+#	random
+alias sran          "ssh random.hwr.arizona.edu"
+alias dran          "setenv DISPLAY random.hwr.arizona.edu:0.0"
+alias rran          "rsh random.hwr.arizona.edu"
+alias fran          "ftp random.hwr.arizona.edu"
+alias rres          "rsh research.u.arizona.edu"
+#	misc
+alias ssuper        "ssh super.arizona.edu"
+alias sabio         "telnet sabio.arizona.edu"
+alias tpl           "telnet InfoLynx.ci.tucson.az.us"
+#	LANL
+alias rnusselt      "ssh -t portal.lanl.gov -l c.monty ssh nusselt.lanl.gov -l monty"
+alias rfourier      "ssh -t portal.lanl.gov -l c.monty ssh fourier.lanl.gov -l monty"
+alias rpeclet       "ssh -t portal.lanl.gov -l c.monty ssh peclet.lanl.gov -l monty"
