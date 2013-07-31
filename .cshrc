@@ -1,7 +1,4 @@
 # .cshrc
-# setenv LD_LIBRARY_PATH /home/pkmishra/local/lib64:/home/pkmishra/local/lib:/usr/lib:/usr/lib64:/usr/lanl/lib:/home/dharp/source/ASCEM/packages/openmpi-1.4.3/lib:/home/adamc/local/lib 
-# setenv LIBRARY_PATH /home/pkmishra/local/lib64:/home/pkmishra/local/lib:/usr/lib:/usr/lib64:/usr/lanl/lib 
-# setenv CPATH /home/pkmishra/local/include 
 
 if ($?prompt == 0) then
         source ~/source/alias
@@ -112,7 +109,10 @@ case i386-linux:
         endif
 	breaksw
 case x86_64-linux:
-	set cdpath = (~ /scratch3/montyv /usr/projects/subsurfa/montyv /usr/projects/tranNTS/montyv)
+        set cdpath=( ~ /scratch/er/monty /scratch/ymp/monty /scratch/nts/monty /scratch/gwpa/monty /scratch/rigel10/monty /scratch/indigo2/monty /scratch/fiesta2/monty )
+	setenv LD_LIBRARY_PATH /usr/lib:/usr/lib64:/usr/lanl/lib:/home/monty/local/lib
+	setenv LIBRARY_PATH /usr/lib:/usr/lib64:/usr/lanl/lib:/home/monty/local/lib
+	setenv CPATH /home/monty/local/include 
 	breaksw
 case alpha:
 	set cdpath = (~ /scratch/monty /usr/projects/ees/nts/monty)
