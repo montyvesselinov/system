@@ -1,0 +1,2 @@
+setenv HTTPS_PROXY https://proxyout.lanl.gov:8080
+setenv HTTP_PROXY http://proxyout.lanl.gov:8080
