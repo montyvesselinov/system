@@ -1,0 +1,9 @@
+#!/usr/bin/env tcsh -f
+rm -f *.mads_output_* >& /dev/null
+rm -f *.igrnd_*.results >& /dev/null
+rm -f *.sobol_*.results >& /dev/null
+rm -f *.igrnd-opt=* >& /dev/null
+rm -f *error.mads >& /dev/null
+rm -f *rerun.mads >& /dev/null
+rm -f *.running >& /dev/null
+rm -f *.sobol.results >& /dev/null
