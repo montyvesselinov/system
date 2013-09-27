@@ -3,7 +3,7 @@
 	email = velimir.vesselinov@gmail.com
 
 [core]
-    editor = /usr/bin/vim
+	editor = /usr/bin/vim
 
 [color]
 	branch = auto
@@ -114,3 +114,5 @@
 	
 	#subtree add
 	sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f" 
+[push]
+	default = simple

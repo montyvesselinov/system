@@ -1,6 +1,8 @@
 alias psr  "ps auxww | sort | more "
 alias psa  "ps auxww | sort | grep -v 'root' | more "
 alias psm  "ps auxww | grep monty | more "
+alias psv  "ps auxww | grep vvv | more "
 alias pssr "ps -e -o 'user pid ppid s pcpu nice vsz stime tty time args' | sort | more"
 alias pssa "ps -e -o 'user pid ppid s pcpu nice vsz stime tty time args' | sort | grep -v 'root' | more"
 alias pssm "ps -e -o 'user pid ppid s pcpu nice vsz stime tty time args' | grep monty | more"
+alias pssv "ps -e -o 'user pid ppid s pcpu nice vsz stime tty time args' | grep vvv | more"
