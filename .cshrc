@@ -109,6 +109,7 @@ case i386-linux:
         endif
 	breaksw
 case x86_64-linux:
+	eval `ssh-agent -c`
         set cdpath=( ~ /scratch/er/monty /scratch/ymp/monty /scratch/nts/monty /scratch/gwpa/monty /scratch/rigel10/monty /scratch/indigo2/monty /scratch/fiesta2/monty )
 	setenv LD_LIBRARY_PATH /usr/lib:/usr/lib64:/usr/lanl/lib:/home/monty/local/lib
 	setenv LIBRARY_PATH /usr/lib:/usr/lib64:/usr/lanl/lib:/home/monty/local/lib

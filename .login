@@ -1,5 +1,10 @@
 # .login
 
+if ( ! $?SSH_AUTH_SOCK ) then
+        eval `ssh-agent -c`
+	ssh-add
+endif
+
 setenv PRINTER data
 setenv LPDEST data
 setenv EDITOR vim
