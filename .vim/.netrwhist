@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/sam/puppet/modules/usrlocal/files/suninq'
+let g:netrw_dirhist_2='/Users/srowe/.offlineimap'
+let g:netrw_dirhist_3='/home/sam/.mutt'
+let g:netrw_dirhist_4='/home/sam/.offlineimap'

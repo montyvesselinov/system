@@ -1,7 +1,7 @@
+--style=allman
 --delete-empty-lines
 --keep-one-line-blocks
 --keep-one-line-statements
---style=allman
 --indent=tab=#4
 --indent=force-tab=#4
 --indent-classes
