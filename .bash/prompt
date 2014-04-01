@@ -1,0 +1,227 @@
+# vim: set filetype=sh:
+function dumbterminal (){
+    unset PS2 PROMPT_COMMAND
+    export PS1='$ '
+}
+function nofont (){
+    export NOFONT="nofont"
+}
+# Grab the Powerline fonts from github. Search google for 'powerline vim'
+function explain () {
+    echo "User@Host> Hist#/Cmd#/Batt%||TTY> HH:MM:SS Day Mnth Date> Jobs/#Users/1mLoadAvg/#Proc>"
+    echo "If there's an 's' after the #ofProc, you're in screen."
+    echo "If the username is underlined, you have access to an SSH Agent."
+    echo "If the username is red, you're root."
+    echo "If you see a red number starting the second line, your last command exited"
+    echo "   with a non-zero state."
+    echo
+    echo "If the cwd is green, you own it."
+    echo "If the cwd is cyan, you can write to it, but don't own it."
+    echo "If the cwd is red, you neither own, nor can write to it."
+    echo "If you're in a git repo:"
+    echo '   (register: echo /path/to/git/repo >> ~/.gitrepos )'
+    echo "   The branch name will be appended to the CWD."
+    echo "   If you have uncommited changes, you'll see a unicode skull."
+}
+function prompt_command() {
+    # ported to sanity by Sam Rowe 6/23/09
+    # originally by icetrey <trey@imagin.net> and modded later by others
+    EXITUS=$?
+    local n_Co=$(tput colors)
+    if [[ $n_Co == 256 ]]; then
+        YELLOW="\[\e[38;5;208m\]"
+        BLACK="\[\e[38;5;232m\]"
+        BLACKBG="\[\e[48;5;16m\]"
+        GRAT="\[\e[38;5;233m\]"
+        LGRAYBG="\[\e[48;5;236m\]"
+        LGRAY="\[\e[38;5;236m\]"
+        LLGRAY="\[\e[38;5;247m\]"
+        FCYAN="\[\e[38;5;23m\]"
+        GRAY="\[\e[38;5;235m\]"
+        GRAYBG="\[\e[48;5;235m\]"
+        GREEN="\[\e[38;5;34m\]"
+        GREENBG="\[\e[48;5;34m\]"
+        FGREEN="\[\e[38;5;22m\]"
+        CYAN="\[\e[38;5;87m\]"
+        CYANBG="\[\e[48;5;87m\]"
+        RED="\[\e[38;5;196m\]"
+        REDBG="\[\e[48;5;196m\]"
+        WHITE="\[\e[38;5;255m\]"
+        WHITEBG="\[\e[48;5;255m\]"
+        UL="\[\e[4;38;5;255m\]"
+        NOUL="\[\e[24;38;5;255m\]"
+    else
+        YELLOW="\[\e[33m\]"
+        GRAY="\[\e[30m\]"
+        GRAT="\[\e[30m\]"
+        GREEN="\[\e[32m\]"
+        BLACKBG="\[\e[0\]"
+        RED="\[\e[31m\]"
+        CYAN="\[\e[36m\]"
+        WHITE="\[\e[37m\]"
+        UL="\[\e[4m\]"
+    fi
+
+    NORM="\[\e[0m\]"
+    BOLD="\[\e[1m\]"
+    UNBOLD="\[\e[22m\]"
+
+    BLUE="\[\e[34m\]"
+    MAG="\[\e[35m\]"
+    BG="\[\e[48;5;235m\]"
+
+    local AT="${GRAT}@"
+    if [[ -z $NOFONT ]]; then
+        local THIN='⮁'
+        local THICK='⮀'
+        local UNTHICK='⮂'
+        local UNTHIN='⮃'
+    else
+        local THIN='>'
+        local THICK='>'
+        local UNTHICK='<'
+        local UNTHIN='<'
+    fi
+
+    local SL="${BLACK}${BOLD}${THIN}${UNBOLD} "
+    local BNE="${BLACKBG}${BLACK} ${THIN}"
+    local ELG="${BLACKBG}${LGRAY}${THICK}"
+    local BNM="${BLACK} ${THIN}"
+    local LGKE="${GRAYBG}${LGRAY}${THICK}"
+    local GKM="${LGRAYBG}${GRAY}${THICK}"
+    local GKE="${GRAY}${THICK}"
+    local EC="${BLACKBG}${GRAY}${THICK}${NORM}"
+    local PROMPTCHAR="${WHITE}${BOLD}\\\$${NORM}${BG}"
+    local EP="${BLACK} ${THIN}${WHITE}"
+
+    RC=''
+    if [[ $EXITUS -ne 0 ]] ; then
+        RC=" ${RED}${BOLD}${EXITUS}${EP}${NORM}${BG}"
+    fi
+    if [[ -O ${PWD} ]]; then
+        local DCOLOR=$GREENBG
+        local FCOLOR=$BLACK
+        local INTRANS="${GREENBG}${GRAY}"
+        local OUTTRANS="${GRAYBG}${GREEN}"
+    elif [[ -w $PWD ]]; then
+        local DCOLOR=$CYANBG
+        local FCOLOR=$FCYAN
+        local INTRANS="${CYANBG}${GRAY}"
+        local OUTTRANS="${GRAYBG}${CYAN}"
+    else
+        local DCOLOR=$REDBG
+        local FCOLOR=$WHITE
+        local INTRANS="${REDBG}${GRAY}"
+        local OUTTRANS="${GRAYBG}${RED}"
+    fi
+    local _path=$(dirs +0)
+    local patharray=( $( echo "$_path" | tr / "\n") )
+    local _path="${BG}${LLGRAY}"
+    local _elementcount=${#patharray[*]}
+    local _maxplen=4
+    if [[ $_elementcount -eq 0 ]] ; then
+        _path=" ${INTRANS}${THICK}${DCOLOR}${WHITE} / ${OUTTRANS}${THICK}${BG}"
+    fi
+    local index=0
+    # I couldn't figure out how to split arrays. :)
+    local skip=$(((${_maxplen}-${_elementcount})*-1))
+    if [[ ${_elementcount} -eq ${_maxplen} ]] ; then
+        local skip=-1
+    fi
+    while [[ ${index} -lt ${_elementcount} ]] ; do
+        if [[ ${index} -eq 0 ]] || [[ ${skip} -le 0 ]] ; then
+            if [[ ${index} -eq $((_elementcount-1)) ]] ; then
+                _path="${_path} ${INTRANS}${THICK}${DCOLOR}${BOLD}${FCOLOR} ${patharray[index]}${UNBOLD} ${OUTTRANS}${THICK}${BG}"
+            else
+                if [[ ${index} -eq 0 ]] ; then
+                    _path="${_path} ${patharray[${index}]}"
+                else
+                    _path="${_path} ${BLACK}${THIN}${LLGRAY} ${patharray[${index}]}"
+                fi
+            fi
+        fi
+        if [[ ${index} -gt 0 ]]; then
+            ((skip--))
+        fi
+        if [[ ${skip} -eq 0 ]]; then
+            _path="${_path} ${BLACK}${THIN}${LLGRAY} ..."
+        fi
+        ((index++))
+    done
+    #former, truncatable method because I didn't know about PROMPT_DIRTRIM
+    #local _path="${DCOLOR}${_path}${NORM}"
+    #local _maxlen=$((${COLUMNS:-80}/4))
+    #local _len=${#_path}
+    #if [[ $_len -gt $_maxlen ]]; then
+        #_path=".+${_path: -$_maxlen}"
+    #fi
+
+    local _gitrepos=''
+    local _ingit=''
+    # only do git stuff when you're in a registered git repo
+    if [[ -f "${HOME}/.gitrepos" ]]; then
+        local _gitrepos=$(cat "${HOME}/.gitrepos")
+    fi
+    for repo in $_gitrepos
+    do
+        if [[ "${PWD}/" == "${repo}"/* ]]; then
+            local _ingit=$(git symbolic-ref HEAD 2>/dev/null)
+            _ingit=${_ingit#refs/heads/}
+            _ingit=" ${WHITE}${UNTHICK}${WHITEBG}${YELLOW}⭠«${_ingit}»${GRAYBG}${WHITE}${THICK}"
+            if current_git_status=$(git status | grep modified 2> /dev/null); then
+                _ingit="${_ingit} ${RED}☠${NORM}${BG} "
+            fi
+
+        fi
+    done
+
+    local PUSER=$(whoami) #sudo -m doesn't reset $USER (unlike what the manpage says)
+    local INSCREEN=''
+    local XSCREEN=''
+    if [[ -n "${WINDOW}" ]]; then
+        local INSCREEN="${SL}${WHITE}s${BOLD}${WINDOW}${UNBOLD}"
+        local XSCREEN=" s${WINDOW}"
+    fi
+    if [[ -n ${TMUX} ]]; then
+        local INSCREEN="${SL}${WHITE}T${BOLD}${WINDOW}${UNBOLD}"
+    fi
+    local XTERMTITLE=''
+    if [[ "${TERM}" == "xterm" || "${TERM}" == "screen" || "${TERM}" == 'rxvt' ]] ; then
+        XTERMTITLE="\[\e]0;${PUSER}@${HOSTNAME%%.*}${XSCREEN}\007\]"
+    fi
+    local USERL="${BG}${PUSER}"
+    if [[ "${PUSER}" == 'root' ]]; then
+        local PROMPTCHAR="${RED}\\\$"
+        local USERL="${RED}${USERL}"
+    else
+        local USERL="${WHITE}${USERL}"
+    fi
+    if [[ -S "$SSH_AUTH_SOCK" ]]; then
+        local USERL="${UL}${USERL}${NOUL}"
+    fi
+    local USERL="${USERL}${AT}${BG}${WHITE}${HOSTNAME%%.*}"
+    local USERL="${BB}${USERL}${GKM}"
+
+    local LOAD=''
+    local UCOUNT=''
+    local PROCCOUNT=''
+    if [[ "$__SAMOS" = "Linux" ]]; then
+        local UCOUNT="${SL}${WHITE}$(users | wc -w)"
+        local LOAD="${SL}${WHITE}$(cut -f1 -d\  /proc/loadavg)"
+        local PROCCOUNT="${SL}${WHITE}$(cut -f4 -d\  /proc/loadavg| cut -f2 -d/)"
+        local BATT='\l'
+        if type acpi > /dev/null 2>&1 ; then
+            BATT=$(acpi --battery 2> /dev/null)
+            BATT=${BATT#*, }
+            BATT=${BATT%,*}
+        fi
+    fi
+    local OSSTUFF="${LGRAYBG}${WHITE} \j${UCOUNT}${LOAD}${PROCCOUNT}${INSCREEN} ${ELG}"
+    local YOURSHELL="${LGRAYBG}${WHITE} \!${SL}${WHITE}\#${SL}${WHITE}${BATT} ${LGKE}"
+    local TIMEDATE="${BG}${WHITE} \T \d ${GKM}"
+    local REALPROMPT="${BG}${RC}${_path}${BG}${_ingit} ${PROMPTCHAR}${EC} "
+    PS1="${XTERMTITLE}${USERL}${YOURSHELL}${TIMEDATE}${OSSTUFF}
+${REALPROMPT}"
+    export PS1
+}
+export PROMPT_COMMAND=prompt_command

@@ -1,0 +1,284 @@
+# vim: set filetype=sh:
+[[ -f ${HOME}/.bash-local/func ]] && source ${HOME}/.bash-local/func
+
+if [[ "${__SAMOS}" = "Linux" ]] ; then
+    #function myaterm () { aterm -rv -tr -sh 15 -sb -sl 1500 -ls -fn ${1}; }
+    #function wallpaper () { montage +frame +shadow -tile 3x1 +geometry '1920x1200+0+ 0!' ${1} ${2} ${3} ${4}; } ;
+    # launch files in Moz new tab
+#    function mfb () {
+#        local argpath url_arg
+#        if [ "." = "$(dirname $1)" ]; then
+#            argpath=$(pwd)
+#        else
+#            argpath=$(dirname $1)
+#        fi
+#        url_arg=${argpath}/$(basename $1)
+#        mozilla -remote "openURL (file://$url_arg,new-tab)" 2>/dev/null
+#        if [ $? -ne 0 ];then
+#            mozilla "file://$url_arg" & 
+#        fi
+#    }
+    have apt-get && 
+    function _agi(){
+        local cur prev
+        COMPREPLY=()
+        cur=${COMP_WORDS[COMP_CWORD]}
+        prev=${COMP_WORDS[COMP_CWORD-1]}
+        COMPREPLY=( $( apt-cache pkgnames $cur 2> /dev/null ) )
+        return 0
+    }
+    have apt-get &&
+    savedebs (){
+        local dir
+        dir=/www/htdocs/debianlocal
+        if [[ $# -lt 1 ]]; then
+            echo "Usage: ${FUNCNAME} <debs> ...";
+            return 1;
+        fi;
+        mv "$@" $dir;
+        ( cd $dir && rm -rf Packages.gz && dpkg-scanpackages . /dev/null >Packages && gzip Packages )
+    }
+else
+
+    _storooni ()
+    {
+        local cur="${COMP_WORDS[COMP_CWORD]}"
+        local prev="${COMP_WORDS[COMP_CWORD-1]}"
+        local cmds="-h -n check listignores report stats"
+        local reportopts="-o -s -h -N"
+        local checkopts="-d -h"
+        local onlys="capacity errors hbas inqdevs metadbs metas vgs"
+        COMPREPLY=()
+        case $prev in
+            *-o*)
+                COMPREPLY=( $(compgen -W "${onlys}" -- ${cur}) )
+                ;;
+            check)
+                COMPREPLY=( $(compgen -W "${checkopts}" -- ${cur}) )
+                ;;
+            report)
+                COMPREPLY=( $(compgen -W "${reportopts}" -- ${cur}) )
+                ;;
+            storooni)
+                COMPREPLY=( $(compgen -W "${cmds}" -- ${cur}) )
+                ;;
+        esac
+    }
+    complete -F _storooni storooni
+
+fi
+function todot () { echo ${*%%.*}; };
+function @@ () { export whoneedspushd=$PWD; };
+function N () { cd /usr/local/nagios/$*; }
+function v () { ls -l --color=auto $*; }
+function d () { ls --color=auto $*; }
+function l () { ls --color=auto $*; }
+function u () { echo ${*} >> ~/urlz; };
+function n () { echo ${*} >> ~/notes; };
+function mkorig () { cp ${1} ${1}.orig ; };
+function err () { grep $* /usr/include/*/errno.h; };
+#function mconnect () { telnet $* smtp; };
+function p () { ps -ef | grep $* | egrep -v grep; };
+function hg () { history | grep ${*} ; };
+function vt100 () { stty cs8 && TERM=vt100; };
+function fman () { nroff -man $* | ${PAGER}; };
+function google () { lynx http://www.google.com/search?q=${1}; };
+function efp () { echo $PATH | awk -F: '{ for (i=1; i<=NF; i++) printf "%3d: %s\n", i-1, $i}' ; }
+
+function su () {
+    local SUUSER=root
+    local ORIGU=$USER
+    local ORIGG=`groups | awk '{print $1}'`
+    if [[ $# -gt 0 ]] ; then
+        local char=`echo $1 | cut -c 1`
+        if [[ "$char" == '-' ]] ; then
+            /bin/su $*
+            return $?
+        else
+            local SUUSER=$1
+        fi
+    fi
+    #append recent history to the history file
+    history -a
+    if [[ "${__SAMOS}" = "Linux" ]] ; then
+        /bin/su -m
+    else
+        /bin/su ${SUUSER} -c "env USER=${SUUSER} HOME=${HOME} ${SHELL}; [ -f ${HOME}/.ICEauthority ] && chown $ORIGU:$ORIGG ${HOME}/.ICEauthority ${HOME}/.viminfo"
+    fi
+    #/bin/su ${SUUSER} -m "env USER=${SUUSER} HOME=${HOME} ${SHELL}; [ -f ${HOME}/.ICEauthority ] && chown $ORIGU:$ORIGG ${HOME}/.ICEauthority ${HOME}/.viminfo"
+    # Clear the history list by deleting all the entries.
+    #history -c
+    # Read the contents of the history file and use them as the current history.
+    history -r
+}
+
+function testerb(){ erb -x -T '-' $1 | ruby -c; }
+function doerb(){ erb -T '-' $1; }
+
+#filesystem stuff
+function chmog(){
+    if [[ $# -eq 0 ]] ; then
+        echo "Usage: chmog mode owner group file(s)";
+        return 1;
+    fi
+    local mode=$1;  shift;
+    local owner=$1; shift;
+    local group=$1; shift;
+    chmod $mode $*;
+    chown $owner $*;
+    chgrp $group $*;
+}
+#function .. () { cd ../${*} ; };
+function .. () {
+    if [[ -z "$1" ]] ; then
+        cd ..;
+        return;
+    fi
+    if [[ -e "../$1" ]] ; then
+        cd "../$1";
+        return;
+    fi
+    local rep=${#1};
+    local str="../";
+    local x=0;
+    local y='';
+    while [ "$x" -le "$rep" ] ; do
+        y="$y$str"
+        x=$(($x+1))
+    done
+    cd "$y";
+};
+function treecp () { tar cf - ${1} | (cd ${2} ; tar xpf -) ; };
+function treecp-v () { tar cf - ${1} | (cd ${2} ; tar xpvf -) ; };
+function mcd () { mkdir -p $* && cd $* ; };
+function .bash () { cd ~/.bash/${1} ; };
+function .bpt () { cd ~/.bashprompt/bashthemes/${1} ; };
+
+#End filesystem stuff
+
+# RC stuff
+function RCCT () { 
+    if [[ -z "${2}" ]] ; then 
+        ls $INITDIR;
+    else
+        cd / && $INITDIR/${2} $1 ; cd -;
+    fi
+}
+
+function _myservices() {
+    local cur
+    cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=( $( builtin echo $INITDIR/!(*.rpmsave|*.rpmorig|*.dpkg-old|*~|functions)) )
+    COMPREPLY=( $( compgen -W '${COMPREPLY[@]#@($INITDIR)/}' -- $cur) )
+}
+
+function start () { RCCT ${FUNCNAME} ${*} ; };
+function restart () { RCCT ${FUNCNAME} ${*} ; };
+function reload () { RCCT ${FUNCNAME} ${*} ; };
+function stop () { RCCT ${FUNCNAME} ${*} ; };
+function status () { RCCT ${FUNCNAME} ${*} ; };
+complete -F _myservices start restart reload stop status
+# End RC stuff
+
+function tree()
+{
+    echo -e "\033[1;33m"
+
+    (cd ${1-.} ; pwd)
+    find ${1-.} -print | sort -f | sed     \
+        \
+        -e "s,^${1-.},,"                   \
+        -e "/^$/d"                         \
+        -e "s,[^/]*/\([^/]*\)$,\ |-->\1,"  \
+        -e "s,[^/]*/, |   ,g"
+
+    echo -e "\033[0m"
+}
+
+function explain () {
+    if [[ "${BLOAT}" = "yes" ]] ; then
+        echo "(User@Host)-(Hist#/Command#/TTY)-(HH:MM:SS Day Month Date)-(Jobs/#ofUsers/LoadAvg/#ofProc)-"
+        echo "If there's an 's' after the #ofProc, you're in screen."
+    else
+        echo "(User@Host)-(Command#/TTY)-(HH:MM:SS Day Month Date)-(Jobs)-"
+    fi
+    echo "If the username is underlined, you have access to an SSH Agent."
+    echo "If the username is red, you're root."
+    echo "If you see a red number by the prompt character (\$,#) your last command exited"
+    echo "   with a non-zero state."
+    echo "If the cwd is green, you own it."
+    echo "If the cwd is blue, you can write to it, but don't own it."
+    echo "if the cwd is red, you neither own, nor can write to it."
+}
+
+function regit() {
+    echo "${PWD}" >> ~/.gitrepos
+}
+
+# removes _exactly what you type_ from ~/.ssh/known_hosts (meaning 'grapes' gets you the key for 'grapes' vs 'grapes.rath.peachnet.edu')
+function forget() {
+    local ho=${1#*@}
+    ssh-keygen -R ${ho}
+    local ip=$(host ${ho} | awk '{print $4}')
+    ssh-keygen -R ${ip}
+}
+
+function Attach(){
+    grabssh
+    if [[ -z "${1}" ]] ; then
+        local n=`screen -wipe | egrep -i 'attached|detached' | wc -l`
+        if [[ "${n}" -gt 1 ]]; then
+            check_screen
+            return
+        fi
+    fi
+    echo screen -d -R ${*}
+    screen -d -R ${*}
+}
+
+check_screen () {
+  # Look in the path?
+    type screen > /dev/null 2>&1
+    if [[ ${?} = 0 ]]; then
+        tmp=0
+        echo
+        for scr in `screen -wipe | egrep -i 'attached|detached' | awk '{print $1"_"$2}'`
+        do
+            echo "Screen available: ${scr}"
+            if [[ ${tmp} -eq 0 ]] ; then
+                myscreen=${scr%_*}
+            fi
+            tmp=$(($tmp+1))
+        done
+        if [[ -n "${myscreen}" ]] ; then
+            echo
+            echo "Enter to attach to ${myscreen},"
+            echo "'n' to move on,"
+            echo "unique bits to attach elsewhere"
+            read eon
+            if [[ -z "${eon}" ]] ; then
+                [[ -z "${myscreen}" ]] && return
+                eon=${myscreen}
+
+            fi
+            if [[ "${eon}" != 'n' ]] ; then
+                Attach ${eon}
+            fi
+        fi
+    fi
+}
+#function scp () {
+  #args="$*"
+  #echo "$args" | egrep ':'
+  #if [ $? = 0 ]; then
+    ##command scp -p $*
+  #else
+    #echo "Hit enter to accept that you are a bonehead and forgot the trailing colon."
+    #echo "Ctrl-c to quit."
+    #read ans
+    #echo /usr/bin/scp -p ${*}:
+    #command scp -p ${*}:
+  #fi
+#} 
+
+shopt -u hostcomplete && complete -F _ssh ssh slogin sftp xhost autossh

@@ -1,0 +1,141 @@
+# vim: set filetype=sh:
+[[ -f ${HOME}/.bash-local/aliases ]] && source ${HOME}/.bash-local/aliases
+
+if have apt-get ; then
+    alias ac='apt-cache'
+    complete -F _apt_cache $filenames ac
+    alias ag='apt-get'
+    complete -F _apt_get $filenames ag
+    alias acs='apt-cache search'
+    alias acS='apt-cache show'
+    alias agi='apt-get install'
+    complete -F _agi $filenames agi acs acS
+    alias dist='aptitude dist-upgrade'
+    #alias dist='apt-get dist-upgrade'
+    alias ug='apt-get -u upgrade'
+    alias agu='ug'
+    alias ud='aptitude -q update'
+    alias udist='aptitude -q update ; aptitude dist-upgrade'
+    alias restartsawfish='sawfish-client -q -f restart'
+fi
+
+# cat because they're usually small
+alias Local="cat ${HOME}/.bash-local/local_env ${HOME}/.bash-local/local_aliases ${HOME}/.bash-local/local_func | less"
+
+
+# to be run on the remote side: ssh wherever north
+alias north='x2x -north -to :0'
+alias fixvmware='setxkbmap'
+alias vless='vim -u /usr/share/vim/vim71/macros/less.vim'
+#[[ "${__SAMOS}" = "Linux" ]] &&
+alias grep="grep --color"
+alias ssh='ssh -AX'
+alias sagent='exec ssh-agent $SHELL -c "ssh-add; exec $SHELL"'
+alias 8='cd /home/psycho/public_html/trunk'
+alias x='chmod +x'
+alias ,='cd $dot'
+alias untar='tar xvzf'
+alias more='less'
+alias mroe='less'
+alias m='more'
+alias urlz='less ~/urlz'
+alias notes='less ~/notes'
+alias clean='rm *~'
+alias .clean='rm .*~'
+alias phones='less ~/.phones'
+#alias mutt='export DISPLAY="" ; set -o noclobber ; mutt -y'
+alias mutt="echo -n -e '\ek'mutt'\e\' ; set -o noclobber ; mutt -y"
+alias h='history $* | $PAGER +G'
+alias j='jobs'
+alias untar='tar xvzf'
+alias H='kill -HUP'
+have vim && alias vi='vim -X'
+#alias top10='history|awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}'|sort -nr|head'
+alias ls='ls -F'
+[[ "${__SAMOS}" = "Darwin" ]] && alias ls='ls -FG'
+if [[ "${__SAMOS}" = "Linux" ]] ; then
+    alias bdf='df -h'
+    alias m='mplayer -vo xv -ao oss'
+    alias dvd='m -cache 65535 dvd://'
+    alias jack='jack -Q'
+    alias mpg123='mpg123 -b 2048'
+    alias logs='cd /www/sam/logs/'
+    alias ls='ls -Fh --color=auto'
+    alias ha='hdparm -d1 -c1 -a1 -A1 -m16 /dev/hda'
+fi
+alias sl='ls'
+alias ll='ls -l'
+alias l='ll'
+alias la='l -a'
+alias lt='l -t'
+alias lsa='ls -A'
+alias lsd='ls -d */'
+alias lsf='ls -F'
+alias lst='ls -t'
+alias lsta='lst -A'
+alias lt='l -t'
+alias rcslocks='rlog -L -R RCS/*,v 2>/dev/null;rlog -L -R *,v 2>/dev/null'
+alias ,='cd -'
+alias .='source'
+alias ...='. ${HOME}/.bashrc'
+alias @="cd \$whoneedspushd"
+alias a='alias'
+alias alais='alias'
+alias cls='clear'
+alias h='history $* | $PAGER +G'
+alias md='mkdir'
+alias nsl='nslookup'
+alias po='popd'
+alias pu='pushd'
+#alias su='/bin/su ${ROOT_USER} -c "USER=root;HOME=/home/psycho;export USER HOME;exec /bin/bash -login"'
+alias tcpstat='netstat'
+alias trace='traceroute'
+alias ='stty erase '
+alias version.bind='nslookup -class=chaos -querytype=txt version.bind'
+alias vienv='vi $HOME/.bash/env'
+alias vifunc='vi $HOME/.bash/func'
+alias vialiases='vi $HOME/.bash/aliases'
+alias functions='declare -f'
+alias fixssh='source $HOME/bin/fixssh'
+#alias Attach='grabssh ; screen -d -R'
+alias H='kill -HUP'
+alias lynx='lynx -accept-all-cookies'
+alias vivim='vi ~/.vimrc'
+alias bash-style='bind "\M-\Ci": dynamic-complete-history'
+alias csh-style='bind "\e/": dynamic-complete-history'
+alias both-style='bind "\M-\Ci", "\e/": dynamic-complete-history'
+alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
+alias sls='screen -ls'
+
+if [[ -n "$DISPLAY" ]] ; then 
+    alias xv='gqview'
+    alias t='xterm -bg black -fg gold -font pc8x14s -ls'
+    alias xterm='xterm -bg black -fg white -fn 9x15bold -ls'
+    alias big-aterm='aterm -rv -tr -sh 15 -sb -sl 1500 -fn lucidasanstypewriter-24 -trsb -ls -fade 60'
+    alias big='xtermcontrol --font lucidasanstypewriter-24'
+    alias notbig='xtermcontrol --font 9x15bold'
+    alias maximize='xtermcontrol --maximize'
+    alias restore='xtermcontrol --restore'
+fi
+
+
+# Hosts
+alias slogin='ssh'
+alias kumar='ssh sam@kumar'
+# WORK ACK!
+
+if [[ $ATWORK -eq 1 ]] ; then
+    #alias host='nslookup'
+    alias pck='puppet --parseonly /home/sam/puppet/manifests/site.pp'
+    alias pup='puppetd --server puppet.bor.usg.edu --test'
+    alias pupn='puppetd --server puppet.bor.usg.edu --test --noop'
+    alias oncall='lynx http://www.usg.edu/oiit/staff/on_call'
+    alias listdshgroups='ls ${HOME}/.dsh/group'
+fi
+# End Hosts
+
+if [ "${__SAMOS}" = "SunOS" ] ; then
+    alias bdf="df -k"
+    alias which="type -path"
+    alias host='getent hosts'
+fi

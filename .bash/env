@@ -1,0 +1,126 @@
+# vim: set filetype=sh:
+[[ -f ${HOME}/.bash-local/env ]] && source ${HOME}/.bash-local/env
+
+#http://www.caliban.org/bash/index.shtml
+export __SAMOS=`uname -s`;
+export XAUTHORITY=${HOME}/.Xauthority
+export OPENWINHOME=/usr/openwin
+export PATH=${MYPATH}:${HOME}/bin:/usr/local/bin:/bin:/usr/bin:/usr/openwin/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/local/sbin:/usr/games:/usr/omni/bin:/opt/TWWfsw/bin:/opt/TWWfsw/sbin:/opt/TWWfsw/ruby18/bin:/usr/lbin:/opt/fcms/bin
+export PAGER=less
+export HISTCONTROL=ignoredups
+export LESS=-MecXR
+export LESSKEY=$HOME/.lesskey
+[[ -f /etc/redhat-release ]] || export LESSOPEN='| /usr/bin/lesspipe %s'
+export MANWIDTH=80
+export ACK_OPTIONS='--type-set puppet=.pp'
+#export HN=`expr "$HOSTNAME" : '\([^\.]*\)\.*'`
+export LOCALDOMAIN="coraid.com"
+#I'm probably at work.
+: ${ATWORK:=1} ; export ATWORK
+
+# puppet rules
+export FACTERLIB=/var/puppet/
+
+#Set a few shell options
+FIGNORE=.svn:.git:.rpmsave:.rpmorig:.dpkg-old:~
+#enable  "cd VARNAME"
+shopt -s cdable_vars
+
+#enable cd spell fixing (doesn't seem to work with ~expansion)
+shopt -s cdspell
+
+#enable checkhash
+shopt -s checkhash
+
+#Never 'resize' again!
+shopt -s checkwinsize
+
+#Re-edit failed history substitutions!
+shopt -s histreedit
+
+#results of history sub's will be placed in the current readline buffer
+shopt -s histverify
+
+#complete hostnames?
+shopt -s hostcomplete
+
+#turn off "Display all 1831894 posibilities?"
+shopt -s no_empty_cmd_completion
+
+# Turn on extended globbing and programmable completion
+shopt -s extglob progcomp
+
+CDPATH=${CDPATH:-.:${HOME}}
+
+[[ -f $COMPLETIONFILE ]] && source $COMPLETIONFILE
+
+# for vim temp files
+[[ ! -d ${HOME}/tmp ]] && mkdir ${HOME}/tmp
+
+have() {
+    unset -v have
+    type $1 >/dev/null 2>&1 && have="yes"
+}
+
+have lesspipe && eval $(lesspipe)
+
+type vim >/dev/null 2>&1
+if [[ "$?" ]]
+then
+    export EDITOR="vim"
+    export VISUAL="vim"
+else
+    export EDITOR=vi
+    export VISUAL=vi
+fi
+
+if [[ "${__SAMOS}" = "Linux" ]] ; then
+    export BLOAT="yes"
+    have dircolors && eval `dircolors ${HOME}/.bash/dircolors`
+fi
+
+[[ -d /etc/opt/TWWfsw ]] && export HAVETWW=1
+
+umask 022
+
+if [[ "${__SAMOS}" = "Linux" || "${__SAMOS}" = "SunOS" ]] ; then
+    INITDIR='/etc/init.d';
+else
+    INITDIR='/sbin/init.d';
+fi
+export INITDIR;
+
+#shopt -s dotglob
+
+[[ "${__SAMOS}" != 'Darwin' ]] && [[ "${TERM}" == screen* ]] && echo -n -e '\ek'${HOSTNAME%%.*}'\e\'
+if [[ -S "${WINDOW}" ]]
+then
+    [[ -f ${HOME}/bin/fixssh ]] && . ${HOME}/bin/fixssh
+fi
+
+[[ "${TERM}" == "rxvt" ]] && export TERM=xterm
+
+if [[ "${__SAMOS}" == "SunOS" ]] ; then
+    PATH=/opt/SUNWspro/bin/:$PATH:~/bin:/usr/local/lbin:/usr/local/sbin:/opt/SUNWspro/bin/:/usr/ccs/bin
+    export PATH
+    alias id='id -a'
+fi
+
+[[ -z $TMUX ]] && [[ ${TERM} == "screen" || ${TERM} == 'xterm' ]] && export TERM=xterm-256color
+[[ -n $TMUX ]] && export TERM=screen-256color
+
+[[ "${__SAMOS}" == 'HP-UX' ]] && stty erase 
+
+
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+[[ -f /etc/bash_completion/git ]] && . /etc/bash_completion/git
+
+# In case I ever get sick of bashprompt:
+#PS1='\[\033[0m\]\[\033[0;31m\].:\[\033[0m\]\[\033[1;30m\][\[\033[0m\]\[\033[0;28m\]Managing \033[1;31m\]\j\[\033[0m\]\[\033[1;30m\]/\[\033[0m\]\[\033[1;31m\]$(ps ax | wc -l | tr -d '\'' '\'')\[\033[0m\]\[\033[1;30m\] \[\033[0m\]\[\033[0;28m\]jobs.\[\033[0m\]\[\033[1;30m\]] [\[\033[0m\]\[\033[0;28m\]CPU Load: \[\033[0m\]\[\033[1;31m\]$(temp=$(cat /proc/loadavg) && echo ${temp%% *}) \[\033[0m\]\[\033[0;28m\]Uptime: \[\033[0m\]\[\033[1;31m\]$(temp=$(cat /proc/uptime) && upSec=${temp%%.*} ; let secs=$((${upSec}%60)) ; let mins=$((${upSec}/60%60)) ; let hours=$((${upSec}/3600%24)) ; let days=$((${upSec}/86400)) ; if [ ${days} -ne 0 ]; then echo -n ${days}d; fi ; echo -n ${hours}h${mins}m)\[\033[0m\]\[\033[1;30m\]]\[\033[0m\]\[\033[0;31m\]:.\n\[\033[0m\]\[\033[0;31m\].:\[\033[0m\]\[\033[1;30m\][\[\033[0m\]\[\033[1;31m\]$(ls -l | grep "^-" | wc -l | tr -d " ") \[\033[0m\]\[\033[0;28m\]files using \[\033[0m\]\[\033[1;31m\]$(ls --si -s | head -1 | awk '\''{print $2}'\'')\[\033[0m\]\[\033[1;30m\]] [\[\033[0m\]\[\033[1;31m\]\u\[\033[0m\]\[\033[0;31m\]@\[\033[0m\]\[\033[1;31m\]\h \[\033[0m\]\[\033[1;34m\]\w\[\033[0m\]\[\033[1;30m\]]\[\033[0m\]\[\033[0;31m\]:.\n\[\033[0m\]\[\033[0;31m\].:\[\033[0m\]\[\033[1;30m\][\[\033[0m\]\[\033[1;31m\]\t\[\033[0m\]\[\033[1;30m\]]\[\033[0m\]\[\033[0;31m\]:. \[\033[0m\]\[\033[1;37m\]\$ \[\033[0m\]'
