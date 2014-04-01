@@ -4,6 +4,7 @@
 
 [core]
 	editor = /usr/bin/vim
+	pager = less -r
 
 [color]
 	branch = auto

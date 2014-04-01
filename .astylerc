@@ -7,8 +7,10 @@
 --indent-classes
 --indent-switches
 --indent-preprocessor
+--indent-namespaces 
 --min-conditional-indent=1
 --unpad-paren
 --pad-oper
 --pad-paren-in
 --align-pointer=name
+--lineend=linux
