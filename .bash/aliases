@@ -155,3 +155,8 @@ if [ "${__SAMOS}" = "SunOS" ] ; then
 	alias which="type -path"
 	alias host='getent hosts'
 fi
+
+function command_not_found_handle {
+  zimilar $@
+}
+export -f command_not_found_handle
