@@ -30,6 +30,12 @@
 " first clear any existing autocommands:
 autocmd!
 
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+
 if &term == "xtermc" || &term == "vt220"
 " Automatically restores the xterm screen even if it wasn't compiled in.
     set t_ti=^[7^[[?47h
