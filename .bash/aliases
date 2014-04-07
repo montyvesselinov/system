@@ -1,5 +1,5 @@
 # vim: set filetype=sh:
-[[ -f ${HOME}/.bash-local/aliases ]] && source ${HOME}/.bash-local/aliases
+[[ -f ${HOME}/.bash/aliases ]] && source ${HOME}/.bash/aliases
 
 if have apt-get ; then
 	alias ac='apt-cache'
@@ -20,7 +20,7 @@ if have apt-get ; then
 fi
 
 # cat because they're usually small
-alias Local="cat ${HOME}/.bash-local/local_env ${HOME}/.bash-local/local_aliases ${HOME}/.bash-local/local_func | less"
+alias Local="cat ${HOME}/.bash/local_env ${HOME}/.bash/local_aliases ${HOME}/.bash/local_func | less"
 
 # to be run on the remote side: ssh wherever north
 alias north='x2x -north -to :0'
@@ -94,6 +94,7 @@ export -f ltt
 function lttt { ls -altr "$@" | tail -30; }
 export -f lttt
 alias rcslocks='rlog -L -R RCS/*,v 2>/dev/null;rlog -L -R *,v 2>/dev/null'
+alias bk='cd -'
 alias ,='cd -'
 alias .='source'
 alias ...='. ${HOME}/.bashrc'

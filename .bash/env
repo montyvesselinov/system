@@ -1,5 +1,5 @@
 # vim: set filetype=sh:
-[[ -f ${HOME}/.bash-local/env ]] && source ${HOME}/.bash-local/env
+[[ -f ${HOME}/.bash/env ]] && source ${HOME}/.bash/env
 
 #http://www.caliban.org/bash/index.shtml
 export __SAMOS=`uname -s`;
