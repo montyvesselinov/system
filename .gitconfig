@@ -3,8 +3,8 @@
 	email = velimir.vesselinov@gmail.com
 
 [core]
-        editor = /usr/bin/vim
-	pager = less -+$LESS -FRX
+	editor = /usr/bin/vim
+	pager = less -r
 
 [color]
 	branch = auto
