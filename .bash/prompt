@@ -157,11 +157,11 @@ function prompt_command() {
     #fi
 
     local _gitrepos=''
-    local _ingit=''
     # only do git stuff when you're in a registered git repo
     if [[ -f "${HOME}/.gitrepos" ]]; then
         local _gitrepos=$(cat "${HOME}/.gitrepos")
     fi
+    local _ingit=''
     for repo in $_gitrepos
     do
         if [[ "${PWD}/" == "${repo}"/* ]]; then
@@ -197,7 +197,8 @@ function prompt_command() {
         local USERL="${WHITE}${USERL}"
     fi
     if [[ -S "$SSH_AUTH_SOCK" ]]; then
-        local USERL="${UL}${USERL}${NOUL}"
+        # local USERL="${UL}${USERL}${NOUL}"
+        local USERL="${USERL}"
     fi
     local USERL="${USERL}${AT}${BG}${WHITE}${HOSTNAME%%.*}"
     local USERL="${BB}${USERL}${GKM}"
@@ -218,10 +219,11 @@ function prompt_command() {
     fi
     local OSSTUFF="${LGRAYBG}${WHITE} \j${UCOUNT}${LOAD}${PROCCOUNT}${INSCREEN} ${ELG}"
     local YOURSHELL="${LGRAYBG}${WHITE} \!${SL}${WHITE}\#${SL}${WHITE}${BATT} ${LGKE}"
-    local TIMEDATE="${BG}${WHITE} \T \d ${GKM}"
-    local REALPROMPT="${BG}${RC}${_path}${BG}${_ingit} ${PROMPTCHAR}${EC} "
-    PS1="${XTERMTITLE}${USERL}${YOURSHELL}${TIMEDATE}${OSSTUFF}
-${REALPROMPT}"
+#    local TIMEDATE="${BG}${WHITE} \T \d ${GKM}"
+    local TIMEDATE="${BG}${WHITE} \A ${GKM}"
+#    local REALPROMPT="${BG}${RC}${_path}${BG}${_ingit} ${PROMPTCHAR}${EC} "
+    local REALPROMPT="${BG}${_path}${BG}${_ingit} ${PROMPTCHAR}${EC} "
+    PS1="${XTERMTITLE}${USERL}${YOURSHELL}${TIMEDATE}${OSSTUFF}${REALPROMPT}"
     export PS1
 }
 export PROMPT_COMMAND=prompt_command

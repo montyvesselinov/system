@@ -1,5 +1,5 @@
 # vim: set filetype=sh:
-[[ -f ${HOME}/.bash/func ]] && source ${HOME}/.bash/func
+#[[ -f ${HOME}/.bash/func ]] && source ${HOME}/.bash/func
 
 if [[ "${__SAMOS}" = "Linux" ]] ; then
     #function myaterm () { aterm -rv -tr -sh 15 -sb -sl 1500 -ls -fn ${1}; }

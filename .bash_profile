@@ -16,8 +16,8 @@ else
         VISUAL=/usr/bin/vi
         export OPENWINHOME EDITOR VISUAL PATH
     fi
-    function lis () { source ~/.bashrc ; } ;
-    [ -f ${HOME}/.bash-local/env ] && . ${HOME}/.bash-local/env
-    [ -f ${HOME}/.bash-local/aliases ] && . ${HOME}/.bash-local/aliases
-    [ -f ${HOME}/.bash-local/func ] && . ${HOME}/.bash-local/func
+#    function lis () { source ~/.bashrc ; } ;
+#    [ -f ${HOME}/.bash/env ] && . ${HOME}/.bash/env
+#    [ -f ${HOME}/.bash/aliases ] && . ${HOME}/.bash/aliases
+#    [ -f ${HOME}/.bash/func ] && . ${HOME}/.bash/func
 fi
