@@ -49,21 +49,23 @@ alias j='jobs'
 alias untar='tar xvzf'
 alias H='kill -HUP'
 have vim && alias vi='vim -X'
-# alias top10='history|awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}'|sort -nr|head'
-if [[ "${__SAMOS}" = "Linux" ]] ; then
-	alias bdf='df -h'
-	alias m='mplayer -vo xv -ao oss'
-	alias dvd='m -cache 65535 dvd://'
-	alias jack='jack -Q'
-	alias mpg123='mpg123 -b 2048'
-	alias logs='cd /www/sam/logs/'
-	alias ls='ls -Fh --color=auto'
-	alias ha='hdparm -d1 -c1 -a1 -A1 -m16 /dev/hda'
-fi
 # list 
 alias ls='ls -F'
+# alias top10='history|awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}'|sort -nr|head'
+if [[ "${__SAMOS}" = "Linux" ]] ; then
+    alias bdf='df -h'
+    alias m='mplayer -vo xv -ao oss'
+    alias dvd='m -cache 65535 dvd://'
+    alias jack='jack -Q'
+    alias mpg123='mpg123 -b 2048'
+    alias logs='cd /www/sam/logs/'
+    alias ls='ls -Fh --color=always'
+    alias ha='hdparm -d1 -c1 -a1 -A1 -m16 /dev/hda'
+    alias morer="more"
+fi
 if [[ "${__SAMOS}" = "Darwin" ]] ; then 
-	alias ls='CLICOLOR_FORCE=1 ls -FG'
+    alias ls='CLICOLOR_FORCE=1 ls -FG'
+    alias morer="more -R"
 fi
 alias ll='ls -l'
 alias l='ll'
@@ -75,17 +77,17 @@ alias lsd='ls -d */'
 alias lsf='ls -F'
 alias lst='ls -t'
 alias lsta='lst -A'
-function lm { ls -al "$@" | more -R; }
+function lm { ls -al "$@" | morer; }
 export -f lm
-function ldir { ls -al "$@" | grep '/' | more -R; }
+function ldir { ls -al "$@" | grep '/' | morer; }
 export -f ldir
-function lsdir { \ls -Fa1 "-@" | grep '/' | sed 's/\///g'; }
+function lsdir { \ls -Fa1 "$@" | grep '/' | sed 's/\///g'; }
 export -f ldir
-function le { ls -al "$@" | grep '*' | more -R; }
+function le { ls -al "$@" | grep '*' | morer; }
 export -f le
 function lse { \ls -Fa1 "$@" | grep '*' | sed 's/\*//g'; }
 export -f lse
-function lln { ls -al "$@" | grep -- '->' | more -R; }
+function lln { ls -al "$@" | grep -- '->' | morer; }
 export -f lln
 function lsln { \ls -Fa1 "$@" | grep '\@' | sed 's/\@//g'; }
 export -f lsln
