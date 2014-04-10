@@ -1,13 +1,18 @@
 # vim: set filetype=sh:
 # [[ -f ${HOME}/.bash/env ]] && source ${HOME}/.bash/env
 
-#http://www.caliban.org/bash/index.shtml
 export __SAMOS=`uname -s`;
 export XAUTHORITY=${HOME}/.Xauthority
 export OPENWINHOME=/usr/openwin
 export PATH=${MYPATH}:${HOME}/bin:/usr/local/bin:/opt/local/bin:/bin:/usr/bin:/usr/openwin/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/local/sbin:/usr/games:/usr/omni/bin:/opt/TWWfsw/bin:/opt/TWWfsw/sbin:/opt/TWWfsw/ruby18/bin:/usr/lbin:/opt/fcms/bin
 export PAGER=less
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth:erasedups
+export HISTTIMEFORMAT="%F %T "
+unset HISTFILESIZE
+HISTSIZE=3000
+PROMPT_COMMAND="history -a"
+export HISTSIZE PROMPT_COMMAND
+shopt -s histappend
 export LESS=-MecXR
 export LESSKEY=$HOME/.lesskey
 [[ -f /etc/redhat-release ]] || export LESSOPEN='| /usr/bin/lesspipe %s'
@@ -50,7 +55,7 @@ shopt -s no_empty_cmd_completion
 # Turn on extended globbing and programmable completion
 shopt -s extglob progcomp
 
-CDPATH=${CDPATH:-.:${HOME}}
+# CDPATH=${CDPATH:-.:${HOME}}
 
 [[ -f $COMPLETIONFILE ]] && source $COMPLETIONFILE
 

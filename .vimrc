@@ -122,7 +122,7 @@ set nomodeline
 set nowrap
 
 " use indents of 2 spaces, and have them copied down lines:
-set shiftwidth=8
+set shiftwidth=4
 set shiftround
 set noexpandtab
 set noautoindent
@@ -170,10 +170,11 @@ augroup END
 " for actual C (not C++) programming where comments have explicit end
 " characters, if starting a new line in the middle of a comment automatically
 " insert the comment leader characters:
-autocmd FileType c set formatoptions+=ro noexpandtab tabstop=8
+autocmd FileType c set formatoptions+=ro noexpandtab tabstop=4
 
 " for Perl programming, have things in braces indenting themselves:
 autocmd FileType perl set smartindent
+autocmd FileType python set smartindent noexpandtab tabstop=4
 
 " for CSS, also have things in braces indented:
 autocmd FileType css set smartindent
@@ -189,7 +190,7 @@ autocmd FileType html,css set noexpandtab tabstop=2
 " in makefiles, don't expand tabs to spaces, since actual tab characters are
 " needed, and have indentation at 8 chars to be sure that all indents are tabs
 " (despite the mappings later):
-autocmd FileType make set noexpandtab shiftwidth=8
+autocmd FileType make set noexpandtab shiftwidth=4
 
 
 " * Search & Replace
