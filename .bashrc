@@ -15,11 +15,11 @@ case "$OSTYPE" in
 	echo "SOLARIS" ;;
     darwin*)
 	echo "OSX"
-	export CDPATH=${HOME}:${HOME}/lanl:${HOME}/Documents:${HOME}/Documents/lanl
+	export CDPATH=.:${HOME}:${HOME}/lanl:${HOME}/Documents:${HOME}/Documents/lanl
 	;; 
     linux*)
 	# echo "LINUX"
-	export CDPATH=${HOME}:/scratch/er/monty:/scratch/ymp/monty:/scratch/nts/monty:/scratch/gwpa/monty:/scratch/rigel10/monty:/scratch/indigo2/monty:/scratch/fiesta2/monty
+	export CDPATH=.:${HOME}:/scratch/er/monty:/scratch/ymp/monty:/scratch/nts/monty:/scratch/gwpa/monty:/scratch/rigel10/monty:/scratch/indigo2/monty:/scratch/fiesta2/monty
 	;;
     bsd*)
 	echo "BSD" ;;

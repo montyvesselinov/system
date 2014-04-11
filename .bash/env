@@ -55,7 +55,7 @@ shopt -s no_empty_cmd_completion
 # Turn on extended globbing and programmable completion
 shopt -s extglob progcomp
 
-# CDPATH=${CDPATH:-.:${HOME}}
+# CDPATH=${.:${HOME}:${CDPATH}}
 
 [[ -f $COMPLETIONFILE ]] && source $COMPLETIONFILE
 

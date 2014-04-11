@@ -1,0 +1,10 @@
+#!/bin/tcsh -f
+foreach i ( *decomp.s_* )
+	echo $i
+	echo '"Time [d]" "DD_r28 [m]" "DD_r42 [m]"' >! ~/dd/$i
+	set col = `sed -n "2p" $i`
+	@ c1 = $#col
+	@ c2 = $#col - 1
+	# head -1 $i | cut -d " " -f 6,15,16 >! ~/dd/$i
+	sed "0,/^41441/d" $i | cut -d " " -f 1,$c1,$c2 | awk 'NR==1{v1=$1; v2=$2; v3 = $3}{$2-=v2; $3-=v3; if( $2 < 0 ) $2 = 0; if ( $3 < 0 ) $3 = 0; printf "%g %.4f %.4f\n", $1-v1, $2, $3}' >> ~/dd/$i
+	end

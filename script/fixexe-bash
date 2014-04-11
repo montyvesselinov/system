@@ -1,58 +1,11 @@
 #!/bin/bash
-suffix="pptx \
-        xlsx \
-	        docx \
-		        ppt \
-			        xls \
-				        doc \
-					        pdf \
-						        txt \
-							        plt \
-								        dat \
-									        srf \
-										        lay \
-											        png \
-												        pdf \
-													        ai \
-														        wmf \
-															        dbf \
-																        bln \
-																	        gif \
-																		        jpg \
-																			        tif \
-																				        mcr \
-																					        eqn \
-																						        vtk \
-																							        opt \
-																								        sens \
-																									        c \
-																										        o \
-																											        bak \
-																												        phi \
-																													        prob \
-																														        btc \
-																															        voxb \
-																																        m \
-																																	        h \
-																																		        for \
-																																			        f \
-																																				        F \
-																																					        cpp \
-																																						        xml \
-																																							        css \
-																																								        js \
-																																									        tar \
-																																										        tgz \
-																																											        grd \
-																																												        db \
-																																													        tex"
-																																														logf=/tmp/slog.$$
-																																														for entry in $suffix; do
-																																														    /usr/bin/echo "Checking for $entry...\c"
-																																														        nice find . -name "*.$entry" -type f -exec chmod a-x {} \; >$logf 2>&1
-																																															    echo done
-																																															    done
-																																															    echo
-																																															    [ -n $logf ] && echo "For details and errors, see $logf"
-																																															    echo
-
+suffix=`cat ~/script/non-exe-extensions`
+# echo $suffix
+logf=/tmp/slog.$$
+for entry in $suffix; do
+    printf "Checking for %15s ... " $entry
+        nice find . -name "*.$entry" -type f -exec chmod a-x {} \; >$logf 2>&1
+    echo -ne "\\r"
+    done
+    [ -n $logf ] && echo "For details and errors, see $logf"
+    echo "done."

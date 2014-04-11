@@ -1,13 +1,1 @@
-#!/bin/tcsh
-set file_namearr = ( "html" "pptx" "xlsx" "docx" "ppt" "xls" "doc" "pdf" "txt" "plt" "dat" "srf" "lay" "png" "pdf" "ai" "wmf" "dbf" "bln" "gif" "jpg" "tif" "mcr" "eqn" "vtk" "opt" "sens" "c" "o" "bak" "phi" "prob" "btc" "voxb" "m" "h" "for" "f" "F" "cpp" "xml" "css" "js" "tar" "tgz" "grd" "db" "tex" "out" "bbl" "dvi" "aux" "log" "gz" "blg" "bib" "emf" "in" "results" "btc2" "calib" "fwd" "rec" "tmp" "db" "mp4" "tpl" "inst" "ins" "zip" "odt" "wmv" "mads" "residuals" "btc-peak" "running" "cmdline_hist" "opj" "gui" "session" "gsr2" "avi" "kmz" "hgignore" "f90" "wel" "well" "out1" "out2" "mod" "wells" "wells_debug" "lagrit-in" "gridder-in" "zone" "area" "avs" "fehmn" "grid" "yaml" "yml" "inp");
-foreach i ( $file_namearr )
-#  echo $i
-  find . -name "*.$i" -type f \( -perm -u+x -or  -perm -g+x -or -perm -o+x \) -exec chmod a-x {} \;
-  end
-find . -name "readme*" -type f \( -perm -u+x -or  -perm -g+x -or -perm -o+x \) -exec chmod a-x {} \;
-find . -name "Readme*" -type f \( -perm -u+x -or  -perm -g+x -or -perm -o+x \) -exec chmod a-x {} \;
-find . -name "README*" -type f \( -perm -u+x -or  -perm -g+x -or -perm -o+x \) -exec chmod a-x {} \;
-find . -name "Makefile" -type f \( -perm -u+x -or  -perm -g+x -or -perm -o+x \) -exec chmod a-x {} \;
-find . -name "makefile" -type f \( -perm -u+x -or  -perm -g+x -or -perm -o+x \) -exec chmod a-x {} \;
-find . -type d \( -perm -g+x -or -perm -o+x -or -perm -g+w -or -perm -o+w \) -exec chmod go-wx {} \;
-find . -type f \( -perm -g+w -or -perm -o+w \) -exec chmod go-w {} \;
+fixexe-bash

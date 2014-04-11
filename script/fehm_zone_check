@@ -12,9 +12,9 @@ endif
 foreach line ( `more $1 | grep -n nnum | awk 'BEGIN {FS = ":"} {print $1}'` )
 	@ zones++
         @ line = $line - 1
-        set nzone = `/usr/bin/tail +$line $1 | head -1 | awk '{print $1}'`
+        set nzone = `sed -n "$line p" $1 | awk '{print $1}'`
         @ line = $line + 2
-        @ nnode = `/usr/bin/tail +$line $1 | head -1 | awk '{print $1}'`
+        @ nnode = `sed -n "$line p" $1 | awk '{print $1}'`
         echo "Zone " $nzone "(of $zones) : number of nodes = " $nnode " starts at line = " $line
 	@ sum = $sum + $nnode
 end
