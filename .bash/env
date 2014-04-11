@@ -4,7 +4,7 @@
 export __SAMOS=`uname -s`;
 export XAUTHORITY=${HOME}/.Xauthority
 export OPENWINHOME=/usr/openwin
-export PATH=${MYPATH}:${HOME}/bin:/usr/local/bin:/opt/local/bin:/bin:/usr/bin:/usr/openwin/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/local/sbin:/usr/games:/usr/omni/bin:/opt/TWWfsw/bin:/opt/TWWfsw/sbin:/opt/TWWfsw/ruby18/bin:/usr/lbin:/opt/fcms/bin
+export PATH=${MYPATH}:${HOME}/bin:${HOME}/script:/usr/local/bin:/opt/local/bin:/bin:/usr/bin:/usr/openwin/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/local/sbin:/usr/games:/usr/omni/bin:/opt/TWWfsw/bin:/opt/TWWfsw/sbin:/opt/TWWfsw/ruby18/bin:/usr/lbin:/opt/fcms/bin
 export PAGER=less
 export HISTCONTROL=ignoreboth:erasedups
 export HISTTIMEFORMAT="%F %T "
