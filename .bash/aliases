@@ -2,21 +2,21 @@
 # [[ -f ${HOME}/.bash/aliases ]] && source ${HOME}/.bash/aliases
 
 if have apt-get ; then
-	alias ac='apt-cache'
-	complete -F _apt_cache $filenames ac
-	alias ag='apt-get'
-	complete -F _apt_get $filenames ag
-	alias acs='apt-cache search'
-	alias acS='apt-cache show'
-	alias agi='apt-get install'
-	complete -F _agi $filenames agi acs acS
-	alias dist='aptitude dist-upgrade'
-	#alias dist='apt-get dist-upgrade'
-	alias ug='apt-get -u upgrade'
-	alias agu='ug'
-	alias ud='aptitude -q update'
-	alias udist='aptitude -q update ; aptitude dist-upgrade'
-	alias restartsawfish='sawfish-client -q -f restart'
+  alias ac='apt-cache'
+  complete -F _apt_cache $filenames ac
+  alias ag='apt-get'
+  complete -F _apt_get $filenames ag
+  alias acs='apt-cache search'
+  alias acS='apt-cache show'
+  alias agi='apt-get install'
+  complete -F _agi $filenames agi acs acS
+  alias dist='aptitude dist-upgrade'
+  #alias dist='apt-get dist-upgrade'
+  alias ug='apt-get -u upgrade'
+  alias agu='ug'
+  alias ud='aptitude -q update'
+  alias udist='aptitude -q update ; aptitude dist-upgrade'
+  alias restartsawfish='sawfish-client -q -f restart'
 fi
 
 # cat because they're usually small
@@ -49,23 +49,23 @@ alias j='jobs'
 alias untar='tar xvzf'
 alias H='kill -HUP'
 have vim && alias vi='vim -X'
-# list 
+# list
 alias ls='ls -F'
 # alias top10='history|awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}'|sort -nr|head'
 if [[ "${__SAMOS}" = "Linux" ]] ; then
-    alias bdf='df -h'
-    alias m='mplayer -vo xv -ao oss'
-    alias dvd='m -cache 65535 dvd://'
-    alias jack='jack -Q'
-    alias mpg123='mpg123 -b 2048'
-    alias logs='cd /www/sam/logs/'
-    alias ls='ls -Fh --color=always'
-    alias ha='hdparm -d1 -c1 -a1 -A1 -m16 /dev/hda'
-    alias morer="more"
+  alias bdf='df -h'
+  alias m='mplayer -vo xv -ao oss'
+  alias dvd='m -cache 65535 dvd://'
+  alias jack='jack -Q'
+  alias mpg123='mpg123 -b 2048'
+  alias logs='cd /www/sam/logs/'
+  alias ls='ls -Fh --color=always'
+  alias ha='hdparm -d1 -c1 -a1 -A1 -m16 /dev/hda'
+  alias morer="more"
 fi
-if [[ "${__SAMOS}" = "Darwin" ]] ; then 
-    alias ls='CLICOLOR_FORCE=1 ls -FG'
-    alias morer="more -R"
+if [[ "${__SAMOS}" = "Darwin" ]] ; then
+  alias ls='CLICOLOR_FORCE=1 ls -FG'
+  alias morer="more -R"
 fi
 alias ll='ls -l'
 alias l='ll'
@@ -128,15 +128,15 @@ alias both-style='bind "\M-\Ci", "\e/": dynamic-complete-history'
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias sls='screen -ls'
 
-if [[ -n "$DISPLAY" ]] ; then 
-	alias xv='gqview'
-	alias t='xterm -bg black -fg gold -font pc8x14s -ls'
-	alias xterm='xterm -bg black -fg white -fn 9x15bold -ls'
-	alias big-aterm='aterm -rv -tr -sh 15 -sb -sl 1500 -fn lucidasanstypewriter-24 -trsb -ls -fade 60'
-	alias big='xtermcontrol --font lucidasanstypewriter-24'
-	alias notbig='xtermcontrol --font 9x15bold'
-	alias maximize='xtermcontrol --maximize'
-	alias restore='xtermcontrol --restore'
+if [[ -n "$DISPLAY" ]] ; then
+  alias xv='gqview'
+  alias t='xterm -bg black -fg gold -font pc8x14s -ls'
+  alias xterm='xterm -bg black -fg white -fn 9x15bold -ls'
+  alias big-aterm='aterm -rv -tr -sh 15 -sb -sl 1500 -fn lucidasanstypewriter-24 -trsb -ls -fade 60'
+  alias big='xtermcontrol --font lucidasanstypewriter-24'
+  alias notbig='xtermcontrol --font 9x15bold'
+  alias maximize='xtermcontrol --maximize'
+  alias restore='xtermcontrol --restore'
 fi
 
 
@@ -144,17 +144,17 @@ fi
 alias slogin='ssh'
 
 if [[ $ATWORK -eq 1 ]] ; then
-	#alias host='nslookup'
-	alias pck='puppet --parseonly /home/sam/puppet/manifests/site.pp'
-	alias pup='puppetd --server puppet.bor.usg.edu --test'
-	alias pupn='puppetd --server puppet.bor.usg.edu --test --noop'
-	alias oncall='lynx http://www.usg.edu/oiit/staff/on_call'
-	alias listdshgroups='ls ${HOME}/.dsh/group'
+  #alias host='nslookup'
+  alias pck='puppet --parseonly /home/sam/puppet/manifests/site.pp'
+  alias pup='puppetd --server puppet.bor.usg.edu --test'
+  alias pupn='puppetd --server puppet.bor.usg.edu --test --noop'
+  alias oncall='lynx http://www.usg.edu/oiit/staff/on_call'
+  alias listdshgroups='ls ${HOME}/.dsh/group'
 fi
 # End Hosts
 
 if [ "${__SAMOS}" = "SunOS" ] ; then
-	alias bdf="df -k"
-	alias which="type -path"
-	alias host='getent hosts'
+  alias bdf="df -k"
+  alias which="type -path"
+  alias host='getent hosts'
 fi

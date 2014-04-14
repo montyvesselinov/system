@@ -4,7 +4,7 @@
 export __SAMOS=`uname -s`;
 export XAUTHORITY=${HOME}/.Xauthority
 export OPENWINHOME=/usr/openwin
-export PATH=${MYPATH}:${HOME}/bin:${HOME}/script:/usr/local/bin:/opt/local/bin:/bin:/usr/bin:/usr/openwin/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/local/sbin:/usr/games:/usr/omni/bin:/opt/TWWfsw/bin:/opt/TWWfsw/sbin:/opt/TWWfsw/ruby18/bin:/usr/lbin:/opt/fcms/bin
+export PATH=${MYPATH}:${HOME}/bin:${HOME}/script:/usr/local/bin:/usr/local/git/bin:/usr/local/sbin:/opt/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/lbin
 export PAGER=less
 export HISTCONTROL=ignoreboth:erasedups
 export HISTTIMEFORMAT="%F %T "
@@ -18,8 +18,8 @@ export LESSKEY=$HOME/.lesskey
 [[ -f /etc/redhat-release ]] || export LESSOPEN='| /usr/bin/lesspipe %s'
 export MANWIDTH=80
 export ACK_OPTIONS='--type-set puppet=.pp'
-#export HN=`expr "$HOSTNAME" : '\([^\.]*\)\.*'`
-export LOCALDOMAIN="coraid.com"
+export HN=`expr "$HOSTNAME" : '\([^\.]*\)\.*'`
+export LOCALDOMAIN="lanl.gov"
 #I'm probably at work.
 : ${ATWORK:=1} ; export ATWORK
 
@@ -63,8 +63,8 @@ shopt -s extglob progcomp
 [[ ! -d ${HOME}/tmp ]] && mkdir ${HOME}/tmp
 
 have() {
-    unset -v have
-    type $1 >/dev/null 2>&1 && have="yes"
+  unset -v have
+  type $1 >/dev/null 2>&1 && have="yes"
 }
 
 have lesspipe && eval $(lesspipe)
@@ -72,16 +72,16 @@ have lesspipe && eval $(lesspipe)
 type vim >/dev/null 2>&1
 if [[ "$?" ]]
 then
-    export EDITOR="vim"
-    export VISUAL="vim"
+  export EDITOR="vim"
+  export VISUAL="vim"
 else
-    export EDITOR=vi
-    export VISUAL=vi
+  export EDITOR=vi
+  export VISUAL=vi
 fi
 
 if [[ "${__SAMOS}" = "Linux" ]] ; then
-    export BLOAT="yes"
-    have dircolors && eval `dircolors ${HOME}/.bash/dircolors`
+  export BLOAT="yes"
+  have dircolors && eval `dircolors ${HOME}/.bash/dircolors`
 fi
 
 [[ -d /etc/opt/TWWfsw ]] && export HAVETWW=1
@@ -89,9 +89,9 @@ fi
 umask 022
 
 if [[ "${__SAMOS}" = "Linux" || "${__SAMOS}" = "SunOS" ]] ; then
-    INITDIR='/etc/init.d';
+  INITDIR='/etc/init.d';
 else
-    INITDIR='/sbin/init.d';
+  INITDIR='/sbin/init.d';
 fi
 export INITDIR;
 
@@ -100,15 +100,15 @@ export INITDIR;
 [[ "${__SAMOS}" != 'Darwin' ]] && [[ "${TERM}" == screen* ]] && echo -n -e '\ek'${HOSTNAME%%.*}'\e\'
 if [[ -S "${WINDOW}" ]]
 then
-    [[ -f ${HOME}/bin/fixssh ]] && . ${HOME}/bin/fixssh
+  [[ -f ${HOME}/bin/fixssh ]] && . ${HOME}/bin/fixssh
 fi
 
 [[ "${TERM}" == "rxvt" ]] && export TERM=xterm
 
 if [[ "${__SAMOS}" == "SunOS" ]] ; then
-    PATH=/opt/SUNWspro/bin/:$PATH:~/bin:/usr/local/lbin:/usr/local/sbin:/opt/SUNWspro/bin/:/usr/ccs/bin
-    export PATH
-    alias id='id -a'
+  PATH=/opt/SUNWspro/bin/:$PATH:~/bin:/usr/local/lbin:/usr/local/sbin:/opt/SUNWspro/bin/:/usr/ccs/bin
+  export PATH
+  alias id='id -a'
 fi
 
 [[ -z $TMUX ]] && [[ ${TERM} == "screen" || ${TERM} == 'xterm' ]] && export TERM=xterm-256color
