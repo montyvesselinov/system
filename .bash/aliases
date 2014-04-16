@@ -139,7 +139,6 @@ if [[ -n "$DISPLAY" ]] ; then
   alias restore='xtermcontrol --restore'
 fi
 
-
 # Hosts
 alias slogin='ssh'
 

@@ -39,7 +39,6 @@ if [[ "${__SAMOS}" = "Linux" ]] ; then
     ( cd $dir && rm -rf Packages.gz && dpkg-scanpackages . /dev/null >Packages && gzip Packages )
   }
 else
-  
   _storooni ()
   {
     local cur="${COMP_WORDS[COMP_CWORD]}"
@@ -65,8 +64,8 @@ else
     esac
   }
   complete -F _storooni storooni
-  
 fi
+
 function todot () { echo ${*%%.*}; };
 function @@ () { export whoneedspushd=$PWD; };
 function N () { cd /usr/local/nagios/$*; }
@@ -266,20 +265,21 @@ check_screen () {
       fi
     fi
   fi
+  
 }
-#function scp () {
-#args="$*"
-#echo "$args" | egrep ':'
-#if [ $? = 0 ]; then
-##command scp -p $*
-#else
-#echo "Hit enter to accept that you are a bonehead and forgot the trailing colon."
-#echo "Ctrl-c to quit."
-#read ans
-#echo /usr/bin/scp -p ${*}:
-#command scp -p ${*}:
-#fi
-#}
+function scpf () {
+  args="$*"
+  echo "$args" | egrep ':'
+  if [ $? = 0 ]; then
+    command scp -p $*
+  else
+    echo "Hit enter to accept that you are a bonehead and forgot the trailing colon."
+    echo "Ctrl-c to quit."
+    read ans
+    echo /usr/bin/scp -p ${*}:
+    command scp -p ${*}:
+  fi
+}
 
 shopt -u hostcomplete && complete -F _ssh ssh slogin sftp xhost autossh
 
