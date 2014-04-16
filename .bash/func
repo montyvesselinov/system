@@ -78,7 +78,6 @@ function mkorig () { cp ${1} ${1}.orig ; };
 function err () { grep $* /usr/include/*/errno.h; };
 #function mconnect () { telnet $* smtp; };
 function p () { ps -ef | grep $* | egrep -v grep; };
-function hs () { history | grep ${*} ; };
 function vt100 () { stty cs8 && TERM=vt100; };
 function fman () { nroff -man $* | ${PAGER}; };
 function google () { lynx http://www.google.com/search?q=${1}; };
