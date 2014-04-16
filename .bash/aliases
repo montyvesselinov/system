@@ -50,7 +50,6 @@ alias untar='tar xvzf'
 alias H='kill -HUP'
 have vim && alias vi='vim -X'
 alias rehash="hash -r"
-alias where="which"
 # list
 alias ls='ls -F'
 # alias top10='history|awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}'|sort -nr|head'

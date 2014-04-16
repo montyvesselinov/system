@@ -283,33 +283,35 @@ function scpf () {
 
 shopt -u hostcomplete && complete -F _ssh ssh slogin sftp xhost autossh
 
-function where1 () {
-  shopt -s extglob
-  lspath () {
-    local IFS pattern
-    IFS='|'
-    pattern="*@( $ * )*"
-    IFS=':'
-    for d in $PATH; do
-      for x in "$d / "$pattern; do
-        [ "$x" = "$d / $pattern" ] || echo "$ {x##*/}"
-      done
-    done | sort -u
-  }
+shopt -s extglob
+where1 () {
+  local IFS pattern
+  IFS='|'
+  pattern="*@($*)*"
+  IFS=':'
+  for d in $PATH; do
+    for x in "$d/"$pattern; do
+      [ "$x" = "$d/$pattern" ] || echo "${x##*/}"
+    done
+  done | sort -u
 }
 
 function where2 () {
   for i in $(echo $PATH | sed -e 's/\:/\ /g'); do find "$i" -perm +rwx -exec echo {} \; 2> /dev/null; done
 }
 
-function findinpath () {
+function where () {
+  for i in "$@" ; do
+    where3 "$i\$"
+  done
+}
+
+function where3 () {
   OLDIFS="$IFS" ;
   IFS="$( printf ':\t\n' )" ;
   for regexp in "$@" ; do
-    echo $regexp
     for adir in $PATH ; do
-      echo $adir
-      find "$adir" -perm -111 -a ! -type d -ls 2>/dev/null | grep -i " / [ ^ / ]*$regexp"
+      find "$adir" -perm -111 -a ! -type d 2>/dev/null | grep -i "/[^/]*$regexp"
     done ;
   done ;
   IFS="$OLDIFS" ;
