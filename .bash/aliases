@@ -1,5 +1,5 @@
 # vim: set filetype=sh:
-# [[ -f ${HOME}/.bash/aliases ]] && source ${HOME}/.bash/aliases
+[[ -f ${HOME}/.bash-local/aliases ]] && source ${HOME}/.bash-local/aliases
 
 if have apt-get ; then
   alias ac='apt-cache'
