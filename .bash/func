@@ -283,7 +283,7 @@ function scpf () {
 
 shopt -u hostcomplete && complete -F _ssh ssh slogin sftp xhost autossh
 
-function where () {
+function where1 () {
   shopt -s extglob
   lspath () {
     local IFS pattern
@@ -306,7 +306,9 @@ function findinpath () {
   OLDIFS="$IFS" ;
   IFS="$( printf ':\t\n' )" ;
   for regexp in "$@" ; do
+    echo $regexp
     for adir in $PATH ; do
+      echo $adir
       find "$adir" -perm -111 -a ! -type d -ls 2>/dev/null | grep -i " / [ ^ / ]*$regexp"
     done ;
   done ;
