@@ -9,8 +9,8 @@ export PAGER=less
 export HISTCONTROL=ignoreboth:erasedups
 export HISTTIMEFORMAT="%F %T "
 unset HISTFILESIZE
-HISTSIZE=3000
-PROMPT_COMMAND="history -a"
+export HISTSIZE=3000
+export PROMPT_COMMAND="history -a"
 export HISTSIZE PROMPT_COMMAND
 shopt -s histappend
 export LESS=-MecXR
