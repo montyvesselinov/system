@@ -16,6 +16,8 @@ case "$OSTYPE" in
     darwin*)
 	echo "OSX"
 	export CDPATH=.:${HOME}:${HOME}/lanl:${HOME}/Documents:${HOME}/Documents/lanl
+	export CLICOLOR=1
+	export LSCOLORS=gxfxcxdxbxegedabagaced
 	;; 
     linux*)
 	# echo "LINUX"
