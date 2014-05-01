@@ -23,3 +23,4 @@ rm -f $mask.jacob* >& /dev/null
 rm -f $mask.eigen >& /dev/null
 rm -f $mask.btc >& /dev/null
 rm -f $mask.vtk >& /dev/null
+rm -f $mask.ofe >& /dev/null

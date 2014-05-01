@@ -120,3 +120,5 @@
 	sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f" 
 [push]
 	default = simple
+[gui]
+	recentrepo = /Users/monty/tex/wtpaper2014
