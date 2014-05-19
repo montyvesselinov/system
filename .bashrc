@@ -8,6 +8,9 @@ export PS1="\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \
 # Use bash-completion, if available
 [[ $PS1 && -f /opt/local/share/bash-completion/bash_completion ]] && \
         . /opt/local/share/bash-completion/bash_completion
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+        . /etc/bash_completion
+    fi
 # [[ -n "${PS1}" ]] && source ${HOME}/.bash/prompt
 #function command_not_found_handle {
 #  zimilar $@
