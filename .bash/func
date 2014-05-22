@@ -295,9 +295,8 @@ where1 () {
   done | sort -u
 }
 
-function where2 () {
-  for i in $(echo $PATH | sed -e 's/\:/\ /g'); do find "$i" -perm +rwx -exec echo {} \; 2> /dev/null; done
-}
+function catw () { cat `where "$@"`; }
+function viw () { vi `where "$@"`; }
 
 function where () {
   for i in "$@" ; do
@@ -310,8 +309,15 @@ function where3 () {
   IFS="$( printf ':\t\n' )" ;
   for regexp in "$@" ; do
     for adir in $PATH ; do
-      find "$adir" -perm -111 -a ! -type d 2>/dev/null | grep -i "/[^/]*$regexp"
+	# echo $adir
+	# find -H "$adir" -perm +111 -a ! -type d | grep fixexe
+      find -H "$adir" -perm +111 -a ! -type d 2>/dev/null | grep -i "/[^/]*$regexp"
     done ;
   done ;
   IFS="$OLDIFS" ;
 }
+
+function where2 () {
+  for i in $(echo $PATH | sed -e 's/\:/\ /g'); do find "$i" -perm +rwx -exec echo {} \; 2> /dev/null; done
+}
+
