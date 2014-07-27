@@ -1,4 +1,4 @@
 #!/bin/tcsh -f
 foreach i ( "$argv[1-]" )
-	mutt vvv@lanl.gov -a $i < /dev/null
+	mutt vvv@lanl.gov -a "$i" < /dev/null
 	end
