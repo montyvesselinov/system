@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ls $1.files |
 while read line
 do
@@ -41,4 +41,17 @@ do
         sed "s/$1/$2/g" $line > `echo $line|sed "s/$1/$2/"`
 	fi
 done
-cp -l $1*geo `echo $1*geo|sed "s/$1/$2/"`
+ls $1.session |
+while read line
+do
+        echo "Changing $line ..."
+        if [ -f $line ]
+	        then
+        sed "s/$1/$2/g" $line > `echo $line|sed "s/$1/$2/"`
+	fi
+done
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    cp -R $1*geo `echo $1*geo|sed "s/$1/$2/"`
+else
+    cp -l $1*geo `echo $1*geo|sed "s/$1/$2/"`
+fi
