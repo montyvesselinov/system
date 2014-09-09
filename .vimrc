@@ -266,6 +266,9 @@ nmap <F10> \sc
 nnoremap \sa :call AddWordToDictionary()<CR><CR>
 nmap <F8> \sa
 
+" no indent
+nnoremap \sa :setl noai nocin nosi inde=<CR><CR>
+nmap <F7> \sa
 
 " * Keystrokes -- Moving Around
 
