@@ -28,7 +28,6 @@
 
 
 " first clear any existing autocommands:
-autocmd!
 
 execute pathogen#infect()
 syntax on
@@ -191,6 +190,8 @@ autocmd FileType html,css set noexpandtab tabstop=2
 " needed, and have indentation at 8 chars to be sure that all indents are tabs
 " (despite the mappings later):
 autocmd FileType make set noexpandtab shiftwidth=4
+
+au BufNewFile,BufRead CMakeLists.txt set filetype=cmake
 
 
 " * Search & Replace
@@ -757,6 +758,5 @@ function! RepeatTag(Forward)
   endif
 
 endfunction " RepeatTag()
-
 
 " end of Smylers's .vimrc
