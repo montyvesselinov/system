@@ -39,7 +39,7 @@ alias urlz='less ~/urlz'
 alias notes='less ~/notes'
 alias clean='rm *~'
 alias .clean='rm .*~'
-alias cleancmake="find . -name 'CMakeFiles' -exec rm -Rf {} \+; find . -iname '*cmake*' -not -name CMakeLists.txt -not -name '*.cmake' -exec rm -f {} \+;"
+alias cleancmake="find . -name 'CMakeFiles' -not -iwholename '*.git*' -exec rm -Rf {} \+; find . -iname '*cmake*' -not -iwholename '*.git*' -not -name CMakeLists.txt -not -name '*.cmake' -not -name '*.cmake.in' -exec rm -f {} \+;"
 alias phones='less ~/.phones'
 #alias mutt='export DISPLAY="" ; set -o noclobber ; mutt -y'
 alias mutt="echo -n -e '\ek'mutt'\e\' ; set -o noclobber ; mutt -y"
