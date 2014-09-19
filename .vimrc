@@ -26,10 +26,30 @@
 " bit of luck, this should make it resilient to being uploaded, downloaded,
 " e-mailed, posted, encoded, decoded, transmitted by morse code, or whatever.
 
+" Of course
+set nocompatible
+
+" Required Vundle setup
+filetype off
+set runtimepath+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" Better status line
+Bundle 'bling/vim-airline'
+
+Bundle 'Lokaltog/powerline'
+Bundle 'Lokaltog/powerline-fonts'
+
+" ga for character descriptions
+Bundle 'tpope/vim-characterize'
+
+Plugin 'JuliaLang/julia-vim'
 
 " first clear any existing autocommands:
 
-execute pathogen#infect()
+" execute pathogen#infect()
 syntax on
 filetype plugin indent on
 set laststatus=2
