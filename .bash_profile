@@ -22,3 +22,12 @@ else
     [ -f ${HOME}/.bash/aliases ] && . ${HOME}/.bash/aliases
     [ -f ${HOME}/.bash/func ] && . ${HOME}/.bash/func
 fi
+
+##
+# Your previous /Users/monty/.bash_profile file was backed up as /Users/monty/.bash_profile.macports-saved_2014-09-20_at_16:00:57
+##
+
+# MacPorts Installer addition on 2014-09-20_at_16:00:57: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+

@@ -311,7 +311,7 @@ function where3 () {
     for adir in $PATH ; do
 	# echo $adir
 	# find -H "$adir" -perm +111 -a ! -type d | grep fixexe
-      find -H "$adir" -perm +111 -a ! -type d 2>/dev/null | grep -i "/[^/]*$regexp"
+      find -H "$adir" -perm +111 -a ! -type d 2>/dev/null | grep -i "/[^/]*$regexp*"
     done ;
   done ;
   IFS="$OLDIFS" ;
