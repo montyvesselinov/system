@@ -1,2 +1,2 @@
 #!/bin/bash
-find ~/Music -name "*.flac" | while IFS= read -r f; do /Applications/XLD.app/Contents/MacOS/XLD --cmdline "$f" -f mp3 -o ~/Music/$(dirname "$f"); done
+find . -name "*.flac" | while IFS= read -r f; do /Applications/XLD.app/Contents/MacOS/XLD --cmdline "$f" -o "${f/%.flac}.mp3"; done
