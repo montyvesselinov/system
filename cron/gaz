@@ -1,0 +1,12 @@
+00 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+05 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+10 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+15 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+20 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+25 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+30 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+35 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+40 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+45 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+50 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test
+55 * * * * /home/monty/script/gaz_check > /home/monty/gaz_test

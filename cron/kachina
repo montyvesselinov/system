@@ -1,0 +1,12 @@
+00 * * * * /home/monty/script/kachina_check > /dev/null
+05 * * * * /home/monty/script/kachina_check > /dev/null
+10 * * * * /home/monty/script/kachina_check > /dev/null
+15 * * * * /home/monty/script/kachina_check > /dev/null
+20 * * * * /home/monty/script/kachina_check > /dev/null
+25 * * * * /home/monty/script/kachina_check > /dev/null
+30 * * * * /home/monty/script/kachina_check > /dev/null
+35 * * * * /home/monty/script/kachina_check > /dev/null
+40 * * * * /home/monty/script/kachina_check > /dev/null
+45 * * * * /home/monty/script/kachina_check > /dev/null
+50 * * * * /home/monty/script/kachina_check > /dev/null
+55 * * * * /home/monty/script/kachina_check > /dev/null

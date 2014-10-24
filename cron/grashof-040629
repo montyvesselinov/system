@@ -1,0 +1,13 @@
+0 0  2 * * mailx -s USWest monty < /dev/null
+0 0  6 * * mailx -s CitiATT monty < /dev/null
+0 0  7 * * mailx -s CitiATT monty < /dev/null
+0 0  8 * * mailx -s CitiATT monty < /dev/null
+0 0 10 * * mailx -s BofA monty < /dev/null
+0 0 11 * * mailx -s BofA monty < /dev/null
+0 0 18 * * mailx -s DisM monty < /dev/null
+0 0 19 * * mailx -s DisM monty < /dev/null
+0 0 20 * * mailx -s DisM monty < /dev/null
+0 0 24 * * mailx -s AmEx monty < /dev/null
+0 0 25 * * mailx -s AmEx monty < /dev/null
+0 0 26 * * mailx -s AmEx monty < /dev/null
+0 0  * * 2 mailx -s TimeEffort monty < /dev/null
