@@ -321,11 +321,18 @@ function where2 () {
   for i in $(echo $PATH | sed -e 's/\:/\ /g'); do find "$i" -perm +rwx -exec echo {} \; 2> /dev/null; done
 }
 
-function madsload () { `mload madsmax madsmen madsdam`; }
+alias madsup='mup madsmax madsmen madsdam'
+
+function mup () {
+	for i in "$@" ; do
+		echo $i: `ssh vvv@$i uptime 2>/dev/null`
+	done
+}
+
+alias madsload='mload madsmax madsmen madsdam'
 
 function mload () {
 	for i in "$@" ; do
-		echo $i `ssh $i top -n 1 | head -1`
-		echo $i `ssh $i top -n 1 | grep Tasks`
+		echo $i `ssh -t vvv@$i top -n 1 2>/dev/null | grep Tasks`
 	done
 }
