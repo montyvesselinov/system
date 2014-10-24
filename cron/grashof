@@ -1,0 +1,12 @@
+00 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+05 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+10 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+15 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+20 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+25 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+30 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+35 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+40 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+45 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+50 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
+55 * * * * /home/monty/script/grashof_check > /home/monty/grashof_test
