@@ -12,7 +12,6 @@ else
 endif
 rm -f $mask.mads_output_* >& /dev/null
 rm -f $mask.igrnd_*.results >& /dev/null
-rm -f $mask.sobol* >& /dev/null
 rm -f $mask.igrnd-opt=* >& /dev/null
 rm -f $mask-error.mads >& /dev/null
 rm -f $mask-rerun.mads >& /dev/null
@@ -24,3 +23,4 @@ rm -f $mask.eigen >& /dev/null
 rm -f $mask.btc >& /dev/null
 rm -f $mask.vtk >& /dev/null
 rm -f $mask.ofe >& /dev/null
+rm -f $masf.restart_info >& /dev/null

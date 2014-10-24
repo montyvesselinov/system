@@ -140,7 +140,8 @@ set nomodeline
 " don't make it look like there are line breaks where there aren't:
 set nowrap
 
-" use indents of 2 spaces, and have them copied down lines:
+" use indents of 4 spaces, and have them copied down lines:
+set tabstop=4
 set shiftwidth=4
 set shiftround
 set noexpandtab
@@ -181,15 +182,17 @@ augroup filetype
 augroup END
 
 " in human-language files, automatically format everything at 72 chars:
-" autocmd FileType mail,human set formatoptions+=t textwidth=72
+autocmd FileType mail,human set formatoptions+=t textwidth=72
 
 " for C-like programming, have automatic indentation:
-" autocmd FileType c,cpp,slang set cindent
+autocmd FileType c,cpp,jl,slang set cindent
 
 " for actual C (not C++) programming where comments have explicit end
 " characters, if starting a new line in the middle of a comment automatically
 " insert the comment leader characters:
 autocmd FileType c set formatoptions+=ro noexpandtab tabstop=4
+
+autocmd FileType jl set formatoptions+=ro noexpandtab tabstop=4
 
 " for Perl programming, have things in braces indenting themselves:
 autocmd FileType perl set smartindent
@@ -204,7 +207,7 @@ autocmd FileType html set formatoptions+=tl
 
 " for both CSS and HTML, use genuine tab characters for indentation, to make
 " files a few bytes smaller:
-autocmd FileType html,css set noexpandtab tabstop=2
+autocmd FileType html,css set noexpandtab tabstop=4
 
 " in makefiles, don't expand tabs to spaces, since actual tab characters are
 " needed, and have indentation at 8 chars to be sure that all indents are tabs
