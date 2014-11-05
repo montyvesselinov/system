@@ -4,7 +4,14 @@ source ${HOME}/.bash/env
 source ${HOME}/.bash/aliases
 source ${HOME}/.bash/func
 source ${HOME}/source/.git-completion.bash
-export PS1="\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] "
+case $TERM in
+    xterm*)
+        PS1="\[\033]0;\h: \w\007\]\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] "
+        ;;
+    *)
+        PS1="\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] "
+        ;;
+esac
 # Use bash-completion, if available
 [[ $PS1 && -f /opt/local/share/bash-completion/bash_completion ]] && \
         . /opt/local/share/bash-completion/bash_completion
