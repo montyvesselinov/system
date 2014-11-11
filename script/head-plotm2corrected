@@ -1,0 +1,16 @@
+#!/bin/tcsh
+gnuplot -persist << EOF
+set ylabel "Water-level elevation [m]"
+# set y2label "Water-level elevation [ft]"
+# set noautoscale y2
+# set y2range [ymin/.3048:ymax/.3048]
+set title "$2 and $4 Water levels"
+set xdata time
+set timefmt "%s"
+set format x "%m-%Y"
+plot "< awk '{print (\$1-25569)*86400, \$4}' $1 " using 1:2 title "$2" with lines, \
+     "< awk '{print (\$1-25569)*86400, \$4}' $3 " using 1:2 title "$4" with lines
+set terminal emf
+set output "$1.emf"
+replot
+EOF
