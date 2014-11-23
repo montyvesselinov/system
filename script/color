@@ -1,0 +1,15 @@
+
+#!/bin/bash
+
+# Escape code
+esc=`echo -en "\033"`
+
+# Set colors
+cc_red="${esc}[0;31m"
+cc_green="${esc}[0;32m"
+cc_yellow="${esc}[0;33m"
+cc_blue="${esc}[0;34m"
+cc_normal=`echo -en "${esc}[m\017"`
+
+echo "Here's ${cc_green}some green text${cc_normal} for you."
+echo "Here's ${cc_blue}some green text${cc_normal} for you."
