@@ -6,11 +6,14 @@ grep "_$i " $1 >!  $1-$i
 gnuplot -persist << EOF
 set ylabel "Water-level elevation [m]"
 set title "Well $i Case $1"
-plot "< cat $1-$i | tr 'P|_' ' ' | awk '{print \$1, \$5}'" using 1:2 title "Observed" with lines, \
+plot "< cat $1-$i | tr 'P|_' ' ' | awk '{print \$1, \$4}'" using 1:2 title "Observed" with lines, \
      "< cat $1-$i | tr 'P|_' ' ' | awk '{print \$1, \$6}'" using 1:2 title "Simulated" with lines
-set terminal emf
-set output "$1-$i.emf"
+#set terminal emf
+set terminal png
+set output "$1-$i.png"
 replot
 EOF
-# rm -f $1-$i
+echo $i
+cat $1-$i | tr '(|)' ' ' | awk '{print $7, $8}' | minmax-col | head -2
+rm -f $1-$i
 end
