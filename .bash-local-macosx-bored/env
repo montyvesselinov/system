@@ -1,6 +1,7 @@
-export PETSC_DIR=/Users/monty/petsc PETSC_ARCH=arch-darwin-c-debug
-export CXX=/usr/local/bin/g++
-export CC=/usr/local/bin/gcc
 export PATH=/Applications/paraview.app/Contents/MacOS:/Applications/VisIt.app/Contents/Resources/bin:$PATH
+export CXX=/opt/local/bin/g++
+export CC=/opt/local/bin/gcc
+export LDFLAGS='-L/opt/local/lib/'
+export PETSC_DIR=/Users/monty/petsc PETSC_ARCH=arch-darwin-c-debug
 export ASAN_SYMBOLIZER_PATH=/opt/local/libexec/llvm-3.5/bin/llvm-symbolizer
 set ASAN_OPTIONS=symbolize=1
