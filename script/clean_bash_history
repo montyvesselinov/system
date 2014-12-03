@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+use strict;
+
+my $histfile = `echo ~/.bash_history`;
+
+open(INPUT, "<$histfile") or die "Can't open $histfile: $!\n";
+my @lines = reverse <INPUT>;
+close(INPUT);
+
+print "Before: ". scalar(@lines). " lines\n";
+my @buffer = ();
+
+for (my $i = 0; $i < @lines; $i++) {
+    $lines[$i] =~ s/\s+\n$/\n/;
+}
+
+while (@lines) {
+    my $line = shift @lines;
+    push (@buffer, $line) unless $line =~ /^mplayer|^rm/;
+    @lines = grep { $_ ne $line } @lines;
+}
+
+open(OUTPUT, ">$histfile") or die "Can't open $histfile: $!\n";
+print OUTPUT reverse @buffer;
+close(OUTPUT);
+
+print "After: ". scalar(@buffer). " lines\n";
+
+exit(0);
