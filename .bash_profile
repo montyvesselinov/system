@@ -1,5 +1,4 @@
-if [[ -n "$PS1" ]]
-then
+if [[ -n "$PS1" ]]; then
     . ${HOME}/.bashrc && check_screen
 else
     #source ${HOME}/.bash_profile

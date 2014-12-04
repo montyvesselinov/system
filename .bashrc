@@ -13,11 +13,16 @@ case $TERM in
         ;;
 esac
 # Use bash-completion, if available
-[[ $PS1 && -f /opt/local/share/bash-completion/bash_completion ]] && \
-        . /opt/local/share/bash-completion/bash_completion
+if $PS1; then
+	if [ -f ~/source/bash-completion/bash_completion ]; then
+		. ~/source/bash-completion/bash_completion
+	elif [ -f /opt/local/share/bash-completion/bash_completion ]; then
+		. /opt/local/share/bash-completion/bash_completion
+	fi
+fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-        . /etc/bash_completion
-    fi
+	. /etc/bash_completion
+fi
 # [[ -n "${PS1}" ]] && source ${HOME}/.bash/prompt
 #function command_not_found_handle {
 #  zimilar $@
