@@ -1,21 +1,38 @@
 [[ -f ${HOME}/.bash/init ]] && source ${HOME}/.bash/init
-source ${HOME}/.bash/env
-source ${HOME}/.bash/aliases
-source ${HOME}/.bash/func
-source ${HOME}/source/.git-completion.bash
 if [[ -n "${PS1}" ]]; then
+	powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)
+	#if [[ "$powerline_path" != "" ]]; then
+    #source ${powerline_path}/bindings/bash/powerline.sh
+	if [ -f ${HOME}/source/powerline/powerline/bindings/bash/powerline.sh ]; then 
+# Powerline prompt
+		export PATH=$PATH:~/source/powerline/scripts
+		powerline-daemon -q
+		POWERLINE_BASH_CONTINUATION=1
+		POWERLINE_BASH_SELECT=1
+		. ${HOME}/source/powerline/powerline/bindings/bash/powerline.sh
+		function _update_title() {
+			echo -ne "\033]0;${HOSTNAME%%.*}:${PWD##*/}\007"
+		}
+		export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
+		#if [ -f ${HOME}/source/powerline-shell/powerline-shell.py ]; then
+			#function _update_ps1() {
+				# export PS1="$(${HOME}/source/powerline-js/powerline.js $? --shell bash --depth 4)"
+				# export PS1="$(${HOME}/source/powerline-shell/powerline-shell.py $? 2> /dev/null)"
+			#}
+			# export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
+		#fi
+		# source ${HOME}/.bash/prompt # does not work properly
+	else
 # Use fancy prompt
-	case $TERM in
-    	xterm*)
-        	PS1='\[\033]0;\h:\W\007\]\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
-        	;;
-    	*)
-        	PS1='\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
-        	;;
-	esac
-# Very powerful prompt
-# However requires powerline
-# source ${HOME}/.bash/prompt
+		case $TERM in
+			xterm*)
+				PS1='\[\033]0;\h:\W\007\]\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				;;
+			*)
+				PS1='\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				;;
+		esac
+	fi
 # Use bash-completion, if available
 	if [ -f ~/source/bash-completion/bash_completion ]; then
 		. ~/source/bash-completion/bash_completion
@@ -48,3 +65,7 @@ case "$OSTYPE" in
     *)
 		echo "unknown: $OSTYPE" ;;
 esac
+source ${HOME}/.bash/env
+source ${HOME}/.bash/aliases
+source ${HOME}/.bash/func
+source ${HOME}/source/.git-completion.bash

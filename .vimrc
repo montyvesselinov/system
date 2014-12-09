@@ -71,7 +71,7 @@ filetype plugin indent on    " required
 " Better status line
 Bundle 'bling/vim-airline'
 
-Bundle 'Lokaltog/powerline'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'Lokaltog/powerline-fonts'
 
 " ga for character descriptions
@@ -811,5 +811,28 @@ function! RepeatTag(Forward)
   endif
 
 endfunction " RepeatTag()
+
+set rtp+=/Users/monty/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+ 
+" These lines setup the environment to show graphics and colors correctly.
+set nocompatible
+set t_Co=256
+
+set guifont=Inconsolata\ for\ Powerline:h15
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
+if has("gui_running")
+	let s:uname = system("uname")
+	if s:uname == "Darwin\n"
+		set guifont=Inconsolata\ for\ Powerline:h15
+	endif
+endif
+
+set noshowmode
+set laststatus=2
 
 " end of Smylers's .vimrc

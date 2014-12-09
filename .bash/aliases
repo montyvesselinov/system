@@ -43,7 +43,8 @@ alias cleancmake="find . -name 'CMakeFiles' -not -iwholename '*.git*' -exec rm -
 alias phones='less ~/.phones'
 #alias mutt='export DISPLAY="" ; set -o noclobber ; mutt -y'
 alias mutt="echo -n -e '\ek'mutt'\e\' ; set -o noclobber ; mutt -y"
-alias h='history $* | $PAGER +G'
+alias h='history'
+# alias h='history $* | $PAGER +G'
 function hs { history | grep "$@"; }
 export -f hs
 alias j='jobs'
@@ -113,7 +114,6 @@ alias ...='. ${HOME}/.bashrc'
 alias @="cd \$whoneedspushd"
 alias a='alias'
 alias cls='clear'
-alias h='history $* | $PAGER +G'
 alias md='mkdir'
 alias nsl='nslookup'
 alias po='popd'
