@@ -24,6 +24,10 @@ if [[ -n "${PS1}" ]]; then
 		# source ${HOME}/.bash/prompt # does not work properly
 	else
 # Use fancy prompt
+		function _disown() {
+			disown -a -r -h
+		}
+		export PROMPT_COMMAND="$PROMPT_COMMAND _disown"
 		case $TERM in
 			xterm*)
 				PS1='\[\033]0;\h:\W\007\]\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
