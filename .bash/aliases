@@ -109,8 +109,7 @@ export -f lttt
 alias rcslocks='rlog -L -R RCS/*,v 2>/dev/null;rlog -L -R *,v 2>/dev/null'
 alias bk='cd -'
 alias ,='cd -'
-alias .='source'
-alias ...='. ${HOME}/.bashrc'
+alias .='echo $PWD'
 alias @="cd \$whoneedspushd"
 alias a='alias'
 alias cls='clear'

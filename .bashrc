@@ -11,7 +11,11 @@ if [[ -n "${PS1}" ]]; then
 		POWERLINE_BASH_SELECT=1
 		. ${HOME}/source/powerline/powerline/bindings/bash/powerline.sh
 		function _update_title() {
-			echo -ne "\033]0;${HOSTNAME%%.*}:${PWD##*/}\007"
+			if [ ${HOSTNAME%%.*} == 'bored' ]; then
+				echo -ne "\033]0;${PWD##*/}\007"
+			else
+				echo -ne "\033]0;${HOSTNAME%%.*}:${PWD##*/}\007"
+			fi
 		}
 		export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
 		#if [ -f ${HOME}/source/powerline-shell/powerline-shell.py ]; then
