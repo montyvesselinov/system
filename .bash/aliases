@@ -78,6 +78,7 @@ alias pssr='ps -e -o "user pid ppid s pcpu nice vsz stime tty time args" | sort 
 alias pssa='ps -e -o "user pid ppid s pcpu nice vsz stime tty time args" | sort | grep -v root | more'
 alias pssm='ps -e -o "user pid ppid s pcpu nice vsz stime tty time args" | grep monty | more'
 alias pssv='disown -a -r -h; ps -e -o "user pid ppid s pcpu nice vsz stime tty time args" | grep vvv | more'
+alias cp='cp -p'
 alias ll='ls -l'
 alias l='ll'
 alias la='l -a'
