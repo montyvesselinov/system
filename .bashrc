@@ -3,7 +3,7 @@ if [[ -n "${PS1}" ]]; then
 	powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)
 	#if [[ "$powerline_path" != "" ]]; then
     #source ${powerline_path}/bindings/bash/powerline.sh
-	if [ -f ${HOME}/source/powerline/powerline/bindings/bash/powerline.sh ]; then 
+	if [[ -f ${HOME}/source/powerline/powerline/bindings/bash/powerline.sh ]]; then 
 # Powerline prompt
 		export PATH=$PATH:~/source/powerline/scripts
 		powerline-daemon -q
@@ -11,7 +11,7 @@ if [[ -n "${PS1}" ]]; then
 		POWERLINE_BASH_SELECT=1
 		. ${HOME}/source/powerline/powerline/bindings/bash/powerline.sh
 		function _update_title() {
-			if [ ${HOSTNAME%%.*} == 'bored' ]; then
+			if [[ ${HOSTNAME%%.*} == 'bored' ]]; then
 				echo -ne "\033]0;${PWD##*/}\007"
 			else
 				echo -ne "\033]0;${HOSTNAME%%.*}:${PWD##*/}\007"
@@ -42,12 +42,12 @@ if [[ -n "${PS1}" ]]; then
 		esac
 	fi
 # Use bash-completion, if available
-	if [ -f ~/source/bash-completion/bash_completion ]; then
+	if [[ -f ~/source/bash-completion/bash_completion ]]; then
 		. ~/source/bash-completion/bash_completion
-	elif [ -f /opt/local/share/bash-completion/bash_completion ]; then
+	elif [[ -f /opt/local/share/bash-completion/bash_completion ]]; then
 		. /opt/local/share/bash-completion/bash_completion
 	fi
-	if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+	if [[ -f /etc/bash_completion ] && ! shopt -oq posix]; then
 		COMPLETIONFILE=${COMPLETIONFILE:=/etc/bash_completion}
 		. /etc/bash_completion
 	fi

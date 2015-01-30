@@ -164,7 +164,7 @@ if [[ $ATWORK -eq 1 ]] ; then
 fi
 # End Hosts
 
-if [ "${__SAMOS}" = "SunOS" ] ; then
+if [[ "${__SAMOS}" = "SunOS" ]] ; then
   alias bdf="df -k"
   alias which="type -path"
   alias host='getent hosts'
