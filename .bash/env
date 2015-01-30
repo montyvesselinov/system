@@ -1,5 +1,5 @@
 # vim: set filetype=sh:
-[[ -f ${HOME}/.bash-local/env ]] && source ${HOME}/.bash-local/env
+[[ -f "${HOME}/.bash-local/env" ]] && source "${HOME}/.bash-local/env"
 
 export __SAMOS=`uname -s`;
 export XAUTHORITY=${HOME}/.Xauthority
