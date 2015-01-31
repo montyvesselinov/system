@@ -15,7 +15,7 @@ else
         export OPENWINHOME EDITOR VISUAL PATH
     fi
     function lis () { source ~/.bashrc ; } ;
-    [ -f ${HOME}/.bash/env ] && . ${HdOME}/.bash/env
+    [ -f ${HOME}/.bash/env ] && . ${HOME}/.bash/env
     [ -f ${HOME}/.bash/aliases ] && . ${HOME}/.bash/aliases
     [ -f ${HOME}/.bash/func ] && . ${HOME}/.bash/func
 fi
