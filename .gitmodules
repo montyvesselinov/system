@@ -23,3 +23,6 @@
     url = https://github.com/davidhalter/jedi-vim.git
 [submodule ".vim/bundle/jedi-vim/jedi"]
     url = https://github.com/davidhalter/jedi.git
+[submodule "bash-completion"]
+	path = bash-completion
+	url = git://git.debian.org/git/bash-completion/bash-completion.git
