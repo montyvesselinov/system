@@ -1,5 +1,4 @@
 [[ -f ${HOME}/.bash/init ]] && source ${HOME}/.bash/init
-export USERLAND=GNU
 if [[ -n "${PS1}" ]]; then
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
