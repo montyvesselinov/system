@@ -20,8 +20,10 @@
 	path = .vim/bundle/vim-sensible
 	url = git@github.com:tpope/vim-sensible.git
 [submodule ".vim/bundle/jedi-vim"]
+	path = .vim/bundle/jedi-vim
     url = https://github.com/davidhalter/jedi-vim.git
 [submodule ".vim/bundle/jedi-vim/jedi"]
+	path = .vim/bundle/jedi-vim/jedi
     url = https://github.com/davidhalter/jedi.git
 [submodule "bash-completion"]
 	path = bash-completion
