@@ -3,13 +3,13 @@ if [[ -n "${PS1}" ]]; then
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
     #source ${powerline_path}/bindings/bash/powerline.sh
-	if [[ -f "${HOME}/source/powerline/powerline/bindings/bash/powerline.sh" ]]; then 
+	if [[ -f "${HOME}/system/powerline/powerline/bindings/bash/powerline.sh" ]]; then 
 # Powerline prompt
-		export PATH=$PATH:~/source/powerline/scripts
+		export PATH=$PATH:~/system/powerline/scripts
 		powerline-daemon -q
 		POWERLINE_BASH_CONTINUATION=1
 		POWERLINE_BASH_SELECT=1
-		. ${HOME}/source/powerline/powerline/bindings/bash/powerline.sh
+		. ${HOME}/system/powerline/powerline/bindings/bash/powerline.sh
 		function _update_title() {
 			if [[ "${HOSTNAME%%.*}" == "bored" ]]; then
 				echo -ne "\033]0;${PWD##*/}\007"
@@ -18,10 +18,10 @@ if [[ -n "${PS1}" ]]; then
 			fi
 		}
 		export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
-		#if [ -f ${HOME}/source/powerline-shell/powerline-shell.py ]; then
+		#if [ -f ${HOME}/system/powerline-shell/powerline-shell.py ]; then
 			#function _update_ps1() {
-				# export PS1="$(${HOME}/source/powerline-js/powerline.js $? --shell bash --depth 4)"
-				# export PS1="$(${HOME}/source/powerline-shell/powerline-shell.py $? 2> /dev/null)"
+				# export PS1="$(${HOME}/system/powerline-js/powerline.js $? --shell bash --depth 4)"
+				# export PS1="$(${HOME}/system/powerline-shell/powerline-shell.py $? 2> /dev/null)"
 			#}
 			# export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
 		#fi
@@ -42,8 +42,8 @@ if [[ -n "${PS1}" ]]; then
 		esac
 	fi
 # Use bash-completion, if available
-	if [[ -f ~/source/bash-completion/bash_completion ]]; then
-		. ~/source/bash-completion/bash_completion
+	if [[ -f ~/system/bash-completion/bash_completion ]]; then
+		. ~/system/bash-completion/bash_completion
 	elif [[ -f /opt/local/share/bash-completion/bash_completion ]]; then
 		. /opt/local/share/bash-completion/bash_completion
 	fi
@@ -76,4 +76,5 @@ esac
 source ${HOME}/.bash/env
 source ${HOME}/.bash/aliases
 source ${HOME}/.bash/func
-source ${HOME}/source/.git-completion.bash
+source ${HOME}/.bash/func-common
+source ${HOME}/system/git-completion.bash

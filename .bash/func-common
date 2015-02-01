@@ -1,0 +1,11 @@
+# vim: set filetype=sh:
+function hs { history | grep "$@"; }
+function lm { ls -al "$@" | morer; }
+function ldir { ls -al "$@" | grep '/' | morer; }
+function lsdir { \ls -Fa1 "$@" | grep '/' | sed 's/\///g'; }
+function le { ls -al "$@" | grep '*' | morer; }
+function lse { \ls -Fa1 "$@" | grep '*' | sed 's/\*//g'; }
+function lln { ls -al "$@" | grep -- '->' | morer; }
+function lsln { \ls -Fa1 "$@" | grep '\@' | sed 's/\@//g'; }
+function ltt { ls -altr "$@" | tail; }
+function lttt { ls -altr "$@" | tail -30; }
