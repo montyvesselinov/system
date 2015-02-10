@@ -1,6 +1,6 @@
 #!/bin/bash
-f="${PWD}"
-m=$2
+f="${PWD%*/*/*}"
+echo "New path for visit files " $f
 s=$(echo $f | sed 's/\//\\\//g')
-echo "New path for visit files " $f $m
-sed "s/localhost:.*${m}/localhost:${s}\/${m}/g" $1 > $1.new
+sed "s/localhost:.*model2012/localhost:${s}\/model2012/" $1 > $1.tmp
+mv -f $1.tmp $1
