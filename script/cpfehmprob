@@ -51,7 +51,7 @@ do
 	fi
 done
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    cp -R $1*geo `echo $1*geo|sed "s/$1/$2/"`
+    cp -R $1.*geo `echo $1.*geo|sed "s/$1/$2/"`
 else
-    cp -l $1*geo `echo $1*geo|sed "s/$1/$2/"`
+    cp -l $1.*geo `echo $1.*geo|sed "s/$1/$2/"`
 fi

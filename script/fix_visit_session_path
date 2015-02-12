@@ -1,6 +1,11 @@
 #!/bin/bash
-f="${PWD%*/*/*}"
-echo "New path for visit files " $f
-s=$(echo $f | sed 's/\//\\\//g')
-sed "s/localhost:.*model2012/localhost:${s}\/model2012/" $1 > $1.tmp
-mv -f $1.tmp $1
+echo "Fixing the path of visit session files in respesct to " $2
+if [ ! -e $1 ]; then
+	echo "Visit Session File " $1 " does not exist!"
+else
+	f="${PWD%$2/*}"
+	echo "New path for visit files " $f
+	s=$(echo $f | sed 's/\//\\\//g')
+	sed "s/localhost:.$2/localhost:${s}\/$2/" $1 > $1.tmp
+	mv -f $1.tmp $1
+fi
