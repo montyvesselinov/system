@@ -48,9 +48,9 @@ alias untar='tar xvzf'
 alias H='kill -HUP'
 alias vi='vim -X'
 alias rehash="hash -r"
-# list
-alias ls='ls -F'
 # alias top10='history|awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}'|sort -nr|head'
+# list
+alias ls='ls -Fh'
 if [[ "${__SAMOS}" = "Linux" ]] ; then
   alias bdf='df -h'
   alias mp='mplayer -vo xv -ao oss'
@@ -63,7 +63,7 @@ if [[ "${__SAMOS}" = "Linux" ]] ; then
   alias morer="more"
 fi
 if [[ "${__SAMOS}" = "Darwin" ]] ; then
-  alias ls='CLICOLOR_FORCE=1 ls -FG'
+  alias ls='CLICOLOR_FORCE=1 ls -FhG'
   alias morer="more -R"
 fi
 alias psr='ps auxww | sort | more'
