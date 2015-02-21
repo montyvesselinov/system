@@ -1,7 +1,7 @@
 # .cshrc
 
 if ($?prompt == 0) then
-        source ~/source/alias
+        source ~/.tcsh/alias
         limit coredumpsize 0
         exit 0
 endif
@@ -127,18 +127,18 @@ case intel-mac:
 	breaksw
 endsw
 
-source ~/source/alias
-source ~/source/set
-source ~/source/setenv
-source ~/source/complete
+source ~/.tcsh/alias
+source ~/.tcsh/set
+source ~/.tcsh/setenv
+source ~/.tcsh/complete
 source ~/.git-completion.tcsh
-source ~/source/print
-source ~/source/ps
-# source ~/source/prompt
-# source ~/source/remote
-# source ~/source/scratch
-# source ~/source/backup
-# source ~/source/fortran
-# source ~/source/tex
-# source ~/source/pine
-# source ~/source/fehm
+source ~/.tcsh/print
+source ~/.tcsh/ps
+# source ~/.tcsh/prompt
+# source ~/.tcsh/remote
+# source ~/.tcsh/scratch
+# source ~/.tcsh/backup
+# source ~/.tcsh/fortran
+# source ~/.tcsh/tex
+# source ~/.tcsh/pine
+# source ~/.tcsh/fehm

@@ -1,0 +1,2 @@
+#!/bin/bash
+ffmpeg -i movie%04d.png -vcodec huffyuv tracer-comparison.avi 

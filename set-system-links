@@ -9,6 +9,7 @@ ln -sfT ./system/.bash-local-macosx-bored .bash-local
 echo "Profile links ..."
 ln -sf ./system/.astylerc .astylerc
 ln -sf ./system/.cshrc .cshrc
+ln -sf ./system/.tcsh .tcsh
 ln -sf ./system/.gemrc .gemrc
 ln -sf ./system/.gitconfig .gitconfig
 ln -sf ./system/.gitignore .gitignore
