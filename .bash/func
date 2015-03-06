@@ -67,7 +67,7 @@ else
 fi
 
 function todot () { echo ${*%%.*}; };
-function @@ () { export whoneedspushd=$PWD; };
+# function @@ () { export whoneedspushd=$PWD; };
 function N () { cd /usr/local/nagios/$*; }
 function v () { ls -l --color=auto $*; }
 function d () { ls --color=auto $*; }
