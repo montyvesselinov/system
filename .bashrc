@@ -79,3 +79,12 @@ source ${HOME}/.bash/aliases
 source ${HOME}/.bash/func
 source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
+if [[ $HOSTNAME =~ $TURQ_REGEXP ]]; then
+	echo "LANL turquoise machines"
+	module load friendly-testing
+	module load user_contrib
+	module load friendly-testing cmake/3.2.1
+	module load friendly-testing gcc/4.9.2
+	module load friendly-testing git/2.3.3
+fi
+

@@ -1,6 +1,8 @@
 # vim: set filetype=sh:
 [[ -f ${HOME}/.bash-local/aliases ]] && source ${HOME}/.bash-local/aliases
 
+TURQ_REGEXP="^(cj|mp|ml|mu|pi|wf|ls|hb|gl|bz)-fe[1-9]?(\.lanl\.gov)?$"
+
 if have apt-get ; then
   alias ac='apt-cache'
   complete -F _apt_cache $filenames ac

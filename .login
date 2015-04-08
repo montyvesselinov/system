@@ -67,9 +67,9 @@ endif
 
 switch( $HOSTTYPE )
 case iris4d:
-if (-f /opt/modules/modules/modulefiles/modules) then
-    module load modules
-endif
+#if (-f /opt/modules/modules/modulefiles/modules) then
+#    module load modules
+#endif
 #if (-f /opt/modulefiles/MIPSpro_latest) then
 #    module load MIPSpro_latest
 #endif
