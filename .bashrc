@@ -73,7 +73,7 @@ case "$OSTYPE" in
     *)
 		echo "unknown: $OSTYPE" ;;
 esac
-export GIT_SSH=PATH_TO_turq-ssh-hop.sh
+export GIT_SSH=~/system/script/turq-ssh-hop.sh
 source ${HOME}/.bash/env
 source ${HOME}/.bash/aliases
 source ${HOME}/.bash/func
