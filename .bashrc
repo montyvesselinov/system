@@ -73,12 +73,14 @@ case "$OSTYPE" in
     *)
 		echo "unknown: $OSTYPE" ;;
 esac
+ulimit -c 0
 export GIT_SSH=~/system/script/turq-ssh-hop.sh
 source ${HOME}/.bash/env
 source ${HOME}/.bash/aliases
 source ${HOME}/.bash/func
 source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64
 if [[ $HOSTNAME =~ $TURQ_REGEXP ]]; then
 	echo "LANL turquoise machines"
 	module load friendly-testing
