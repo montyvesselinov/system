@@ -1,0 +1,3 @@
+ljobs -l -u vvv
+showq -c
+checkjob 
