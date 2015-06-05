@@ -1,11 +1,11 @@
 #!/bin/bash
 cd ~
 echo "Bash links ..."
-ln -sfT ./system/.bash .bash
+ln -sf ./system/.bash .bash
 ln -sf ./system/.bashrc .bashrc
 ln -sf ./system/.bash_profile .bash_profile
 echo "Manually set .bash-local link; linked to ./system/.bash-local-macosx-bored by default"
-ln -sfT ./system/.bash-local-macosx-bored .bash-local
+ln -sf ./system/.bash-local-macosx-bored .bash-local
 echo "Profile links ..."
 ln -sf ./system/.astylerc .astylerc
 ln -sf ./system/.cshrc .cshrc
@@ -21,7 +21,7 @@ ln -sf ./system/.screenrc .screenrc
 ln -sf ./system/.netrc .netrc
 ln -sf ./system/.profile .profile
 ln -sf ./system/.vimrc .vimrc
-ln -sfT ./system/.vim .vim
+ln -sf ./system/.vim .vim
 echo "Script ..."
-ln -sfT ./system/script script
+ln -sf ./system/script script
 
