@@ -3,5 +3,7 @@ case "$HOSTNAME" in
 (hb*) ~/bin/julia-hobo "$@";;
 (wf*) ~/bin/julia-wolf "$@";;
 (pi*) ~/bin/julia-wolf "$@";;
+(ml*) ~/bin/julia-wolf "$@";;
+(mp*) ~/bin/julia-mapache "$@";;
 (*) ~/bin/julia "$@";;
 esac
