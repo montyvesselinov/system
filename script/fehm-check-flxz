@@ -1,0 +1,23 @@
+#!/bin/tcsh -f
+if( ! -e $1 ) then
+	echo "Usage:" $0 "[FEHM output file]"
+	exit
+endif
+@ i = 0
+set flzx_lines = `grep -n flxz $1 | awk 'BEGIN {FS = ":"} {print $1}'`
+echo $flzx_lines[1]
+echo 'Iter Time[year] Flux[m/s]'
+foreach line ( `grep -n Years $1 | awk 'BEGIN {FS = ":"} {print $1}'` )
+	@ i++
+	echo -n $i
+	@ line = $line + 1
+	# tail  --lines=+$line $1 | head -1 | awk '{printf " %10g %10g %10g ", $1, $2, $3}'
+	sed -n "$line p" $1 | awk '{printf " %g ", $1 }'
+	@ line = $flzx_lines[$i] + 4 
+	sed -n "$line p" $1 | awk '{printf " %g ", $6 }'
+	@ line = $line + 1
+	sed -n "$line p" $1 | awk '{printf " %g ", $6 }'
+	@ line = $line + 1
+	sed -n "$line p" $1 | awk '{printf " %g ", $6 }'
+	echo ''
+end

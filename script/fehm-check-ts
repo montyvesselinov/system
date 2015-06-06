@@ -8,11 +8,15 @@ echo 'Iter Time[year]  Time[day]    dt[day]    N-R   Iter    Totals'
 foreach line ( `grep -n Years $1 | awk 'BEGIN {FS = ":"} {print $1}'` )
 	@ i++
 	echo -n $i
-        @ line = $line + 1
-        tail  --lines=+$line $1 | head -1 | awk '{printf " %10g %10g %10g ", $1, $2, $3}'
+	@ line = $line + 1
+	# tail  --lines=+$line $1 | head -1 | awk '{printf " %10g %10g %10g ", $1, $2, $3}'
+	sed -n "$line p" $1 | awk '{printf " %10g %10g %10g ", $1, $2, $3}'
 	@ line = $line + 4
-	tail  --lines=+$line $1 | head -2 | awk 'BEGIN {FS = ":"} {printf "%5g ", $2}'
+	@ line2 = $line + 1
+	# tail  --lines=+$line $1 | head -2 | awk 'BEGIN {FS = ":"} {printf "%5g ", $2}'
+	sed -n "$line,$line2 p" $1 | awk 'BEGIN {FS = ":"} {printf "%5g ", $2}'
 	@ line = $line + 3
-	tail  --lines=+$line $1 | head -1 | awk 'BEGIN { FS="[:,]*" } {printf "%5d %5d", $3, $5}'
-        echo ''
+	# tail  --lines=+$line $1 | head -1 | awk 'BEGIN { FS="[:,]*" } {printf "%5d %5d", $3, $5}'
+	sed -n "$line p" $1 | awk 'BEGIN { FS="[:,]*" } {printf "%5d %5d", $3, $5}'
+	echo ''
 end
