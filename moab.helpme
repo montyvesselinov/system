@@ -1,0 +1,4 @@
+ljobs -l -u vvv
+showq -c
+checkjob 
+mdiag -c

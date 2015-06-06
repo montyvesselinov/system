@@ -1,4 +1,6 @@
 [[ -f ${HOME}/.bash/init ]] && source ${HOME}/.bash/init
+HOSTNAME=${HOSTNAME##sumdsy-}
+HOSTNAME=${HOSTNAME%%.*}
 if [[ -n "${PS1}" ]]; then
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
@@ -11,10 +13,10 @@ if [[ -n "${PS1}" ]]; then
 		POWERLINE_BASH_SELECT=1
 		. ${HOME}/system/powerline/powerline/bindings/bash/powerline.sh
 		function _update_title() {
-			if [[ "${HOSTNAME%%.*}" == "bored" ]]; then
+			if [[ "${HOSTNAME}" == "bored" ]]; then
 				echo -ne "\033]0;${PWD##*/}\007"
 			else
-				echo -ne "\033]0;${HOSTNAME%%.*}:${PWD##*/}\007"
+				echo -ne "\033]0;${HOSTNAME}:${PWD##*/}\007"
 			fi
 		}
 		export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
@@ -34,10 +36,10 @@ if [[ -n "${PS1}" ]]; then
 		export PROMPT_COMMAND="$PROMPT_COMMAND _disown"
 		case $TERM in
 			xterm*)
-				PS1='\[\033]0;\h:\W\007\]\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				PS1='\[\033]0;\h:\W\007\]\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
 				;;
 			*)
-				PS1='\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				PS1='\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
 				;;
 		esac
 	fi
@@ -73,12 +75,14 @@ case "$OSTYPE" in
     *)
 		echo "unknown: $OSTYPE" ;;
 esac
+ulimit -c 0
 export GIT_SSH=~/system/script/turq-ssh-hop.sh
 source ${HOME}/.bash/env
 source ${HOME}/.bash/aliases
 source ${HOME}/.bash/func
 source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
+export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64:$LD_LIBRARY_PATH
 if [[ $HOSTNAME =~ $TURQ_REGEXP ]]; then
 	echo "LANL turquoise machines"
 	module load friendly-testing

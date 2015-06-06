@@ -25,3 +25,5 @@ rm -f $mask.vtk >& /dev/null
 rm -f $mask.ofe >& /dev/null
 rm -f $mask.restart_info >& /dev/null
 rm -fR $mask.restart_* >& /dev/null
+rm -f core.* >& /dev/null
+rm -f slurm* >& /dev/null

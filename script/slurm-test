@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH -o $HOME/slurm/slurm_out/%j.%N.out
+#SBATCH --error=$HOME/slurm/slurm_out/%j.%N.err_out
+#SBATCH --get-user-env
+#SBATCH -J test
+#SBATCH -D $HOME/slurm
+#SBATCH --export=NONE
+#SBATCH --ntasks=48
+
+NR_PROCS=$(($SLURM_NTASKS))
+echo $NR_RPOCS
+for PROC in $(seq 0 $(($NR_PROCS-1)));
+do
+    #My call looks like this:
+    #srun --exclusive -N1 -n1 bash $PROJECT/call_shells/call_"$PROC".sh &
+	echo $PROC
+    srun --exclusive -N1 -n1 hostname &
+    pids[${PROC}]=$!    #Save PID of this background process
+done
+for pid in ${pids[*]};
+do
+	echo $pid
+    wait ${pid} #Wait on all PIDs, this returns 0 if ANY process fails
+done

@@ -1,9 +1,9 @@
 push!(LOAD_PATH, ENV["HOME"]*"/.julia")
-push!(LOAD_PATH, ENV["HOME"]*"/scripts.jl")
-push!(LOAD_PATH, ENV["HOME"]*"/codes/mads.jl")
-push!(LOAD_PATH, ENV["HOME"]*"/codes/anasol.jl")
-push!(LOAD_PATH, ENV["HOME"]*"/codes/metatools.jl")
-push!(Sys.DL_LOAD_PATH, ENV["HOME"]*"/mads/repo/bin/Lib")
+#push!(LOAD_PATH, ENV["HOME"]*"/scripts.jl")
+#push!(LOAD_PATH, ENV["HOME"]*"/codes/mads.jl")
+#push!(LOAD_PATH, ENV["HOME"]*"/codes/anasol.jl")
+#push!(LOAD_PATH, ENV["HOME"]*"/codes/metatools.jl")
+#push!(Sys.DL_LOAD_PATH, ENV["HOME"]*"/mads/repo/bin/Lib")
 ## give a local .juliarc.jl a chance
 if chomp(readall(`pwd`)) != ENV["HOME"]
     if isfile(".juliarc.jl")
