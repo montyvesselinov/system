@@ -82,7 +82,7 @@ source ${HOME}/.bash/aliases
 source ${HOME}/.bash/func
 source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64
+export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64:$LD_LIBRARY_PATH
 if [[ $HOSTNAME =~ $TURQ_REGEXP ]]; then
 	echo "LANL turquoise machines"
 	module load friendly-testing
