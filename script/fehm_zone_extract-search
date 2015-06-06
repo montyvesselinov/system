@@ -1,6 +1,6 @@
-#!/bin/tcsh -f -f
+#!/bin/tcsh -f
 if( $2 == "" ) then
-	echo "Usage:" $0 "[extracted node list file] [flow macro]"`
+	echo "Usage:" $0 "[node list file] [xyz file]"`
 	exit
 endif
 if( ! -e $1 ) then
@@ -8,6 +8,7 @@ if( ! -e $1 ) then
 	exit
 endif
 foreach i ( `cat $1`)
-  grep "^"$i" " $2 
-  end
-
+	echo -n $i" " 
+	sed -n "$i p" $2 
+	end
+	# grep "^"$i" " $2 

@@ -1,4 +1,6 @@
 [[ -f ${HOME}/.bash/init ]] && source ${HOME}/.bash/init
+HOSTNAME=${HOSTNAME##sumdsy-}
+HOSTNAME=${HOSTNAME%%.*}
 if [[ -n "${PS1}" ]]; then
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
@@ -34,10 +36,10 @@ if [[ -n "${PS1}" ]]; then
 		export PROMPT_COMMAND="$PROMPT_COMMAND _disown"
 		case $TERM in
 			xterm*)
-				PS1='\[\033]0;\h:\W\007\]\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				PS1='\[\033]0;\h:\W\007\]\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
 				;;
 			*)
-				PS1='\[\033[01;7m\] \u@\h \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				PS1='\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
 				;;
 		esac
 	fi
