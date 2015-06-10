@@ -11,6 +11,7 @@ else
         set mask = $1
 endif
 rm -f $mask.mads_output_* >& /dev/null
+rm -f $mask-*-intermediate.mads >& /dev/null
 rm -f $mask.igrnd_*.results >& /dev/null
 rm -f $mask.igrnd-opt=* >& /dev/null
 rm -f $mask-error.mads >& /dev/null
