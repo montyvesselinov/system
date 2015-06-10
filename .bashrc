@@ -1,5 +1,5 @@
 [[ -f ${HOME}/.bash/init ]] && source ${HOME}/.bash/init
-HOSTNAME=${HOSTNAME##sumdsy-}
+HOSTNAME=${HOSTNAME##su*-}
 HOSTNAME=${HOSTNAME%%.*}
 if [[ -n "${PS1}" ]]; then
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
