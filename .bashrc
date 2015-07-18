@@ -4,6 +4,7 @@ HOSTNAME=${HOSTNAME##su*-}
 HOSTNAME=${HOSTNAME%%.*}
 HOSTNAME=${HOSTNAME%%[1-9]*}
 HOSTNAME=${HOSTNAME%%-fe*}
+export HOSTNAME
 if [[ -n "${PS1}" ]]; then
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
