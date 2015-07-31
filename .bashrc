@@ -75,7 +75,7 @@ case "$OSTYPE" in
     solaris*)
 		echo "SOLARIS" ;;
     darwin*)
-		echo "OSX"
+		# echo "OSX"
 		export CDPATH=.:${HOME}:${HOME}/lanl:${HOME}/Documents:${HOME}/Documents/lanl
 		export CLICOLOR=1
 		export LSCOLORS=gxfxcxdxbxegedabagaced ;; 
