@@ -1,0 +1,43 @@
+# set window split
+bind-key _ split-window -v
+bind-key - split-window -v
+bind-key % split-window -h
+bind-key \ split-window -h
+bind-key | split-window -h
+
+set -g status-interval 1
+set -g status-justify centre # center align window list
+set -g status-left-length 40
+set -g status-right-length 40
+set -g status-left '#HOSTNAME • (uname -r | cut -c 1-6)'
+set -g status-right ''
+
+bind-key C-b last-window
+
+# hjkl pane traversal
+bind j select-pane -D
+bind k select-pane -U
+bind h select-pane -L
+bind l select-pane -R
+
+# rm mouse mode fail
+set -g mode-mouse on
+set-option -g mouse-select-pane on
+set-option -g mouse-resize-pane on
+set-option -g mouse-select-window on
+
+bind m \
+  set -g mode-mouse on \;\
+  set -g mouse-resize-pane on \;\
+  set -g mouse-select-pane on \;\
+  set -g mouse-select-window on \;\
+  display 'Mouse: ON'
+
+bind M \
+  set -g mode-mouse off \;\
+  set -g mouse-resize-pane off \;\
+  set -g mouse-select-pane off \;\
+  set -g mouse-select-window off \;\
+  display 'Mouse: OFF'
+
+source-file ~/.tmux.conf-extra
