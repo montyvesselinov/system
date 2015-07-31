@@ -2,7 +2,9 @@
 HOSTNAME_ORIG=${HOSTNAME}
 HOSTNAME=${HOSTNAME##su*-}
 HOSTNAME=${HOSTNAME%%.*}
+HOSTNAME=${HOSTNAME%%[1-9]*}
 HOSTNAME=${HOSTNAME%%-fe*}
+export HOSTNAME
 if [[ -n "${PS1}" ]]; then
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
@@ -44,6 +46,14 @@ if [[ -n "${PS1}" ]]; then
 				PS1='\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
 				;;
 		esac
+		function _update_title() {
+			if [[ "${HOSTNAME}" == "bored" ]]; then
+				echo -ne "\033]0;${PWD##*/}\007"
+			else
+				echo -ne "\033]0;${HOSTNAME}:${PWD##*/}\007"
+			fi
+		}
+		export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
 	fi
 # Use bash-completion, if available
 	if [[ -f ~/system/bash-completion/bash_completion ]]; then
