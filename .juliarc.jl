@@ -1,6 +1,6 @@
 push!(LOAD_PATH, ENV["HOME"]*"/.julia")
 push!(LOAD_PATH, ENV["HOME"]*"/codes")
-push!(LOAD_PATH, ENV["HOME"]*"/codes/mads.jl/src")
+push!(LOAD_PATH, ENV["HOME"]*"/codes/Mads.jl/src")
 #push!(LOAD_PATH, ENV["HOME"]*"/scripts.jl")
 #push!(LOAD_PATH, ENV["HOME"]*"/codes/anasol.jl")
 #push!(LOAD_PATH, ENV["HOME"]*"/codes/metatools.jl")

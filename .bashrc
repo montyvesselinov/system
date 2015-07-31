@@ -65,14 +65,6 @@ if [[ -n "${PS1}" ]]; then
 		COMPLETIONFILE=${COMPLETIONFILE:=/etc/bash_completion}
 		. /etc/bash_completion
 	fi
-	if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
-		echo "LANL turquoise machines"
-		module load friendly-testing
-		module load user_contrib
-		module load friendly-testing cmake/3.2.1
-		module load friendly-testing gcc/4.9.2
-		module load friendly-testing git/2.3.3
-	fi
 fi
 # zimilar
 #function command_not_found_handle {
@@ -103,4 +95,16 @@ source ${HOME}/.bash/func
 source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
 export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64:$LD_LIBRARY_PATH
-
+if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
+	if [[ -n "${PS1}" ]]; then
+		echo "LANL turquoise machines"
+	fi
+	path_to_executable=$(which module)
+	if [[ -x "$path_to_executable" ]]; then
+		module load friendly-testing
+		module load user_contrib
+		module load friendly-testing cmake/3.2.1
+		module load friendly-testing gcc/4.9.2
+		module load friendly-testing git/2.3.3
+	fi
+fi
