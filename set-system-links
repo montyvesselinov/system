@@ -4,6 +4,7 @@ echo "Bash links ..."
 ln -sfT ./system/.bash .bash
 ln -sf ./system/.bashrc .bashrc
 ln -sf ./system/.bash_profile .bash_profile
+ln -sf ./system/.bash_logout .bash_logout
 echo "Manually set .bash-local link; linked to ./system/.bash-local-macosx-bored by default"
 ln -sfT ./system/.bash-local-macosx-bored .bash-local
 echo "Profile links ..."

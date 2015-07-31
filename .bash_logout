@@ -1,0 +1,1 @@
+disown -a -r -h
