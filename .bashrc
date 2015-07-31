@@ -98,9 +98,7 @@ export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 	if [[ -n "${PS1}" ]]; then
 		echo "LANL turquoise machines"
-	fi
-	path_to_executable=$(which module)
-	if [[ -x "$path_to_executable" ]]; then
+		echo "Load modules ..."
 		module load friendly-testing
 		module load user_contrib
 		module load friendly-testing cmake/3.2.1
