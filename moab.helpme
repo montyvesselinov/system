@@ -1,4 +1,4 @@
 ljobs -l -u vvv
-showq -c
+showq -c -u vvv
 checkjob 
 mdiag -c
