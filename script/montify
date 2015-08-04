@@ -1,0 +1,2 @@
+git config --global user.name "monty"
+git config --global user.email velimir.vesselinov@gmail.com
