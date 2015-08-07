@@ -1,6 +1,6 @@
 [user]
-	name = monty
-	email = velimir.vesselinov@gmail.com
+	name = Neda Vesselinova
+	email = neda.vesselinova@gmail.com
 
 [core]
 	editor = /usr/bin/vim
@@ -125,5 +125,5 @@
 	default = simple
 [gui]
 	recentrepo = /Users/monty/tex/wtpaper2014
-[url "https://github.com/"]
-	insteadOf = git://github.com/
+[url "https://"]
+	insteadOf = git://
