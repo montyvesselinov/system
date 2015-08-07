@@ -1,4 +1,5 @@
 [[ -f ${HOME}/.bash/init ]] && source ${HOME}/.bash/init
+source ~/.profile
 HOSTNAME_ORIG=${HOSTNAME}
 HOSTNAME=${HOSTNAME##su*-}
 HOSTNAME=${HOSTNAME%%.*}
