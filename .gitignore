@@ -3,3 +3,5 @@
 *~
 *.orig
 .vim/.netrwhist
+codes/flip
+*.exe
