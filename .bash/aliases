@@ -64,6 +64,10 @@ if [[ "${__SAMOS}" = "Linux" ]] ; then
   alias ha='hdparm -d1 -c1 -a1 -A1 -m16 /dev/hda'
   alias morer="more"
 fi
+if [[ "${OSTYPE}" = "cygwin" ]] ; then
+  alias ls='ls -Fh --color=always'
+  alias morer="more"
+fi
 if [[ "${__SAMOS}" = "Darwin" ]] ; then
   alias ls='CLICOLOR_FORCE=1 ls -FhG'
   alias morer="more -R"
