@@ -4,7 +4,7 @@
 export __SAMOS=`uname -s`;
 export XAUTHORITY=${HOME}/.Xauthority
 export OPENWINHOME=/usr/openwin
-export PATH=.:${HOME}/bin:${HOME}/script:/usr/local/bin:/usr/local/git/bin:/usr/local/sbin:/opt/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/lbin:${PATH}
+export PATH=.:${HOME}/bin:${HOME}/script:${HOME}/system/codes:/usr/local/bin:/usr/local/git/bin:/usr/local/sbin:/opt/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/usr/lbin:${PATH}
 export PAGER=less
 export HISTCONTROL=ignoredups:erasedups
 export HISTTIMEFORMAT="%F %T "
