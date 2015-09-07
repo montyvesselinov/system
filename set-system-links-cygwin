@@ -1,0 +1,29 @@
+#!/bin/bash
+cd ~
+echo "Bash links ..."
+ln -sfT ./system/.bash .bash
+ln -sf ./system/.bashrc .bashrc
+ln -sf ./system/.bash_profile .bash_profile
+ln -sf ./system/.bash_logout .bash_logout
+echo "Manually set .bash-local link; linked to ./system/.bash-local-macosx-bored by default"
+ln -sfT ./system/.bash-local-macosx-bored .bash-local
+echo "Profile links ..."
+ln -sf ./system/.astylerc .astylerc
+ln -sf ./system/.cshrc .cshrc
+ln -sf ./system/.tcsh .tcsh
+ln -sf ./system/.gemrc .gemrc
+ln -sf ./system/.gitconfig .gitconfig
+ln -sf ./system/.gitignore .gitignore
+ln -sf ./system/.hgrc .hgrc
+ln -sf ./system/.inputrc .inputrc
+ln -sf ./system/.juliarc.jl .juliarc.jl
+ln -sf ./system/.login .login
+ln -sf ./system/.screenrc .screenrc
+ln -sf ./system/.tmux.conf .tmux.conf
+ln -sf ./system/.netrc .netrc
+ln -sf ./system/.profile .profile
+ln -sf ./system/.vimrc-cygwin .vimrc
+ln -sfT ./system/.vim .vim
+echo "Script ..."
+ln -sfT ./system/script script
+
