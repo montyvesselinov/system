@@ -65,7 +65,11 @@ if [[ "${__SAMOS}" = "Linux" ]] ; then
   alias morer="more"
 fi
 if [[ "${OSTYPE}" = "cygwin" ]] ; then
-  alias ls='ls -Fh --color=always'
+  alias ls='ls -Fh --show-control-chars --color=always'
+  alias morer="more"
+fi
+if [[ "${OSTYPE}" = "msys" ]] ; then
+  alias ls='ls -Fh --show-control-chars --color=always'
   alias morer="more"
 fi
 if [[ "${__SAMOS}" = "Darwin" ]] ; then
