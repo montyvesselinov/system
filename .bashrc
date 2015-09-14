@@ -83,11 +83,10 @@ case "$OSTYPE" in
     linux*)
 		# echo "LINUX"
 		export CDPATH=.:${HOME}:/scratch/er/monty:/scratch/ymp/monty:/scratch/nts/monty:/scratch/gwpa/monty:/scratch/rigel10/monty:/scratch/indigo2/monty:/scratch/fiesta2/monty ;;
+    msys*)
+		# echo "Windows" ;;
     bsd*)
 		echo "BSD" ;;
-    cygwin*)
-	    	echo "CYGWIN" 
-		;;
     *)
 		echo "unknown: $OSTYPE" ;;
 esac
