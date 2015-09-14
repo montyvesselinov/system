@@ -84,7 +84,8 @@ case "$OSTYPE" in
 		# echo "LINUX"
 		export CDPATH=.:${HOME}:/scratch/er/monty:/scratch/ymp/monty:/scratch/nts/monty:/scratch/gwpa/monty:/scratch/rigel10/monty:/scratch/indigo2/monty:/scratch/fiesta2/monty ;;
     msys*)
-		# echo "Windows" ;;
+		# echo "Windows" 
+		;;
     bsd*)
 		echo "BSD" ;;
     *)
