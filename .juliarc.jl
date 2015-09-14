@@ -1,16 +1,17 @@
-push!(LOAD_PATH, ENV["HOME"]*"/.julia")
-push!(LOAD_PATH, ENV["HOME"]*"/codes")
-push!(LOAD_PATH, ENV["HOME"]*"/codes/Mads.jl/src")
+if haskey(ENV, "HOME")
+	push!(LOAD_PATH, ENV["HOME"]*"/Julia")
+end
+#push!(LOAD_PATH, ENV["HOME"]*"/codes/Mads.jl/src")
 #push!(LOAD_PATH, ENV["HOME"]*"/scripts.jl")
 #push!(LOAD_PATH, ENV["HOME"]*"/codes/anasol.jl")
 #push!(LOAD_PATH, ENV["HOME"]*"/codes/metatools.jl")
 #push!(Sys.DL_LOAD_PATH, ENV["HOME"]*"/mads/repo/bin/Lib")
 ## give a local .juliarc.jl a chance
-if chomp(readall(`pwd`)) != ENV["HOME"]
-    if isfile(".juliarc.jl")
-        require(".juliarc.jl")
-    end
-end
+#if chomp(readall(`pwd`)) != ENV["HOME"]
+#    if isfile(".juliarc.jl")
+#        require(".juliarc.jl")
+#    end
+#end
 #const mykeys = {
 #    # Up Arrow
 #    "\e[A" => (s,o...)->(LineEdit.edit_move_up(s) || LineEdit.history_prev(s, LineEdit.mode(s).hist)),
