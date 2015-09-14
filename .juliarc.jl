@@ -1,5 +1,10 @@
 if haskey(ENV, "HOME")
-	push!(LOAD_PATH, ENV["HOME"]*"/Julia")
+	if haskey( ENV, "__SAMOS" ) && search( ENV["__SAMOS"], "CYGWIN" ) == 1:6
+		push!(LOAD_PATH, ENV["HOME"]*"\\.julia")
+		push!(LOAD_PATH, ENV["HOME"]*"\\Julia")
+	else
+		push!(LOAD_PATH, ENV["HOME"]*"/Julia")
+	end
 end
 #push!(LOAD_PATH, ENV["HOME"]*"/codes/Mads.jl/src")
 #push!(LOAD_PATH, ENV["HOME"]*"/scripts.jl")
