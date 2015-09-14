@@ -2,14 +2,13 @@ if haskey(ENV, "HOME")
 	if haskey( ENV, "__SAMOS" ) && search( ENV["__SAMOS"], "CYGWIN" ) == 1:6
 		push!(LOAD_PATH, ENV["HOME"]*"\\.julia")
 		push!(LOAD_PATH, ENV["HOME"]*"\\Julia")
+	elseif haskey( ENV, "OS" ) && search( ENV["OS"], "Windows" ) == 1:7
+		push!(LOAD_PATH, ENV["HOME"]*"\\.julia")
+		push!(LOAD_PATH, ENV["HOME"]*"\\Julia")
 	else
 		push!(LOAD_PATH, ENV["HOME"]*"/Julia")
 	end
 end
-#push!(LOAD_PATH, ENV["HOME"]*"/codes/Mads.jl/src")
-#push!(LOAD_PATH, ENV["HOME"]*"/scripts.jl")
-#push!(LOAD_PATH, ENV["HOME"]*"/codes/anasol.jl")
-#push!(LOAD_PATH, ENV["HOME"]*"/codes/metatools.jl")
 #push!(Sys.DL_LOAD_PATH, ENV["HOME"]*"/mads/repo/bin/Lib")
 ## give a local .juliarc.jl a chance
 #if chomp(readall(`pwd`)) != ENV["HOME"]
