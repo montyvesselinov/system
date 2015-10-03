@@ -23,6 +23,7 @@ fi
 
 # alias local="cat ${HOME}/.bash-local/*"
 # to be run on the remote side: ssh wherever north
+alias gitdir='find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin master \;'
 alias north='x2x -north -to :0'
 alias fixvmware='setxkbmap'
 alias vless='vim -u /usr/share/vim/vim71/macros/less.vim'

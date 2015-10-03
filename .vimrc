@@ -159,9 +159,9 @@ execute 'set listchars+=tab:' . nr2char(187) . nr2char(183)
 " (Character 187 is a right double-chevron, and 183 a mid-dot.)
 
 " have the mouse enabled all the time:
-set ttyfast
-set mouse=a
-set ttymouse=xterm
+" set ttyfast
+" set mouse=a
+" set ttymouse=xterm
 
 
 " don't have files trying to override this .vimrc:
