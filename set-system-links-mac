@@ -25,4 +25,5 @@ ln -sf ./system/.vimrc .vimrc
 ln -sf ./system/.vim .vim
 echo "Script ..."
 ln -sf ./system/script script
-
+echo "Sublime ..."
+ln -sf ~/system/sublime ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
