@@ -125,5 +125,5 @@
 	default = simple
 [gui]
 	recentrepo = /Users/monty/tex/wtpaper2014
-[url "https://"]
+[url "http://"]
 	insteadOf = git://
