@@ -321,7 +321,7 @@ function where2 () {
   for i in $(echo $PATH | sed -e 's/\:/\ /g'); do find "$i" -perm +rwx -exec echo {} \; 2> /dev/null; done
 }
 
-alias madsup='mup madsmax madsmen madsdam'
+alias madsup='mup madsmax madsmen madszem madskil madsart madsend madsdam'
 
 function mup () {
 	for i in "$@" ; do
@@ -329,7 +329,7 @@ function mup () {
 	done
 }
 
-alias madsload='mload madsmax madsmen madsdam'
+alias madsload='mload madsmax madsmen madszem madskil madsart madsend madsdam'
 
 function mload () {
 	for i in "$@" ; do
