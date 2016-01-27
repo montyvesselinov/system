@@ -1,0 +1,415 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"st",
+				"style	Attr"
+			],
+			[
+				"wit",
+				"width: 〔property〕"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"for",
+				"for	For Loop"
+			],
+			[
+				"he",
+				"height: 〔property〕"
+			],
+			[
+				"top",
+				"margin-top: 〔property〕"
+			],
+			[
+				"as",
+				"astylerc"
+			],
+			[
+				"i",
+				"include"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/monty/Julia/Mads.jl/src/MadsSA.jl",
+			"settings":
+			{
+				"buffer_size": 57813,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "inst",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"latextoo",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"jul",
+				"Sublime-IJulia: Open New IJulia Console"
+			],
+			[
+				"open",
+				"Sublime-IJulia: Open New IJulia Console"
+			],
+			[
+				"iju",
+				"Sublime-IJulia: Enter"
+			],
+			[
+				"paca",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/monty/Julia/Mads.jl/src",
+		"/Users/monty/Julia/adjoint"
+	],
+	"file_history":
+	[
+		"/Users/monty/Julia/Mads.jl/src/MadsLM.jl",
+		"/Users/monty/Julia/Mads.jl/src/MadsLog.jl",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/User/Projects/Mads.jl.sublime-project",
+		"/Users/monty/www-madsjulia/css/style.css",
+		"/Users/monty/www-madsjulia/index.html",
+		"/Users/monty/Julia/neda-lanl/julia/odegram-neg-fy16/odegram-neg-fy16.jl",
+		"/Users/monty/Julia/neda-lanl/julia/odegram-neg/odegram-neg.jl",
+		"/Users/monty/sevar/firststeps/test.py",
+		"/Users/monty/sevar/firststeps/test.jl",
+		"/Users/monty/sevar/firststeps/test.c",
+		"/Users/monty/sevar/firststeps/test",
+		"/Users/monty/tex/co2biguq-paper/MLEF.bib",
+		"/Users/monty/tex/co2biguq-paper/robust_co2_well_injection_using_pflotran_and_bigdt.tex",
+		"/Users/monty/www-madsjulia/css/materialize.css",
+		"/Users/monty/www-mads/mads-info.html",
+		"/Users/monty/www-madsjulia/css/main.css",
+		"/Users/monty/www-mads/index.html",
+		"/Users/monty/tex/cmwr2016/cmwr2016nmfk_abstract.tex",
+		"/Users/monty/sevar/firststeps/sieve.jl",
+		"/Users/monty/test.c",
+		"/Users/monty/Documents/www/parallax-template/index.html",
+		"/Users/monty/Documents/www/materialize/templates/parallax-template/index.html",
+		"/Users/monty/Documents/test.jl",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/SublimeAStyleFormatter/SublimeAStyleFormatter.sublime-settings",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/User/SublimeAStyleFormatter.sublime-settings",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/User/Sublime-IJulia.sublime-settings",
+		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/IJulia/Sublime-IJulia.sublime-settings",
+		"/Users/monty/neda/cs35/ucla-coursework/CS 35L Software Construction Lab/Week 8/srt/main.c",
+		"/Users/monty/neda/cs35/srt/srt/main.c",
+		"/Users/monty/neda/cs35/CS_classwork/CS35L/HW/8/srt/main.c",
+		"/Users/monty/mads-analyses/cr2015/simr6/s00-igrnd-lm.52006956.vtk",
+		"/Users/monty/mads-analyses/cr2015/simr7/s00-igrnd-lm.60000007.vtk",
+		"/Users/monty/mads-analyses/cr2015/simr6/simr6",
+		"/Users/monty/mads-analyses/cr2015/simr6/simr6.vtk",
+		"/Users/monty/Downloads/test.jl",
+		"/Users/monty/Documents/lanl/chromium/model2012/mads-c07-cz-p-scalled2a/c07e3-8months.boun",
+		"/Users/monty/mads-analyses/cr2015nmf/A_dioxane.dat",
+		"/Users/monty/Documents/lanl/chromium/model2012/mads-c07-cz-p-scalled2a/c07e3-8months.trc",
+		"/Users/monty/Documents/lanl/chromium/model2012/mads-c07-cz-p-scalled2a/c07e1-8months.vec_head"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/monty/Julia/Mads.jl/src"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"lineardx",
+			"bayes",
+			"calibr",
+			"mads",
+			"nonpara",
+			"visi",
+			"list-st",
+			"500px",
+			"height",
+			"dropdown-content",
+			"teal",
+			"background",
+			"unpad-paren",
+			"keep-one-line-b",
+			"additional_options_file",
+			"file",
+			"style",
+			"julia",
+			"zmq",
+			"Vec3",
+			"px",
+			"rc",
+			"px",
+			"scene",
+			"create_sphereflake_scene",
+			"scene",
+			"threadfunc",
+			"main",
+			"thread"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"images/neda-"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/monty/Julia/Mads.jl/src/MadsSA.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 57813,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1840,
+								1840
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Julia/Julia.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 769.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Mads.jl.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"trim",
+				"~/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

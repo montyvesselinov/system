@@ -5,11 +5,34 @@
 	],
 	"installed_packages":
 	[
+		"1Self",
+		"Alignment",
+		"BracketHighlighter",
+		"Color Highlighter",
 		"Compare Side-By-Side",
+		"Emmet",
+		"Git",
+		"Github Tools",
+		"GitlabIntegrate",
+		"GNU Octave Completions",
+		"GotoDocumentation",
 		"IJulia",
 		"Julia",
 		"JuliaCompletions",
+		"LaTeXTools",
+		"MarkdownEditing",
+		"Matlab Completions",
 		"Package Control",
-		"SublimeAStyleFormatter"
+		"Pretty YAML",
+		"Project Manager",
+		"SideBarEnhancements",
+		"SublimeAStyleFormatter",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-contrib-julialint",
+		"Sublimerge Pro",
+		"Todo",
+		"TodoReview",
+		"View In Browser"
 	]
 }
