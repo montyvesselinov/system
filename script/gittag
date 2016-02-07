@@ -1,0 +1,2 @@
+git push gh master; git tag -d v0.1.0; git push gh :refs/tags/v0.1.0; git tag v0.1.0 -m "version 0.1.0"; git push gh tag v0.1.0
+git push gl master; git tag -d v0.1.0; git push gl :refs/tags/v0.1.0; git tag v0.1.0 -m "version 0.1.0"; git push gl tag v0.1.0

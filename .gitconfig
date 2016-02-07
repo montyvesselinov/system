@@ -2,6 +2,9 @@
 	name = monty
 	email = velimir.vesselinov@gmail.com
 
+[github]
+	user = montyvesselinov
+
 [core]
 	editor = /usr/bin/vim
 	pager = less -r
@@ -121,6 +124,8 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	visual = !gitk
+	pushall = "!f(){ for i in `git remote`; do git push $i master; done; };f"
+	pullall = "!f(){ for i in `git remote`; do git pull $i master; done; };f"
 [push]
 	default = simple
 [gui]

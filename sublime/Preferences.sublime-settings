@@ -1,7 +1,27 @@
 {
-	"font_size": 14,
+	"added_words":
+	[
+		"sorption",
+		"flowpaths",
+		"Vesselinovi",
+		"caprock",
+		"Vesselinov",
+		"seismicity",
+		"nonparametrically",
+		"optimizable",
+		"Levenberg",
+		"Marquardt",
+		"indices",
+		"advective",
+		"dispersivity"
+	],
+	"word_wrap": true,
+	"close_windows_when_empty": true,
+	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+	"font_size": 13,
 	"ignored_packages":
 	[
+		"Markdown",
 		"Vintage"
 	],
 	"spell_check": true
