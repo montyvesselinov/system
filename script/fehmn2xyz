@@ -6,7 +6,7 @@ import os
 from os.path import basename
 
 if ( len(sys.argv) == 1 ):
-	print "Usage: grid-rotate *.fehmn"
+	print "Usage: fehmn2xyz *.fehmn"
 	sys.exit()
 else:
 	print "Case name: %s" % ( sys.argv[:] )
@@ -32,7 +32,7 @@ for i in range(0, len(lines)):
 			numnodes = int(splitline[0]) 
 			print "Number of nodes %d" % numnodes
 			f = open(rootname+".xyz", 'w')
-			for j in range (1, numnodes):
+			for j in range (0, numnodes):
 				i=i+1;
 				splitline = lines[i].split()
 				f.write( "%g %g %g\n" % ( float(splitline[1]), float(splitline[2]), float(splitline[3]) ))
