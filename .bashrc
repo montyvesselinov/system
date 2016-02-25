@@ -6,6 +6,17 @@ HOSTNAME=${HOSTNAME%%.*}
 HOSTNAME=${HOSTNAME%%[1-9]*}
 HOSTNAME=${HOSTNAME%%-fe*}
 export HOSTNAME
+if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
+	if [[ -n "${PS1}" ]]; then
+		echo "LANL turquoise machines"
+		echo "Load modules ..."
+		module load friendly-testing
+		module load user_contrib
+		module load friendly-testing cmake/3.2.1
+		module load friendly-testing gcc/4.9.2
+		module load git
+	fi
+fi
 if [[ -n "${PS1}" ]]; then
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
@@ -100,14 +111,3 @@ source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
 source ${HOME}/system/tmux.completion.bash
 export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64:$LD_LIBRARY_PATH
-if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
-	if [[ -n "${PS1}" ]]; then
-		echo "LANL turquoise machines"
-		echo "Load modules ..."
-		module load friendly-testing
-		module load user_contrib
-		module load friendly-testing cmake/3.2.1
-		module load friendly-testing gcc/4.9.2
-		module load friendly-testing git/2.3.3
-	fi
-fi

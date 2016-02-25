@@ -13,9 +13,9 @@
 		"Marquardt",
 		"indices",
 		"advective",
-		"dispersivity"
+		"dispersivity",
+		"Saltelli"
 	],
-	"word_wrap": true,
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
 	"font_size": 13,
@@ -24,5 +24,6 @@
 		"Markdown",
 		"Vintage"
 	],
-	"spell_check": true
+	"spell_check": true,
+	"word_wrap": true
 }

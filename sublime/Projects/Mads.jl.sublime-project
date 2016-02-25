@@ -2,10 +2,13 @@
 	"folders":
 	[
 		{
-			"path": "/Users/monty/Julia/Mads.jl"
+			"path": "/Users/monty/Julia/Mads"
 		},
 		{
 			"path": "/Users/monty/Julia"
+		},
+		{
+			"path": "/Users/monty/mads-analyses"
 		}
 	]
 }
