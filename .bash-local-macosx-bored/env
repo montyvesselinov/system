@@ -5,3 +5,14 @@ export LDFLAGS='-L/opt/local/lib/'
 export PETSC_DIR=/Users/monty/petsc PETSC_ARCH=arch-darwin-c-debug
 export ASAN_SYMBOLIZER_PATH=/opt/local/libexec/llvm-3.5/bin/llvm-symbolizer
 set ASAN_OPTIONS=symbolize=1
+
+export DWAVE_HOME=$HOME/DWave/qOp
+PATH="$PATH:$DWAVE_HOME/bin"
+export DYLD_LIBRARY_PATH=$DWAVE_HOME
+
+export BASH_ENV=$DWAVE_HOME/bin/dw
+source $DWAVE_HOME/bin/dw
+export LD_LIBRARY_PATH=/opt/local/lib:/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64:$LD_LIBRARY_PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export C_INCLUDE_PATH=/opt/local/include:/opt/local/include/glib-2.0:/opt/local/lib/glib-2.0/include:$C_INCLUDE_PATH
+export INCLUDE=/opt/local/include:/opt/local/include/glib-2.0:/opt/local/lib/glib-2.0/include:$INCLUDE

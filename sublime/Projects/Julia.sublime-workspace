@@ -51,18 +51,62 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/Users/monty/Julia/Mads/examples/ode/runtests.jl",
+			"settings":
+			{
+				"buffer_size": 2606,
+				"line_ending": "Unix"
+			}
+		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Python/Python.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
 	],
 	"build_varint": "",
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "git ",
+		"last_filter": "intsa",
 		"selected_items":
 		[
+			[
+				"intsa",
+				"Package Control: Install Package"
+			],
 			[
 				"git ",
 				"Git: Push"
@@ -129,37 +173,78 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/monty/Julia/Mads",
-		"/Users/monty/Julia/Mads/src"
+		"/Users/monty/Julia/Mads"
 	],
 	"file_history":
 	[
+		"/Users/monty/Julia/Mads/.travis.yml",
+		"/Users/monty/Julia/Mads/src/MadsObservations.jl",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsPlot.jl",
+		"/Users/monty/Julia/Mads/src/MadsPlot.jl",
+		"/Users/monty/Julia/Mads/src/MadsIO.jl",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsSA.jl",
+		"/Users/monty/Julia/Mads/examples/bayesian_sampling/bayesian_sampling.jl",
+		"/Users/monty/Julia/Mads/examples/ode/runtest.jl",
+		"/Users/monty/Julia/Mads/REQUIRE",
+		"/Users/monty/Julia/Mads/examples/ode/ode.mads",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsObservations.jl",
+		"/Users/monty/Julia/Mads/src/MadsMC.jl",
+		"/Users/monty/Julia/AquiferMixing/cookdata.jl",
+		"/Users/monty/Julia/Mads/examples/bayesian_sampling/runtests.jl",
+		"/Users/monty/Julia/Mads/examples/bayesian_sampling/w01.mads",
+		"/Users/monty/Julia/Mads/examples/bayesian_sampling/bayesian_sampling_anasol.jl",
+		"/Users/monty/Julia/Mads/examples/contamination/analysis.jl",
+		"/Users/monty/Julia/Mads/examples/contamination/runtests.jl",
+		"/Users/monty/Julia/Mads/examples/contamination/w01.jl",
+		"/Users/monty/Julia/Mads/examples/ode/ode.jl",
+		"/Users/monty/.julia/v0.4/Mads/FUNCTIONS.md",
+		"/Users/monty/Julia/Mads/GETTING_STARTED.md",
+		"/Users/monty/Julia/Mads/mkdocs/mkdocs.yml",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsFunc.jl",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsMC.jl",
+		"/Users/monty/Julia/Mads/src/MadsHelp.jl",
+		"/Users/monty/Julia/Mads/examples/bayesian_sampling/w01-source1_y-1000-spaghetti.svg",
+		"/Users/monty/Julia/NMFk.jl/src/NMFk.jl",
+		"/Users/monty/Julia/Mads/src/Mads.jl",
+		"/Users/monty/Julia/MixMatch.jl/src/MixMatch.jl",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsHelp.jl",
+		"/Users/monty/.julia/v0.4/Mads/TEST.md",
+		"/Users/monty/.julia/v0.4/Mads/MODEL_COUPLING.md",
+		"/Users/monty/Julia/Mads/src/MadsFunc.jl",
+		"/Users/monty/.julia/v0.4/Mads/MADS.md",
+		"/Users/monty/Julia/Mads/COPYING",
+		"/Users/monty/Julia/Mads/src/MadsLog.jl",
+		"/Users/monty/.julia/v0.4/Docile/src/Collector/utilities.jl",
+		"/Users/monty/Julia/Mads/src/MadsParameters.jl",
+		"/Users/monty/Julia/Mads/src/MadsSA.jl",
+		"/Users/monty/Julia/Mads/src/MadsYAML.jl",
+		"/Users/monty/Julia/Mads/src/MadsBIG.jl",
+		"/Users/monty/Julia/Mads/src/MadsLM.jl",
+		"/Users/monty/Julia/BrownianSources.jl/examples/ex.jl",
+		"/Users/monty/Julia/BrownianSources.jl/src/BrownianSources.jl",
+		"/Users/monty/sevar/firststeps/test.c",
+		"/Users/monty/sevar/firststeps/test.py",
+		"/Users/monty/sevar/firststeps/test.jl",
+		"/Users/monty/Julia/DistributionSums.jl/examples/ex.jl",
+		"/Users/monty/Julia/DistributionSums.jl/src/DistributionSums.jl",
+		"/Users/monty/Julia/MultizoneTransport.jl/src/MultizoneTransport.jl",
+		"/Users/monty/Julia/MultizoneTransport.jl/examples/ex.jl",
+		"/Users/monty/Julia/Mads/src/MadsAnasol.jl",
+		"/Users/monty/Julia/BrownianSources.jl/test/test.jl",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsAnasol.jl",
+		"/Users/monty/Julia/Mads/examples/contamination/w01-match-w10a.svg",
+		"/Users/monty/Julia/Mads/src/MadsCalibrate.jl",
 		"/Users/monty/Julia/Mads/docs/mads.html",
 		"/Users/monty/Julia/Mads/docs/mads.md",
-		"/Users/monty/Julia/Mads/GETTING_STARTED.md",
 		"/Users/monty/Julia/Mads/mkdocs/docs/index.md",
 		"/Users/monty/Julia/Mads/mkdocs/docs/Modules/Mads.md",
 		"/Users/monty/Julia/Mads/mkdocs/site/index.html",
 		"/Users/monty/Julia/Mads/mkdocs/site/mkdocs/search_index.json",
 		"/Users/monty/Julia/Mads/mkdocs/site/Modules/Mads/index.html",
-		"/Users/monty/Julia/Mads/src/MadsAnasol.jl",
-		"/Users/monty/Julia/Mads/src/MadsBIG.jl",
-		"/Users/monty/Julia/Mads/src/MadsCalibrate.jl",
 		"/Users/monty/Julia/Mads/src/MadsCreate.jl",
 		"/Users/monty/Julia/Mads/src/MadsForward.jl",
-		"/Users/monty/Julia/Mads/src/MadsFunc.jl",
 		"/Users/monty/Julia/Mads/src/MadsHelpers.jl",
-		"/Users/monty/Julia/Mads/src/MadsMC.jl",
 		"/Users/monty/Julia/Mads/src/MadsMisc.jl",
-		"/Users/monty/Julia/Mads/src/MadsObservations.jl",
-		"/Users/monty/Julia/Mads/src/MadsParameters.jl",
-		"/Users/monty/Julia/Mads/src/MadsPlot.jl",
-		"/Users/monty/Julia/Mads/src/MadsSA.jl",
-		"/Users/monty/Julia/Mads/src/MadsYAML.jl",
-		"/Users/monty/Julia/Mads/src/MadsLM.jl",
-		"/Users/monty/Julia/Mads/src/MadsIO.jl",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsPlot.jl",
-		"/Users/monty/Julia/Mads/src/MadsHelp.jl",
 		"/Users/monty/Julia/Mads/src/MadsTestFunctions.jl",
 		"/Users/monty/Julia/Mads/src/MadsParallel.jl",
 		"/Users/monty/Julia/Mads/src/MadsJSON.jl",
@@ -167,16 +252,13 @@
 		"/Users/monty/www-madsjulia/mads-overview.html",
 		"/Users/monty/www-madsjulia/index.html",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsTest.jl",
-		"/Users/monty/Julia/Mads/src/Mads.jl",
 		"/Users/monty/cc/IHP/IHP-MOD.C",
 		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/monty/Julia/BIGUQ/src/BIGOED.jl",
 		"/Users/monty/Julia/BIGUQ/src/BIGDT.jl",
 		"/Users/monty/Julia/ReusableFunctions/src/ReusableFunctions.jl",
 		"/Users/monty/Julia/MetaProgTools/src/MetaProgTools.jl",
-		"/Users/monty/Julia/Mads/REQUIRE",
 		"/Users/monty/Julia/Mads/src/madsjl.jl",
-		"/Users/monty/Julia/Mads/mkdocs/mkdocs.yml",
 		"/Users/monty/.julia/v0.4/Mads/GETTING_STARTED.md",
 		"/Users/monty/.julia/v0.4/Mads/mkdocs/site/index.html",
 		"/Users/monty/Julia/Mads/Readme.md",
@@ -197,7 +279,6 @@
 		"/Users/monty/Julia/efast/eFAST_MAIN_Parallel.jl",
 		"/Users/monty/Julia/efast/For SVR/mads_LHC_Sampler.jl",
 		"/Users/monty/Julia/BIGUQ/src/BIGUQ.jl",
-		"/Users/monty/Julia/Mads/src/MadsLog.jl",
 		"/Users/monty/Julia/Mads/scripts/diff.jl",
 		"/Users/monty/Julia/Mads/scripts/help.jl",
 		"/Users/monty/mads-analyses/data-needs/find-release-marshal2.jl",
@@ -209,7 +290,6 @@
 		"/Users/monty/.julia/v0.4/Compose/src/property.jl",
 		"/Users/monty/Julia/TheisTransport.jl/test/getbtcs.jl",
 		"/Users/monty/.julia/v0.4/Gadfly/src/geom/line.jl",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsSA.jl",
 		"/Users/monty/Julia/WEFO.jl/src/WEFO.jl",
 		"/Users/monty/.julia/v0.4/Mads/examples/wefo/wefo-sobol-all.mads",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsForward.jl",
@@ -217,7 +297,6 @@
 		"/Users/monty/Julia/bacteria/julia/odestaph/odestaph.mads",
 		"/Users/monty/.julia/v0.4/Mads/test/sa-efast.jl",
 		"/Users/monty/.julia/v0.4/Mads/examples/tests/test-sobol.mads",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsAnasol.jl",
 		"/Users/monty/Julia/bacteria/Paper 1/MinimalModel_15Oct28fnewfigures.docx",
 		"/Users/monty/.julia/v0.4/Mads/test/insttest.jl",
 		"/Users/monty/.julia/v0.4/Mads/test/runtests.jl",
@@ -225,43 +304,7 @@
 		"/Users/monty/Julia/Mads.jl",
 		"/Users/monty/Julia/Mads.jl/src/MadsSA.jl",
 		"/Users/monty/Julia/Mads.jl/src/MadsParameters.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsObservations.jl",
-		"/Users/monty/Julia/Mads.jl/src/Mads.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsBIG.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsCalibrate.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsYAML.jl",
-		"/Users/monty/Julia/Mads.jl/examples/getting_started/internal-parabola.jl",
-		"/Users/monty/Julia/Mads.jl/examples/getting_started/internal-linear.mads",
-		"/Users/monty/Julia/Mads.jl/examples/getting_started/internal-parabola.mads",
-		"/Users/monty/Julia/Mads.jl/examples/getting_started/internal-linear.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsFunc.jl",
-		"/Users/monty/Julia/TheisTransport.jl/test/testing.jl",
-		"/Users/monty/Julia/TheisTransport.jl/test/webapp.jl",
-		"/Users/monty/Julia/TheisTransport.jl/src/TheisTransport.jl",
-		"/Users/monty/Julia/TheisTransport.jl/test/test.jl",
-		"/Users/monty/Julia/Mads.jl/.julia.pkg.add",
-		"/Users/monty/Julia/Mads.jl/Readme.md",
-		"/Users/monty/Julia/Mads.jl/LICENSE",
-		"/Users/monty/mads/src_git/readme.md",
-		"/Users/monty/mads/src_git/src/mads.c",
-		"/Users/monty/Julia/Mads.jl/src/MadsHelp.jl",
-		"/Users/monty/Julia/Mads.jl/MadsGettingStarted.md",
-		"/Users/monty/Julia/Mads.jl/src/MadsTestFunctions.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsAnasol.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsCreate.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsForward.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsHelpers.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsMC.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsMisc.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsIO.jl",
-		"/Users/monty/Julia/bayesinversion2015/sourceinversionw01.jl",
-		"/Users/monty/Julia/bayesinversion2015/sourceinversion.jl",
-		"/Users/monty/Julia/Mads.jl/src/MadsSine.jl",
-		"/Users/monty/Library/Application Support/Sublime Text 3/Packages/TodoReview/TodoReview.sublime-settings",
-		"/Users/monty/Downloads/ICMS ».html",
-		"/Users/monty/Documents/lanl/pg/arrayToDims2.jl",
-		"/Users/monty/Documents/lanl/pg/arrayToDims.jl",
-		"/Users/monty/Documents/lanl/pg/arrayToDims.m"
+		"/Users/monty/Julia/Mads.jl/src/MadsObservations.jl"
 	],
 	"find":
 	{
@@ -272,6 +315,18 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/Users/monty/Julia/Mads/src",
+			"/Users/monty/Julia/Mads/examples",
+			"/Users/monty/Julia/Mads/esxamples",
+			"/Users/monty/Julia/Mads/src",
+			"/Users/monty/Julia/Mads/examples",
+			"/Users/monty/Julia/Mads/src",
+			"/Users/monty/Julia/Mads/examples/",
+			"/Users/monty/Julia/Mads/src/",
+			"/Users/monty/Julia/Mads/examples/",
+			"/Users/monty/Julia/Mads/src/",
+			"/Users/monty/Julia/Mads/src/*.jl",
+			"/Users/monty/Julia/Mads/*/*.jl",
 			"/Users/monty/Julia/Mads",
 			"/Users/monty/Julia/Mads/src",
 			"/Users/monty/Julia/Mads/src/*.jl",
@@ -288,6 +343,58 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"filterk",
+			"filter",
+			"getobskeys",
+			"getobsmax",
+			"getobsmin",
+			"getobsweight",
+			"geto",
+			"scatterplotsamples",
+			"seed",
+			"spagh",
+			"Colorant",
+			"Numbe",
+			"haskey",
+			"plotmatch",
+			"Guide",
+			"obs_plot1",
+			"plotspaghetti",
+			"workdir",
+			"maker3function",
+			"seton",
+			"plotspaghettis",
+			"plotspaghetti",
+			"spaghettiplot",
+			"spaghe",
+			"seto",
+			"spa",
+			"spaghe",
+			"rx",
+			"madsoutput",
+			"maxconcguess",
+			"random",
+			"locat",
+			"madscrit",
+			"madserr",
+			"warn",
+			"madswarn",
+			"madswarb",
+			"madsinfo",
+			"madsdebug",
+			"RobustPmap",
+			"Robust",
+			"setimagefileformat!",
+			"filename, format = Mads.setimagefileformat!(filename, format)",
+			"setimagefileformat",
+			"Mads",
+			"setimagefileformat",
+			"filename, format = setimagefileformat!(filename, format)",
+			"setimagefileformat!",
+			"didpl",
+			"vstack",
+			"didplot",
+			"\");\n",
 			"Mads data dictionary",
 			"init_dist",
 			"gamma",
@@ -363,59 +470,7 @@
 			"haskeyword",
 			"type: opt, log: no, step: 0.1, min: -0.5, max: 0.5, ",
 			"getmadsdir",
-			"\"log\"",
-			"\"type\"",
-			"getparamdis",
-			"getparamsdis",
-			"getparamsinit_min",
-			"Uniform",
-			"getoptparamkeys",
-			", weight: 1",
-			"longname: \"observation .\", log: false, max: 20, min: -20, ",
-			"\"type\"",
-			"Restart",
-			"crpz2",
-			"loggradientmagnitude",
-			"loggradientmagnitudeinput",
-			"btt",
-			"grad",
-			"logKinput",
-			"loggradientmagnitudes",
-			"m/s",
-			"::Int",
-			"function",
-			"getparamsna",
-			"getparamna",
-			"getparam",
-			"getobsnames",
-			"Make functions to get parameter keys for specific MADS ",
-			"names",
-			"optimizable",
-			"// ",
-			" loaded using `madsdata = Mads.loadmadsfiles(\"input_file_name.mads\")`",
-			"sindx",
-			"\"init\"",
-			"allparamdict",
-			"getsourcekeys",
-			"reim",
-			"meal",
-			"lunc",
-			"Chapterhouse",
-			"Coffee/Tea in    the Chapterhouse",
-			"in the   Chapterhouse",
-			"in the  Chapterhouse",
-			"in the   Chapterhouse",
-			"Lunch provided in the Chapterhouse ",
-			"Array",
-			"ESC",
-			"@addConstraint",
-			"@setObjective",
-			"@defVar",
-			"ES",
-			"iphia",
-			"Vaa",
-			"display",
-			"info"
+			"\"log\""
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -423,6 +478,14 @@
 		"regex": false,
 		"replace_history":
 		[
+			"spaghettiplot",
+			"problemdir",
+			"plotspaghetti",
+			"madscritical",
+			"madserror",
+			"setimagefileformat",
+			"Mads.setimagefileformat!(filename, format)",
+			"setimagefileformat!(filename, format)",
 			"MADS problem dictionary",
 			"",
 			"*MADS*",
@@ -465,8 +528,98 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/Users/monty/Julia/Mads/examples/ode/runtests.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2606,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1547,
+								1547
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/Julia/Julia.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -501,6 +654,10 @@
 		]
 	},
 	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 163.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -559,8 +716,8 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 145.0,
-	"status_bar_visible": true,
+	"side_bar_width": 204.0,
+	"status_bar_visible": false,
 	"template_settings":
 	{
 	}
