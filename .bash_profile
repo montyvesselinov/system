@@ -1,7 +1,8 @@
 if [[ -n "${PS1}" ]]; then
     . ${HOME}/.bashrc && check_screen
 else
-    OS=`uname -s`;
+	ulimit -c 0
+	OS=`uname -s`;
     export PATH=${HOME}/bin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/X11R6/bin:/opt/TWWfsw/bin:/usr/local/sbin
     export EDITOR=vi
     export VISUAL=vi
@@ -26,7 +27,9 @@ if [ -d "$HOME/Library/Python/2.7/bin" ]; then
 	PATH="$HOME/Library/Python/2.7/bin:$PATH"
 fi
 
-export DWAVE_HOME=$HOME/DWave/qOp
-PATH="$PATH:$DWAVE_HOME/bin"
-export DYLD_LIBRARY_PATH=$DWAVE_HOME
-source $DWAVE_HOME/bin/dw
+if [ -d $HOME/DWave/qOp ]; then
+	export DWAVE_HOME=$HOME/DWave/qOp
+	PATH="$PATH:$DWAVE_HOME/bin"
+	export DYLD_LIBRARY_PATH=$DWAVE_HOME
+	source $DWAVE_HOME/bin/dw
+fi

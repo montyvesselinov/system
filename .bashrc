@@ -96,7 +96,6 @@ case "$OSTYPE" in
     *)
 		echo "unknown: $OSTYPE" ;;
 esac
-ulimit -c 0
 export GIT_SSH=~/system/script/turq-ssh-hop.sh
 source ${HOME}/.bash/env
 source ${HOME}/.bash/aliases
@@ -107,15 +106,17 @@ source ${HOME}/system/tmux.completion.bash
 export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64:$LD_LIBRARY_PATH
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 	module load git
+	export MADS_NO_PYTHON=""
+	export MADS_NO_PLOT=""
 	if [[ -n "${PS1}" ]]; then
 		echo "LANL turquoise machines"
 		echo "Load modules ..."
 		module load friendly-testing
-		module load user_contrib
+		if [[ `module avail user_cotrib` ]]; then
+			module load user_contrib
+		fi
 		module load friendly-testing cmake/3.2.1
-		module load friendly-testing gcc/4.9.2
+		module load friendly-testing gcc/4.7.2
 		module load git
-		# export MADS_NO_PLOT=""
-		export MADS_NO_PLOT=""
 	fi
 fi
