@@ -25,3 +25,8 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 if [ -d "$HOME/Library/Python/2.7/bin" ]; then
 	PATH="$HOME/Library/Python/2.7/bin:$PATH"
 fi
+
+export DWAVE_HOME=$HOME/DWave/qOp
+PATH="$PATH:$DWAVE_HOME/bin"
+export DYLD_LIBRARY_PATH=$DWAVE_HOME
+source $DWAVE_HOME/bin/dw

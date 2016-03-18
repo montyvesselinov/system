@@ -14,7 +14,10 @@
 		"indices",
 		"advective",
 		"dispersivity",
-		"Saltelli"
+		"Saltelli",
+		"macrodispersion",
+		"downgradient",
+		"upgradient"
 	],
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
