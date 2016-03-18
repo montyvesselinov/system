@@ -108,5 +108,7 @@ if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 		module load friendly-testing cmake/3.2.1
 		module load friendly-testing gcc/4.9.2
 		module load git
+		# export MADS_NO_PLOT=""
+		export MADS_NO_PLOT=""
 	fi
 fi
