@@ -17,16 +17,20 @@
 		"Saltelli",
 		"macrodispersion",
 		"downgradient",
-		"upgradient"
+		"upgradient",
+		"Fickian",
+		"Velimir",
+		"monty",
+		"vadose"
 	],
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
 	"font_size": 13,
 	"ignored_packages":
 	[
-		"Markdown",
 		"Vintage"
 	],
+	"open_files_in_new_window": false,
 	"spell_check": true,
 	"word_wrap": true
 }
