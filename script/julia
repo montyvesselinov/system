@@ -1,10 +1,11 @@
 #!/bin/bash
 case "$HOSTNAME" in
 (hb*) ~/bin/julia-hobo "$@";;
-(wf*) ~/bin/julia-pinto "$@";;
 (pi*) ~/bin/julia-pinto "$@";;
 (ml*) ~/bin/julia-pinto "$@";;
-(mp*) ~/bin/julia-mapache "$@";;
+(wf*) ~/bin/julia-pinto "$@";;
+(cj*) ~/bin/julia-conejo "$@";;
+(mp*) ~/bin/julia-conejo "$@";;
 (mads*) /usr/bin/julia "$@";;
 (*) ~/bin/julia "$@";;
 esac
