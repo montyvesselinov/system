@@ -13,6 +13,7 @@ ln -sf ./system/.tcsh .tcsh
 ln -sf ./system/.gemrc .gemrc
 ln -sf ./system/.gitconfig .gitconfig
 ln -sf ./system/.gitignore .gitignore
+ln -sf ./system/.curlrc .curlrc
 ln -sf ./system/.hgrc .hgrc
 ln -sf ./system/.inputrc .inputrc
 ln -sf ./system/.juliarc.jl .juliarc.jl
