@@ -9,6 +9,25 @@ if haskey(ENV, "HOME")
 		push!(LOAD_PATH, ENV["HOME"]*"/Julia")
 	end
 end
+if haskey(ENV, "HOSTNAME")
+	if ismatch(r"hb.*", ENV["HOSTNAME"]) 
+		ENV["MADS_NO_PYTHON"] = ""
+		ENV["HOSTNAME"] = "hb"
+	end
+	if ismatch(r"cj.*", ENV["HOSTNAME"]) 
+		ENV["MADS_NO_PYTHON"] = ""
+		ENV["HOSTNAME"] = "cj"
+	end
+	if ismatch(r"pi.*", ENV["HOSTNAME"]) 
+		ENV["MADS_NO_PYTHON"] = ""
+		ENV["HOSTNAME"] = "pi"
+	end
+	if ismatch(r"mp.*", ENV["HOSTNAME"]) 
+		ENV["MADS_NO_PYTHON"] = ""
+		ENV["HOSTNAME"] = "mp"
+	end
+	unshift!(Base.LOAD_CACHE_PATH, joinpath(Base.LOAD_CACHE_PATH[1], ENV["HOSTNAME"]))
+end
 #push!(Sys.DL_LOAD_PATH, ENV["HOME"]*"/mads/repo/bin/Lib")
 ## give a local .juliarc.jl a chance
 #if chomp(readall(`pwd`)) != ENV["HOME"]
