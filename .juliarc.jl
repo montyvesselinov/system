@@ -26,6 +26,10 @@ if haskey(ENV, "HOSTNAME")
 		ENV["MADS_NO_PYTHON"] = ""
 		ENV["HOSTNAME"] = "mp"
 	end
+	if ismatch(r"ml.*", ENV["HOSTNAME"]) 
+		ENV["MADS_NO_PYTHON"] = ""
+		ENV["HOSTNAME"] = "ml"
+	end
 	unshift!(Base.LOAD_CACHE_PATH, joinpath(Base.LOAD_CACHE_PATH[1], ENV["HOSTNAME"]))
 end
 #push!(Sys.DL_LOAD_PATH, ENV["HOME"]*"/mads/repo/bin/Lib")
