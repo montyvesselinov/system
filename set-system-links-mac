@@ -24,6 +24,7 @@ ln -sf ./system/.netrc .netrc
 ln -sf ./system/.profile .profile
 ln -sf ./system/.vimrc .vimrc
 ln -sf ./system/.vim .vim
+ln -sf ./system/.ssh/config .ssh/config
 echo "Script ..."
 ln -sf ./system/script script
 echo "Sublime ..."
