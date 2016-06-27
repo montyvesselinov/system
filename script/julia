@@ -6,6 +6,7 @@ case "$HOSTNAME" in
 (wf*) ~/bin/julia-pinto "$@";;
 (cj*) ~/bin/julia-conejo "$@";;
 (mp*) ~/bin/julia-conejo "$@";;
+(wc*) ~/bin/julia-woodchuck "$@";;
 (mads*) /usr/bin/julia "$@";;
 (*) ~/bin/julia "$@";;
 esac
