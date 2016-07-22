@@ -110,8 +110,6 @@ export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 	umask g+w
 	module load git
-	export MADS_NO_PYTHON=""
-	export MADS_NO_PLOT=""
 	if [[ -n "${PS1}" ]]; then
 		echo "LANL turquoise machines"
 		echo "Load modules ..."
