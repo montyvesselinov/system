@@ -10,27 +10,13 @@ if haskey(ENV, "HOME")
 	end
 end
 if haskey(ENV, "HOSTNAME")
-	if ismatch(r"hb.*", ENV["HOSTNAME"]) 
-		ENV["MADS_NO_PYTHON"] = ""
-		ENV["HOSTNAME"] = "hb"
+	for i = ("hb", "cj", "pi", "mp", "ml", "wf")
+		if ismatch(r"$(i).*", ENV["HOSTNAME"]) 
+			ENV["MADS_NO_PYTHON"] = ""
+			ENV["HOSTNAME"] = i
+			unshift!(Base.LOAD_CACHE_PATH, joinpath(Base.LOAD_CACHE_PATH[1], ENV["HOSTNAME"]))
+		end
 	end
-	if ismatch(r"cj.*", ENV["HOSTNAME"]) 
-		ENV["MADS_NO_PYTHON"] = ""
-		ENV["HOSTNAME"] = "cj"
-	end
-	if ismatch(r"pi.*", ENV["HOSTNAME"]) 
-		ENV["MADS_NO_PYTHON"] = ""
-		ENV["HOSTNAME"] = "pi"
-	end
-	if ismatch(r"mp.*", ENV["HOSTNAME"]) 
-		ENV["MADS_NO_PYTHON"] = ""
-		ENV["HOSTNAME"] = "mp"
-	end
-	if ismatch(r"ml.*", ENV["HOSTNAME"]) 
-		ENV["MADS_NO_PYTHON"] = ""
-		ENV["HOSTNAME"] = "ml"
-	end
-	unshift!(Base.LOAD_CACHE_PATH, joinpath(Base.LOAD_CACHE_PATH[1], ENV["HOSTNAME"]))
 end
 #push!(Sys.DL_LOAD_PATH, ENV["HOME"]*"/mads/repo/bin/Lib")
 ## give a local .juliarc.jl a chance
