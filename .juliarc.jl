@@ -12,6 +12,7 @@ end
 if haskey(ENV, "HOSTNAME")
 	for i = ("wc", "cj", "pi", "mp", "ml", "wf")
 		if ismatch(r"$(i).*", ENV["HOSTNAME"]) || i == ENV["HOSTNAME"]
+			ENV["MADS_NO_PYPLOT"] = ""
 			ENV["MADS_NO_PYTHON"] = ""
 			ENV["HOSTNAME"] = i
 			unshift!(Base.LOAD_CACHE_PATH, joinpath(Base.LOAD_CACHE_PATH[1], ENV["HOSTNAME"]))
