@@ -99,6 +99,8 @@ case "$OSTYPE" in
     *)
 		echo "unknown: $OSTYPE" ;;
 esac
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
 export GIT_SSH=~/system/script/turq-ssh-hop.sh
 source ${HOME}/.bash/env
 source ${HOME}/.bash/aliases
