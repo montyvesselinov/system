@@ -21,7 +21,10 @@
 		"Fickian",
 		"Velimir",
 		"monty",
-		"vadose"
+		"vadose",
+		"jacobian",
+		"Opportuneness",
+		"Infogap"
 	],
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
