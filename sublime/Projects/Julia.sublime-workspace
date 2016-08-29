@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"cont",
+				"continue"
+			],
+			[
+				"Floa",
+				"float64"
+			],
+			[
+				"getopt",
+				"getoptparamkeys"
+			],
+			[
 				"top",
 				"top: 〔property〕"
 			],
@@ -52,72 +64,26 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/monty/Julia/Mads/src/MadsIO.jl",
+			"file": "/Users/monty/Julia/MixMatch.jl/src/MixMatch.jl",
 			"settings":
 			{
-				"buffer_size": 16522,
+				"buffer_size": 14580,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial3.mads",
+			"file": "/Users/monty/Julia/NMFk.jl/src/NMFk.jl",
 			"settings":
 			{
-				"buffer_size": 549,
+				"buffer_size": 5914,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial3.jl",
+			"file": "/Users/monty/Julia/rMF/src/rMF.jl",
 			"settings":
 			{
-				"buffer_size": 435,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "import Mads\n#md = Mads.loadmadsfile(\"models/internal-linear.mads\")\nmd = Mads.loadmadsfile(\"models/internal-polynomial3.mads\")\n#md = Mads.loadmadsfile(\"models/internal-polynomial.mads\")\n\nproblem = split(Mads.getmadsrootname(md),\"-\")[2]\n\ninfo(\"Problem: $(problem)\")\n\nif !isdir(\"uncertainty_results\")\n	mkdir(\"uncertainty_results\")\nend\n\ninfo(\"Local uncertainty analysis\")\n\ninfo(\"Model calibration\")\np, c = Mads.calibrate(md, save_results=false)\n@show p\npv = collect(values(p))\nf = Mads.forward(md, p)\nvar_scale = .5\n\ninfo(\"Local sensitivity analysis\")\nlsa_results = Mads.localsa(md, datafiles=false, imagefiles=false, param=pv, obs=collect(values(f)))\n\ninfo(\"Model parameter samping\")\nsamples, llhoods = Mads.sampling(pv, lsa_results[\"jacobian\"], 1000, seed=2016, scale=var_scale)\n\ninfo(\"Model forward runs\")\no = Mads.forward(md, samples)\nn = length(o)\no = hcat(map(i->collect(values(o[i])), 1:n)...)'\n\ninfo(\"Use importance sampling to the 95% of the solutions, keeping the most likely solutions\")\nnewllhoods = Mads.reweightsamples(md, o, llhoods)\nsortedllhoods = sort(newllhoods, rev=true)\nsortedprobs = sort(exp(newllhoods), rev=true) / sum(exp(newllhoods))\ncumprob = 0.\ni = 1\nwhile cumprob < .95\n	cumprob += sortedprobs[i]\n	i += 1\nend\nthresholdllhood = sortedllhoods[i - 1]\ngoodoprime = Array(Float64, size(o, 2), 0)\nfor i = 1:length(newllhoods)\n	if newllhoods[i] > thresholdllhood\n		goodoprime = hcat(goodoprime, vec(o[i, :]))\n	end\nend\n\ninfo(\"Variance of posterior predictions (wrong)\")\ndisplay(diag(lsa_results[\"jacobian\"] * lsa_results[\"covar\"] * lsa_results[\"jacobian\"]')')\n\ninfo(\"Variance of posterior predictions using importance sampling\")\ndisplay(var(goodoprime, 2)')\n# JLD.save(\"uncertainty_results/variance-important-sampling.jld\", \"goodoprime\", goodoprime)\n\ninfo(\"Spaghetti plot of posterior predictions\")\nMads.spaghettiplot(md, o, filename=\"uncertainty_results/spaghetti-$(problem).png\")\n\ninfo(\"Spaghetti plot of posterior predictions using importance sampling\")\nMads.spaghettiplot(md, goodoprime', filename=\"uncertainty_results/spaghetti-$(problem)-importance-sampling.png\")\n\ninfo(\"Histogram of `o5` predictions\")\nfig = Gadfly.plot(x=o[:,5], Gadfly.Guide.xlabel(\"o5\"), Gadfly.Geom.histogram())\nGadfly.draw(Gadfly.PNG(\"uncertainty_results/histogram-$(problem).png\", 6Gadfly.inch, 4Gadfly.inch), fig)\n\ninfo(\"Histogram of `o5` predictions using importance sampling\")\nfig = Gadfly.plot(x=goodoprime'[:,5], Gadfly.Guide.xlabel(\"o5\"), Gadfly.Geom.histogram())\nGadfly.draw(Gadfly.PNG(\"uncertainty_results/histogram-$(problem)-importance-sampling.png\", 6Gadfly.inch, 4Gadfly.inch), fig)\n\ninfo(\"Spaghetti plot of posterior predictions using Bayesian analysis\")\nMads.setparamsinit!(md, p)\nmcmcchain = Mads.bayessampling(md; weights=10, nsteps=10000, burnin=1000, thinning=1, seed=2016)\npred = Mads.forward(md, mcmcchain.value)\npred = hcat(map(i->collect(values(pred[i])), 1:length(pred))...)'\nMads.spaghettiplot(md, pred, filename=\"uncertainty_results/spaghetti-$(problem)-bayes.png\")\n\ninfo(\"Histogram of `o5` predictions using Bayesian analysis\")\nfig = Gadfly.plot(x=pred[:,5], Gadfly.Guide.xlabel(\"o5\"), Gadfly.Geom.histogram())\nGadfly.draw(Gadfly.PNG(\"uncertainty_results/histogram-$(problem)-bayes.png\", 6Gadfly.inch, 4Gadfly.inch), fig)\n\ninfo(\"Variance of posterior predictions using Bayesian analysis\")\ndisplay(var(pred, 1))\n\n",
-			"file": "/Users/monty/Julia/Mads/examples/model_analysis/uncertainty.jl",
-			"file_size": 3312,
-			"file_write_time": 131135013160000000,
-			"settings":
-			{
-				"buffer_size": 3334,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/monty/Julia/Mads/src/MadsMC.jl",
-			"settings":
-			{
-				"buffer_size": 5028,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "import Gadfly\n\n\"\"\"\nLocal sensitivity analysis based on eigen analysis of covariance matrix\n\nArguments:\n\n- `madsdata` : MADS problem dictionary\n- `madsdata` : MADS problem dictionary\n- `filename` : output file name\n- `format` : output plot format (`png`, `pdf`, etc.)\n- `param` : parameter set\n- `obs` : observations for the parameter set\n\"\"\"\nfunction localsa(madsdata::Associative; format::AbstractString=\"\", filename::AbstractString=\"\", datafiles=true, imagefiles=true, param=Array(Float64,0), obs=Array(Float64,0))\n	if filename == \"\"\n		rootname = Mads.getmadsrootname(madsdata)\n		ext = \"\"\n	else\n		rootname = Mads.getrootname(filename)\n		ext = \".\" * Mads.getextension(filename)\n	end\n	g = makelocalsafunction(madsdata)\n	paramkeys = getoptparamkeys(madsdata)\n	plotlabels = getparamsplotname(madsdata, paramkeys)\n	if plotlabels[1] == \"\"\n		plotlabels = paramkeys\n	end\n	nP = length(paramkeys)\n	nPi = sizeof(param)\n	if nPi == 0\n		param = getparamsinit(madsdata, paramkeys)\n	elseif nPi != nP\n		\n	end\n	J = g(param, center=obs)\n	datafiles && writedlm(\"$(rootname)-jacobian.dat\", J)\n	mscale = max(abs(minimum(J)), abs(maximum(J)))\n	if imagefiles && isdefined(:Gadfly)\n		jacmat = Gadfly.spy(J, Gadfly.Scale.x_discrete(labels = i->plotlabels[i]), Gadfly.Scale.y_discrete,\n					Gadfly.Guide.YLabel(\"Observations\"), Gadfly.Guide.XLabel(\"Parameters\"),\n					Gadfly.Theme(default_point_size=20Gadfly.pt, major_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt, key_title_font_size=16Gadfly.pt, key_label_font_size=12Gadfly.pt),\n					Gadfly.Scale.ContinuousColorScale(Gadfly.Scale.lab_gradient(parse(Colors.Colorant, \"green\"), parse(Colors.Colorant, \"yellow\"), parse(Colors.Colorant, \"red\")), minvalue = -mscale, maxvalue = mscale))\n		filename = \"$(rootname)-jacobian\" * ext\n		filename, format = setimagefileformat(filename, format)\n		Gadfly.draw(Gadfly.eval(symbol(format))(filename, 6Gadfly.inch, 12Gadfly.inch), jacmat)\n		Mads.madsinfo(\"Jacobian matrix plot saved in $filename\")\n	end\n	JpJ = J' * J\n	covar = Array(Float64, 0)\n	try\n		u, s, v = svd(JpJ)\n		covar = v * inv(diagm(s)) * u'\n	catch \"LAPACKException(12)\"\n		try\n			covar = inv(JpJ)\n		catch \"SingularException(4)\"\n			Mads.madserror(\"Singular covariance matrix! Local sensitivity analysis fails.\")\n			return\n		end\n	end\n	stddev = sqrt(abs(diag(covar)))\n	if datafiles\n		writedlm(\"$(rootname)-covariance.dat\", covar)\n		f = open(\"$(rootname)-stddev.dat\", \"w\")\n		for i in 1:nP\n			write(f, \"$(paramkeys[i]) $(param[i]) $(stddev[i])\\n\")\n		end\n		close(f)\n	end\n	correl = covar ./ diag(covar)\n	datafiles && writedlm(\"$(rootname)-correlation.dat\", correl)\n	eigenv, eigenm = eig(covar)\n	eigenv = abs(eigenv)\n	index = sortperm(eigenv)\n	sortedeigenv = eigenv[index]\n	sortedeigenm = real(eigenm[:,index])\n	datafiles && writedlm(\"$(rootname)-eigenmatrix.dat\", sortedeigenm)\n	datafiles && writedlm(\"$(rootname)-eigenvalues.dat\", sortedeigenv)\n	if imagefiles && isdefined(:Gadfly)\n		eigenmat = Gadfly.spy(sortedeigenm, Gadfly.Scale.y_discrete(labels = i->plotlabels[i]), Gadfly.Scale.x_discrete,\n					Gadfly.Guide.YLabel(\"Parameters\"), Gadfly.Guide.XLabel(\"Eigenvectors\"),\n					Gadfly.Theme(default_point_size=20Gadfly.pt, major_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt, key_title_font_size=16Gadfly.pt, key_label_font_size=12Gadfly.pt),\n					Gadfly.Scale.ContinuousColorScale(Gadfly.Scale.lab_gradient(parse(Colors.Colorant, \"green\"), parse(Colors.Colorant, \"yellow\"), parse(Colors.Colorant, \"red\"))))\n		# eigenval = plot(x=1:length(sortedeigenv), y=sortedeigenv, Scale.x_discrete, Scale.y_log10, Geom.bar, Guide.YLabel(\"Eigenvalues\"), Guide.XLabel(\"Eigenvectors\"))\n		filename = \"$(rootname)-eigenmatrix\" * ext\n		filename, format = setimagefileformat(filename, format)\n		Gadfly.draw(Gadfly.eval(symbol(format))(filename,6Gadfly.inch,6Gadfly.inch), eigenmat)\n		Mads.madsinfo(\"Eigen matrix plot saved in $filename\")\n		eigenval = Gadfly.plot(x=1:length(sortedeigenv), y=sortedeigenv, Gadfly.Scale.x_discrete, Gadfly.Scale.y_log10,\n					Gadfly.Geom.bar,\n					Gadfly.Theme(default_point_size=20Gadfly.pt, major_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt, key_title_font_size=16Gadfly.pt, key_label_font_size=12Gadfly.pt),\n					Gadfly.Guide.YLabel(\"Eigenvalues\"), Gadfly.Guide.XLabel(\"Eigenvectors\"))\n		filename = \"$(rootname)-eigenvalues\" * ext\n		filename, format = setimagefileformat(filename, format)\n		Gadfly.draw(Gadfly.eval(symbol(format))(filename, 6Gadfly.inch, 4Gadfly.inch), eigenval)\n		Mads.madsinfo(\"Eigen values plot saved in $filename\")\n	end\n	Dict(\"jacobian\"=>J, \"covar\"=>covar, \"stddev\"=>stddev, \"eigenmatrix\"=>sortedeigenm, \"eigenvalues\"=>sortedeigenv)\nend\n\n\"Plot the sensitivity analysis results for each well (Specific plot requested by Monty)\"\nfunction plotSAresults_monty(wellname, madsdata, result)\n	if !haskey(madsdata, \"Wells\")\n		Mads.madserror(\"There is no 'Wells' data in the MADS input dataset\")\n		return\n	end\n	nsample = result[\"samplesize\"]\n	o = madsdata[\"Wells\"][wellname][\"obs\"]\n	paramkeys = Mads.getoptparamkeys(madsdata)\n	nP = length(paramkeys)\n	nT = length(o)\n	d = Array(Float64, 2, nT)\n	tes = Array(Float64, nP, nT)\n	# Deleting \"Voids\" from results (tes[1:3])\n	for zz=1:3\n		for k = 1:7\n			result[\"tes\"][\"$(wellname)_$zz\"][paramkeys[k]] = NaN\n		end\n	end\n	# Setting tes/concentration matrices\n	for i in 1:nT\n		t = d[1,i] = o[i][\"t\"]\n		d[2,i] = o[i][\"c\"]\n		obskey = wellname * \"_\" * string(t)\n		j = 1\n		for paramkey in paramkeys\n			tes[j,i] = result[\"tes\"][obskey][paramkey]\n			j += 1\n		end\n	end\n	# Calculating concentration from initial values (using model)\n	paramallkeys  = Mads.getparamkeys(madsdata)\n	paramalldict  = DataStructures.OrderedDict(zip(paramallkeys, map(key->madsdata[\"Parameters\"][key][\"init\"], paramallkeys)))\n	f 			  = Mads.makemadscommandfunction(madsdata)\n	Ytemp = f(paramalldict)\n	# Since md might include more wells then wellname, this finds results only for wellname\n	wstr = Array(AbstractString,(50,1))\n	for i = 1:50\n		wstr[i] = wellname*\"_$i\"\n	end\n	# Finding concentration just for wellname\n	Y = zeros(50,1)\n	for i = 1:50\n		Y[i] = Ytemp[wstr[i]]\n	end\n	# Concentrations will be normalized to be from 0 to 1\n	maxconcentration = maximum(Y)\n	# Normalizing concentration\n	Y = Y./maxconcentration\n	# Rounding maxconcentration to 3 sig figs\n	maxconcentration = signif(maxconcentration,3)\n	# Data frame for concentration\n	dfc = DataFrames.DataFrame(x=[1:50], y = Y[:], parameter=\"c\")\n	# Changing paramkeys so they don't include \"source1_\"\n	for k = 1:nP\n		if length(paramkeys[k]) > 6\n			if paramkeys[k][1:6] == \"source\"\n				paramkeys[k] = paramkeys[k][9:end]\n			end\n		end\n	end\n	# Data frame for total effect\n	df = Array(Any, nP)\n	j = 1\n	for paramkey in paramkeys\n		df[j] = DataFrames.DataFrame(x=collect(d[1,:]), y=collect(tes[j,:]), parameter=\"$paramkey\")\n		#deleteNaN!(df[j])\n		j += 1\n	end\n	if isdefined(:Gadfly)\n		vdf = vcat(df...)\n		# Setting default colors for parameters	\n		a = Gadfly.Scale.color_discrete_hue()\n		# index 6 is grey\n		if nP >= 6\n			pcolors = a.f(nP+1)\n			pcolors = vcat(pcolors[6], pcolors[1:5], pcolors[7:nP+1])\n		else\n			pcolors = a.f(nP+6)\n			pcolors = vcat(pcolors[6], pcolors[1:nP])\n		end\n		# Combining dataframes\n		bigdf = vcat(dfc,vdf)\n		# Plotting\n		ptes = Gadfly.plot(bigdf, x=\"x\", y=\"y\", Geom.line, color = \"parameter\", Guide.XLabel(xtitle), Guide.YLabel(\"Total Effect/Normalized Concentration\"),\n											 Guide.title(\"$(wellname) - Max Concentration: $(maxconcentration)\"), Theme(key_position = :bottom, line_width=.03Gadfly.inch),\n											 Gadfly.Scale.color_discrete_manual(pcolors...))\n		# Creating .svg file for plot (in current directory)\n		rootname = Mads.getmadsrootname(madsdata)\n		method = result[\"method\"]\n		Gadfly.draw(SVG(string(\"$rootname-$wellname-$method-$(nsample)_montyplot.svg\"), 9Gadfly.inch, 6Gadfly.inch), ptes)\n	end\nend\n",
-			"file": "/Users/monty/Julia/Mads/src/MadsSAPlot.jl",
-			"file_size": 7789,
-			"file_write_time": 131135015360000000,
-			"settings":
-			{
-				"buffer_size": 7801,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/monty/Julia/Mads/src/MadsParameters.jl",
-			"settings":
-			{
-				"buffer_size": 16955,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/monty/Julia/Mads/src/MadsFunc.jl",
-			"settings":
-			{
-				"buffer_size": 19420,
+				"buffer_size": 27232,
 				"line_ending": "Unix"
 			}
 		}
@@ -235,41 +201,96 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/monty/Julia/Mads",
-		"/Users/monty/Julia/Mads/examples",
-		"/Users/monty/Julia/Mads/examples/internal-linear-model",
-		"/Users/monty/Julia/Mads/examples/model_analysis",
-		"/Users/monty/Julia/Mads/examples/model_analysis/calibration_results",
-		"/Users/monty/Julia/Mads/examples/model_analysis/sensitivity_results",
-		"/Users/monty/Julia/Mads/src"
+		"/Users/monty/Julia",
+		"/Users/monty/Julia/MixMatch.jl",
+		"/Users/monty/Julia/MixMatch.jl/examples",
+		"/Users/monty/Julia/MixMatch.jl/src",
+		"/Users/monty/Julia/MixMatch.jl/test",
+		"/Users/monty/Julia/NMFk.jl",
+		"/Users/monty/Julia/NMFk.jl/src",
+		"/Users/monty/Julia/peaks",
+		"/Users/monty/Julia/rMF",
+		"/Users/monty/Julia/rMF/AquiferMixing",
+		"/Users/monty/Julia/rMF/src"
 	],
 	"file_history":
 	[
+		"/Users/monty/Julia/rMF/src/rMF.jl",
+		"/Users/monty/Julia/NMFk.jl/src/NMFk.jl",
+		"/Users/monty/Julia/MixMatch.jl/src/MixMatch.jl",
+		"/Users/monty/Julia/peaks/peaks.jl",
+		"/Users/monty/Julia/Mads/src/MadsPlotPy.jl",
+		"/Users/monty/Julia/MixMatch.jl/examples/deltas.jl",
+		"/Users/monty/Julia/peaks/peakdet.jl",
+		"/Users/monty/Julia/MixMatch.jl/examples/deltas4.jl",
+		"/Users/monty/Julia/MixMatch.jl/examples/deltas3.jl",
+		"/Users/monty/Julia/MixMatch.jl/examples/deltas2.jl",
+		"/Users/monty/.julia/v0.4/Mads/m2.jl",
+		"/Users/monty/.julia/v0.4/Mads/m1.jl",
+		"/Users/monty/.julia/v0.4/mads/src/MadsMC.jl",
+		"/Users/monty/Julia/Mads/src/MadsPublish.jl",
+		"/Users/monty/Julia/Mads/src/MadsSAPlot.jl",
+		"/Users/monty/Julia/Mads/src/MadsLM.jl",
+		"/Users/monty/.julia/v0.4/mads/src/MadsLM.jl",
+		"/Users/monty/Julia/Mads/src/MadsInfoGap.jl",
+		"/Users/monty/Julia/MixMatch.jl/examples/deltas2eye.jl",
+		"/Users/monty/Julia/Mads/src/MadsBSS.jl",
+		"/Users/monty/Julia/MixMatch.jl/test/runtests.jl",
+		"/Users/monty/Julia/ToQ.jl/src/ToQ.jl",
+		"/Users/monty/Julia/MixMatch.jl/REQUIRE",
+		"/Users/monty/Julia/rMF/AquiferMixing/sid-ta16.jl",
+		"/Users/monty/mads-analyses/cr2015nmf/setdata.jl",
+		"/Users/monty/mads-analyses/cr2015nmf/sid.jl",
+		"/Users/monty/Julia/Mads/src/MadsHelp.jl",
 		"/Users/monty/Julia/Mads/src/MadsTest.jl",
-		"/Users/monty/Julia/Mads/src/MadsForward.jl",
-		"/Users/monty/Julia/Mads/src/MadsObservations.jl",
-		"/Users/monty/Julia/Mads/src/MadsFunc.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial3.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-linear.jl",
+		"/Users/monty/julialang/test/strings/io.jl",
+		"/Users/monty/.julia/v0.4/Mads/docs/Examples/infogap/index.md",
+		"/Users/monty/Julia/Mads/examples/model_analysis/infogap.jl",
+		"/Users/monty/Julia/Mads/mkdocs.yml",
+		"/Users/monty/Julia/Mads/examples/model_analysis/uncertainty.jl",
+		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/models/internal-exp-polynomial.mads",
+		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/models/internal-exp-polynomial.jl",
+		"/Users/monty/Julia/Mads/examples/model_analysis/infogap_results/model_1_h_1.png",
+		"/Users/monty/Julia/Mads/examples/model_analysis/infogap_results/model_1_h_1.0.png",
+		"/Users/monty/Julia/Mads/examples/model_analysis/infogap-jumplin.jl",
+		"/Users/monty/Julia/Mads/examples/model_analysis/infogap-mpblin.jl",
+		"/Users/monty/Julia/Mads/src/MadsBIGPlot.jl",
+		"/Users/monty/Julia/Mads/examples/learn_julia/julia_tutorial.jl",
+		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-linear.mads",
+		"/Users/monty/Julia/Mads/src/MadsSA.jl",
 		"/Users/monty/Julia/Mads/examples/model_analysis/sensitivity.jl",
+		"/Users/monty/Julia/Mads/REQUIRE",
+		"/Users/monty/Julia/Mads/src/MadsCalibrate.jl",
+		"/Users/monty/Julia/Mads/src/MadsForward.jl",
+		"/Users/monty/Julia/Mads/examples/contamination/contamination-efast.jl",
+		"/Users/monty/Julia/Mads/examples/contamination/contamination.jl",
+		"/Users/monty/Julia/Mads/examples/model_analysis/bayes.jl",
+		"/Users/monty/Julia/Mads/examples/bayesian_sampling/runtests.jl",
+		"/Users/monty/Julia/Mads/src/MadsMisc.jl",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsSA.jl",
+		"/Users/monty/email.jl",
+		"/Users/monty/Julia/Mads/src/MadsParsers.jl",
+		"/Users/monty/Julia/Mads/src/MadsParallel.jl",
+		"/Users/monty/Julia/Mads/src/MadsMC.jl",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsCalibrate.jl",
+		"/Users/monty/Julia/Mads/src/MadsFunc.jl",
+		"/Users/monty/Julia/Mads/src/MadsLog.jl",
+		"/Users/monty/Julia/Mads/src/MadsObservations.jl",
+		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial.jl",
+		"/Users/monty/.julia/v0.4/Mads/src/MadsHelp.jl",
+		"/Users/monty/Julia/Mads/src/MadsIO.jl",
+		"/Users/monty/Julia/Mads/examples/anasol/runtests.jl",
+		"/Users/monty/Julia/Mads/src/MadsPlot.jl",
+		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial3.jl",
+		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial3.mads",
+		"/Users/monty/Julia/Mads/src/MadsParameters.jl",
+		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-linear.jl",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsParsers.jl",
 		"/Users/monty/Julia/Mads/examples/model_analysis/calibration.jl",
 		"/Users/monty/Julia/Mads/src/Mads.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/uncertainty.jl",
-		"/Users/monty/Julia/Mads/src/MadsSA.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-linear.mads",
 		"/Users/monty/Julia/Mads/src/MadsModelSelection.jl",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsModelSelection.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/infogap-mpblin.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/infogap-jumplin.jl",
-		"/Users/monty/Julia/Mads/src/MadsInfoGap.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes.jl",
-		"/Users/monty/Julia/Mads/src/MadsLM.jl",
-		"/Users/monty/Julia/Mads/src/MadsPlot.jl",
-		"/Users/monty/Julia/Mads/examples/anasol/runtests.jl",
 		"/Users/monty/Julia/Mads/examples/bayesian_sampling/bayesian_sampling.jl",
-		"/Users/monty/Julia/Mads/src/MadsSAPlot.jl",
 		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/models/internal-polynomial3.jl",
 		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/models/internal-polynomial3.mads",
 		"/Users/monty/Library/Caches/TemporaryItems/Outlook Temp/test.jl",
@@ -283,31 +304,22 @@
 		"/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial.mads",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsSAPlot.jl",
 		"/Users/monty/Julia/npl.jl",
-		"/Users/monty/Julia/Mads/src/MadsIO.jl",
 		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/mamba.jl",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsParameters.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/infogap.jl",
-		"/Users/monty/Julia/Mads/src/MadsCalibrate.jl",
-		"/Users/monty/Julia/Mads/src/MadsMC.jl",
 		"/Users/monty/Julia/Mads/examples/model_analysis/big.jl",
 		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/internal-linear.mads",
 		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/internal-linear.jl",
 		"/Users/monty/Julia/Mads/examples/model_analysis/calibrate.jl",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsPyPlot.jl",
-		"/Users/monty/Julia/Mads/src/MadsPlotPy.jl",
-		"/Users/monty/Julia/Mads/examples/bayesian_sampling/runtests.jl",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsAnasol.jl",
 		"/Users/monty/Julia/Mads/examples/model_coupling/runtests.jl",
 		"/Users/monty/Julia/Mads/examples/model_coupling/external-yaml.mads",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination.jl",
 		"/Users/monty/Julia/Mads/examples/external-linear-model/external-jld-linearmodel.jl",
 		"/Users/monty/Documents/lanl/RDX/pipe_disk/mads/analysis.jl",
-		"/Users/monty/Julia/rMF/src/rMF.jl",
 		"/Users/monty/Julia/Mads/examples/model_analysis/internal-polynomial.mads",
 		"/Users/monty/Documents/lanl/RDX/pipe_disk/mads/rdx.mads",
 		"/Users/monty/Julia/MultizoneTransport.jl/src/madscompat.jl",
 		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/bayes.jl",
-		"/Users/monty/Julia/Mads/src/MadsBIGPlot.jl",
 		"/Users/monty/Julia/Mads/src/MadsAnasolPlot.jl",
 		"/Users/monty/Julia/Mads/.travis.yml",
 		"/Users/monty/.julia/v0.4/Mads/src/MadsMC.jl",
@@ -330,49 +342,7 @@
 		"/Users/monty/Julia/Mads/examples/learn_julia/plot2D.jl",
 		"/Users/monty/Julia/SVR.jl/svr_test2D.jl",
 		"/Users/monty/Julia/Mads/examples/learn_julia/plot3D.jl",
-		"/Users/monty/Julia/SVR.jl/svr.jl",
-		"/Users/monty/Julia/SVR.jl/svr_test.jl",
-		"/Users/monty/Julia/SVR.jl/svr_test_efast.jl",
-		"/Users/monty/Julia/SVR.jl/svr_test_parallel.jl",
-		"/Users/monty/Julia/SVR.jl/svr_test_separate_efast.jl",
-		"/Users/monty/.julia/v0.4/MathProgBase/src/HighLevelInterface/quadprog.jl",
-		"/Users/monty/Julia/SVR.jl/svr_data_and_param_efast.jl",
-		"/Users/monty/Julia/Mads/examples/embed_c/embed_c.jl",
-		"/Users/monty/.julia/v0.4/Mads/test/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes_opt_n1_w1000000.png",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes_opt_n0_w1000000.png",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes_opt_n01_w1000000.png",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes_init_w1000000_spaghetti.png",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes_opt_n01_w1.png",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes_opt_n1_w1.png",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes_opt_n0_w1.png",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsLM.jl",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsPlot.jl",
-		"/Users/monty/Julia/Mads/src/MadsParameters.jl",
-		"/Users/monty/Julia/Mads/examples/bayesian_sampling/bayesian_sampling_anasol.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/decision.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/experimental_design.jl",
-		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/big.jl",
-		"/Users/monty/.julia/v0.4/Mads/examples/model_analysis/infogap.jl",
-		"/Users/monty/Julia/ArcticMixing/newcookdatamanual.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/internal-polynomial.jl",
-		"/Users/monty/Julia/WEFO.jl/src/WEFO.jl",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsObservations.jl",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsCalibrate.jl",
-		"/Users/monty/Julia/Mads/examples/learn_julia/statistics.jl",
-		"/Users/monty/.julia/v0.4/Mads/examples/anasol/runtests.jl",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsTest.jl",
-		"/Users/monty/Julia/Mads/src/MadsLog.jl",
-		"/Users/monty/.julia/v0.4/Mads/src/MadsIO.jl",
-		"/Users/monty/Documents/lanl/pg/Connected/ReactDiff_func2D_fast_ConectedABA.jl",
-		"/Users/monty/Documents/lanl/pg/Connected/March_2D_2016_Lagrange_Diffusion_Conv_Gauss_Connected_Fast.jl",
-		"/Users/monty/Documents/lanl/pg/Unconnected/June_2DPAR.jl",
-		"/Users/monty/Documents/lanl/pg/Connected/ReactDiff_func2D_fast_Conected.m",
-		"/Users/monty/Documents/lanl/pg/Connected/ReactDiff_func2D_fast_Conected.jl",
-		"/Users/monty/Documents/lanl/pg/Unconnected/June_2DPAR.m",
-		"/Users/monty/Documents/lanl/pg/Unconnected/ReactDiff_func2D.m",
-		"/Users/monty/Documents/lanl/pg/Unconnected/ReactDiff_func2D.jl",
-		"/Users/monty/Documents/lanl/pg/ReactDiff_func3D_Kim.jl"
+		"/Users/monty/Julia/SVR.jl/svr.jl"
 	],
 	"find":
 	{
@@ -383,6 +353,14 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/Users/monty/Julia/Mads/src",
+			"/Users/monty/Julia/Mads/examples",
+			"/Users/monty/Julia/Mads/src",
+			"/Users/monty/Julia/Mads/examples",
+			"/Users/monty/Julia/Mads/src",
+			"/Users/monty/Julia/Mads/examples",
+			"/Users/monty/Julia/Mads/src",
+			"/Users/monty/Julia/Mads/examples",
 			"/Users/monty/Julia/Mads/src",
 			"/Users/monty/Julia/Mads/examples",
 			"/Users/monty/Julia/Mads/src",
@@ -461,134 +439,134 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"getoptparamkeys",
-			"is missing!",
-			"sleep",
-			"tempdirname",
-			"tempdirname//",
-			"tempdirname/",
-			"tempdirname",
-			"tempdir//",
-			"tempdir/",
-			"tempdir",
-			"mkdir",
-			"rmdir",
-			"dump",
-			"Internal",
-			"Julia model",
-			"bash",
-			"init",
-			"getparamsinit",
-			"pinit",
-			"setobstime",
-			"gettime",
-			"setobservationtargets",
-			"RobustPmap",
-			"Templates",
-			"JLD.save",
-			"dis",
-			"disp",
-			"spaghettiplot",
-			"stddev",
-			"pinit",
-			"Dict(\"a\"=>1)",
-			"setseed",
-			"fit",
-			"paramvalues",
-			"hesslag_structure",
-			"initparam",
-			"param",
-			"initparams",
-			"paramkeys",
-			"center",
-			"partialof",
-			"imagefiles",
-			"parametersample",
-			"setparamsdistnormal",
-			"parametersample",
-			"show_trace",
-			"cannot be executed!",
-			"seed",
-			"solver",
-			"maxiter",
-			"end",
-			"PNG",
-			"mkdir",
-			"mkdri",
-			"PyPlot",
-			"PyPlot not available",
-			"root",
-			"localsa",
-			"JLD",
-			"Mads.forward",
-			"Gadfly",
-			"LevenbergMarquardt",
-			"NMFk",
+			"keyword",
+			"@show",
+			"@show deltaindices",
+			"findin",
+			"computedeltas",
+			"Match errors",
+			"deltadependency",
+			"23delt",
+			"deltadependency",
+			"23d",
+			"12de",
+			"deltadependency",
+			"concmatrix",
+			"datamatrix",
+			"is not accounted",
+			"is missing ...",
+			"dataindex",
+			"23de",
+			"deltas",
+			"ratioindex",
+			"deltadependancy",
+			"isot",
+			"mixes",
+			"dict_species",
+			"dnames",
+			"dict_species",
+			"wellsset",
+			"dictstamp",
+			"dict_species",
 			"dict",
-			"JLD",
-			"OrderedDict",
-			".,",
-			", weight: 1",
-			"log: false, max: 1e+06, min: 0, ",
-			", weight: 1, log: no, min: 0, max: 1e+06",
-			"vari",
-			"rosenbrocktest",
-			"using",
+			"cr",
+			"dict",
+			"probkey",
+			"default_point_size",
+			"savefig",
 			"PyPlot",
-			"layers",
-			"predictedY",
-			"expectedY",
-			"verb",
-			"JSON",
-			"Ipopt",
-			"for",
-			";",
-			"using",
-			"mkdir",
-			"@time",
-			"nT",
-			"paramdictarray",
-			"nT",
-			"paramarray2dict",
-			"func",
-			"Forwa",
-			"spaghettiplot",
-			"@show pd",
-			"f_lm",
-			"Mads.filterkeys(obsdict, filter)",
-			"\"target\"",
-			"zip",
-			"setparamsinit",
-			"values",
-			"BlackBox",
-			"@JuMP",
-			"@JuMP.NLconstraint",
-			"maxg",
+			"@show",
+			"warn(",
+			"test23ratio",
+			"ratioindex",
+			"test23ratio",
+			"ratios",
+			"ratio",
+			"nummixtures",
+			"ratiomatrix",
+			"ratioindex",
+			"test23ratio",
+			"ratios",
+			"datam",
+			"nothi",
+			"nothiArray(Float32, 0, 0)",
+			"ratios",
+			"nothing",
+			"defaultregularizationweight",
+			"deltaweightsfactor",
+			"  %",
+			"Gadfly",
+			"Layer",
+			"Layers",
+			"isdef",
+			"end",
+			"return",
+			"returnco",
+			"return",
+			"numbuckets",
+			"w",
+			".dat",
+			".csv",
+			"JLD.load",
+			"normalize",
+			"( ",
+			"maxguess",
+			"mixes",
+			"@show",
+			"numdeltas",
+			"buckets",
+			"bucketval",
+			"numconstituents",
+			"normalize",
+			"normalize::Bool",
+			"tol=",
+			"tol=1e-12",
+			"maximum",
+			"$(case)$(casestring)",
+			"OptimizationTrace",
+			"tag",
+			"deltadependancy",
+			"casekeyword",
+			"@show",
+			"ContinuousColorScale",
+			"filename",
+			"$case",
+			"sizeof(initH)",
+			"initH",
+			"keyword",
+			"@show",
+			"@shw=iw",
+			"@test",
+			"approx",
+			"@approx",
+			"@assert",
+			"any",
 			"tol",
-			"(eval(",
-			"draw(eval",
-			"eval",
-			"zip",
-			"o_lm",
-			"getoptparamkeys",
-			"weight",
-			"getobsweight",
-			"settarget",
-			"setweight",
-			"settarget",
-			"setweight",
-			"settime",
-			"setweight",
-			"filter",
-			"sprintf",
-			"level",
-			"leve",
-			"verbositylevel",
-			"madsinfo",
-			"substi",
-			"replacing",
-			"level=",
-			"max"
+			"concindex",
+			"dataindex",
+			"concindex",
+			"delbuckets",
+			"deltaindex",
+			"@show",
+			"23de",
+			" * numbuckets",
+			"numconstituents",
+			"normalize",
+			"@show",
+			"descalematrix",
+			"cmax",
+			"cmin",
+			"mixer",
+			"buckets",
+			"seed",
+			"start =",
+			"rmf-",
+			"deltas",
+			"concind",
+			"deltaindex",
+			"deltaind",
+			"nothing",
+			"Void"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -596,6 +574,26 @@
 		"regex": false,
 		"replace_history":
 		[
+			"deltadependency",
+			"dict_species",
+			"# ",
+			"scale",
+			"scale::Bool",
+			"tol=1e-6",
+			"$(casestring)",
+			"$(case)$(casestring)",
+			"dataindex",
+			"",
+			"concmatrix",
+			"datamatrix",
+			"concmatrix",
+			"mixturematrix",
+			"madsmodule",
+			"Infogap in model",
+			"model_4",
+			"model_3",
+			"model_2",
+			"",
 			"Dict()",
 			",",
 			"",
@@ -686,225 +684,16 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/monty/Julia/Mads/src/MadsIO.jl",
+					"file": "/Users/monty/Julia/MixMatch.jl/src/MixMatch.jl",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16522,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15194,
-								15194
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										15212,
-										15213
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										15187,
-										15188
-									]
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Julia/Julia.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 7229.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial3.mads",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 549,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								546,
-								546
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"open":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/monty/Julia/Mads/examples/model_analysis/models/internal-polynomial3.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 435,
+						"buffer_size": 14580,
 						"regions":
 						{
 						},
@@ -912,7 +701,7 @@
 						[
 							[
 								0,
-								0
+								14580
 							]
 						],
 						"settings":
@@ -923,47 +712,23 @@
 								"close":
 								{
 								},
+								"icon":
+								{
+								},
 								"open":
+								{
+								},
+								"unmatched":
 								{
 								}
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
@@ -974,542 +739,115 @@
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
-								"bh_round_content"
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Julia/Julia.tmLanguage"
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4889.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"file": "/Users/monty/Julia/Mads/examples/model_analysis/calibration_results/estimated_parameter_scatter_plot_a_vs_n.png",
-					"semi_transient": true,
-					"stack_index": 2,
-					"type": "image"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/monty/Julia/Mads/examples/model_analysis/uncertainty.jl",
+					"buffer": 1,
+					"file": "/Users/monty/Julia/NMFk.jl/src/NMFk.jl",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3334,
+						"buffer_size": 5914,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2714,
-								2714
+								5787,
+								5787
 							]
 						],
 						"settings":
 						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"open":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Julia/Julia.tmLanguage"
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 549.0,
+						"translation.y": 2463.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "/Users/monty/Julia/Mads/src/MadsMC.jl",
-					"semi_transient": false,
+					"buffer": 2,
+					"file": "/Users/monty/Julia/rMF/src/rMF.jl",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 5028,
+						"buffer_size": 27232,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								63,
-								63
+								0,
+								27232
 							]
 						],
 						"settings":
 						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"open":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Julia/Julia.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Julia/Julia.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 249.0,
+						"translation.y": 4660.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/monty/Julia/Mads/src/MadsSAPlot.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7801,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								988,
-								988
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"open":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Julia/Julia.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/Users/monty/Julia/Mads/src/MadsParameters.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16955,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8681,
-								8681
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										8680,
-										8681
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										8679,
-										8680
-									]
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Julia/Julia.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3624.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/Users/monty/Julia/Mads/src/MadsFunc.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19420,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10853,
-								10853
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"open":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content"
-							],
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Julia/Julia.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3039.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
 					"type": "text"
 				}
 			]
