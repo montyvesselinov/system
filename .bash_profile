@@ -22,6 +22,7 @@ else
     [ -f ${HOME}/.bash/func ] && . ${HOME}/.bash/func
 fi
 
+export PYTHONPATH=${HOME}/python
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/texbin:$PATH
 if [ -d "$HOME/Library/Python/2.7/bin" ]; then
 	PATH="$HOME/Library/Python/2.7/bin:$PATH"
