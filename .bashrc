@@ -15,6 +15,8 @@ if [[ $HOSTNAME =~ cja.* ]]; then
 fi
 export HOSTNAME
 if [[ -n "${PS1}" ]]; then
+	bind '"\e[A": history-search-backward'
+	bind '"\e[B": history-search-forward'
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
     #source ${powerline_path}/bindings/bash/powerline.sh
@@ -99,8 +101,6 @@ case "$OSTYPE" in
     *)
 		echo "unknown: $OSTYPE" ;;
 esac
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
 export GIT_SSH=~/system/script/turq-ssh-hop.sh
 source ${HOME}/.bash/env
 source ${HOME}/.bash/aliases
