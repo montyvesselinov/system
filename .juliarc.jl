@@ -9,7 +9,7 @@ if haskey(ENV, "HOME")
 		push!(LOAD_PATH, ENV["HOME"]*"/Julia")
 	end
 end
-atreplinit((_)->require(:TerminalExtensions))
+atreplinit((_)->Base.require(:TerminalExtensions))
 if haskey(ENV, "HOSTNAME")
 	for i = ("wc", "cj", "pi", "mp", "ml", "wf")
 		if ismatch(Regex("^$i.*"), ENV["HOSTNAME"])

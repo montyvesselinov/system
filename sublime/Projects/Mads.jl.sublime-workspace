@@ -133,7 +133,6 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/monty/Julia/Mads/examples/ode"
 	],
 	"file_history":
 	[
@@ -540,6 +539,10 @@
 	"output.git":
 	{
 		"height": 112.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
 	},
 	"output.unsaved_changes":
 	{
