@@ -30,7 +30,8 @@
 		"hydrogeologic",
 		"geostatistical",
 		"Alexandrov",
-		"O’Malley"
+		"O’Malley",
+		"Advection"
 	],
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
