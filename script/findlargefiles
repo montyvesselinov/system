@@ -1,1 +1,1 @@
-find $1 -xdev -type f -size +100M
+find $1 -xdev -type f -size +1000M

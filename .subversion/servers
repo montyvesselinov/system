@@ -141,8 +141,8 @@
 ### due to SSL.
 [global]
 # http-proxy-exceptions = *.exception.com, www.internal-site.org
-http-proxy-host = proxyout.lanl.gov
-http-proxy-port = 8080
+# http-proxy-host = proxyout.lanl.gov
+# http-proxy-port = 8080
 # http-proxy-username = defaultusername
 # http-proxy-password = defaultpassword
 http-compression = no
