@@ -34,6 +34,9 @@ if [[ -n "${PS1}" ]]; then
 				echo -ne "\033]0;${HOSTNAME}:${PWD##*/}\007"
 			fi
 		}
+		function _update_title2() {
+			echo "${PWD##*/}"
+		}
 		export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
 		#if [ -f ${HOME}/system/powerline-shell/powerline-shell.py ]; then
 			#function _update_ps1() {
@@ -63,6 +66,9 @@ if [[ -n "${PS1}" ]]; then
 			else
 				echo -ne "\033]0;${HOSTNAME}:${PWD##*/}\007"
 			fi
+		}
+		function _update_title2() {
+			echo "${PWD##*/}"
 		}
 		export PROMPT_COMMAND="$PROMPT_COMMAND _update_title"
 	fi
