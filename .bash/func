@@ -346,3 +346,17 @@ make()
   /usr/bin/make "$@" 2>&1 | sed -E -e "/[Ee]rror[: ]/ s%$pathpat%$ccred&$ccend%g" -e "/[Ww]arning[: ]/ s%$pathpat%$ccyellow&$ccend%g"
   return ${PIPESTATUS[0]}
 }
+
+verify_tmux_version ()
+{
+    tmux_home=~/system/tmux
+    tmux_version="$(tmux -V | cut -c 6-)"
+
+    if [[ $(echo "$tmux_version >= 2.1" | bc) -eq 1 ]] ; then
+        ln -sf "$tmux_home/.tmux_2.1_up.conf" ~/.tmux.conf
+    elif [[ $(echo "$tmux_version >= 1.9" | bc) -eq 1 ]] ; then
+        ln -sf "$tmux_home/.tmux_1.9_to_2.1.conf" ~/.tmux.conf
+    else
+        ln -sf "$tmux_home/.tmux_1.9_down.conf" ~/.tmux.conf
+    fi
+}
