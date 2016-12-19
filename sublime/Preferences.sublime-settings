@@ -23,26 +23,43 @@
 		"monty",
 		"vadose",
 		"jacobian",
-		"Opportuneness",
-		"Infogap",
+		"opportuneness",
+		"infogap",
 		"drawdowns",
 		"hydrogeological",
 		"hydrogeologic",
 		"geostatistical",
 		"Alexandrov",
-		"O’Malley",
-		"Advection",
+		"O'Malley",
+		"advection",
 		"variogram",
-		"kriging"
+		"kriging",
+		"julia"
 	],
+	"always_show_minimap_viewport": true,
+	"bold_folder_labels": true,
+	"caret_extra_bottom": 1,
+	"caret_extra_top": 1,
+	"caret_extra_width": 2,
+	"caret_style": "phase",
 	"close_windows_when_empty": true,
-	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Material Monokai Soda (SL).tmTheme",
+	"drag_text": false,
+	"font_options":
+	[
+		"gray_antialias"
+	],
 	"font_size": 11,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"material_theme_contrast_mode": true,
 	"open_files_in_new_window": false,
+	"overlay_scroll_bars": "enabled",
 	"spell_check": true,
+	"theme": "Material Brogrammer.sublime-theme",
 	"word_wrap": true
 }
