@@ -31,7 +31,9 @@
 		"geostatistical",
 		"Alexandrov",
 		"O’Malley",
-		"Advection"
+		"Advection",
+		"variogram",
+		"kriging"
 	],
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
