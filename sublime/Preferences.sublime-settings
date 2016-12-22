@@ -40,7 +40,7 @@
 	"bold_folder_labels": true,
 	"caret_extra_bottom": 1,
 	"caret_extra_top": 1,
-	"caret_extra_width": 2,
+	"caret_extra_width": 1,
 	"caret_style": "phase",
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/User/SublimeLinter/Material Monokai Soda (SL).tmTheme",
@@ -60,6 +60,10 @@
 	"open_files_in_new_window": false,
 	"overlay_scroll_bars": "enabled",
 	"spell_check": true,
+	"word_wrap": true,
 	"theme": "Material Brogrammer.sublime-theme",
-	"word_wrap": true
+	"material_theme_compact_panel": true,
+	"material_theme_compact_sidebar": true,
+	"material_theme_big_fileicons": false,
+	"material_theme_bold_tab": true
 }

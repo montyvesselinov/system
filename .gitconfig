@@ -126,6 +126,8 @@
 	visual = !gitk
 	pushall = "!f(){ for i in `git remote`; do git push $i master; done; };f"
 	pullall = "!f(){ for i in `git remote`; do git pull $i master; done; };f"
+	rm-symlink = "!__git_rm_symlink(){\n    git checkout -- \"$1\"\n    link=$(echo \"$1\")\n    POS=$'/'\n    DOS=$'\\\\\\\\'\n    doslink=${link//$POS/$DOS}\n    dest=$(dirname \"$link\")/$(cat \"$link\")\n    dosdest=${dest//$POS/$DOS}\n    if [ -f \"$dest\" ]; then\n        rm -f \"$link\"\n        cmd //C mklink //H \"$doslink\" \"$dosdest\"\n    elif [ -d \"$dest\" ]; then\n        rm -f \"$link\"\n        cmd //C mklink //J \"$doslink\" \"$dosdest\"\n    else\n        echo \"ERROR: Something went wrong when processing $1 . . .\"\n        echo \"       $dest may not actually exist as a valid target.\"\n    fi\n}; __git_rm_symlink \"$1\""
+	rm-symlinks = "!__git_rm_symlinks(){\n    for symlink in $(git ls-files -s | egrep \"^120000\" | cut -f2); do\n        git rm-symlink \"$symlink\"\n        git update-index --assume-unchanged \"$symlink\"\n    done\n}; __git_rm_symlinks"
 [push]
 	default = simple
 [gui]
