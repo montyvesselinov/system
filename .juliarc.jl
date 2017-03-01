@@ -1,15 +1,22 @@
 if haskey(ENV, "HOME")
-	if haskey( ENV, "__SAMOS" ) && search( ENV["__SAMOS"], "CYGWIN" ) == 1:6
-		push!(LOAD_PATH, ENV["HOME"]*"\\.julia")
-		push!(LOAD_PATH, ENV["HOME"]*"\\Julia")
-	elseif haskey( ENV, "OS" ) && search( ENV["OS"], "Windows" ) == 1:7
-		push!(LOAD_PATH, ENV["HOME"]*"\\.julia")
-		push!(LOAD_PATH, ENV["HOME"]*"\\Julia")
-	else
-		push!(LOAD_PATH, ENV["HOME"]*"/Julia")
-	end
+	push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
 end
-#atreplinit((_)->Base.require(:TerminalExtensions))
+
+function pkgisavailable(modulename::String)
+	flag=false
+	try
+		Pkg.available(modulename)
+		flag=true	
+	catch
+		warn("$modulename is not available")
+	end
+	return flag
+end
+
+if pkgisavailable("TerminalExtensions")
+	atreplinit((_)->Base.require(:TerminalExtensions))
+end
+
 if haskey(ENV, "HOSTNAME")
 	for i = ("wc", "cj", "pi", "mp", "ml", "wf")
 		if ismatch(Regex("^$i.*"), ENV["HOSTNAME"])
@@ -24,6 +31,12 @@ if haskey(ENV, "HOSTNAME")
 		end
 	end
 end
+
+#if haskey( ENV, "__SAMOS" ) && search( ENV["__SAMOS"], "CYGWIN" ) == 1:6
+#elseif haskey( ENV, "OS" ) && search( ENV["OS"], "Windows" ) == 1:7
+#else
+#end
+
 #push!(Sys.DL_LOAD_PATH, ENV["HOME"]*"/mads/repo/bin/Lib")
 ## give a local .juliarc.jl a chance
 #if chomp(readall(`pwd`)) != ENV["HOME"]

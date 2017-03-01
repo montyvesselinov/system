@@ -1,0 +1,6 @@
+a=1
+for i in *.vtk; do
+  new=$(printf "s%04d.vtk" "$a")
+  mv -- "$i" "$new"
+  let a=a+1
+done

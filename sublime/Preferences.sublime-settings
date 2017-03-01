@@ -23,24 +23,50 @@
 		"monty",
 		"vadose",
 		"jacobian",
-		"Opportuneness",
-		"Infogap",
+		"opportuneness",
+		"infogap",
 		"drawdowns",
 		"hydrogeological",
 		"hydrogeologic",
 		"geostatistical",
 		"Alexandrov",
-		"O’Malley",
-		"Advection"
+		"O'Malley",
+		"advection",
+		"variogram",
+		"kriging",
+		"julia",
+		"Sketchings",
+		"Jupyter"
 	],
+	"always_show_minimap_viewport": true,
+	"bold_folder_labels": true,
+	"caret_extra_bottom": 1,
+	"caret_extra_top": 1,
+	"caret_extra_width": 1,
+	"caret_style": "phase",
 	"close_windows_when_empty": true,
-	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
-	"font_size": 11,
+	"color_scheme": "Packages/User/SublimeLinter/Material Monokai Soda (SL).tmTheme",
+	"drag_text": false,
+	"font_options":
+	[
+		"gray_antialias"
+	],
+	"font_size": 13,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"material_theme_big_fileicons": false,
+	"material_theme_bold_tab": true,
+	"material_theme_compact_panel": true,
+	"material_theme_compact_sidebar": true,
+	"material_theme_contrast_mode": true,
 	"open_files_in_new_window": false,
+	"overlay_scroll_bars": "enabled",
 	"spell_check": true,
+	"theme": "Material Brogrammer.sublime-theme",
+	"trim_trailing_white_space_on_save": true,
 	"word_wrap": true
 }
