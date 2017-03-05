@@ -34,3 +34,12 @@ if [ -d $HOME/DWave/qOp ]; then
 	export DYLD_LIBRARY_PATH=$DWAVE_HOME
 	source $DWAVE_HOME/bin/dw
 fi
+
+##
+# Your previous /Users/monty/.bash_profile file was backed up as /Users/monty/.bash_profile.macports-saved_2017-02-08_at_09:38:16
+##
+
+# MacPorts Installer addition on 2017-02-08_at_09:38:16: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
