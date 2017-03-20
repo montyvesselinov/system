@@ -34,7 +34,9 @@
 		"advection",
 		"variogram",
 		"kriging",
-		"julia"
+		"julia",
+		"Sketchings",
+		"Jupyter"
 	],
 	"always_show_minimap_viewport": true,
 	"bold_folder_labels": true,
@@ -49,21 +51,22 @@
 	[
 		"gray_antialias"
 	],
-	"font_size": 11,
+	"font_size": 13,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
+	"material_theme_big_fileicons": false,
+	"material_theme_bold_tab": true,
+	"material_theme_compact_panel": true,
+	"material_theme_compact_sidebar": true,
 	"material_theme_contrast_mode": true,
 	"open_files_in_new_window": false,
 	"overlay_scroll_bars": "enabled",
 	"spell_check": true,
-	"word_wrap": true,
 	"theme": "Material Brogrammer.sublime-theme",
-	"material_theme_compact_panel": true,
-	"material_theme_compact_sidebar": true,
-	"material_theme_big_fileicons": false,
-	"material_theme_bold_tab": true
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": true
 }

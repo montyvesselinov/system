@@ -124,6 +124,7 @@ export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 	umask g+w
 	module load git
+	module load gcc/5.3.0
 	if [[ -n "${PS1}" ]]; then
 		echo "LANL turquoise machines"
 		echo "Load modules ..."
@@ -131,8 +132,7 @@ if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 		if [[ `module avail user_cotrib` ]]; then
 			module load user_contrib
 		fi
-		module load friendly-testing cmake/3.2.1
-		module load friendly-testing gcc/4.7.2
+		module load gcc/5.3.0
 		module load git
 	fi
 fi
