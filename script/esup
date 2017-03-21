@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+esm=()
+for i in `seq 1 41`; do
+	s=$(printf "es%02d" $i)
+	esm+=($s)
+done
+
+for i in "${esm[@]}"; do
+	echo $i: `ssh -o "StrictHostKeyChecking no" $i uptime 2>/dev/null`
+done
