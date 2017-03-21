@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 madsnew=()
+madsnew+=(madsmin)
 for i in `seq 0 29`; do
 	s=$(printf "mads%02d" $i)
 	madsnew+=($s)
