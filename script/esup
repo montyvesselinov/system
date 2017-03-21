@@ -1,11 +1,52 @@
 #!/usr/bin/env bash
 
-esm=()
-for i in `seq 1 41`; do
-	s=$(printf "es%02d" $i)
-	esm+=($s)
+esmachines=("karra1" "karra2" "mads21" "mads22" "es05" "es06")
+for i in `seq 0 20`; do
+	s=$(printf "mads%02d" $i)
+	esmachines+=($s)
+done
+esmachines+=("gass" "mads19" "mads20" "madsmin" "madsmax" "madsmen" "madsdam" "madskil" "madsend" "madsart")
+
+altname=()
+declare -A des=()
+declare -A dse=()
+n=1
+for i in "${esmachines[@]}"; do
+	a=$(printf "es%02d" $n)
+	altname+=($a)
+	des[$i]=$a
+	dse[$a]=$i
+	n=$(($n + 1))
 done
 
-for i in "${esm[@]}"; do
-	echo $i: `ssh -o "StrictHostKeyChecking no" $i uptime 2>/dev/null`
+for i in "${esmachines[@]}"; do
+	m=$(printf "%-7s (%s)" $i ${des[$i]})
+	echo "$m" : will be tested
 done
+
+#echo ${esmachines[@]}
+#echo ${altname[@]}
+#echo ${des[@]}
+#echo ${dse[@]}
+#for s in "${!dse[@]}"; do echo "$s - ${dse[$s]}"; done
+#for s in "${!des[@]}"; do echo "$s - ${des[$s]}"; done
+
+machineuptime () {
+	i=$1
+	a=$2
+	m=$(printf "%-7s (%s)" $i $a)
+	echo -n "$m" : 
+	if ! ssh -o "StrictHostKeyChecking no" $i exit 2>/dev/null
+	then
+		echo -n " missing!! -> "
+		echo `ssh -o "StrictHostKeyChecking no" $a uptime 2>/dev/null`
+	else
+		echo -n " available -> "
+		echo `ssh -o "StrictHostKeyChecking no" $i uptime 2>/dev/null`
+	fi
+} 
+
+for i in "${esmachines[@]}"; do
+	machineuptime $i ${des[$i]}
+done
+
