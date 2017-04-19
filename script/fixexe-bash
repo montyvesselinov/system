@@ -2,10 +2,12 @@
 suffix=`cat ~/script/non-exe-extensions`
 # echo $suffix
 logf=/tmp/slog.$$
-nice find . -name ".*" -type f -exec chmod a-x {} \; >$logf 2>&1
+chflags -R nouchg .
+find . -name ".*" -type f -exec chmod a-x {} \; >$logf 2>&1
+find . -type d -name ".git" -print0 | xargs -0 -I{.} find {.} -type f -exec chmod a-x {} \; >$logf 2>&1
 for entry in $suffix; do
     printf "Checking for %15s ... " $entry
-        nice find . -iname "*.$entry" -type f -exec chmod a-x {} \; >$logf 2>&1
+        nice find . -iname "*$entry" -type f -exec chmod a-x {} \; >$logf 2>&1
     echo -ne "\\r"
     done
     [ -n $logf ] && echo "For details and errors, see $logf"

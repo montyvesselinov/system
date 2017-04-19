@@ -34,7 +34,7 @@ if [[ -n "${PS1}" ]]; then
 		POWERLINE_BASH_SELECT=1
 		. ${HOME}/system/powerline/powerline/bindings/bash/powerline.sh
 		function _update_title() {
-			if [[ "${HOSTNAME}" == "bored" ]]; then
+			if [[ "${HOSTNAME}" == "julia" ]]; then
 				echo -ne "\033]0;${PWD##*/}\007"
 			else
 				echo -ne "\033]0;${HOSTNAME}:${PWD##*/}\007"
