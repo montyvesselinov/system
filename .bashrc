@@ -6,10 +6,16 @@ if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
 HOSTNAME_ORIG=${HOSTNAME}
-HOSTNAME=${HOSTNAME##su*-}
-HOSTNAME=${HOSTNAME%%.*}
-HOSTNAME=${HOSTNAME%%[0-9]*}
-HOSTNAME=${HOSTNAME%%-fe*}
+if [[ $HOSTNAME_ORIG =~ ^es[0-9]*$ ]]; then
+	ESNUMBER=${HOSTNAME_ORIG#es*}
+	MADSNUMBER=`expr $ESNUMBER - 7`
+	HOSTNAME=$(printf "mads%02d" $MADSNUMBER)
+else
+	HOSTNAME=${HOSTNAME##su*-}
+	HOSTNAME=${HOSTNAME%%.*}
+	HOSTNAME=${HOSTNAME%%[0-9]*}
+	HOSTNAME=${HOSTNAME%%-fe*}
+fi
 if [[ $HOSTNAME =~ cja.* ]]; then
 	HOSTNAME="cj"
 fi
@@ -28,7 +34,7 @@ if [[ -n "${PS1}" ]]; then
 		POWERLINE_BASH_SELECT=1
 		. ${HOME}/system/powerline/powerline/bindings/bash/powerline.sh
 		function _update_title() {
-			if [[ "${HOSTNAME}" == "bored" ]]; then
+			if [[ "${HOSTNAME}" == "julia" ]]; then
 				echo -ne "\033]0;${PWD##*/}\007"
 			else
 				echo -ne "\033]0;${HOSTNAME}:${PWD##*/}\007"

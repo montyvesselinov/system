@@ -1,6 +1,7 @@
 .DS_Store
 */.DS_Store
 *~
+*.swp
 *.orig
 .vim/.netrwhist
 codes/flip

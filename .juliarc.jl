@@ -13,10 +13,9 @@ function pkgisavailable(modulename::String)
 	return flag
 end
 
-if pkgisavailable("TerminalExtensions")
+if pkgisavailable("TerminalExtensions") && is_apple()
 	atreplinit((_)->Base.require(:TerminalExtensions))
 end
-
 if haskey(ENV, "HOSTNAME")
 	for i = ("wc", "cj", "pi", "mp", "ml", "wf")
 		if ismatch(Regex("^$i.*"), ENV["HOSTNAME"])
