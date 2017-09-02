@@ -19,13 +19,11 @@ end
 if haskey(ENV, "HOSTNAME")
 	for i = ("wc", "cj", "pi", "mp", "ml", "wf")
 		if ismatch(Regex("^$i.*"), ENV["HOSTNAME"])
-			ENV["MADS_NO_PYPLOT"] = ""
-			if i != "wc" 
-				ENV["MADS_NO_PYTHON"] = ""
-			end
 			ENV["HOSTNAME"] = i
+			ENV["MADS_NO_PYTHON"] = ""
 			ENV["JULIA_PKGDIR"] = joinpath(ENV["HOME"], string(".julia-", i))
-			unshift!(Base.LOAD_CACHE_PATH, joinpath(ENV["HOME"], string(".julia-", i), "lib"))
+			verdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
+			unshift!(Base.LOAD_CACHE_PATH, joinpath(ENV["HOME"], string(".julia-", i), "lib", verdir))
 			deleteat!(Base.LOAD_CACHE_PATH,2)
 			break
 		end
