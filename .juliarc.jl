@@ -24,7 +24,8 @@ if haskey(ENV, "HOSTNAME")
 				ENV["MADS_NO_PYTHON"] = ""
 			end
 			ENV["HOSTNAME"] = i
-			unshift!(Base.LOAD_CACHE_PATH, joinpath(Base.LOAD_CACHE_PATH[1], ENV["HOSTNAME"]))
+			ENV["JULIA_PKGDIR"] = joinpath(ENV["HOME"], string(".julia-", i))
+			unshift!(Base.LOAD_CACHE_PATH, joinpath(ENV["HOME"], string(".julia-", i), "lib"))
 			deleteat!(Base.LOAD_CACHE_PATH,2)
 			break
 		end
