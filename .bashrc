@@ -1,4 +1,8 @@
 [[ -f ${HOME}/.bash/init ]] && source ${HOME}/.bash/init
+if [ -f /opt/local/bin/bash ]; then
+	export SHELL=/opt/local/bin/bash
+	export BASH=/opt/local/bin/bash
+fi
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
