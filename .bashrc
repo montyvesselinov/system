@@ -9,6 +9,8 @@ fi
 if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
+OSVERSION=`uname -r`
+export OSVERSION
 export HOSTNAME_ORIG=${HOSTNAME}
 if [[ $HOSTNAME_ORIG =~ ^es[0-9]*$ ]]; then
 	ESNUMBER=${HOSTNAME_ORIG#es*}

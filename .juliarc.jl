@@ -6,7 +6,7 @@ function pkgisavailable(modulename::String)
 	flag=false
 	try
 		Pkg.available(modulename)
-		flag=true	
+		flag=true
 	catch
 		warn("$modulename is not available")
 	end
@@ -17,14 +17,15 @@ if pkgisavailable("TerminalExtensions") && is_apple()
 	atreplinit((_)->Base.require(:TerminalExtensions))
 end
 
-if haskey(ENV, "HOSTNAME_ORIG")
+if haskey(ENV, "HOSTNAME_ORIG") && haskey(ENV, "OSVERSION")
 	if ismatch(Regex("^es[0-9].*"), ENV["HOSTNAME_ORIG"])
-		@everywhere verdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
-		@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", ENV["HOSTNAME_ORIG"])
+		@everywhere osver = ENV["OSVERSION"]
+		@everywhere juliaverdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
+		@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", osver)
 		if !isdir(cachedir)
 	    	mkdir(cachedir)
 		end
-		@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", ENV["HOSTNAME_ORIG"], verdir)
+		@everywhere cachedir = joinpath(cachedir, juliaverdir)
 		if !isdir(cachedir)
 	    	mkdir(cachedir)
 		end
@@ -39,8 +40,8 @@ if haskey(ENV, "HOSTNAME")
 			ENV["HOSTNAME"] = i
 			ENV["MADS_NO_PYTHON"] = ""
 			ENV["JULIA_PKGDIR"] = joinpath(ENV["HOME"], string(".julia-", i))
-			@everywhere verdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
-			@everywhere unshift!(Base.LOAD_CACHE_PATH, joinpath(ENV["HOME"], string(".julia-", i), "lib", verdir))
+			@everywhere juliaverdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
+			@everywhere unshift!(Base.LOAD_CACHE_PATH, joinpath(ENV["HOME"], string(".julia-", i), "lib", juliaverdir))
 			@everywhere deleteat!(Base.LOAD_CACHE_PATH,2)
 			break
 		end
