@@ -18,7 +18,6 @@ if pkgisavailable("TerminalExtensions") && is_apple()
 end
 
 if haskey(ENV, "HOSTNAME_ORIG")
-	@show ENV["HOSTNAME_ORIG"]
 	if ismatch(Regex("^es[0-9].*"), ENV["HOSTNAME_ORIG"])
 		@everywhere verdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
 		@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", ENV["HOSTNAME_ORIG"])
