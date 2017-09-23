@@ -9,30 +9,35 @@ fi
 if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
+
 OSVERSION=`uname -r`
 export OSVERSION
-export HOSTNAME_ORIG=${HOSTNAME}
-if [[ $HOSTNAME_ORIG =~ ^es[0-9]*$ ]]; then
-	ESNUMBER=${HOSTNAME_ORIG#es*}
-	MADSNUMBER=`expr $ESNUMBER - 7`
-	HOSTNAME=$(printf "mads%02d" $MADSNUMBER)
-else
-	HOSTNAME=${HOSTNAME##su*-}
-	HOSTNAME=${HOSTNAME%%.*}
-	HOSTNAME=${HOSTNAME%%[0-9]*}
-	HOSTNAME=${HOSTNAME%%-fe*}
+
+if [ -z ${HOSTNAME_ORIG+x} ]; then
+	export HOSTNAME_ORIG=${HOSTNAME}
+	if [[ $HOSTNAME_ORIG =~ ^es[0-9]*$ ]]; then
+		ESNUMBER=${HOSTNAME_ORIG#es*}
+		MADSNUMBER=`expr $ESNUMBER - 7`
+		HOSTNAME=$(printf "mads%02d" $MADSNUMBER)
+	else
+		HOSTNAME=${HOSTNAME##su*-}
+		HOSTNAME=${HOSTNAME%%.*}
+		HOSTNAME=${HOSTNAME%%[0-9]*}
+		HOSTNAME=${HOSTNAME%%-fe*}
+	fi
+	if [[ $HOSTNAME =~ cja.* ]]; then
+		HOSTNAME="cj"
+	fi
+	export HOSTNAME
 fi
-if [[ $HOSTNAME =~ cja.* ]]; then
-	HOSTNAME="cj"
-fi
-export HOSTNAME
+
 if [[ -n "${PS1}" ]]; then
 	bind '"\e[A": history-search-backward'
 	bind '"\e[B": history-search-forward'
 	powerline_path="$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)"
 	#if [[ "$powerline_path" != "" ]]; then
     #source ${powerline_path}/bindings/bash/powerline.sh
-	if [[ -f "${HOME}/system/powerline/powerline/bindings/bash/powerline.sh" ]]; then 
+	if [[ -f "${HOME}/system/powerline/powerline/bindings/bash/powerline.sh" ]]; then
 # Powerline prompt
 		export PATH=$PATH:~/system/powerline/scripts
 		powerline-daemon -q
@@ -107,12 +112,12 @@ case "$OSTYPE" in
 		# echo "OSX"
 		export CDPATH=.:${HOME}:${HOME}/lanl:${HOME}/Documents:${HOME}/Documents/lanl
 		export CLICOLOR=1
-		export LSCOLORS=gxfxcxdxbxegedabagaced ;; 
+		export LSCOLORS=gxfxcxdxbxegedabagaced ;;
     linux*)
 		# echo "LINUX"
 		export CDPATH=.:${HOME}:/scratch/er/monty:/scratch/ymp/monty:/scratch/nts/monty:/scratch/gwpa/monty:/scratch/rigel10/monty:/scratch/indigo2/monty:/scratch/fiesta2/monty ;;
     msys*)
-		# echo "Windows" 
+		# echo "Windows"
 		;;
     bsd*)
 		echo "BSD" ;;
