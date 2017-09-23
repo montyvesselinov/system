@@ -1,5 +1,5 @@
 if haskey(ENV, "HOME")
-	push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
+	@everywhere push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
 end
 
 function pkgisavailable(modulename::String)
@@ -16,19 +16,40 @@ end
 if pkgisavailable("TerminalExtensions") && is_apple()
 	atreplinit((_)->Base.require(:TerminalExtensions))
 end
+
+if haskey(ENV, "HOSTNAME_ORIG")
+	@show ENV["HOSTNAME_ORIG"]
+	if ismatch(Regex("^es[0-9].*"), ENV["HOSTNAME_ORIG"])
+		@everywhere verdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
+		@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", ENV["HOSTNAME_ORIG"])
+		if !isdir(cachedir)
+	    	mkdir(cachedir)
+		end
+		@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", ENV["HOSTNAME_ORIG"], verdir)
+		if !isdir(cachedir)
+	    	mkdir(cachedir)
+		end
+		@everywhere unshift!(Base.LOAD_CACHE_PATH, cachedir)
+		@everywhere deleteat!(Base.LOAD_CACHE_PATH, 2)
+	end
+end
+
 if haskey(ENV, "HOSTNAME")
 	for i = ("wc", "cj", "pi", "mp", "ml", "wf")
 		if ismatch(Regex("^$i.*"), ENV["HOSTNAME"])
 			ENV["HOSTNAME"] = i
 			ENV["MADS_NO_PYTHON"] = ""
 			ENV["JULIA_PKGDIR"] = joinpath(ENV["HOME"], string(".julia-", i))
-			verdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
-			unshift!(Base.LOAD_CACHE_PATH, joinpath(ENV["HOME"], string(".julia-", i), "lib", verdir))
-			deleteat!(Base.LOAD_CACHE_PATH,2)
+			@everywhere verdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
+			@everywhere unshift!(Base.LOAD_CACHE_PATH, joinpath(ENV["HOME"], string(".julia-", i), "lib", verdir))
+			@everywhere deleteat!(Base.LOAD_CACHE_PATH,2)
 			break
 		end
 	end
 end
+
+runremote(server::String, command) = run(`ssh $server " $command"`)
+runremote(servers, c0ommand) = map(x->runremote(x, command), servers)
 
 #if haskey( ENV, "__SAMOS" ) && search( ENV["__SAMOS"], "CYGWIN" ) == 1:6
 #elseif haskey( ENV, "OS" ) && search( ENV["OS"], "Windows" ) == 1:7

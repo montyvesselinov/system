@@ -9,7 +9,7 @@ fi
 if [ -f ~/.profile ]; then
 	source ~/.profile
 fi
-HOSTNAME_ORIG=${HOSTNAME}
+export HOSTNAME_ORIG=${HOSTNAME}
 if [[ $HOSTNAME_ORIG =~ ^es[0-9]*$ ]]; then
 	ESNUMBER=${HOSTNAME_ORIG#es*}
 	MADSNUMBER=`expr $ESNUMBER - 7`
