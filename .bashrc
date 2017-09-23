@@ -19,6 +19,9 @@ if [ -z ${HOSTNAME_ORIG+x} ]; then
 		ESNUMBER=${HOSTNAME_ORIG#es*}
 		MADSNUMBER=`expr $ESNUMBER - 7`
 		HOSTNAME=$(printf "mads%02d" $MADSNUMBER)
+		source ~/system/export-proxy-lanl
+	elif [[ $HOSTNAME_ORIG =~ ^mads.*$ ]]; then
+		source ~/system/export-proxy-lanl
 	else
 		HOSTNAME=${HOSTNAME##su*-}
 		HOSTNAME=${HOSTNAME%%.*}
