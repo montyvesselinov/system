@@ -2,6 +2,11 @@ if haskey(ENV, "HOME")
 	@everywhere push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
 end
 
+filename = joinpath(Pkg.dir("Mads"), "src-interactive", "MadsParallel.jl")
+if isfile(filename)
+	include(filename)
+end
+
 function pkgisavailable(modulename::String)
 	flag=false
 	try
@@ -23,11 +28,11 @@ if haskey(ENV, "HOSTNAME_ORIG") && haskey(ENV, "OSVERSION")
 		@everywhere juliaverdir = splitdir(Base.LOAD_CACHE_PATH[1])[2]
 		@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", osver)
 		if !isdir(cachedir)
-	    	mkdir(cachedir)
+			mkdir(cachedir)
 		end
 		@everywhere cachedir = joinpath(cachedir, juliaverdir)
 		if !isdir(cachedir)
-	    	mkdir(cachedir)
+			mkdir(cachedir)
 		end
 		@everywhere unshift!(Base.LOAD_CACHE_PATH, cachedir)
 		@everywhere deleteat!(Base.LOAD_CACHE_PATH, 2)
@@ -47,9 +52,6 @@ if haskey(ENV, "HOSTNAME")
 		end
 	end
 end
-
-runremote(server::String, command) = run(`ssh $server " $command"`)
-runremote(servers, c0ommand) = map(x->runremote(x, command), servers)
 
 #if haskey( ENV, "__SAMOS" ) && search( ENV["__SAMOS"], "CYGWIN" ) == 1:6
 #elseif haskey( ENV, "OS" ) && search( ENV["OS"], "Windows" ) == 1:7
