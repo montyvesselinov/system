@@ -1,0 +1,5 @@
+#!/bin/bash
+for v in *.mp4; do
+	r="${v%.*}"
+	ffmpeg -i $v -vframes 1 -f image2 $r.jpg
+done
