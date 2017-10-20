@@ -1,6 +1,4 @@
 export PATH=/Applications/paraview.app/Contents/MacOS:/Applications/VisIt.app/Contents/Resources/bin:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
-export CXX=/opt/local/bin/g++
-export CC=/opt/local/bin/gcc
 export LDFLAGS='-L/opt/local/lib/'
 export ASAN_SYMBOLIZER_PATH=/opt/local/libexec/llvm-3.5/bin/llvm-symbolizer
 set ASAN_OPTIONS=symbolize=1
