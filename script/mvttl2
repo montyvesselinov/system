@@ -1,0 +1,8 @@
+#!/bin/sh
+ls $1*$2*|
+while read line
+do
+        #sed "s/$2/$3/g" $line > `echo $line|sed "s/$2/$3/"`
+        #rm -f $line
+		mv -f $line `echo $line|sed "s/$2/$3/"`
+done
