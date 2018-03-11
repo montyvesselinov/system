@@ -28,6 +28,7 @@ cancerogenicity
 CHROTRAN
 CHROTRAN's
 CrunchFlow
+deconstruct
 deconstructed
 discretize
 dispersionless
@@ -40,6 +41,7 @@ extendable
 Facebook
 facies
 Fickian
+flowpaths
 forcings
 Frobenius
 geosciences
@@ -55,7 +57,9 @@ Hydrogeologic
 hydrogeological
 Hydrogeology
 hydrologic
+indices
 inoculum
+interpretability
 LANL
 LAPACK
 Levenberg
@@ -69,12 +73,14 @@ Monod
 Mortandad
 MPI
 nanoparticles
-non-sorbing.
+non-sorbing
 nonconvex
+nonnegativity
 ParaView
-PETSc.
+PETSc
 PFLOTRAN
 PFLOTRAN's
+Polyadic
 posedness
 postdoc
 postdocs
@@ -103,4 +109,5 @@ Vesselinova
 VisIt
 Viswanathan
 vortexed
+vortices
 workflow

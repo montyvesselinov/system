@@ -2,24 +2,21 @@ if haskey(ENV, "HOME")
 	@everywhere push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
 end
 
-filename = joinpath(Pkg.dir("Mads"), "src-interactive", "MadsParallel.jl")
-if isfile(filename)
-	include(filename)
-end
-
-function pkgisavailable(modulename::String)
-	flag=false
-	try
-		Pkg.available(modulename)
-		flag=true
-	catch
-		warn("$modulename is not available")
+if is_apple()
+	function pkgisavailable(modulename::String)
+		flag=false
+		try
+			Pkg.available(modulename)
+			flag=true
+		catch
+			warn("$modulename is not available")
+		end
+		return flag
 	end
-	return flag
-end
 
-if pkgisavailable("TerminalExtensions") && is_apple()
-	atreplinit((_)->Base.require(:TerminalExtensions))
+	if pkgisavailable("TerminalExtensions")
+		atreplinit((_)->Base.require(:TerminalExtensions))
+	end
 end
 
 if haskey(ENV, "HOSTNAME_ORIG") && haskey(ENV, "OSVERSION")
