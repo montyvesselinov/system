@@ -1,0 +1,98 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/monty/.julia/v0.5/Mads"
+		},
+		{
+			"path": "/Users/monty/Julia/rMF"
+		},
+		{
+			"path": "/Users/monty/Julia/NTFk"
+		},
+		{
+			"path": "/Users/monty/Julia/NMFk"
+		},
+		{
+			"path": "/Users/monty/.julia/v0.5/SVR"
+		},
+		{
+			"path": "/Users/monty/.julia/v0.5/ReusableFunctions"
+		},
+		{
+			"path": "/Users/monty/Julia/DocumentFunction"
+		},
+		{
+			"path": "/Users/monty/Julia/RobustPmap"
+		},
+		{
+			"path": "/Users/monty/Julia/Anasol"
+		},
+		{
+			"path": "/Users/monty/Julia/BIGUQ"
+		},
+		{
+			"path": "/Users/monty/Julia/MetaProgTools"
+		},
+		{
+			"path": "/Users/monty/Julia/AffineInvariantMCMC"
+		},
+		{
+			"path": "/Users/monty/Julia/Kriging"
+		},
+		{
+			"path": "/Users/monty/Julia/GeostatInversion"
+		},
+		{
+			"path": "/Users/monty/Julia/ZEM.jl"
+		},
+		{
+			"path": "/Users/monty/Julia/FEHM.jl"
+		},
+		{
+			"path": "/Users/monty/Julia/CrPlots.jl"
+		},
+		{
+			"path": "/Users/monty/Julia/FindShift"
+		},
+		{
+			"path": "/Users/monty/Julia/ShiftNMFk"
+		},
+		{
+			"path": "/Users/monty/Julia/GreenNMFk"
+		},
+		{
+			"path": "/Users/monty/Julia/CanDecomp.jl"
+		},
+		{
+			"path": "/Users/monty/.julia/v0.6/TensorDecompositions"
+		},
+		{
+			"path": "/Users/monty/.julia/v0.6/TensorOperations"
+		},
+		{
+			"path": "/Users/monty/.julia/v0.6/TensorFlow"
+		},
+		{
+			"path": "/Users/monty/Documents/lanl/waffle2017/mads"
+		},
+		{
+			"path": "/Users/monty/Julia/zem"
+		},
+		{
+			"path": "/Users/monty/www"
+		},
+		{
+			"path": "/Users/monty/Julia/FiniteVolume.jl"
+		},
+		{
+			"path": "/Users/monty/Julia/LinearAdjoints.jl"
+		},
+		{
+			"path": "/Users/monty/Julia/ThreeQ.jl"
+		},
+		{
+			"path": "/Users/monty/Julia/Origami.jl"
+		}
+	]
+}
