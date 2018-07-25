@@ -2,18 +2,36 @@ if haskey(ENV, "HOME")
 	@everywhere push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
 end
 
-if is_apple()
-	function pkgisavailable(modulename::String)
-		flag=false
-		try
-			Pkg.available(modulename)
-			flag=true
-		catch
-			warn("$modulename is not available")
-		end
-		return flag
+if VERSION == v"0.6.3"
+	@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", "v0.6.3")
+	if !isdir(cachedir)
+		mkdir(cachedir)
 	end
+	@everywhere unshift!(Base.LOAD_CACHE_PATH, cachedir)
+	@everywhere deleteat!(Base.LOAD_CACHE_PATH, 2)
+end
 
+if VERSION == v"0.6.4"
+	@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", "v0.6.4")
+	if !isdir(cachedir)
+		mkdir(cachedir)
+	end
+	@everywhere unshift!(Base.LOAD_CACHE_PATH, cachedir)
+	@everywhere deleteat!(Base.LOAD_CACHE_PATH, 2)
+end
+
+function pkgisavailable(modulename::String)
+	flag=false
+	try
+		Pkg.available(modulename)
+		flag=true
+	catch
+		warn("$modulename is not available")
+	end
+	return flag
+end
+
+if is_apple()
 	if pkgisavailable("TerminalExtensions")
 		atreplinit((_)->Base.require(:TerminalExtensions))
 	end

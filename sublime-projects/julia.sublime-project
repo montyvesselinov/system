@@ -2,7 +2,7 @@
 	"folders":
 	[
 		{
-			"path": "/Users/monty/.julia/v0.5/Mads"
+			"path": "/Users/monty/Julia/Mads"
 		},
 		{
 			"path": "/Users/monty/Julia/rMF"
@@ -14,10 +14,10 @@
 			"path": "/Users/monty/Julia/NMFk"
 		},
 		{
-			"path": "/Users/monty/.julia/v0.5/SVR"
+			"path": "/Users/monty/Julia/SVR"
 		},
 		{
-			"path": "/Users/monty/.julia/v0.5/ReusableFunctions"
+			"path": "/Users/monty/Julia/ReusableFunctions"
 		},
 		{
 			"path": "/Users/monty/Julia/DocumentFunction"
