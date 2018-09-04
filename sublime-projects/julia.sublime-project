@@ -68,6 +68,9 @@
 			"path": "/Users/monty/.julia/v0.6/TensorDecompositions"
 		},
 		{
+			"path": "/Users/monty/.julia/v0.6/TensorToolbox"
+		},
+		{
 			"path": "/Users/monty/.julia/v0.6/TensorOperations"
 		},
 		{
@@ -93,6 +96,9 @@
 		},
 		{
 			"path": "/Users/monty/Julia/Origami.jl"
+		},
+		{
+			"path": "/Users/monty/Julia/docx-to-jld"
 		}
 	]
 }
