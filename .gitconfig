@@ -133,6 +133,8 @@
 [gui]
 	recentrepo = /Users/monty/tex/wtpaper2014
 [url "git@github.com:"]
-	insteadOf = git://github.com/
+	insteadOf = https://github.com/
+[url "https://"]
+	insteadOf = git://
 [url "http://"]
 	insteadOf = git://

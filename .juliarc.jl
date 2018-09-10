@@ -55,7 +55,7 @@ if haskey(ENV, "HOSTNAME_ORIG") && haskey(ENV, "OSVERSION")
 end
 
 if haskey(ENV, "HOSTNAME")
-	for i = ("wc", "cj", "pi", "mp", "ml", "wf")
+	for i = ("wc", "cj", "pi", "mp", "wf")
 		if ismatch(Regex("^$i.*"), ENV["HOSTNAME"])
 			ENV["HOSTNAME"] = i
 			ENV["MADS_NO_PYTHON"] = ""
