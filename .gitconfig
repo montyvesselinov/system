@@ -134,6 +134,8 @@
 	recentrepo = /Users/monty/tex/wtpaper2014
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
 [url "https://"]
 	insteadOf = git://
 [url "http://"]

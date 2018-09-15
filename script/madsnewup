@@ -8,5 +8,5 @@ for i in `seq 0 29`; do
 done
 
 for i in "${madsnew[@]}"; do
-	echo $i: `ssh -o "StrictHostKeyChecking no" vvv@$i uptime 2>/dev/null`
+	echo $i: `ssh -o "StrictHostKeyChecking no" vvv@$i uptime 2>/dev/null` `ssh -o "StrictHostKeyChecking no" vvv@$i juliadir 2>/dev/null`
 done
