@@ -1,6 +1,8 @@
 # vim: set filetype=sh:
 [[ -f ${HOME}/.bash-local/aliases ]] && source ${HOME}/.bash-local/aliases
 
+alias dwave="echo \"enter cryptocard password\"; echo \"access on web: https://localhost:10443/\"; echo \"don't forget to \\\"export -n https_proxy\\\" before running anything locally\"; ssh -L 10443:dwave-app:443 vvv@dw-gate.lanl.gov"
+
 TURQ_REGEXP="^(cj|mp|ml|mu|pi|wf|ls|hb|gl|bz|wc)(-fe[1-9]?|[0-9]+)(\.lanl\.gov|\.localdomain)?$"
 
 if have apt-get ; then
@@ -24,6 +26,8 @@ fi
 # alias local="cat ${HOME}/.bash-local/*"
 # to be run on the remote side: ssh wherever north
 alias gitdir='find . -maxdepth 1 -type d -exec echo "* GIT repository in" {} \; -exec git --git-dir={}/.git --work-tree=$PWD/{} pull \;'
+alias gitdirpull='find . -maxdepth 1 -type d -exec echo "* GIT repository in" {} \; -exec git --git-dir={}/.git --work-tree=$PWD/{} pull \;'
+alias gitdirpush='find . -maxdepth 1 -type d -exec echo "* GIT repository in" {} \; -exec git --git-dir={}/.git --work-tree=$PWD/{} push \;'
 alias north='x2x -north -to :0'
 alias fixvmware='setxkbmap'
 alias vless='vim -u /usr/share/vim/vim71/macros/less.vim'

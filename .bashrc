@@ -48,7 +48,7 @@ if [[ -n "${PS1}" ]]; then
 		POWERLINE_BASH_SELECT=1
 		. ${HOME}/system/powerline/powerline/bindings/bash/powerline.sh
 		function _update_title() {
-			if [[ "${HOSTNAME}" == "julia" ]]; then
+			if [[ "${HOSTNAME}" == "ml" ]] || [[ "${HOSTNAME}" == "ml.lanl.gov" ]]; then
 				echo -ne "\033]0;${PWD##*/}\007"
 			else
 				echo -ne "\033]0;${HOSTNAME}:${PWD##*/}\007"
@@ -74,14 +74,18 @@ if [[ -n "${PS1}" ]]; then
 		export PROMPT_COMMAND="$PROMPT_COMMAND _disown"
 		case $TERM in
 			xterm*)
-				PS1='\[\033]0;$HOSTNAME:\W\007\]\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				if [[ "${HOSTNAME}" == "ml" ]] || [[ "${HOSTNAME}" == "ml.lanl.gov" ]]; then
+					PS1='\[\033]0;\W\007\]\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				else
+					PS1='\[\033]0;$HOSTNAME:\W\007\]\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
+				fi
 				;;
 			*)
 				PS1='\[\033[01;7m\] \u@$HOSTNAME \[\033[01;27m\] \[\033[00m\]\A\[\033[01;34m\] \w \[\033[00m\][\!] '
 				;;
 		esac
 		function _update_title() {
-			if [[ "${HOSTNAME}" == "bored" ]]; then
+			if [[ "${HOSTNAME}" == "ml" ]] || [[ "${HOSTNAME}" == "ml.lanl.gov" ]]; then
 				echo -ne "\033]0;${PWD##*/}\007"
 			else
 				echo -ne "\033]0;${HOSTNAME}:${PWD##*/}\007"

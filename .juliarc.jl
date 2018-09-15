@@ -6,6 +6,24 @@ end
 #	@everywhere include(joinpath(Pkg.dir("Mads"), "src-interactive", "MadsParallel.jl"))
 #end
 
+if VERSION == v"0.6.3"
+	@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", "v0.6.3")
+	if !isdir(cachedir)
+		mkdir(cachedir)
+	end
+	@everywhere unshift!(Base.LOAD_CACHE_PATH, cachedir)
+	@everywhere deleteat!(Base.LOAD_CACHE_PATH, 2)
+end
+
+if VERSION == v"0.6.4"
+	@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", "v0.6.4")
+	if !isdir(cachedir)
+		mkdir(cachedir)
+	end
+	@everywhere unshift!(Base.LOAD_CACHE_PATH, cachedir)
+	@everywhere deleteat!(Base.LOAD_CACHE_PATH, 2)
+end
+
 @everywhere function pkgisavailable(modulename::String)
 	flag=false
 	try
@@ -17,8 +35,10 @@ end
 	return flag
 end
 
-if pkgisavailable("TerminalExtensions") && is_apple()
-	atreplinit((_)->Base.require(:TerminalExtensions))
+if is_apple()
+	if pkgisavailable("TerminalExtensions")
+		atreplinit((_)->Base.require(:TerminalExtensions))
+	end
 end
 
 if haskey(ENV, "HOSTNAME_ORIG") && haskey(ENV, "OSVERSION")
@@ -39,7 +59,7 @@ if haskey(ENV, "HOSTNAME_ORIG") && haskey(ENV, "OSVERSION")
 end
 
 if haskey(ENV, "HOSTNAME")
-	for i = ("wc", "cj", "pi", "mp", "ml", "wf")
+	for i = ("wc", "cj", "pi", "mp", "wf")
 		if ismatch(Regex("^$i.*"), ENV["HOSTNAME"])
 			ENV["HOSTNAME"] = i
 			ENV["MADS_NO_PYTHON"] = ""

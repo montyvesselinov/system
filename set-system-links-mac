@@ -25,7 +25,7 @@ ln -sf ./system/.profile .profile
 ln -sf ./system/.vimrc .vimrc
 ln -sf ./system/.vim .vim
 mkdir .ssh
-ln -sf ./system/.ssh/config .ssh/config
+ln -sf ../system/.ssh/config .ssh/config
 echo "Script ..."
 ln -sf ./system/script script
 echo "Sublime ..."
