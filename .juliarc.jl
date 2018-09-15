@@ -2,6 +2,10 @@ if haskey(ENV, "HOME")
 	@everywhere push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
 end
 
+#if isfile(joinpath(Pkg.dir("Mads"), "src-interactive", "MadsParallel.jl"))
+#	@everywhere include(joinpath(Pkg.dir("Mads"), "src-interactive", "MadsParallel.jl"))
+#end
+
 if VERSION == v"0.6.3"
 	@everywhere cachedir = joinpath(ENV["HOME"], ".julia", "lib", "v0.6.3")
 	if !isdir(cachedir)
@@ -20,7 +24,7 @@ if VERSION == v"0.6.4"
 	@everywhere deleteat!(Base.LOAD_CACHE_PATH, 2)
 end
 
-function pkgisavailable(modulename::String)
+@everywhere function pkgisavailable(modulename::String)
 	flag=false
 	try
 		Pkg.available(modulename)
