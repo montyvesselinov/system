@@ -2,12 +2,11 @@ if haskey(ENV, "HOME")
 	@everywhere push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
 end
 
-filename = joinpath(Pkg.dir("Mads"), "src-interactive", "MadsParallel.jl")
-if isfile(filename)
-	include(filename)
-end
+#if isfile(joinpath(Pkg.dir("Mads"), "src-interactive", "MadsParallel.jl"))
+#	@everywhere include(joinpath(Pkg.dir("Mads"), "src-interactive", "MadsParallel.jl"))
+#end
 
-function pkgisavailable(modulename::String)
+@everywhere function pkgisavailable(modulename::String)
 	flag=false
 	try
 		Pkg.available(modulename)
