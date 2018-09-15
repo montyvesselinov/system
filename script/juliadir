@@ -1,1 +1,1 @@
-ps aux | grep julia | grep vvv | tail -1 | tr -s ' ' | cut -d' ' -f2 | xargs -I {} pwdx {}
+ps aux | grep julia | grep vvv | tr -s ' ' | cut -d' ' -f2 | xargs -I {} pwdx {} |  cut -d' ' -f2 | uniq | sort | grep -v "/home/vvv"
