@@ -121,7 +121,7 @@
 	
 	#subtree add
 	sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f" 
-	unstage = reset HEAD --
+	unstage = reset --
 	last = log -1 HEAD
 	visual = !gitk
 	pushall = "!f(){ for i in `git remote`; do git push $i master; done; };f"

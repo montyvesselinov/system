@@ -5,22 +5,24 @@ alias dwave="echo \"enter cryptocard password\"; echo \"access on web: https://l
 
 TURQ_REGEXP="^(cj|mp|ml|mu|pi|wf|ls|hb|gl|bz|wc)(-fe[1-9]?|[0-9]+)(\.lanl\.gov|\.localdomain)?$"
 
-if have apt-get ; then
-  alias ac='apt-cache'
-  complete -F _apt_cache $filenames ac
-  alias ag='apt-get'
-  complete -F _apt_get $filenames ag
-  alias acs='apt-cache search'
-  alias acS='apt-cache show'
-  alias agi='apt-get install'
-  complete -F _agi $filenames agi acs acS
-  alias dist='aptitude dist-upgrade'
-  #alias dist='apt-get dist-upgrade'
-  alias ug='apt-get -u upgrade'
-  alias agu='ug'
-  alias ud='aptitude -q update'
-  alias udist='aptitude -q update ; aptitude dist-upgrade'
-  alias restartsawfish='sawfish-client -q -f restart'
+if [[ "${__SAMOS}" != "Darwin" ]] ; then
+	if have apt-get ; then
+	alias ac='apt-cache'
+	complete -F _apt_cache $filenames ac
+	alias ag='apt-get'
+	complete -F _apt_get $filenames ag
+	alias acs='apt-cache search'
+	alias acS='apt-cache show'
+	alias agi='apt-get install'
+	complete -F _agi $filenames agi acs acS
+	alias dist='aptitude dist-upgrade'
+	#alias dist='apt-get dist-upgrade'
+	alias ug='apt-get -u upgrade'
+	alias agu='ug'
+	alias ud='aptitude -q update'
+	alias udist='aptitude -q update ; aptitude dist-upgrade'
+	alias restartsawfish='sawfish-client -q -f restart'
+	fi
 fi
 
 # alias local="cat ${HOME}/.bash-local/*"

@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"en",
+				"enumerate"
+			],
+			[
+				"se",
+				"seismictime"
+			],
+			[
+				"do",
+				"documentfunction"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"solu",
+				"solution"
+			],
+			[
+				"assi",
+				"assignments"
+			],
+			[
+				"co",
+				"column"
+			],
+			[
 				"fs",
 				"fs"
 			],
@@ -348,10 +376,6 @@
 				"distributed"
 			],
 			[
-				"co",
-				"contaminant"
-			],
-			[
 				"Contin",
 				"continuous"
 			],
@@ -455,6 +479,96 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/Users/monty/Julia/rMF/GTI/read-seismic1.jl",
+			"settings":
+			{
+				"buffer_size": 5235,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "seismicdata, seismicheader = readdlm(\"seismic/SUGG"
+			}
+		},
+		{
+			"file": "/Users/monty/.julia/dev/GeostatInversion/test/testfftrf.jl",
+			"settings":
+			{
+				"buffer_size": 764,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 13 files for \"ifft\" (case sensitive)\n\n/Users/monty/Julia/GeostatInversion/src/FFTRF.jl:\n   90: \tkcomplex = ifft(result)\n\n1 match in 1 file\n",
+			"settings":
+			{
+				"buffer_size": 149,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/GeostatInversion/src/FFTRF.jl",
+			"settings":
+			{
+				"buffer_size": 3872,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "julia 0.7\nRobustPmap\nIterativeSolvers 0.5.0\nInterpolations\nFFTW",
+			"file": "/Users/monty/Julia/GeostatInversion/REQUIRE",
+			"file_size": 63,
+			"file_write_time": 131819593132527420,
+			"settings":
+			{
+				"buffer_size": 63,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "language: julia\nos:\n  - osx\n  - linux\njulia:\n  - 0.7\nnotifications:\n  email: false\n# script:\n#   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi\n#   - julia -e 'Pkg.clone(pwd());'\n#   - julia -e 'ENV[\"MADS_TRAVIS\"]=\"\"; Pkg.build(\"GeostatInversion\"); Pkg.test(\"GeostatInversion\"; coverage=true)'\nafter_success:\n  - julia -e 'cd(Pkg.dir(\"GeostatInversion\")); Pkg.add(\"Coverage\"); using Coverage; Coveralls.submit(Coveralls.process_folder()); Codecov.submit(Codecov.process_folder())'\n",
+			"file": "/Users/monty/Julia/GeostatInversion/.travis.yml",
+			"file_size": 493,
+			"file_write_time": 131819593252229570,
+			"settings":
+			{
+				"buffer_size": 493,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "GeostatInversion\n================\n\n[![GeostatInversion](http://pkg.julialang.org/badges/GeostatInversion_0.5.svg)](http://pkg.julialang.org/?pkg=GeostatInversion&ver=0.5)\n[![GeostatInversion](http://pkg.julialang.org/badges/GeostatInversion_0.6.svg)](http://pkg.julialang.org/?pkg=GeostatInversion&ver=0.6)\n[![GeostatInversion](http://pkg.julialang.org/badges/GeostatInversion_0.7.svg)](http://pkg.julialang.org/?pkg=GeostatInversion&ver=0.7)\n[![Build Status](https://travis-ci.org/madsjulia/GeostatInversion.jl.svg?branch=master)](https://travis-ci.org/madsjulia/GeostatInversion.jl)\n[![Coverage Status](https://coveralls.io/repos/madsjulia/GeostatInversion.jl/badge.svg?branch=master)](https://coveralls.io/r/madsjulia/GeostatInversion.jl?branch=master)\n\nThis package provides methods for inverse analysis using parameter fields that are represented using geostatistical (stochastic) methods.\nCurrently, two geostatistical methods are implemented.\nOne is the Principal Component Geostatistical Approach (PCGA) proposed by [Kitanidis](http://dx.doi.org/10.1002/2013WR014630) & [Lee](http://dx.doi.org/10.1002/2014WR015483).\nThe other utilizes a Randomized Geostatistical Approach (RGA) that builds on PCGA.\n\nRandomized Geostatistical Approach (RGA) references:\n\n- [O'Malley, D., Le, E., Vesselinov, V.V., Fast Geostatistical Inversion using Randomized Matrix Decompositions and Sketchings for Heterogeneous Aquifer Characterization, AGU Fall Meeting, San Francisco, CA, December 14–18, 2015.](http://adsabs.harvard.edu/abs/2015AGUFM.T31E..03O)\n- [Lin, Y, Le, E.B, O'Malley, D., Vesselinov, V.V., Bui-Thanh, T., Large-Scale Inverse Model Analyses Employing Fast Randomized Data Reduction, 2016.](submitted)\n\nTwo versions of PCGA are implemented in this package\n\n- `pcgadirect`, which uses full matrices and direct solvers during iterations\n- `pcgalsqr`, which uses low rank representations of the matrices combined with iterative solvers during iterations\n\nThe RGA method, `rga`, can use either of these approaches using the keyword argument. That is, by doing `rga(...; pcgafunc=GeostatInversion.pcgadirect)` or `rga(...; pcgafunc=GeostatInversion.pcgalsqr)`.\n\nGeostatInversion is a module of [MADS](http://madsjulia.github.io/Mads.jl).\n\nExample\n-------\n\n```julia\nimport GeostatInversion\n\nNs = map(x->round(Int, 25 * x), 1 + rand(N))\nk0 = randn()\ndk = rand()\nbeta = -2 - rand()\nk = GeostatInversion.FFTRF.powerlaw_structuredgrid(Ns, k0, dk, beta)\n```\n\nMADS\n====\n\n[MADS](http://madsjulia.github.io/Mads.jl) (Model Analysis & Decision Support) is an integrated open-source high-performance computational (HPC) framework in [Julia](http://julialang.org).\nMADS can execute a wide range of data- and model-based analyses:\n\n* Sensitivity Analysis\n* Parameter Estimation\n* Model Inversion and Calibration\n* Uncertainty Quantification\n* Model Selection and Model Averaging\n* Model Reduction and Surrogate Modeling\n* Machine Learning and Blind Source Separation\n* Decision Analysis and Support\n\nMADS has been tested to perform HPC simulations on a wide-range multi-processor clusters and parallel environments (Moab, Slurm, etc.).\nMADS utilizes adaptive rules and techniques which allows the analyses to be performed with a minimum user input.\nThe code provides a series of alternative algorithms to execute each type of data- and model-based analyses.\n\nDocumentation\n=============\n\nAll the available MADS modules and functions are described at [madsjulia.github.io](http://madsjulia.github.io/Mads.jl)\n\nInstallation\n============\n\n```julia\nPkg.add(\"GeostatInversion\")\n```\n\nInstallation behind a firewall\n------------------------------\n\nJulia uses git for the package management.\nTo install Julia packages behind a firewall, add the following lines in the `.gitconfig` file in your home directory:\n\n```git\n[url \"https://\"]\n        insteadOf = git://\n```\n\nor execute:\n\n```bash\ngit config --global url.\"https://\".insteadOf git://\n```\n\nSet proxies:\n\n```bash\nexport ftp_proxy=http://proxyout.<your_site>:8080\nexport rsync_proxy=http://proxyout.<your_site>:8080\nexport http_proxy=http://proxyout.<your_site>:8080\nexport https_proxy=http://proxyout.<your_site>:8080\nexport no_proxy=.<your_site>\n```\n\nFor example, if you are doing this at LANL, you will need to execute the\nfollowing lines in your bash command-line environment:\n\n```bash\nexport ftp_proxy=http://proxyout.lanl.gov:8080\nexport rsync_proxy=http://proxyout.lanl.gov:8080\nexport http_proxy=http://proxyout.lanl.gov:8080\nexport https_proxy=http://proxyout.lanl.gov:8080\nexport no_proxy=.lanl.gov\n```\n\nMADS examples\n=============\n\nIn Julia REPL, do the following commands:\n\n```julia\nimport Mads\n```\n\nTo explore getting-started instructions, execute:\n\n```julia\nMads.help()\n```\n\nThere are various examples located in the `examples` directory of the `Mads` repository.\n\nFor example, execute\n\n```julia\ninclude(Mads.madsdir * \"/../examples/contamination/contamination.jl\")\n```\n\nto perform various example analyses related to groundwater contaminant transport, or execute\n\n```julia\ninclude(Mads.madsdir * \"/../examples/bigdt/bigdt.jl\")\n```\n\nto perform Bayesian Information Gap Decision Theory (BIG-DT) analysis.\n\nDevelopers\n==========\n\n* [Velimir (monty) Vesselinov](http://www.lanl.gov/orgs/ees/staff/monty) [(publications)](http://scholar.google.com/citations?user=sIFHVvwAAAAJ)\n* [Daniel O'Malley](http://www.lanl.gov/expertise/profiles/view/daniel-o'malley) [(publications)](http://scholar.google.com/citations?user=rPzCVjEAAAAJ)\n* [see also](https://github.com/madsjulia/GeostatInversion.jl/graphs/contributors)\n\nPublications, Presentations, Projects\n=====================================\n\n* [mads.lanl.gov/](http://mads.lanl.gov/)\n* [ees.lanl.gov/monty](http://ees.lanl.gov/monty)",
+			"file": "/Users/monty/Julia/GeostatInversion/README.md",
+			"file_size": 5726,
+			"file_write_time": 131819593685375133,
+			"settings":
+			{
+				"buffer_size": 5724,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/rMF/GTI/read-seismic.jl",
+			"settings":
+			{
+				"buffer_size": 2852,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/rMF/Geyser/read-geyser.jl",
+			"settings":
+			{
+				"buffer_size": 8158,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/Python/Python.sublime-build",
 	"build_system_choices":
@@ -480,9 +594,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "mater",
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"mater",
 				"Material Theme: Configuration"
@@ -543,6 +661,7 @@
 		"height": 126.0,
 		"history":
 		[
+			"sublime.log_indexing(True)",
 			"P",
 			"ls",
 			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
@@ -559,147 +678,177 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/monty/Julia/SVR"
 	],
 	"file_history":
 	[
+		"/Users/monty/Julia/GeostatInversion/test/runtests.jl",
+		"/Users/monty/Julia/GeostatInversion/test/testrpcga.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/src/FFTRF.jl",
+		"/Users/monty/.julia/dev/ReusableFunctions/test/runtests.jl",
+		"/Users/monty/.julia/dev/AffineInvariantMCMC/src/AffineInvariantMCMC.jl",
+		"/Users/monty/.julia/dev/AffineInvariantMCMC/test/runtests.jl",
+		"/Users/monty/Julia/AffineInvariantMCMC/README.md",
+		"/Users/monty/Julia/AffineInvariantMCMC/.travis.yml",
+		"/Users/monty/.julia/dev/ReusableFunctions/REQUIRE",
+		"/Users/monty/Julia/ReusableFunctions/Readme.md",
+		"/Users/monty/Julia/SVR/.travis.yml",
+		"/Users/monty/.julia/dev/ReusableFunctions/src/ReusableFunctions.jl",
+		"/Users/monty/.julia/dev/Anasol/REQUIRE",
+		"/Users/monty/Julia/AffineInvariantMCMC/REQUIRE",
+		"/Users/monty/Julia/ReusableFunctions/.travis.yml",
+		"/Users/monty/Julia/rMF/GTI/read-gti-ntfk.jl",
+		"/Users/monty/.julia/packages/PlotlyJS/7k06k/src/display.jl",
+		"/Users/monty/.julia/v0.6/Mads/test/runtests.jl",
+		"/Users/monty/Julia/rMF/GTI/postprocess-nmfk-m.jl",
 		"/Users/monty/Julia/NTFk/src/NTFkPlot.jl",
-		"/Users/monty/Julia/Mads/examples/tensor/tensor-time2.jl",
-		"/Users/monty/Julia/Mads/examples/tensor/w01-tensor2.mads",
-		"/Users/monty/Julia/rMF/AquiferMixing/tensor-ntest.jl",
-		"/Users/monty/Julia/Mads/examples/tensor/tensor-time.jl",
-		"/Users/monty/Julia/NTFk/examples/contamination/runtests-contamination-tucker.jl",
-		"/Users/monty/Julia/NMFk/src/NMFkExecute.jl",
-		"/Users/monty/Julia/NMFk/src/NMFkMixMatrix.jl",
-		"/Users/monty/Julia/NMFk/src/NMFkMixTensor.jl",
-		"/Users/monty/Julia/Mads/src/MadsObservations.jl",
-		"/Users/monty/Julia/DocumentFunction/Project.toml",
-		"/Users/monty/Julia/Mads/examples/contamination/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination-w03.jl",
-		"/Users/monty/Julia/Mads/src/MadsIO.jl",
-		"/Users/monty/Julia/SVR/src/SVR.jl",
-		"/Users/monty/Julia/DocumentFunction/test/runtests.jl",
-		"/Users/monty/Julia/SVR/scripts/testscript.jl",
-		"/Users/monty/Julia/SVR/scripts/SVR_libsvm_format.jl",
-		"/Users/monty/Julia/SVR/scripts/SVR_JLD_format.jl",
-		"/Users/monty/Julia/SVR/scripts/SVR_CSV_format.jl",
-		"/Users/monty/Julia/SVR/scripts/SVR2.jl",
-		"/Users/monty/Julia/SVR/scripts/SVR1.jl",
-		"/Users/monty/Julia/SVR/scripts/script.jl",
-		"/Users/monty/Julia/ShiftNMFk/src/execute.jl",
-		"/Users/monty/Julia/ShiftNMFk/src/CosClust.jl",
-		"/Users/monty/Julia/RobustPmap/test/runtests.jl",
-		"/Users/monty/Julia/SVR/tools/extras.jl",
-		"/Users/monty/Julia/ZEM.jl/src/myreadlines.jl",
-		"/Users/monty/Julia/RobustPmap/src/RobustPmap.jl",
-		"/Users/monty/Julia/rMF/src/rMFexecute.jl",
-		"/Users/monty/Julia/FEHM.jl/src/FEHM.jl",
-		"/Users/monty/Julia/fake-NTFk/src/NTFkExecute.jl",
-		"/Users/monty/Julia/Mads/src/MadsPlot.jl",
-		"/Users/monty/Julia/Mads/examples/tensor/w01-tensor-match.svg",
-		"/Users/monty/.julia/v0.6/Mads/src/MadsIO.jl",
-		"/Users/monty/Julia/Mads/examples/tensor/w01-w13a_w20a-opt-tensor2.mads",
-		"/Users/monty/.julia/v0.6/Mads/src/MadsAnasol.jl",
-		"/Users/monty/Julia/Mads/src/MadsAnasol.jl",
-		"/Users/monty/.julia/v0.6/Mads/src/MadsObservations.jl",
-		"/Users/monty/.julia/v0.6/Mads/src/MadsPlot.jl",
-		"/Users/monty/Julia/Mads/examples/tensor/w01-w13a_w20a-opt-tensor-match.svg",
-		"/Users/monty/Julia/rMF/src/rMFtensorresults.jl",
-		"/Users/monty/Julia/rMF/AquiferMixing/tensor-plot.jl",
-		"/Users/monty/Julia/NMFk/test/runtests.jl",
-		"/Users/monty/Julia/NMFk/REQUIRE",
-		"/Users/monty/Julia/NMFk/src/NMFkFinalize.jl",
-		"/Users/monty/.julia/dev/Mads/src/Mads.jl",
-		"/Users/monty/Julia/Mads/deps/build.jl",
-		"/Users/monty/Julia/Mads/examples/anasol/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/blind_source_separation/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/embed_c/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/getting_started/madsjl.jl",
-		"/Users/monty/Julia/Mads/examples/ode/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/sensitivity/runtests.jl",
-		"/Users/monty/Julia/Mads/scripts/madsdisplay.jl",
-		"/Users/monty/Julia/Mads/src-interactive/MadsDisplay.jl",
-		"/Users/monty/Julia/Mads/src-interactive/MadsParallel.jl",
+		"/Users/monty/.julia/v0.6/Mads/examples/anasol/runtests.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkHelpers.jl",
+		"/Users/monty/Julia/rMF/Geyser/read-geyser.jl",
 		"/Users/monty/Julia/Mads/src-interactive/MadsPublish.jl",
-		"/Users/monty/Julia/Mads/src-interactive/MadsTest.jl",
-		"/Users/monty/Julia/Mads/src/Mads.jl",
-		"/Users/monty/Julia/Mads/src/MadsExecute.jl",
-		"/Users/monty/Julia/Mads/src/MadsForward.jl",
-		"/Users/monty/Julia/Mads/src/MadsFunc.jl",
-		"/Users/monty/Julia/Mads/src/MadsHelp.jl",
+		"/Users/monty/Julia/Mads/src/MadsIO.jl",
+		"/Users/monty/.julia/v0.6/PlotlyJS/src/displays/electron.jl",
+		"/Users/monty/.julia/packages/Gadfly/p8TXc/test/runtests.jl",
+		"/Users/monty/Julia/rMF/GTI/seismic/SUGG-A-171 Pads - Final Events_All_phases_EVENTS.csv",
+		"/Users/monty/Julia/ReusableFunctions/test/runtests.jl",
+		"/Users/monty/Julia/ReusableFunctions/src/ReusableFunctions.jl",
+		"/Users/monty/Julia/rMF/GTI/wells/SUGG_A_171_4SM-wellpath.txt",
+		"/Users/monty/Julia/Anasol/test/runtests.jl",
+		"/Users/monty/.julia/dev/Anasol/src/Anasol.jl",
+		"/Users/monty/Julia/Anasol/test/newtest.jl",
+		"/Users/monty/.julia/dev/Anasol/src/gencode.jl",
+		"/Users/monty/.julia/dev/Anasol/src/newanasol.jl",
+		"/Users/monty/Julia/RobustPmap/REQUIRE",
+		"/Users/monty/.julia/packages/RobustPmap/nTtWV/test/runtests.jl",
+		"/Users/monty/.julia/dev/RobustPmap/test/runtests.jl",
+		"/Users/monty/Julia/RobustPmap/.travis.yml",
+		"/Users/monty/Julia/Anasol/.travis.yml",
+		"/Users/monty/Julia/ReusableFunctions/REQUIRE",
+		"/Users/monty/Julia/rMF/GTI/wells/SUGG_A_171_3SU-wellpath.txt",
+		"/Users/monty/Julia/RobustPmap/test/runtests.jl",
+		"/Users/monty/Julia/RobustPmap/src/RobustPmap.jl",
+		"/Users/monty/.julia/dev/Anasol/test/runtests.jl",
+		"/Users/monty/Julia/rMF/GTI/loaddata-gti-nmfk-allhalf.jl",
+		"/Users/monty/Julia/rMF/GTI/loaddata-gti-nmfk-reduced10half.jl",
+		"/Users/monty/Julia/rMF/GTI/postprocess-nmfk-reduced10half.jl",
+		"/Users/monty/.julia/v0.6/Anasol/test/runtests.jl",
+		"/Users/monty/Julia/MetaProgTools/Readme.md",
+		"/Users/monty/Julia/MetaProgTools/.travis.yml",
+		"/Users/monty/.julia/dev/MetaProgTools/test/runtests.jl",
+		"/Users/monty/Julia/MetaProgTools/test/runtests.jl",
+		"/Users/monty/.julia/dev/Anasol/test/newtest.jl",
+		"/Users/monty/Julia/MetaProgTools/REQUIRE",
+		"/Users/monty/Julia/Anasol/src/Anasol.jl",
+		"/Users/monty/Julia/Anasol/REQUIRE",
+		"/Users/monty/Julia/Anasol/src/newanasol.jl",
+		"/Users/monty/Julia/Anasol/src/gencode.jl",
+		"/Users/monty/Julia/Mads/.travis.yml",
+		"/Users/monty/.julia/v0.6/Anasol/src/Anasol.jl",
+		"/Users/monty/.julia/v0.6/Anasol/.travis.yml",
+		"/Users/monty/Julia/GeostatInversion/.travis.yml",
+		"/Users/monty/Julia/FEHM.jl/.travis.yml",
+		"/Users/monty/.julia/v0.6/Mads/src/Mads.jl",
 		"/Users/monty/Julia/Mads/src/MadsHelpers.jl",
-		"/Users/monty/Julia/Mads/src/madsjl.jl",
-		"/Users/monty/Julia/Mads/src/MadsLevenbergMarquardt.jl",
-		"/Users/monty/Julia/Mads/src/MadsLog.jl",
-		"/Users/monty/Julia/Mads/src/MadsModelSelection.jl",
-		"/Users/monty/Julia/Mads/src/MadsSenstivityAnalysis.jl",
-		"/Users/monty/Julia/Mads/src/MadsSVR.jl",
+		"/Users/monty/Julia/Mads/test/runtests.jl",
+		"/Users/monty/.julia/dev/Mads/test/runtests.jl",
+		"/Users/monty/Julia/Mads/test/miscellaneous.jl",
+		"/Users/monty/.julia/dev/Kriging/src/Kriging.jl",
+		"/Users/monty/.julia/dev/Kriging/test/runtests.jl",
+		"/Users/monty/Julia/Kriging/REQUIRE",
+		"/Users/monty/Julia/Kriging/.travis.yml",
 		"/Users/monty/Julia/Mads/src/MadsYAML.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsHelpers.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/w01short.jl",
-		"/Users/monty/Julia/Mads/examples/learn_julia/julia_express.jl",
-		"/Users/monty/Julia/Mads/src/MadsParameters.jl",
-		"/Users/monty/Julia/Mads/src/MadsPlotPy.jl",
+		"/Users/monty/Julia/Kriging/README.md",
+		"/Users/monty/Julia/Mads/src/Mads.jl",
+		"/Users/monty/Julia/Mads/src/MadsCapture.jl",
 		"/Users/monty/Julia/Mads/REQUIRE",
-		"/Users/monty/Julia/Mads/Project.toml",
-		"/Users/monty/Julia/rMF/GTI/loaddata-gti-nmfk.jl",
+		"/Users/monty/Julia/SVR/REQUIRE",
+		"/Users/monty/.julia/v0.6/Mads/.travis.yml",
+		"/Users/monty/Julia/DocumentFunction/README.md",
+		"/Users/monty/.julia/v0.6/Mads/test/miscellaneous.jl",
+		"/Users/monty/Julia/SVR/README.md",
+		"/Users/monty/Julia/SVR/Manifest.toml",
+		"/Users/monty/Julia/SVR/Project.toml",
+		"/Users/monty/Julia/rMF/GTI/well_coordinates.dat",
+		"/Users/monty/Julia/Anasol/README.md",
+		"/Users/monty/Julia/rMF/GTI/process-gti-nmfk-allhalf.jl",
+		"/Users/monty/Julia/rMF/GTI/read-gti-nmfk-reduced.jl",
+		"/Users/monty/system/.bash/func",
+		"/Users/monty/Julia/NMFk/src/NMFkMixMatrix.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkJuMP.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkExecute.jl",
 		"/Users/monty/Julia/rMF/GTI/plotdata-gti.jl",
-		"/Users/monty/Julia/Mads/examples/anasol/runtests3.jl",
-		"/Users/monty/Julia/Mads/examples/bayesian_sampling/bayesian_sampling.jl",
-		"/Users/monty/Julia/Mads/examples/bayesian_sampling/bayesian_sampling_anasol.jl",
-		"/Users/monty/Julia/Mads/examples/bayesian_sampling/emcee_anasol.jl",
-		"/Users/monty/Julia/Mads/examples/bayesian_sampling/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/blind_source_separation/blind_source_separation.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination-efast.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination-saltelli.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination-w03-w13-svr-efast-mads.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination-w03-w13-svr-efast.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination-w04-w13-svr-efast-mads.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination-w04-w13-svr-efast.jl",
-		"/Users/monty/Julia/Mads/examples/contamination/contamination.jl",
-		"/Users/monty/Julia/Mads/examples/embed_c/embed_c.jl",
-		"/Users/monty/Julia/Mads/examples/embed_c/embed_c_parallel.jl",
-		"/Users/monty/Julia/Mads/examples/external_execution/exec.jl",
-		"/Users/monty/Julia/Mads/examples/external_execution_short/exec.jl",
-		"/Users/monty/Julia/Mads/examples/gsl/runtests-libgsl-needed.jl",
-		"/Users/monty/Julia/Mads/examples/MadsExamples.jl",
-		"/Users/monty/Julia/Mads/examples/minimization/compare.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bayes_weight_analsis.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/bigdt.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/calibration.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/emcee_walkers_analsis.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/emcee_weight_analsis.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/infogap.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/sensitivity.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/svr.jl",
-		"/Users/monty/Julia/Mads/examples/model_analysis/uncertainty.jl",
-		"/Users/monty/Julia/Mads/examples/model_coupling/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/montecarlo/montecarlo.jl",
-		"/Users/monty/Julia/Mads/examples/montecarlo/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/ode/ode.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/optimization_callback.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/optimization_external_ascii_problem.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/optimization_external_yaml_problem.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/optimization_linear_problem+template.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/optimization_linear_problem.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/optimization_linear_problem_nlopt.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/optimization_rosenbrock.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/parallel/slurm-parallel-nested-pmap.jl",
-		"/Users/monty/Julia/Mads/examples/parallel/slurm-parallel-pmap.jl",
-		"/Users/monty/Julia/Mads/examples/parallel/slurm-parallel-pmap2.jl",
-		"/Users/monty/Julia/Mads/examples/parallel/slurm-parallel-rMF.jl",
-		"/Users/monty/Julia/Mads/examples/restart/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/sensitivity/eFAST_sensitivity_analysis_parallel.jl"
+		"/Users/monty/Julia/rMF/GTI/readonly-gti.jl",
+		"/Users/monty/Julia/rMF/GTI/process-gti-nmfk-reduced.jl",
+		"/Users/monty/Julia/rMF/GTI/process-gti-nmfk-all.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkFinalize.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkCluster.jl",
+		"/Users/monty/Julia/rMF/GTI/read-gti-nmfk-m.jl",
+		"/Users/monty/Julia/Mads/examples/anasol/runtests.jl",
+		"/Users/monty/Julia/NMFk/test/runtests.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkMixTensor.jl",
+		"/Users/monty/.julia/v0.6/Mads/src/MadsPlot.jl",
+		"/Users/monty/.julia/environments/v1.0/Manifest.toml",
+		"/Users/monty/Julia/DocumentFunction/Project.toml",
+		"/Users/monty/.julia/environments/v1.0/Project.toml",
+		"/Users/monty/.julia/dev/SVR/Project.toml",
+		"/Users/monty/.julia/dev/SVR/Manifest.toml",
+		"/Users/monty/.julia/dev/DocumentFunction/Project.toml",
+		"/Users/monty/Julia/NMFk/src/NMFkCapture.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkSparse.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkMultiplicative.jl",
+		"/Users/monty/Julia/rMF/GTI/read-gti.jl",
+		"/Users/monty/Julia/rMF/GTI/data/8su.dat",
+		"/Users/monty/Julia/rMF/GTI/read-gti-nmfk.jl",
+		"/Users/monty/Julia/Mads/src/MadsPlot.jl",
+		"/Users/monty/Julia/NTFk/src/NTFk.jl",
+		"/Users/monty/Julia/NMFk/src/NMFk.jl",
+		"/Users/monty/Julia/Mads/examples/tensor/tensor-time2.jl",
+		"/Users/monty/Julia/Wells/README.md",
+		"/Users/monty/Julia/Wells/src/Wells.jl",
+		"/Users/monty/Julia/Mads/examples/tensor/tensor-time2noise2.jl",
+		"/Users/monty/Julia/Mads/examples/tensor/tensor-time2noise.jl",
+		"/Users/monty/Julia/Wells/src/macros.jl",
+		"/Users/monty/c/ww/Readme.md",
+		"/Users/monty/c/ww/wells.c"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 70.0
 	},
 	"find_in_files":
 	{
 		"height": 164.0,
 		"where_history":
 		[
+			"/Users/monty/Julia/GeostatInversion,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/Julia/Mads,*.jl",
+			"/Users/monty/Julia,*.jl",
+			"/Users/monty/Julia/Mads,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/Julia/Mads,*.jl",
+			"/Users/monty/Julia/ReusableFunctions,*.jl",
+			"/Users/monty/Julia/RobustPmap,*.jl",
+			"/Users/monty/Julia/Anasol,*.jl",
+			"/Users/monty/Julia/Mads,*.jl",
+			"/Users/monty/Julia/RobustPmap,*.jl",
+			"/Users/monty/Julia/Anasol,*.jl",
+			"/Users/monty/Julia/rMF/GTI,*.jl",
+			"/Users/monty/Julia/NMFk,*.jl",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/Julia/NMFk,*.jl",
+			"/Users/monty/Julia/Mads/examples,*.jl",
+			"/Users/monty/Julia/Mads/test,*.jl",
+			"/Users/monty/.julia,*.jl",
+			"/Users/monty/Julia,*.jl",
+			"/Users/monty/Julia/NMFk,*.jl",
+			"/Users/monty/Julia,*.jl",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/Julia/NMFk,*.jl",
+			"/Users/monty/Julia/rMF/GTI,*.jl",
+			"/Users/monty/Julia,*.jl",
+			"/Users/monty/JuliaTheis,*.jl",
+			"/Users/monty/Julia/MetaProgTools,*.jl",
 			"/Users/monty/Julia/NMFk,*.jl",
 			"/Users/monty/Julia/Mads,*.jl",
 			"/Users/monty/Julia,*.jl",
@@ -798,36 +947,7 @@
 			"/Users/monty/Julia/Mads,*.jl",
 			"/Users/monty/Julia/BIGUQ,*.jl",
 			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/dNTF,*.jl",
-			"/Users/monty/Julia/dNTF.jl,*.jl",
-			"/Users/monty/Julia/CrPlots.jl,*.jl",
-			"/Users/monty/Julia/CrPlots,*.jl",
-			"/Users/monty/Julia/dNTF,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/rNF,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/BIGUQ,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/dNTF,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/NMFk,*.jl",
-			"/Users/monty/Julia/NMFk.jl,*.jl",
-			"/Users/monty/Julia/NMFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/CrPlots.jl,*.jl",
-			"/Users/monty/Julia/CrPlots,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/NMFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/.julia/v0.6/TensorToolbox,*.jl",
-			"/Users/monty/.julia/TensorToolbox,*.jl",
-			"/Users/monty/.julia/v0.6,*.jl",
-			"/Users/monty/Julia/,*.jl"
+			"/Users/monty/Julia/dNTF,*.jl"
 		]
 	},
 	"find_state":
@@ -835,141 +955,183 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"outiters",
-			"fnorm",
-			"ofbest",
-			"ofbe",
-			"norm",
-			"tol",
-			"maxresets",
-			"maxouteriters",
-			"T",
-			"maxresets",
-			"import",
-			"Mads",
-			"quiet",
-			"Float32",
-			"nans",
-			"mixerval",
-			"status",
-			"mixmatchcompute",
-			"of_best",
-			"Suppre",
-			"4",
-			"getwellsdata",
-			"dumpwelldata",
-			"dumpwellsdata",
-			"getwellsdata",
-			"stdout",
-			"VERSION",
-			"sourcetype",
-			"\"box\"",
-			"Dict(",
-			"zip(",
-			"addsource",
-			"end",
-			"length(madsdata[\"Wells\"][wellkey][\"obs\"])",
-			"length(madsdata[\"Wells\"][wellkeys[i]][\"obs\"]",
-			"allconc",
-			"VERSION",
-			"Float64",
-			"Float32",
-			"@warn((",
-			"warn",
-			"warn(",
-			"@warn(",
-			"warn(",
-			"info(",
+			"ifft",
+			"Base.",
+			"Array",
+			"0.1",
+			"Array",
+			"mean",
+			"Base.",
+			"SVR",
+			"readstring",
+			"Base.",
+			"Array",
+			"isdefined",
 			"Associative",
-			"Compat",
-			"Abs",
-			"e1f3b4f0-2dc4-57d3-83f7-d4b7faf3b05b",
-			"kic",
-			"e1f3b4f0-2dc4-57d3-83f7-d4b7faf3b05b",
-			"Docum",
-			"BHT",
-			"MathP",
-			"mf_lm",
-			"Sour",
-			"colors",
-			"nT",
-			"colors",
-			"plot2d",
-			"plot",
-			"names",
-			"name",
-			"names",
-			"well",
-			"kw",
+			"offline",
+			"NTFk.plotmatrix",
+			"seismicdata[:,3]",
+			"strip",
+			"match(Re",
+			"regex",
+			"match(",
+			"match(Re",
+			"match(r\"",
+			"match(",
+			"match",
+			"enumerate",
+			"HH",
+			"hh",
+			"yy",
+			"DateTime",
+			"jld",
 			"JLD",
-			"xm",
-			"title",
-			"mapsize",
-			"NTFk.",
-			"uniformscales",
-			"frame",
-			"mask.jld",
-			"oil",
-			":d",
-			"save",
-			"saveall",
-			"@gen",
-			"hosvd",
-			"tolOF",
-			"maxouteriters",
+			"rmprocs",
+			"everywhere",
+			"readstring",
+			"myid",
+			"jld",
+			"JLD",
+			"pmap",
+			"nwo",
+			"Base.Test.test",
+			"JLD",
+			"read",
+			"readst",
+			"STD",
+			"Void",
+			"linspace",
+			"norm",
+			"Array",
+			"STDERR",
+			"parse",
+			"unshi",
+			"unsh",
+			"isdef",
+			"unshif",
+			"JLD",
+			"SVR",
 			"quiet",
-			"tolof",
-			"iters",
-			"ipopt",
-			"maxiter",
-			"maxouteriters",
-			"isnan",
-			"\"t",
-			"wellsnot36",
-			"maskr18",
-			"irwells18",
-			"wellsr18",
-			"Union",
-			"Unio",
-			"display_level",
-			"bestresult",
-			"selectedwelltensor",
-			"bwelldates",
-			"mask",
-			"ini_decomp",
-			"isnan",
-			"tensorcontract!",
-			"tensorcontract",
-			"== 0.0",
-			"isnan",
-			"hosvd",
-			"residues",
-			"@show",
-			"khatrirao",
-			"tuple",
-			"verbo",
-			"@sh",
-			"factor2XcoreXantifactor2",
-			"_spnntucker_update_core",
-			"eachindex",
-			"eachin",
-			"+=",
-			"@show",
-			"minimum",
-			"maximum",
+			"Meta",
+			"testmadsc",
+			"test",
+			"JLD",
+			"JLD2",
+			"JLD",
+			"atol",
+			"DocumentFunction",
+			"captureoff",
+			"quiet",
+			"SVR",
+			"Base.Test",
+			"pinv",
+			"norm",
+			"krige",
+			"JLD",
+			"YAML",
+			"test_IO",
+			"capt",
+			"reduced10",
+			"reudcted10",
+			"reduced10",
+			"reduced10half",
+			"plot2d",
+			"reduced10",
+			"reduced10half",
+			"reduced10",
+			"plot2d",
+			"maximums",
+			"execute",
+			"tolX=1., tol=1., tolOF=1., save=true, ",
+			"execute",
+			"maxouteriters=10, ",
+			"2:10",
+			"reduced10",
+			"maxresets::Int=-1",
+			"maxresets::Int=3",
+			"maxre",
+			"algorithm",
+			"fixH",
+			"nans",
+			"normalize",
+			"Float32",
+			"139192.39",
+			"140003.45",
+			"WBig",
+			"Wbig",
+			"objvalue",
+			"kale",
+			"sqrt",
 			"vecnorm",
-			"SPNNTuckerHelper",
-			"tnsr",
-			"_spnntucker_update_factor",
-			"vecnorm",
-			"csizes"
+			"vecnormnan",
+			"sqrt(",
+			"sqrt",
+			"sqrt(JuMP.getobjectivevalue(m))",
+			"of",
+			"getobjectivevalue",
+			"of",
+			"objvalue",
+			"idxrat",
+			"OF: min",
+			"phi_final",
+			"abs.(X .- Xe)",
+			"phi_final",
+			"bestIdx",
+			"idxsort",
+			"getva",
+			"convert",
+			"capture",
+			"stdoutcaptureon",
+			"::Measures.Length{:mm,Float64}"
 		],
-		"highlight": true,
+		"highlight": false,
 		"in_selection": false,
 		"preserve_case": false,
 		"regex": false,
 		"replace_history":
 		[
+			"",
+			"ReusableFunctions",
+			"",
+			"AbstractDict",
+			"seismicstage",
+			"Distributed.myid",
+			"Test.test",
+			"Meta.parse",
+			"MetaProgTools",
+			"documentation",
+			"capture",
+			"Kriging",
+			"Test",
+			"reduced10half",
+			"reduced10",
+			"reduced10half",
+			"reduced10",
+			"reduced10half",
+			"allhalf",
+			"reduced10half",
+			"load",
+			"",
+			"2:10",
+			"all",
+			"maxresets::Int=3",
+			"maxresets::Int=-1",
+			"JuMP.getobjectivevalue(m)",
+			"",
+			"quiet::Bool=NMFk.quiet",
+			"idxcut",
+			"idxrat",
+			"idxsol",
+			"5:end",
+			"sample",
+			"W, H, of, sil, aic = ",
+			"Volume",
+			"sample",
+			"* WELLS",
+			"Wells.jl",
+			"JLD",
+			"JLD2",
+			"AbstractDict",
 			"T",
 			"ofbest",
 			"@warn(",
@@ -1055,67 +1217,1592 @@
 			"ColorKey(title=",
 			"Colorkey(title=",
 			"plotratios",
-			"plotvalues",
-			"getvalues",
-			"plotwell",
-			"getdata",
-			"1/sizes[dim]",
-			"APIToDates",
-			"oil",
-			"Oil",
-			"toYears",
-			"dpi=150",
-			"png",
-			"PNG",
-			"X_esta",
-			"X",
-			"functionname",
-			"random::Bool=true",
-			"$prefix",
-			"$figuredir",
-			"tsf",
-			"T",
-			"",
-			"k",
-			"x",
-			"divergence",
-			"of",
-			"divergence",
-			"of",
-			"NTFk",
-			"NTFk.",
-			"NTFk",
-			"joinpath",
-			"joinpath(resultsdir, \"",
-			"",
-			"filter=",
-			"$(problemname)",
-			"quiet=quiet",
-			"X",
-			"cp_orig",
-			"timeindex, xindex, yindex",
-			"resultdir",
-			"::AbstractString",
-			"AbstractString",
-			"csize["
+			"plotvalues"
 		],
 		"reverse": false,
 		"show_context": false,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/Users/monty/Julia/rMF/GTI/read-seismic1.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5235,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4597,
+								5234
+							]
+						],
+						"settings":
+						{
+							"SL.13.region_keys":
+							[
+							],
+							"SL.345.region_keys":
+							[
+							],
+							"auto_name": "seismicdata, seismicheader = readdlm(\"seismic/SUGG",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1254.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/monty/.julia/dev/GeostatInversion/test/testfftrf.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 764,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								645,
+								645
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 149,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										117,
+										121
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"default_dir": "/Users/monty/.julia/dev/GeostatInversion/test",
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/monty/Julia/GeostatInversion/src/FFTRF.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3872,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2381,
+								2385
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2392,
+										2393
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										2385,
+										2386
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1188.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/monty/Julia/GeostatInversion/REQUIRE",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 63,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9,
+								9
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/monty/Julia/GeostatInversion/.travis.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								52,
+								52
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/YAML/YAML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/monty/Julia/GeostatInversion/README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5724,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								244,
+								244
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										249,
+										250
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/square_bracket.png",
+										"region.bluish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										171,
+										172
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/MarkdownEditing/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Users/monty/Julia/rMF/GTI/read-seismic.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2852,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2571,
+								2645
+							]
+						],
+						"settings":
+						{
+							"SL.362.region_keys":
+							[
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2425,
+										2426
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										2414,
+										2415
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2644,
+										2645
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										2584,
+										2585
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 459.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/Users/monty/Julia/rMF/Geyser/read-geyser.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8158,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1220,
+								1500
+							]
+						],
+						"settings":
+						{
+							"SL.366.region_keys":
+							[
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1277,
+										1278
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/square_bracket.png",
+										"region.bluish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1245,
+										1246
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1499,
+										1500
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1409,
+										1410
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 70.0
 	},
 	"input":
 	{
@@ -1168,7 +2855,7 @@
 	"project": "julia.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 114.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1206,7 +2893,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 345.0,
+	"side_bar_width": 266.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
