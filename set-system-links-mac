@@ -16,7 +16,6 @@ ln -sf ./system/.gitignore .gitignore
 ln -sf ./system/.curlrc .curlrc
 ln -sf ./system/.hgrc .hgrc
 ln -sf ./system/.inputrc .inputrc
-ln -sf ./system/.juliarc.jl .juliarc.jl
 ln -sf ./system/.login .login
 ln -sf ./system/.screenrc .screenrc
 ln -sf ./system/.tmux.conf .tmux.conf
@@ -24,6 +23,9 @@ ln -sf ./system/.netrc .netrc
 ln -sf ./system/.profile .profile
 ln -sf ./system/.vimrc .vimrc
 ln -sf ./system/.vim .vim
+ln -sf ./system/.juliarc.jl .juliarc.jl
+mkdir .julia/config
+ln -sf ../../system/julia/startup.jl .julia/config/startup.jl
 mkdir .ssh
 ln -sf ../system/.ssh/config .ssh/config
 echo "Script ..."
