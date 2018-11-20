@@ -1,3 +1,7 @@
+import Revise
+
+ENV["PYTHON"]="/usr/local/bin/python3"
+
 if haskey(ENV, "HOME")
 	@everywhere push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
 end

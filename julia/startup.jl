@@ -1,6 +1,15 @@
+ENV["PYTHON"]="/usr/local/bin/python3"
+
 import Pkg
-Pkg.add("Revise")
-import Revise
+
+atreplinit() do repl
+	try
+		@eval import Revise
+		@async Revise.wait_steal_repl_backend()
+	catch
+		@warn("Revise is not available")
+	end
+end
 
 # if Sys.isapple()
 # 	atreplinit((_)->Base.require(Base, :TerminalExtensions))
@@ -8,4 +17,5 @@ import Revise
 
 if haskey(ENV, "HOME")
 	push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
+	@warn("$(joinpath(ENV["HOME"], "Julia")) is in the LOAD_PATH")
 end
