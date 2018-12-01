@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"key",
+				"keytitle"
+			],
+			[
+				"le",
+				"Length"
+			],
+			[
+				"po",
+				"poly"
+			],
+			[
+				"Int",
+				"Integer"
+			],
+			[
+				"gettensorcom",
+				"gettensorcomponents"
+			],
+			[
 				"graph",
 				"graphoff"
 			],
@@ -14,10 +34,6 @@
 			[
 				"Ve",
 				"Vector"
-			],
-			[
-				"Int",
-				"Integer"
 			],
 			[
 				"wells",
@@ -492,83 +508,78 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/monty/Julia/rMF/rf/rf.jl",
+			"file": "/Users/monty/Julia/rMF/Juelich/postprocess-monthly-anomalies.jl",
 			"settings":
 			{
-				"buffer_size": 2398,
-				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "dataset = readdlm(\"data/petrol_consumption.csv\", '"
-			}
-		},
-		{
-			"file": "/Users/monty/www/www-monty/index.html",
-			"settings":
-			{
-				"buffer_size": 60173,
+				"buffer_size": 6194,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/monty/.julia/dev/Mads/src-interactive/MadsPublish.jl",
+			"file": "/Users/monty/Julia/NTFk/src/NTFkAnalysis-TD.jl",
 			"settings":
 			{
-				"buffer_size": 9322,
+				"buffer_size": 13677,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/monty/.julia/dev/Mads/docs/src/GeostatInversion.md",
+			"file": "/Users/monty/Julia/NTFk/src/NTFkPlot2d.jl",
 			"settings":
 			{
-				"buffer_size": 2091,
-				"encoding": "UTF-8",
+				"buffer_size": 12564,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/monty/.julia/dev/GeostatInversion/src/FFTRF.jl",
+			"file": "/Users/monty/Julia/NTFk/src/NTFkPlotComponents.jl",
 			"settings":
 			{
-				"buffer_size": 4026,
-				"encoding": "UTF-8",
+				"buffer_size": 11732,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/monty/.julia/dev/GeostatInversion/test/testrpcga.jl",
+			"contents": "Searching 44 files for \"fold\" (case sensitive)\n\n0 matches\n\nSearching 1 file for \"fold\"\n\n/Users/monty/Julia/TensorDecompositions.*.jl:\n    ERROR: Unable to open file\n\n0 matches\n\nSearching 1 file for \"unfold\"\n\n/Users/monty/Julia/TensorDecompositions.*.jl:\n    ERROR: Unable to open file\n\n0 matches\n\nSearching 1 file for \"unfold\"\n\n/Users/monty/Julia/TensorDecompositions.:\n    ERROR: Unable to open file\n\n0 matches\n\nSearching 1 file for \"fold\"\n\n/Users/monty/Julia/TensorDecompositions.:\n    ERROR: Unable to open file\n\n0 matches\n\nSearching 1 file for \"compose\"\n\n/Users/monty/Julia/TensorDecompositions.:\n    ERROR: Unable to open file\n\n0 matches\n\nSearching 22 files for \"compose\"\n\n/Users/monty/Julia/TensorDecompositions/src/abstract_decomposition.jl:\n    7: Returns relative error between the re-composed and the original tensors.\n    9: rel_residue(recomposed::StridedArray{T, N}, tensor::StridedArray{T, N}) where {T,N} = vecnorm(recomposed - tensor) / vecnorm(tensor)\n   12: Returns relative error between re-composed and the original tensor.\n   14: rel_residue(decomp::TensorDecomposition{T, N}, tensor::StridedArray{T, N}) where {T,N}  = rel_residue(compose(decomp), tensor)\n\n/Users/monty/Julia/TensorDecompositions/src/candecomp.jl:\n   22: Re-composes the tensor from CANDECOMP decomposition.\n   24: @generated function compose!(dest::Array{T,N}, factors::NTuple{N, Matrix{T}}, lambdas::Vector{T}) where {T, N}\n   38: @generated function compose(factors::NTuple{N, Matrix{T}}, lambdas::Vector{T}) where {T, N}\n   40: \t\tcompose!(Array{T}(@ntuple $N i -> size(factors[i], 1)), factors, lambdas)\n   44: compose(decomp::CANDECOMP) = compose(decomp.factors, decomp.lambdas)\n   46: compose!(dest::Array{T,N}, decomp::CANDECOMP{T,N}) where {T, N} = compose!(dest, decomp.factors, decomp.lambdas)\n\n/Users/monty/Julia/TensorDecompositions/src/hosvd.jl:\n   45: \t\tinfo(\"Vector Norm: $(vecnorm(tensor .- compose(res)))\")\n\n/Users/monty/Julia/TensorDecompositions/src/spnntucker.jl:\n    5: \tsqr_residue::Number          # residue, i.e. 0.5 vecnorm(tnsr - recomposed)^2\n   17: \tsqr_residue::Float64          # residue, i.e. 0.5 vecnorm(tnsr - recomposed)^2\n  193: Decomposes nonnegative tensor `tnsr` into optionally nonnegative `core` tensor\n  196:  * `tnsr` nonnegative `N`-mode tensor to decompose\n  283: \tinfo(\"Initial Frobenius norm: $(vecnorm(tnsr - compose(ini_decomp)))\")\n  299: \tresid = resid0 = 0.5*vecnorm(tnsr - compose(decomp0))^2 + _spnntucker_reg_penalty(decomp0, lambdas)\n  400: \tinfo(\"Final Frobenius norm: $(vecnorm(tnsr - compose(decomp0)))\")\n\n/Users/monty/Julia/TensorDecompositions/src/TensorDecompositions.jl:\n   25: compose, compose!,\n\n/Users/monty/Julia/TensorDecompositions/src/tucker.jl:\n   38: Composes a full tensor from Tucker decomposition.\n   40: compose(decomp::Tucker{T,N}, modes=collect(1:N)) where {T, N} = tensorcontractmatrices(core(decomp), factors(decomp)[modes], modes; transpose=true)\n   42: compose!(dest::Array{T,N}, decomp::Tucker{T,N}, modes=collect(1:N)) where {T, N} = tensorcontractmatrices!(dest, core(decomp), factors(decomp)[modes], modes; transpose=true)\n\n/Users/monty/Julia/TensorDecompositions/test/helpers.jl:\n   10:     compose(rand_candecomp(r, dims, lambdas_nonneg=nonnegative, factors_nonneg=nonnegative))\n\n/Users/monty/Julia/TensorDecompositions/test/test_spnntucker.jl:\n    6:     tnsr_orig = compose(tucker_orig)\n   26:     tnsr_orig = compose(tucker_orig)\n\n29 matches across 8 files\n",
 			"settings":
 			{
-				"buffer_size": 5475,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/monty/Julia/rMF/Oklahoma/data/Oklahoma_catalog_OGS.csv",
-			"settings":
-			{
-				"buffer_size": 2910395,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Searching 223 files for \"tryimport\" (case sensitive)\n\n/Users/monty/.julia/dev/Mads/examples/anasol/runtests.jl:\n    8: @Mads.tryimportmain JLD2\n    9: @Mads.tryimportmain FileIO\n   10: @Mads.tryimportmain OrderedCollections\n\n/Users/monty/.julia/dev/Mads/examples/blind_source_separation/runtests.jl:\n   11: @Mads.tryimport Ipopt\n\n/Users/monty/.julia/dev/Mads/examples/contamination/runtests.jl:\n   11: @Mads.tryimportmain JLD2\n   12: @Mads.tryimportmain FileIO\n   13: @Mads.tryimportmain OrderedCollections\n   14: @Mads.tryimportmain DataStructures\n\n/Users/monty/.julia/dev/Mads/examples/montecarlo/runtests.jl:\n    7: @Mads.tryimportmain JLD2\n    8: @Mads.tryimportmain FileIO\n    9: @Mads.tryimportmain OrderedCollections\n   10: @Mads.tryimportmain DataStructures\n\n/Users/monty/.julia/dev/Mads/examples/svr/runtests.jl:\n   12: @Mads.tryimportmain JLD2\n   13: @Mads.tryimportmain FileIO\n   14: @Mads.tryimportmain OrderedCollections\n   15: @Mads.tryimportmain DataStructures\n\n/Users/monty/.julia/dev/Mads/src-interactive/MadsDisplay.jl:\n    2: \t@Mads.tryimport Gadfly\n    3: \t@Mads.tryimport Compose\n    5: @Mads.tryimport Images\n\n/Users/monty/.julia/dev/Mads/src-interactive/MadsTest.jl:\n   67: \t\t\t\tCore.eval(Mads, :(@tryimport $(Symbol(testname))))\n\n/Users/monty/.julia/dev/Mads/src-new/MadsInfoGap.jl:\n    4: @Mads.tryimport Ipopt\n    6: \t@Mads.tryimport Gadfly\n\n/Users/monty/.julia/dev/Mads/src/Mads.jl:\n   75: macro tryimport(s::Symbol)\n   90: macro tryimportmain(s::Symbol)\n  111: \t@tryimport PyCall\n  124: \t\t\t\t\t@tryimport Conda\n  207: \t@tryimport BIGUQ\n  216: \t@tryimport Klara\n  231: \t\t@Mads.tryimport Gadfly\n  237: \t\t@Mads.tryimport PyCall\n  238: \t\t@Mads.tryimport PyPlot\n  264: \t@tryimport JuMP\n  265: \t@tryimport Ipopt\n\n/Users/monty/.julia/dev/Mads/src/MadsAnasolPlot.jl:\n    1: @tryimport Gadfly\n\n/Users/monty/.julia/dev/Mads/src/MadsHelp.jl:\n   25: \t\tCore.eval(Mads, :(@tryimport $(Symbol(i))))\n   34: \t\tCore.eval(Mads, :(@tryimport $(Symbol(i))))\n\n/Users/monty/.julia/dev/Mads/src/MadsSenstivityAnalysis.jl:\n   14: \t@tryimport Gadfly\n\n37 matches across 12 files\n",
-			"settings":
-			{
-				"buffer_size": 2077,
+				"buffer_size": 3435,
 				"line_ending": "Unix",
 				"name": "Find Results",
 				"scratch": true
 			}
 		},
 		{
-			"file": "/Users/monty/.julia/dev/Mads/src/MadsHelp.jl",
+			"file": "/Users/monty/Julia/TensorDecompositions/src/tucker.jl",
 			"settings":
 			{
-				"buffer_size": 3403,
+				"buffer_size": 2215,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/TensorDecompositions/src/utils.jl",
+			"settings":
+			{
+				"buffer_size": 5525,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/TensorDecompositions/src/candecomp.jl",
+			"settings":
+			{
+				"buffer_size": 6294,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/NTFk/src/NTFkPlot.jl",
+			"settings":
+			{
+				"buffer_size": 12302,
 				"line_ending": "Unix"
 			}
 		}
@@ -713,12 +724,128 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/monty/.julia/dev/Mads",
+		"/Users/monty/.julia/dev/Mads/deps",
+		"/Users/monty/.julia/dev/Mads/src",
+		"/Users/monty/Julia/rMF",
+		"/Users/monty/Julia/rMF/Juelich",
+		"/Users/monty/Julia/NTFk",
+		"/Users/monty/Julia/NTFk/src"
 	],
 	"file_history":
 	[
+		"/Users/monty/Julia/NTFk/src/NTFkHelpers.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsHelpers.jl",
+		"/Users/monty/Julia/rMF/Oklahoma/weekly2008coarse-oklahoma.jl",
+		"/Users/monty/Julia/NTFk/src/NTFk.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkPlotComponents.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkPlot.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkPlot2d.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkPlotProgressBar.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkPlotMatrix.jl",
+		"/Users/monty/.julia/v0.6/Mads/src/MadsPlot.jl",
+		"/Users/monty/.julia/dev/Mads/src/Mads.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkHelp.jl",
+		"/Users/monty/.julia/v0.6/Mads/src/Mads.jl",
+		"/Users/monty/Julia/rMF/GTI/postprocess-nmfk-all.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkAnalysis-tensortoolbox.jl",
+		"/Users/monty/Julia/rMF/Geopotential500mb/read.jl",
+		"/Users/monty/Julia/rMF/LBM/read-1113-2.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkJuMP.jl",
+		"/Users/monty/Julia/rMF/LBM/process-1113-2-SDIC.jl",
+		"/Users/monty/Julia/rMF/LBM/process-1113-2-SDLC.jl",
+		"/Users/monty/Julia/rMF/LBM/process-1113-2-SDHC.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkMixMatrix.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkExecute.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkCluster.jl",
+		"/Users/monty/Julia/rMF/Mixing/analyze-time-t5000-50000.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkLoad.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkAnalysis-TD.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkAnalysis-TD-mixing.jl",
+		"/Users/monty/Julia/TensorDecompositions/src/spnntucker.jl",
+		"/Users/monty/Julia/rMF/Mixing/scp-5000.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-predict48.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-r56.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-good.jl",
+		"/Users/monty/.julia/v0.6/Interpolations/src/b-splines/b-splines.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/src/FFTRF.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-r48.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-r39.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-r36.jl",
+		"/Users/monty/Julia/rMF/Mixing/analyze-5D.jl",
+		"/private/var/folders/3z/rj6y6gfx4nd3h867q_mvjnw0000b9r/T/com.microsoft.Outlook/Outlook Temp/JCP_Paper_realization_Params.txt",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-some.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-gooder.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-goody.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-paper-jcp.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-good-x.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-good-y.jl",
+		"/Users/monty/Julia/rMF/Juelich/process-monthly-anomalies.jl",
+		"/Users/monty/Julia/TensorDecompositions/src/tucker.jl",
+		"/Users/monty/Julia/rMF/Mixing/data-new/G_reactant_beyond_1000/Process.jl",
+		"/Users/monty/Julia/rMF/Mixing/interpolation.jl",
+		"/Users/monty/Julia/TensorDecompositions/src/spnntucker-new.jl",
+		"/Users/monty/Julia/TensorDecompositions/src/TensorDecompositions.jl",
+		"/Users/monty/Julia/TensorDecompositions/src/spnntucker-old.jl",
+		"/Users/monty/Documents/lanl-em/waffle2017/doc/waffle2017.md",
+		"/Users/monty/Julia/rMF/GTI/extract.jl",
+		"/Users/monty/Julia/rMF/Geopotential500mb/factors.dat",
+		"/Users/monty/Julia/rMF/Oklahoma/data/latlong_Oklahoma_polygon.dat",
+		"/Users/monty/Julia/rMF/Juelich/postprocess-monthly-anomalies.jl",
+		"/Users/monty/Julia/NTFk/src/NTFkPlotColors.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsPlot.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsPlotPy.jl",
+		"/Users/monty/Julia/rMF/GTI/read-seismic.jl",
+		"/Users/monty/.julia/v0.6/Gadfly/src/color_misc.jl",
+		"/Users/monty/Julia/rMF/Juelich/TSMP_29_monthly_anomalies/figures-results/tas12-l0-signals-50/tas12-l0-signals-50-factor3.dat",
+		"/Users/monty/Julia/rMF/Juelich/TSMP_29_monthly_anomalies/figures-results/tas12-l0-signals-50/tas12-l0-signals-50-tensorslice5.dat",
+		"/Users/monty/.julia/dev/Mads/examples/learn_julia/krige.jl",
+		"/Users/monty/Julia/rMF/Juelich/TSMP_29_monthly_anomalies/figures-results/tas12-l0-signals-50/tas12-l0-signals-50-factor3-43.dat",
+		"/Users/monty/Julia/NTFk/src/imshow.jl",
+		"/Users/monty/Julia/rMF/Geopotential500mb/data/landmask.dat",
+		"/Users/monty/.julia/v0.6/Gadfly/src/guide.jl",
+		"/Users/monty/Julia/rMF/Juelich/TSMP_29_monthly_anomalies/figures-results/tas12-l0-signals-13/tas12-l0-signals-13-tensorslice2.dat",
+		"/Users/monty/Julia/rMF/Juelich/TSMP_29_monthly_anomalies/figures-results/tas12-l0-signals-10/tas12-l0-signals-10-tensorslice5.dat",
+		"/Users/monty/Julia/NTFk/src/NTFkAnalysis.jl",
+		"/Users/monty/.julia/dev/Mads/.travis.yml",
+		"/Users/monty/.julia/dev/Mads/ci/before_script.jl",
+		"/Users/monty/Julia/rMF/OGW/OGW-functions.jl",
+		"/Users/monty/.julia/dev/Mads/test/runtests.jl",
+		"/Users/monty/.julia/dev/Mads/test/install_dependencies.jl",
+		"/Users/monty/.julia/dev/Mads/REQUIRE",
+		"/Users/monty/Julia/rMF/USDA/read.jl",
+		"/Users/monty/Julia/rMF/AquiferMixing/sid-pca-ica-nmf.jl",
+		"/Users/monty/Julia/rMF/Corrosion/postprocess.jl",
+		"/Users/monty/Julia/rMF/examples/NMFk-anasol.jl",
+		"/Users/monty/Julia/NMFk/src/NMFkPlot.jl",
+		"/Users/monty/Julia/rMF/USDA/results/signals2.dat",
+		"/Users/monty/Julia/rMF/USDA/results/mix2.dat",
+		"/Users/monty/.julia/dev/Mads/deps/build.jl",
+		"/Users/monty/Downloads/OwyheeApr1AprJul_InputCandidatePool_ForMonty.csv",
+		"/Users/monty/Downloads/GMT_wysiwygcont (1).rgb",
+		"/Users/monty/.julia/dev/Mads/examples/anasol/runtests.jl",
+		"/Users/monty/Downloads/rainbow+gray (1).rgb",
+		"/Users/monty/Downloads/GMT_wysiwygcont.rgb",
+		"/Users/monty/Downloads/temp1.rgb",
+		"/Users/monty/Downloads/tbr_var_0-500.rgb",
+		"/Users/monty/Julia/rMF/Oklahoma/data-results/weekly2008-l0-signals-core2-3.dat",
+		"/Users/monty/Julia/rMF/Oklahoma/data-results/weekly2008-l0-signals-core1-3.dat",
+		"/Users/monty/Julia/rMF/Oklahoma/data-results/weekly2008-l0-signals-6.dat",
+		"/Users/monty/.julia/dev/GeostatInversion/src/lowrank.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/test/testfftrf.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/test/testrpcga.jl",
+		"/Users/monty/Julia/rMF/rf/rf.jl",
+		"/Users/monty/www/www-monty/index.html",
+		"/Users/monty/.julia/dev/Mads/src-interactive/MadsPublish.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/src/GeostatInversion.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/src/lsqr.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/src/RandMatFact.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/src/direct.jl",
+		"/Users/monty/.julia/dev/GeostatInversion/src/FDDerivatives.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsHelp.jl",
+		"/Users/monty/Julia/rMF/Oklahoma/data/Oklahoma_catalog_OGS.csv",
 		"/Users/monty/.julia/environments/v1.0/Manifest.toml",
 		"/Users/monty/.julia/environments/v1.0/Project.toml",
-		"/Users/monty/.julia/dev/Mads/ci/before_script.jl",
 		"/Users/monty/.julia/dev/Mads/ci/show_versions.jl",
 		"/Users/monty/.julia/dev/Mads/README.md",
 		"/Users/monty/.julia/dev/Mads/docs/build/Mads.md",
@@ -726,7 +853,6 @@
 		"/Users/monty/.julia/dev/Mads/src/MadsFunc.jl",
 		"/Users/monty/.julia/dev/Mads/examples/model_coupling/runtests.jl",
 		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-ascii-linearmodel.jl",
-		"/Users/monty/.julia/dev/Mads/src/Mads.jl",
 		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-linearmodel+template+instruction+path/external-linearmodel+template+instruction+path.jl",
 		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-linearmodel+template+instruction-l1.jl",
 		"/Users/monty/.julia/dev/Mads/src/MadsIO.jl",
@@ -735,115 +861,7 @@
 		"/Users/monty/.julia/dev/Mads/examples/optimization/runtests.jl",
 		"/Users/monty/.julia/dev/Mads/examples/optimization/optimization_callback.jl",
 		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-linearmodel+template+instruction.jl",
-		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-linearmodel+template+instruction+path.jl",
-		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-yaml-linearmodel.jl",
-		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-jld-linearmodel.jl",
-		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-json-linearmodel.jl",
-		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-linearmodel-matrix.jl",
-		"/Users/monty/system/julia/startup.jl",
-		"/Users/monty/.julia/packages/BinaryProvider/1nGWd/src/Products.jl",
-		"/Users/monty/.julia/packages/BinaryProvider/1nGWd/src/Prefix.jl",
-		"/Users/monty/.julia/dev/Ipopt/deps/build.jl",
-		"/Users/monty/.julia/dev/Mads/deps/build.jl",
-		"/Users/monty/www/www-mads/index.html",
-		"/Users/monty/.julia/dev/Mads/examples/contamination/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/examples/montecarlo/runtests.jl",
-		"/Users/monty/.julia/dev/ReusableFunctions/test/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsLog.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsLevenbergMarquardt.jl",
-		"/Users/monty/.julia/dev/RobustPmap/test/runtests.jl",
-		"/Users/monty/www/www-mads/.gitlab-ci.yml",
-		"/Users/monty/.julia/dev/Mads/REQUIRE",
-		"/Users/monty/Julia/NTFk/src/NTFkHelpers.jl",
-		"/Users/monty/Julia/CrPlots.jl/src/CrPlots.jl",
-		"/Users/monty/Julia/NTFk/src/NTFkPlot.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/daily-oklahoma.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/weekly2008-oklahoma.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/weekly-oklahoma.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/weekly2005-oklahoma.jl",
-		"/Users/monty/.julia/dev/Mads/examples/blind_source_separation/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/test/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/src-new/MadsBSS.jl",
-		"/Users/monty/.julia/dev/Mads/examples/minimization/compare.jl",
-		"/Users/monty/Julia/rMF/GTI/read-seismic.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-wtd-monthly.jl",
-		"/Users/monty/Julia/rMF/Juelich/process-monthly-anomalies.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-evspsbl-monthly.jl",
-		"/Users/monty/Julia/rMF/Juelich/postprocess-monthly-anomalies.jl",
-		"/Users/monty/Julia/rMF/GTI/process-12-18.jl",
-		"/private/var/folders/3z/rj6y6gfx4nd3h867q_mvjnw0000b9r/T/com.microsoft.Outlook/Outlook Temp/Oklahoma_catalog_OGS.csv",
-		"/Users/monty/Julia/rMF/Juelich/TSMP_29_monthly_anomalies/data-results/tas12-ld-core9-9.dat",
-		"/Users/monty/Julia/rMF/Juelich/TSMP_29_monthly_anomalies/data-results/tas12-ld-factor3-3.dat",
-		"/Users/monty/Julia/rMF/Juelich/TSMP_29_monthly_anomalies/data-results/tas12-ld-cores1-3.dat",
-		"/Users/monty/Julia/rMF/Geopotential500mb/read.jl",
-		"/Users/monty/.julia/dev/Anasol/test/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/src-interactive/MadsParallel.jl",
-		"/Users/monty/.julia/dev/Mads/src-interactive/MadsDisplay.jl",
-		"/Users/monty/.julia/dev/Mads/scripts/madsdisplay.jl",
-		"/Users/monty/.julia/dev/Mads/src-interactive/MadsPublish.jl",
-		"/Users/monty/.julia/dev/Kriging/src/Kriging.jl",
-		"/Users/monty/.julia/dev/Mads/examples/embed_c/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/examples/external-linear-model/external-jld-linearmodel.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-gooder.jl",
-		"/Users/monty/Julia/NTFk/src/NTFkAnalysis-TD-mixing.jl",
-		"/Users/monty/.julia/dev/Mads/examples/anasol/runtests.jl",
-		"/Users/monty/Julia/rMF/GTI/loaddata-gti-nmfk-all.jl",
-		"/Users/monty/Julia/rMF/GTI/process-12-18-analyzecases.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-wtd-monthly_anomalies.jl",
-		"/Users/monty/Julia/rMF/Juelich/process-monthly_anomalies.jl",
-		"/Users/monty/Julia/NTFk/src/NTFk.jl",
-		"/Users/monty/Julia/NTFk/src/NTFkAnalysis-tensordecompositions.jl",
-		"/Users/monty/Julia/NTFk/src/NTFkAnalysis-tensordecompositions-mixing.jl",
-		"/Users/monty/.julia/dev/Mads/examples/ode/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/examples/restart/runtests.jl",
-		"/Users/monty/.julia/dev/ReusableFunctions/src/ReusableFunctions.jl",
-		"/Users/monty/.julia/dev/ReusableFunctions/REQUIRE",
-		"/Users/monty/.julia/dev/Mads/.travis.yml",
-		"/Users/monty/.julia/dev/Mads/examples/reading_instructions/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/examples/minimization/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/examples/kriging/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/examples/emcee/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/examples/bayesian_sampling/runtests.jl",
-		"/Users/monty/.julia/environments/v0.7/Manifest.toml",
-		"/Users/monty/.julia/environments/v0.7/Project.toml",
-		"/Users/monty/.julia/dev/Mads/src/MadsCapture.jl",
-		"/Users/monty/.julia/dev/Mads/test/miscellaneous.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsSVR.jl",
-		"/Users/monty/.julia/dev/Mads/examples/parallel/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsHelpers.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsKriging.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsHelp.jl",
-		"/Users/monty/.julia/dev/Mads/examples/optimization/optimization-lm.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsPlotPy.jl",
-		"/Users/monty/.julia/dev/Mads/test/io.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsCalibrate.jl",
-		"/Users/monty/.julia/dev/DocumentFunction/Project.toml",
-		"/Users/monty/.julia/packages/DocumentFunction/xEntN/src/DocumentFunction.jl",
-		"/Users/monty/Julia/Mads/src/MadsMonteCarlo.jl",
-		"/Users/monty/Julia/Mads/examples/anasol/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/model_coupling/runtests.jl",
-		"/Users/monty/Julia/Mads/src/MadsSVR.jl",
-		"/Users/monty/Julia/Mads/src/MadsHelpers.jl",
-		"/Users/monty/Julia/Mads/examples/restart/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/svr/runtests.jl",
-		"/Users/monty/Julia/Mads/src/MadsFunc.jl",
-		"/Users/monty/Julia/Mads/src/MadsForward.jl",
-		"/Users/monty/Julia/Mads/src/MadsSenstivityAnalysis.jl",
-		"/Users/monty/Julia/Mads/REQUIRE",
-		"/Users/monty/Julia/Mads/src/MadsIO.jl",
-		"/Users/monty/Julia/Mads/test/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/parallel/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/ode/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/optimization/runtests.jl",
-		"/Users/monty/Julia/Mads/examples/montecarlo/runtests.jl",
-		"/Users/monty/Julia/Mads/test/miscellaneous.jl",
-		"/Users/monty/Julia/Mads/examples/blind_source_separation/runtests.jl",
-		"/Users/monty/Julia/Mads/src/MadsLevenbergMarquardt.jl",
-		"/Users/monty/Julia/Mads/src/MadsAnasol.jl",
-		"/Users/monty/.julia/v0.6/Mads/examples/model_coupling/runtests.jl",
-		"/Users/monty/Julia/Mads/src/MadsExecute.jl",
-		"/Users/monty/Mads/src/MadsForward.jl",
-		"/Users/monty/.julia/v0.6/Mads/examples/model_coupling/external-ascii-linearmodel.jl"
+		"/Users/monty/.julia/dev/Mads/examples/model_coupling/external-linearmodel+template+instruction+path.jl"
 	],
 	"find":
 	{
@@ -854,6 +872,45 @@
 		"height": 164.0,
 		"where_history":
 		[
+			"/Users/monty/Julia/TensorDecompositions,*.jl",
+			"/Users/monty/Julia/TensorDecompositions.,*.jl",
+			"/Users/monty/Julia/TensorDecompositions.*.jl",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/.julia/dev/Mads/src,*.jl",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/Julia/rMF/Mixing,*.jl",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/.julia/dev,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/Julia/rMF/Mixing,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/Julia/TensorDecompositions,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/Julia/TensorDecompositions,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl\n",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*jl",
+			"/Users/monty/.julia/dev/Mads",
+			"/Users/monty/.julia/dev/Mads,*.jl\n",
+			"/Users/monty/Julia/NTFk,*.jl",
+			"/Users/monty/Julia/rMF/OGW,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/.julia/dev/rMF,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl\n",
+			"/Users/monty/Julia/rMF/Juelich,*.jl",
+			"<open folders>,*.jl",
+			"<current file>,*.jl",
+			"<current file>",
+			"/Users/monty/.julia/dev/GeostatInversion,*.jl",
 			"/Users/monty/.julia/dev/Mads,*.jl",
 			"/Users/monty/.julia/dev/Mads,*.jl\n",
 			"/Users/monty/.julia/dev/Mads,*.md",
@@ -942,188 +999,172 @@
 			"/Users/monty/Julia/rMF/GTI,*.jl",
 			"/Users/monty/Julia/NTFk,*.jl",
 			"/Users/monty/Julia/rMF/GTI,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/NMFk,*.jl",
-			"/Users/monty/Julia/rMF/GTI,*.jl",
-			"/Users/monty/Julia/rMF/GIT,*.jl",
-			"/Users/monty/Julia/NMFk,*.jl",
-			"/Users/monty/Julia/rMF/GTI,*.jl",
-			"/Users/monty/Julia/NMFk,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia,*.jl",
-			"/Users/monty/Julia/rMF/GTI,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/BIGUQ,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/Mads,*.mjl",
-			"/Users/monty/Julia/Mads,*.mads",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/,REQUIRE",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/,REQUIRE",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/NMFk,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/GeostatInversion,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/Mads,*.jl",
-			"/Users/monty/Julia/ReusableFunctions,*.jl"
+			"/Users/monty/Julia/NTFk,*.jl"
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
-			"'",
-			"BIG",
-			"Klara",
-			"Kla",
-			"BIG",
-			"tryimport",
-			"madsmodules",
-			"reload",
-			"relo",
-			"rel",
-			"Ip",
-			"IP",
-			"try",
-			"has been updated to ac",
-			"Ipo",
-			"@show",
-			"calibrate",
+			"compose",
+			"fold",
+			"unfold",
+			"fold",
+			"dpi",
+			"quie",
+			"plota",
 			"@sh",
-			"itera",
-			"obsdict",
-			"instline",
-			"glo",
-			"readobservations",
-			"teforl1",
-			"VERSION",
-			"VERSIOn",
-			"Calling julia from julia is not al",
-			"cwd",
-			"pwd",
-			"modeloutputfilename",
-			"instruction[\"re",
-			"inst",
-			"inst2",
-			"ins2",
-			"instruct",
-			"inst2",
-			"ins2",
-			"read",
-			"instr",
-			"inst2",
-			"ins2",
-			"DONE",
-			"VER",
-			"ignore_platform",
-			"extract_platform_key",
-			"extr",
-			"tarball_url",
-			"v.3",
-			"Ipopt",
-			"PACKAGES",
-			"import",
-			"Mads",
-			"Compat",
-			"Codes",
-			"ascem",
-			"sideba",
-			"2010",
-			"squa",
-			"dako",
-			"Leif",
-			"aquifert",
-			"aquifer",
-			">PDF</a>",
-			"http",
-			"mads.l",
-			"LA-CC",
-			"LA-",
-			"monty",
-			"Docum",
-			"devel",
-			"deve",
-			"monty",
-			"f1",
-			"Mads",
-			"v",
-			"fp",
-			"d",
-			"DataStructures",
-			"@sho",
-			"sigdigits",
+			"ymin=xmin",
+			"ymax",
+			"code",
+			"dateend=",
+			"dateend=n",
+			"plotall3tensorsandcomponents",
+			"opacity",
+			"linewidth",
+			"linewidth=",
+			"linewidth",
+			"code",
+			"pdim",
+			"dim",
+			"nt",
+			"DocumentFunction",
+			"quietoff)",
+			"globa",
+			"dpi",
+			"dpi=",
+			"dpi=150",
+			"dpi=",
+			"maxva",
+			"colormap",
+			"col",
+			"ffmpeg",
+			"vspeed",
+			"title",
+			"cleanup",
+			"filter",
+			"maxv",
+			"minvalue",
+			"colormap",
+			"transf",
 			"mask",
-			"dayly",
-			"datestart=date[id][1], dateend=date[id][end], ",
+			"kw",
+			"poly",
+			"progressbar_regular",
+			"progressbar(",
 			"progressbar",
-			"incre",
-			"weekly2005",
-			"dayly",
-			"624",
-			"weekly",
-			"NMFipopt",
-			"mask",
-			"date[end]",
-			"date[1]",
-			"weekly-ld",
-			"rm(",
-			"rm",
-			"Gadfly.draw",
-			"plot",
-			"map",
-			"map.png",
-			"map.",
-			"src-new",
-			"Ipopt",
-			"Ip",
-			"NMFipopt",
+			"datestart",
+			"code",
+			"name",
+			"key",
+			"linewidth",
+			"plotse",
+			"xv",
+			"xaxis",
+			"Mads.plots",
+			"tensortoolbox",
+			"poly",
+			"polygo",
+			"T1",
+			"Mads.plots",
+			"SDLC",
+			"time",
+			"Range",
+			"dim",
+			"cdim",
+			"50000-sa",
+			"Pkg",
+			"normalizefa",
+			"500",
+			"mov",
+			"tm",
+			"tx",
+			"...)",
+			"tx",
+			"))",
+			"Gadfly.Coord.Cartesian",
+			"ymin",
+			"dateend",
+			"xmax",
+			"Compat",
+			"extrap",
+			"getinterpolatedtensor",
+			"interp",
+			"linew",
+			"key_label_font_size=12Gadfly.pt, line_width=3Gadfly.pt",
+			"linewidth",
+			"line_width=2Gadfly.pt",
+			"major_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt, key_title_font_size=16Gadfly.pt, key_label_font_size=12Gadfly.pt",
+			"line_",
+			"minor_label_font_size=12Gadfly.pt",
+			"font_",
+			"default",
+			"minor_label_font_size=10",
+			"Gadfly.pt",
+			"transform=nothing",
+			"t2dmeanall",
+			"sscleanup",
+			"cleanup",
+			"struct Tucker",
+			"normalizecore",
+			"SPNNTuckerState",
+			"nr",
+			"interpolate",
+			"saveall",
+			"interpolate",
+			"x",
+			"TensorToolbox",
+			"Compose",
+			"Measures",
+			"Distributions",
+			"Compose",
+			"overl",
+			"manual",
+			"label",
+			"Wells",
+			"plotgrid",
+			"plotset",
+			"plotse",
+			"plotp",
+			"plotproblem",
+			"plotp",
+			"grid",
+			"Source",
+			"manual",
 			"hist",
-			"Gadfly",
-			"Hist",
-			"hist",
-			"_N",
-			"daily",
-			"i",
-			"mask",
-			"writedlm",
-			"plot",
-			"wtdm",
-			"isdefined",
-			"isdef",
-			"::Vector",
-			"::Matrix",
-			"result",
-			"x0",
-			"is_linux",
-			"Pkg.d",
-			"pathof",
-			"joinpath",
-			"Pkg.dir",
-			"x0"
+			"over",
+			"RGBA"
 		],
-		"highlight": false,
+		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
 		"regex": false,
 		"replace_history":
 		[
+			"dpi=dpi",
+			"SDIC",
+			"key_label_font_size=12Gadfly.pt",
+			"line_width=3Gadfly.pt",
+			"major_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt, key_title_font_size=16Gadfly.pt, key_label_font_size=12Gadfly.pt, line_width=2Gadfly.pt",
+			"major_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt, key_title_font_size=16Gadfly.pt, key_label_font_size=12Gadfly.pt",
+			"minor_label_font_size=12",
+			"y",
+			"savetensorslices",
+			"SDLC",
+			"SDHC",
+			"nanmask!(",
+			"SDHC",
+			"",
+			"mask=",
+			";",
+			"",
+			"mads=0.1, ",
+			";",
+			"maxvalue",
+			"weekly2008coarse",
+			"undef,",
+			"Array{\\1}(undef, ",
 			" target=\"_blank\">PDF</a>",
 			"target=\"_blank\">PDF</a>",
 			">PDF</a>",
@@ -1228,30 +1269,7 @@
 			"P",
 			"_allhalf_",
 			"allhalf_",
-			"\\\",\\n",
-			"all",
-			"NMFk",
-			"NTFk",
-			"\\\",\\n",
-			"\",\\n\"",
-			"t=collect(0:-45:-360),",
-			"hw",
-			"Down-W",
-			"Down-E",
-			"Up-E",
-			"Down",
-			"Up",
-			"area",
-			"-f mp4 -filter:v \"setpts=$vspeed*PTS\" -y",
-			"-f mp4 -t 00:00:10 -y",
-			"name=\"seismic events\"",
-			"8Gadf",
-			", ",
-			"",
-			"\\1.jld2\"",
-			"parameters.jld2",
-			"predictions.jld2",
-			"\\1.jld2\""
+			"\\\",\\n"
 		],
 		"reverse": false,
 		"show_context": false,
@@ -1262,789 +1280,29 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/monty/Julia/rMF/rf/rf.jl",
+					"file": "/Users/monty/Julia/rMF/Juelich/postprocess-monthly-anomalies.jl",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2398,
+						"buffer_size": 6194,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2398,
-								2398
+								1877,
+								3514
 							]
 						],
 						"settings":
 						{
-							"SL.1402.region_keys":
-							[
-							],
-							"auto_name": "dataset = readdlm(\"data/petrol_consumption.csv\", '",
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/Julia/Julia.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 122.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/monty/www/www-monty/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 60173,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								58668,
-								58668
-							]
-						],
-						"settings":
-						{
-							"SL.78.region_keys":
-							[
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": 78,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 17801.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/monty/.julia/dev/Mads/src-interactive/MadsPublish.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9322,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9013,
-								9013
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										9039,
-										9040
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"region.yellowish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										9006,
-										9007
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/Julia/Julia.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 6372.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/monty/.julia/dev/Mads/docs/src/GeostatInversion.md",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 2091,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/MarkdownEditing/Markdown.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 581.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/monty/.julia/dev/GeostatInversion/src/FFTRF.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4026,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3980,
-								3980
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/Julia/Julia.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1850.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/monty/.julia/dev/GeostatInversion/test/testrpcga.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5475,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1711,
-								1711
-							]
-						],
-						"settings":
-						{
-							"SL.154.region_keys":
+							"SL.263.region_keys":
 							[
 							],
 							"bracket_highlighter.busy": false,
@@ -2055,24 +1313,24 @@
 								{
 									"1":
 									[
-										1744,
-										1745
+										687,
+										688
 									]
 								},
 								"icon":
 								{
 									"1":
 									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"region.yellowish"
+										"Packages/BracketHighlighter/icons/square_bracket.png",
+										"region.bluish"
 									]
 								},
 								"open":
 								{
 									"1":
 									[
-										1710,
-										1711
+										686,
+										687
 									]
 								},
 								"unmatched":
@@ -2081,208 +1339,46 @@
 							},
 							"bracket_highlighter.clone_regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
-							],
-							"syntax": "Packages/Julia/Julia.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 839.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/Users/monty/Julia/rMF/Oklahoma/data/Oklahoma_catalog_OGS.csv",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2910395,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": 22,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -2293,26 +1389,11 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
+								"bh_regex_content"
 							],
 							"bracket_highlighter.locations":
 							{
@@ -2329,21 +1410,629 @@
 								{
 								}
 							},
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 406.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 1,
+					"file": "/Users/monty/Julia/NTFk/src/NTFkAnalysis-TD.jl",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2077,
+						"buffer_size": 13677,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11991,
+								11991
+							]
+						],
+						"settings":
+						{
+							"SL.283.region_keys":
+							[
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										11990,
+										11991
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										11974,
+										11975
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4961.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/monty/Julia/NTFk/src/NTFkPlot2d.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								104,
+								104
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 95.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/monty/Julia/NTFk/src/NTFkPlotComponents.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11732,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10257,
+								10257
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3539.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3435,
 						"regions":
 						{
 							"match":
@@ -2352,152 +2041,120 @@
 								"regions":
 								[
 									[
-										125,
-										134
+										794,
+										801
 									],
 									[
-										157,
-										166
+										850,
+										857
 									],
 									[
-										191,
-										200
+										932,
+										939
 									],
 									[
-										313,
-										322
+										1010,
+										1017
 									],
 									[
-										408,
-										417
+										1153,
+										1160
 									],
 									[
-										440,
-										449
+										1247,
+										1254
 									],
 									[
-										474,
-										483
+										1324,
+										1331
 									],
 									[
-										520,
-										529
+										1442,
+										1449
 									],
 									[
-										625,
-										634
+										1523,
+										1530
 									],
 									[
-										657,
-										666
-									],
-									[
-										691,
-										700
-									],
-									[
-										737,
-										746
-									],
-									[
-										835,
-										844
-									],
-									[
-										867,
-										876
-									],
-									[
-										901,
-										910
-									],
-									[
-										947,
-										956
-									],
-									[
-										1052,
-										1061
-									],
-									[
-										1083,
-										1092
-									],
-									[
-										1114,
-										1123
-									],
-									[
-										1220,
-										1229
-									],
-									[
-										1319,
-										1328
-									],
-									[
-										1349,
-										1358
-									],
-									[
-										1422,
-										1431
-									],
-									[
-										1456,
-										1465
-									],
-									[
-										1490,
-										1499
-									],
-									[
-										1520,
-										1529
-									],
-									[
-										1545,
-										1554
-									],
-									[
-										1570,
-										1579
-									],
-									[
-										1601,
-										1610
+										1604,
+										1611
 									],
 									[
 										1633,
-										1642
+										1640
 									],
 									[
-										1665,
-										1674
+										1680,
+										1687
 									],
 									[
-										1691,
-										1700
+										1746,
+										1753
 									],
 									[
-										1715,
-										1724
+										1896,
+										1903
 									],
 									[
-										1792,
-										1801
+										2047,
+										2054
 									],
 									[
-										1884,
-										1893
+										2134,
+										2141
 									],
 									[
-										1937,
-										1946
+										2155,
+										2162
 									],
 									[
-										2032,
-										2041
+										2282,
+										2289
+									],
+									[
+										2345,
+										2352
+									],
+									[
+										2413,
+										2420
+									],
+									[
+										2530,
+										2537
+									],
+									[
+										2628,
+										2635
+									],
+									[
+										2637,
+										2644
+									],
+									[
+										2710,
+										2717
+									],
+									[
+										2767,
+										2774
+									],
+									[
+										2922,
+										2929
+									],
+									[
+										3165,
+										3172
+									],
+									[
+										3343,
+										3350
+									],
+									[
+										3387,
+										3394
 									]
 								],
 								"scope": ""
@@ -2506,14 +2163,102 @@
 						"selection":
 						[
 							[
-								1847,
-								1847
+								2779,
+								2779
 							]
 						],
 						"settings":
 						{
 							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone": 279,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2814,
+										2815
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										2774,
+										2775
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
 							"bracket_highlighter.locations":
 							{
 								"close":
@@ -2531,26 +2276,46 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -2561,36 +2326,16 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_regex_content"
 							],
-							"default_dir": "/Users/monty/.julia/dev/Mads/src",
+							"default_dir": "/Users/monty/Julia/NTFk/src",
 							"detect_indentation": false,
 							"line_numbers": false,
-							"output_tag": 1,
+							"output_tag": 7,
 							"result_base_dir": "",
 							"result_file_regex": "^([^ \t].*):$",
 							"result_line_regex": "^ +([0-9]+):",
@@ -2598,27 +2343,27 @@
 							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 786.0,
+						"translation.y": 1005.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "/Users/monty/.julia/dev/Mads/src/MadsHelp.jl",
+					"buffer": 5,
+					"file": "/Users/monty/Julia/TensorDecompositions/src/tucker.jl",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3403,
+						"buffer_size": 2215,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								469,
-								612
+								1389,
+								1389
 							]
 						],
 						"settings":
@@ -2642,26 +2387,46 @@
 							},
 							"bracket_highlighter.clone_regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -2672,31 +2437,11 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_regex_content"
 							],
 							"bracket_highlighter.locations":
 							{
@@ -2715,26 +2460,46 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -2745,21 +2510,69 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 430.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/monty/Julia/TensorDecompositions/src/utils.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5525,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2468,
+								2474
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -2769,16 +2582,419 @@
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2631,
+										2632
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"region.greenish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										2404,
+										2405
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 451.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Users/monty/Julia/TensorDecompositions/src/candecomp.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6294,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1166,
+								1166
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
 							"syntax": "Packages/Julia/Julia.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 227.0,
+						"translation.y": 1284.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/Users/monty/Julia/NTFk/src/NTFkPlot.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12302,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6447,
+								6447
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": 273,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1688.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -2786,7 +3002,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 70.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -2877,7 +3093,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 292.0,
+	"side_bar_width": 373.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

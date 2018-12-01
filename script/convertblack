@@ -1,0 +1,1 @@
+for i in *.png; do convert -background black -flatten -format jpg "$i" "${i%.*}.jpg"; done
