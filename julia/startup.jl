@@ -15,7 +15,6 @@ end
 # 	atreplinit((_)->Base.require(Base, :TerminalExtensions))
 # end
 
-if haskey(ENV, "HOME")
+if haskey(ENV, "HOME") && !in(joinpath(ENV["HOME"], "Julia"), LOAD_PATH)
 	push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
-	@warn("$(joinpath(ENV["HOME"], "Julia")) is in the LOAD_PATH")
 end
