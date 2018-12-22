@@ -119,6 +119,7 @@ case "$OSTYPE" in
 		# echo "OSX"
 		export CDPATH=.:${HOME}:${HOME}/lanl:${HOME}/Documents:${HOME}/Documents/lanl
 		export CLICOLOR=1
+		export PATH=${PATH}:/Users/monty/Library/Python/3.6/bin
 		export LSCOLORS=gxfxcxdxbxegedabagaced ;;
     linux*)
 		# echo "LINUX"

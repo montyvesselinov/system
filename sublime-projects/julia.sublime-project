@@ -90,6 +90,18 @@
 		},
 		{
 			"path": "/Users/monty/.julia/dev/Kriging"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/NMFk"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/CanDecomp"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/NTFk"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/TensorDecompositions"
 		}
 	]
 }

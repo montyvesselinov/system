@@ -11,9 +11,9 @@ atreplinit() do repl
 	end
 end
 
-# if Sys.isapple()
-# 	atreplinit((_)->Base.require(Base, :TerminalExtensions))
-# end
+if Sys.isapple()
+	atreplinit((_)->Base.require(Base, :TerminalExtensions))
+end
 
 if haskey(ENV, "HOME") && !in(joinpath(ENV["HOME"], "Julia"), LOAD_PATH)
 	push!(LOAD_PATH, joinpath(ENV["HOME"], "Julia"))
