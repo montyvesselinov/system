@@ -12,7 +12,16 @@ atreplinit() do repl
 end
 
 if Sys.isapple()
-	atreplinit((_)->Base.require(Base, :TerminalExtensions))
+	if VERSION >= v"1.0.3" 
+		atreplinit((_)->Base.require(Base, :TerminalExtensions))
+	end
+	import Gadfly
+	import Cairo, Fontconfig
+	import Base: display
+	function Base.display(p::Gadfly.Plot)
+		Gadfly.draw(Gadfly.PNG(), p)
+		print("\r")
+	end
 end
 
 if haskey(ENV, "HOME") && !in(joinpath(ENV["HOME"], "Julia"), LOAD_PATH)
