@@ -14,55 +14,19 @@
 			"path": "/Users/monty/.julia/dev/Mads"
 		},
 		{
-			"path": "/Users/monty/.julia/dev/ReusableFunctions"
-		},
-		{
 			"path": "/Users/monty/Julia/rMF"
 		},
 		{
-			"path": "/Users/monty/Julia/NTFk"
+			"path": "/Users/monty/.julia/dev/NTFk"
 		},
 		{
-			"path": "/Users/monty/Julia/NMFk"
+			"path": "/Users/monty/.julia/dev/NMFk"
 		},
 		{
-			"path": "/Users/monty/Julia/ZEM.jl"
+			"path": "/Users/monty/.julia/dev/CanDecomp"
 		},
 		{
-			"path": "/Users/monty/Julia/FEHM.jl"
-		},
-		{
-			"path": "/Users/monty/Julia/CrPlots.jl"
-		},
-		{
-			"path": "/Users/monty/Julia/FindShift"
-		},
-		{
-			"path": "/Users/monty/Julia/ShiftNMFk"
-		},
-		{
-			"path": "/Users/monty/Julia/GreenNMFk"
-		},
-		{
-			"path": "/Users/monty/Julia/CanDecomp.jl"
-		},
-		{
-			"path": "/Users/monty/Julia/TensorDecompositions"
-		},
-		{
-			"path": "/Users/monty/.julia/v0.6/TensorToolbox"
-		},
-		{
-			"path": "/Users/monty/.julia/v0.6/TensorOperations"
-		},
-		{
-			"path": "/Users/monty/.julia/v0.6/TensorFlow"
-		},
-		{
-			"path": "/Users/monty/Documents/lanl/waffle2017/mads"
-		},
-		{
-			"path": "/Users/monty/Julia/zem"
+			"path": "/Users/monty/.julia/dev/TensorDecompositions"
 		},
 		{
 			"path": "/Users/monty/www"
@@ -92,16 +56,10 @@
 			"path": "/Users/monty/.julia/dev/Kriging"
 		},
 		{
-			"path": "/Users/monty/.julia/dev/NMFk"
+			"path": "/Users/monty/.julia/dev/ReusableFunctions"
 		},
 		{
-			"path": "/Users/monty/.julia/dev/CanDecomp"
-		},
-		{
-			"path": "/Users/monty/.julia/dev/NTFk"
-		},
-		{
-			"path": "/Users/monty/.julia/dev/TensorDecompositions"
+			"path": "/Users/monty/.julia/dev/AffineInvariantMCMC"
 		}
 	]
 }
