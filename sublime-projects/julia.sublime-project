@@ -60,6 +60,9 @@
 		},
 		{
 			"path": "/Users/monty/.julia/dev/AffineInvariantMCMC"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/DocumentFunction"
 		}
 	]
 }
