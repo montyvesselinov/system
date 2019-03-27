@@ -122,7 +122,8 @@ case "$OSTYPE" in
 		export PATH=${PATH}:/Users/monty/Library/Python/3.6/bin
 		export LSCOLORS=gxfxcxdxbxegedabagaced ;;
     linux*)
-		# echo "LINUX"
+		echo "LINUX"
+		export PATH=${PATH}:/usr/local/cuda/bin
 		export CDPATH=.:${HOME}:/scratch/er/monty:/scratch/ymp/monty:/scratch/nts/monty:/scratch/gwpa/monty:/scratch/rigel10/monty:/scratch/indigo2/monty:/scratch/fiesta2/monty ;;
     msys*)
 		# echo "Windows"
