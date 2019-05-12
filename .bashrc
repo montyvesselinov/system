@@ -125,7 +125,6 @@ case "$OSTYPE" in
 		export LSCOLORS=gxfxcxdxbxegedabagaced ;;
     linux*)
 		# echo "LINUX"
-		export PATH=${PATH}:/usr/local/cuda/bin
 		export CDPATH=.:${HOME}:/scratch/er/monty:/scratch/ymp/monty:/scratch/nts/monty:/scratch/gwpa/monty:/scratch/rigel10/monty:/scratch/indigo2/monty:/scratch/fiesta2/monty ;;
     msys*)
 		# echo "Windows"
@@ -143,6 +142,11 @@ source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
 source ${HOME}/system/tmux.completion.bash
 export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64:$LD_LIBRARY_PATH
+if [[ $HOSTNAME_ORIG =~ "ruml.lanl.gov" ]]; then
+	source ~/system/export-proxy-lanl
+	export PATH=${PATH}:/usr/local/cuda/bin
+	export JULIA_DEPOT_PATH="/home/vvv/.julia-ruml"
+fi
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 	umask g+w
 	module load git
