@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"bs",
+				"bsize2"
+			],
+			[
+				"fil",
+				"filename"
+			],
+			[
+				"mi",
+				"minvalue"
+			],
+			[
+				"pr",
+				"println"
+			],
+			[
+				"v",
+				"volume"
+			],
+			[
+				"w",
+				"writedlm"
+			],
+			[
+				"Abstra",
+				"AbstractArray"
+			],
+			[
+				"maxp",
+				"maxp"
+			],
+			[
 				"text",
 				"text-center"
 			],
@@ -482,43 +514,65 @@
 			[
 				"la",
 				"lambda_mu"
-			],
-			[
-				"vis",
-				"visualization"
-			],
-			[
-				"res",
-				"restart"
-			],
-			[
-				"DIc",
-				"dictionary"
-			],
-			[
-				"dict",
-				"dictionary"
-			],
-			[
-				"weigh",
-				"weight"
-			],
-			[
-				"Dict",
-				"dictionary"
-			],
-			[
-				"compu",
-				"computational"
-			],
-			[
-				"open-",
-				"open-source"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "/Users/monty/.julia/dev/CGAN/src/CGAN.jl",
+			"settings":
+			{
+				"buffer_size": 28021,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/rMF/GTI/postprocess-nmfk-all-j1.jl",
+			"settings":
+			{
+				"buffer_size": 5239,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/rMF/GTI/process-nmfk-predictions.jl",
+			"settings":
+			{
+				"buffer_size": 479,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/rMF/GTI/process-12-18-j1.jl",
+			"settings":
+			{
+				"buffer_size": 31746,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/Julia/rMF/CGAN/flux-lsgan-h.jl",
+			"settings":
+			{
+				"buffer_size": 3029,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/monty/.julia/dev/CGAN/src/cgan-bsgan30r3ssqr.jl",
+			"settings":
+			{
+				"buffer_size": 7626,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Anaconda Python Builder",
 	"build_system_choices":
@@ -576,12 +630,16 @@
 		"selected_items":
 		[
 			[
-				"MarkdownLivePreview",
-				"MarkdownLivePreview: Edit Current File"
+				"package",
+				"Package Control: Install Package"
 			],
 			[
 				"ins",
 				"Package Control: Install Package"
+			],
+			[
+				"MarkdownLivePreview",
+				"MarkdownLivePreview: Edit Current File"
 			],
 			[
 				"Package Control: ",
@@ -664,139 +722,137 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/monty/Julia/rMF",
-		"/Users/monty/Julia/rMF/Oklahoma"
 	],
 	"file_history":
 	[
-		"/Users/monty/Julia/rMF/GTI/process-12-18-j1.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/read_events.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/weekly2008coarse-energy-oklahoma.jl",
-		"/Users/monty/.julia/dev/NMFk/REQUIRE",
-		"/Users/monty/.julia/dev/NTFk/REQUIRE",
-		"/Users/monty/Julia/rMF/Oklahoma/process_all_log.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/read_water.jl",
-		"/Users/monty/.julia/dev/AffineInvariantMCMC/README.md",
-		"/Users/monty/Julia/rMF/Oklahoma/read_energy_2011monthly.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/data/events.dat",
-		"/Users/monty/.julia/dev/Mads/src/MadsPlot.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/weekly2011monthly-energy-oklahoma.jl",
+		"/Users/monty/Julia/rMF/GTI/postprocess-nmfk-all.jl",
+		"/Users/monty/wells/examples-latest/theis/test.s_point",
+		"/Users/monty/wells/examples-latest/test.s_point",
+		"/Users/monty/wells/Readme.md",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan100r5.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan30r3.jl",
+		"/Users/monty/Downloads/Results.csv",
+		"/Users/monty/www/chrotran/index.html",
 		"/Users/monty/.julia/dev/Mads/README.md",
-		"/Users/monty/Julia/rMF/Oklahoma/read_pressure.jl",
-		"/Users/monty/.julia/dev/NTFk/src/NTFkPlotComponents.jl",
+		"/Users/monty/.julia/dev/Mads/appveyor.yml",
+		"/Users/monty/.julia/dev/Mads/.travis.yml",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan100r4.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan100r2.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan100r3.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan100r1.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan100.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan10.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-dcgan.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan10a.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan30r2.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan30r1.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan30.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-bsgan10m.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-paper-jcp2018.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-predict48.jl",
+		"/Users/monty/Julia/rMF/Mixing/postprocess-predict-jcp.jl",
+		"/Users/monty/Julia/rMF/CGAN/knet_cvae.jl",
+		"/Users/monty/.julia/dev/CGAN/REQUIRE",
+		"/Users/monty/Julia/rMF/GTI/process-12-18-analyzecases.jl",
+		"/Users/monty/.julia/dev/NTFk/src/NTFkPlotColors.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsPlot.jl",
+		"/Users/monty/.julia/dev/NMFk/src/NMFkPlot.jl",
+		"/Users/monty/Julia/rMF/GTI/process-12-18-j1.jl",
+		"/Users/monty/Julia/rMF/GTI/process-nmfk-predictions.jl",
+		"/Users/monty/www/monty/index.html",
+		"/Users/monty/Julia/rMF/CGAN/knet_cvae2_mnist.jl",
+		"/Users/monty/python/generative-models/VAE/vanilla_vae/vae_pytorch.py",
+		"/Users/monty/.julia/packages/ArgParse/d2iSt/src/ArgParse.jl",
+		"/Users/monty/python/generative-models/VAE/conditional_vae/cvae_pytorch.py",
+		"/Users/monty/Julia/rMF/CGAN/flux-vae.jl",
+		"/Users/monty/python/generative-models/VAE/conditional_vae/cvae_tensorflow.py",
+		"/Users/monty/Julia/rMF/CGAN/knet_vae_mnist.jl",
+		"/Users/monty/miniconda3/lib/python3.6/site-packages/torch/nn/_reduction.py",
+		"/Users/monty/Julia/rMF/CGAN/knet_cvae_mnist.jl",
+		"/Users/monty/Julia/rMF/CGAN/flux-clsgan.jl",
+		"/Users/monty/.julia/dev/CGAN/src/CGAN.jl",
+		"/Users/monty/Julia/rMF/CGAN/cvae-tensorflow.py",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan30f-inverse-crazy-1000/run-2019-03-23T11:49:42.317.log",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan30-inverse-crazy-1000/run-2019-03-23T08:59:12.75.log",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan30-inverse-crazy-1000/run2.log",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan30-inverse-crazy-1000/run1.log",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan30_36-inverse-crazy-1000/run1.log",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan30-inverse-crazy-1000/run.log",
+		"/Users/monty/Julia/rMF/CGAN/flux-dcgan.jl",
+		"/Users/monty/Julia/rMF/CGAN/conditional-dcgan.jl",
+		"/Users/monty/Julia/rMF/CGAN/dcgan.jl",
+		"/Users/monty/Julia/rMF/Geysers/read-geysers.jl",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkPlot.jl",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkPlotMatrix.jl",
-		"/Users/monty/.julia/dev/ReusableFunctions/Readme.md",
-		"/Users/monty/Julia/rMF/GTI/loaddata-gti-nmfk-all-j1.jl",
-		"/Users/monty/www/TensorDecompostions/index.html",
-		"/Users/monty/.julia/dev/ReusableFunctions/src/ReusableFunctions.jl",
-		"/Users/monty/.julia/dev/DocumentFunction/test/runtests.jl",
-		"/Users/monty/.julia/dev/DocumentFunction/MADS.md",
-		"/Users/monty/.julia/dev/Mads/src/MadsIO.jl",
-		"/Users/monty/.julia/dev/SVR/README.md",
-		"/Users/monty/.julia/dev/SVR/src/SVR.jl",
-		"/Users/monty/.julia/dev/DocumentFunction/README.md",
-		"/Users/monty/.julia/dev/DocumentFunction/src/DocumentFunction.jl",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkPlot.jl",
-		"/Users/monty/.julia/dev/NTFk/src/NTFk.jl",
+		"/Users/monty/Julia/rMF/Oklahoma/process_all_log.jl",
+		"/Users/monty/Julia/rMF/Oklahoma/weekly2008coarse-energy-oklahoma.jl",
+		"/Users/monty/.julia/dev/NTFk/src/NTFkPlotComponents.jl",
+		"/Users/monty/Julia/rMF/Geysers/data/wells.dat",
+		"/Users/monty/Downloads/ne_10m_admin_1_states_provinces_lines/ne_10m_admin_1_states_provinces_lines.VERSION.txt",
+		"/Users/monty/Downloads/72a2cd850dc837b95e011e29786d48143c1933f6d46e2a18b409601f4a12b006-filelists.xml",
+		"/Users/monty/.julia/dev/NTFk/src/NTFkAnalysis-mixing.jl",
+		"/Users/monty/Julia/rMF/Geyser/read-geyser.jl",
+		"/Users/monty/.julia/dev/NTFk/src/NTFkLoadTensorDecompositions.jl",
 		"/Users/monty/.julia/dev/Mads/src/Mads.jl",
+		"/Users/monty/.julia/dev/NTFk/src/NTFk.jl",
+		"/Users/monty/.julia/dev/LoadTensorDecompositions/REQUIRE",
+		"/Users/monty/.julia/dev/LoadTensorDecompositions/src/LoadTensorDecompositions.jl",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkHelpers.jl",
-		"/Users/monty/.julia/dev/NMFk/src/NMFk.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsSenstivityAnalysis.jl",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkHelpers.jl",
-		"/Users/monty/.julia/packages/MAT/Pn0pR/src/MAT_HDF5.jl",
-		"/Users/monty/www/madsc/mads-info.html",
-		"/Users/monty/www/chrotran/index.html",
-		"/Users/monty/www/madspy/index.html",
-		"/Users/monty/www/monty/index.html",
-		"/Users/monty/www/wells/index.html",
-		"/Users/monty/www/mads/index.html",
-		"/Users/monty/www/madsc/index.html",
-		"/Users/monty/www/wells/links.html",
-		"/Users/monty/Julia/rMF/Juelich/read-tasc42.jl",
-		"/Users/monty/Julia/rMF/GTI/process-12-18.jl",
-		"/Users/monty/Julia/NMFk/src/NMFkHelpers.jl",
-		"/Users/monty/Julia/NTFk/src/NTFkHelpers.jl",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkExecute.jl",
-		"/Users/monty/Julia/rMF/GTI/loaddata-gti-nmfk-all.jl",
+		"/Users/monty/Julia/rMF/Geyser/data/Geysers_NCEDC_LBL.txt",
+		"/Users/monty/.julia/dev/NTFk/src/NTFkAnalysis-tucker.jl",
+		"/Users/monty/.julia/dev/NTFk/src/NTFkAnalysis-cp.jl",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan10-inverse-crazy-10000-color/run.log",
+		"/Users/monty/.julia/packages/AutoGrad/KsPMr/src/core.jl",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan10-inverse-crazy-10000/run.log",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan10-forward-crazy-10000/run.log",
+		"/Users/monty/.julia/packages/Knet/05UDD/src/batchnorm.jl",
+		"/Users/monty/.julia/packages/Knet/05UDD/src/conv.jl",
+		"/Users/monty/Julia/rMF/CGAN/read-hydro.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-dcgan100.jl",
 		"/Users/monty/.julia/environments/v1.1/Manifest.toml",
 		"/Users/monty/.julia/environments/v1.1/Project.toml",
-		"/Users/monty/Julia/rMF/GTI/process-12-18-analyzecases.jl",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkJuMP.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/process_all_new.jl",
-		"/Users/monty/www/ees/fehm.lanl.gov/Web_README.txt",
-		"/Users/monty/.julia/packages/Interpolations/0OnYb/src/gridded/gridded.jl",
-		"/Users/monty/.julia/packages/Interpolations/0OnYb/src/deprecations.jl",
-		"/Users/monty/www/Devfolio_files/Devfolio.html",
-		"/Users/monty/www/TensorDecompostions/assets/style.css",
-		"/Users/monty/www/TensorDecompostions/assets/main.js",
-		"/Users/monty/www/TensorDecompostions/assets/contactform.js",
-		"/Users/monty/www/TensorDecompostions/assets/analytics.js",
-		"/Users/monty/www/NMFk/Readme.md",
-		"/Users/monty/www/TensorDecompostions/sitemap-github.xml",
-		"/Users/monty/www/TensorDecompostions/assets/bootstrap.min.js",
-		"/Users/monty/www/TensorDecompostions/assets/bootstrap.min.css",
-		"/Users/monty/www/Devfolio_files/typed.min.js",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkMultiplicative.jl",
-		"/Users/monty/www/ees/template/index.shtml",
-		"/Users/monty/www/Devfolio_files/index.html",
-		"/Users/monty/.julia/dev/NMFk/examples/movie.jl",
-		"/Users/monty/www/Devfolio.html",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkMatrix.jl",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkMixMatrix.jl",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkMixTensor.jl",
-		"/Users/monty/www/ees/template/README.txt",
-		"/Users/monty/.julia/dev/NTFk/src/NTFkAnalysis-cp.jl",
-		"/Users/monty/.julia/dev/NTFk/src/NTFkAnalysis-tucker.jl",
-		"/Users/monty/www/ees/fehm.lanl.gov/Publish_README.txt",
+		"/Users/monty/.julia/dev/CGAN/src/colors.jl",
+		"/Users/monty/.julia/dev/Mads/examples/learn_julia/krige.jl",
+		"/Users/monty/.julia/dev/Mads/examples/learn_julia/plot-mixture.jl",
+		"/Users/monty/.julia/dev/Mads/examples/learn_julia/plot-tensor-heat.jl",
+		"/Users/monty/.julia/dev/Mads/examples/learn_julia/plot-tensor-waves.jl",
+		"/Users/monty/.julia/dev/Mads/examples/learn_julia/plot-wave.jl",
+		"/Users/monty/.julia/dev/Mads/examples/model_analysis/infogap.jl",
+		"/Users/monty/.julia/dev/Mads/examples/ode/ode.jl",
+		"/Users/monty/.julia/dev/Mads/src-new/MadsInfoGap.jl",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkPlot2d.jl",
-		"/Users/monty/Julia/rMF/check-JLD-j1.jl",
-		"/Users/monty/.julia/dev/LoadTensorDecompositions/src/LoadTensorDecompositions.jl",
-		"/Users/monty/.julia/dev/LoadTensorDecompositions/Project.toml",
-		"/Users/monty/Julia/rMF/convert-JLD-JLD2.jl",
-		"/Users/monty/Julia/rMF/Juelich/postprocess-monthly-anomalies.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/read_injection.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/process_seismicity_pressure.jl",
-		"/Users/monty/Julia/rMF/Oklahoma/process_all.jl",
-		"/Users/monty/Julia/rMF/OGW/OGW-functions.jl",
-		"/Users/monty/Julia/rMF/convert-JLD-JLD2-withtranslate.jl",
-		"/Users/monty/Julia/rMF/convert-JLD-JLD2-notranslate.jl",
-		"/Users/monty/Julia/rMF/check-JLD.jl",
-		"/Users/monty/.julia/dev/NTFk/src/NTFkLoadTensorDecompositions.jl",
-		"/Users/monty/Julia/rMF/Colorado/read-pr.jl",
-		"/Users/monty/Julia/rMF/GTI/read-gti-ntfk.jl",
-		"/Users/monty/Julia/rMF/GTI/read-gti.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-evspsbl-monthly.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-evspsbl.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-hfss-monthly.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-hfss.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-monthly.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-tas-monthly.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-tas-new.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-tas.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-wtd-monthly.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-wtd-monthly_anomalies.jl",
-		"/Users/monty/Julia/rMF/Juelich/read-wtd.jl",
-		"/Users/monty/Julia/rMF/Juelich/read.jl",
-		"/Users/monty/Julia/rMF/Mixing/analyze-5D.jl",
-		"/Users/monty/Julia/rMF/Mixing/analyze.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-good.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-paper-jcp2018.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-predict-jcp.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-predict48.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-r36.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-r39.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-r48.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-r56.jl",
-		"/Users/monty/Julia/rMF/Mixing/postprocess-some.jl",
-		"/Users/monty/Julia/rMF/OGW/OGW-NTFk.jl",
-		"/Users/monty/Julia/rMF/OGW/OGW-postprocesses.jl",
-		"/Users/monty/.julia/dev/LoadTensorDecompositions/src/REQUIRE",
-		"/Users/monty/Julia/rMF/LoadTensorDecompositions/src/LoadTensorDecompositions.jl",
-		"/Users/monty/Julia/rMF/LoadTensorDecompositions/Project.toml",
-		"/Users/monty/Julia/rMF/convert_tensordecompositions_files.jl",
-		"/Users/monty/Julia/rMF/Juelich/process-monthly-anomalies.jl",
-		"/Users/monty/.julia/dev/TensorDecompositions/src/tucker.jl"
+		"/Users/monty/.julia/dev/NMFk/src/NMFk.jl",
+		"/Users/monty/.julia/dev/NMFk/src/NMFkHelpers.jl",
+		"/Users/monty/Julia/rMF/CGAN/conditional-began.jl",
+		"/Users/monty/.julia/dev/CGAN/src/cgan-dcgan10.jl",
+		"/Users/monty/Julia/rMF/CGAN/conditional-gan.jl",
+		"/Users/monty/Julia/rMF/CGAN/conditional-bsgan.jl",
+		"/Users/monty/Julia/rMF/CGAN/conditional-acgan.jl",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan10-hk-10000/run.log",
+		"/Users/monty/.julia/dev/Mads/test/runtests.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsForward.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsIO.jl",
+		"/Users/monty/.julia/dev/Mads/examples/optimization/runtests.jl",
+		"/Users/monty/.julia/dev/Mads/examples/svr/runtests.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsExecute.jl",
+		"/Users/monty/.julia/dev/Mads/REQUIRE",
+		"/Users/monty/.julia/dev/Mads/src/MadsFunc.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsYAML.jl",
+		"/Users/monty/.julia/dev/Mads/COPYING.md",
+		"/Users/monty/.julia/packages/Knet/05UDD/data/mnist.jl",
+		"/Users/monty/.julia/dev/NMFk/src/NMFkJuMP.jl",
+		"/Users/monty/.julia/dev/Mads/src-new/MadsBSS.jl",
+		"/Users/monty/.julia/dev/Mads/examples/anasol/runtests.jl",
+		"/Users/monty/.julia/dev/Mads/src/MadsPlotPy.jl",
+		"/Users/monty/.julia/dev/Mads/src-interactive/MadsTest.jl",
+		"/Users/monty/.julia/dev/Mads/test/miscellaneous.jl",
+		"/Users/monty/.julia/dev/Mads/examples/learn_julia/gurobi.jl",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan10-10000/run.log",
+		"/Users/monty/.julia/packages/Knet/05UDD/data/imagenet.jl",
+		"/Users/monty/Julia/rMF/CGAN/resutls-bsgan10-10000/read.log",
+		"/Users/monty/.julia/dev/Mads/scripts/madsdisplay.jl",
+		"/Users/monty/.julia/dev/NTFk/src/NTFkAnalysis-tensortoolbox.jl"
 	],
 	"find":
 	{
@@ -807,6 +863,57 @@
 		"height": 164.0,
 		"where_history":
 		[
+			"/Users/monty/.julia/dev/CGAN,*.jl",
+			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/Julia/rMF,*.jl",
+			"/Users/monty/.julia/dev/SVR,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
+			"/Users/monty/Julia/rMF/GTI,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
+			"/Users/monty/Julia/rMF/GTI,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/Julia/rMF/GTI,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/Julia/rMF/Juelich,*.jl",
+			"/Users/monty/Julia/rMF/Mixing,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/NMMFk,*.jl",
+			"/Users/monty/.julia/dev/NTFk,*.jl",
+			"/Users/monty/.julia/dev/Mads,*.jl",
+			"/Users/monty/Julia/rMF/Mixing,*.jl",
 			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
 			"/Users/monty/Julia/rMF/Juelich,*.jl",
 			"/Users/monty/Julia/rMF/Oklahoma,*.jl",
@@ -883,328 +990,277 @@
 			"/Users/monty/.julia/Mads/src,.jl",
 			"/Users/monty/.julia/Mads/NTFk/src,.jl",
 			"/Users/monty/.julia/dev/NTFk/src,.jl",
-			"/Users/monty/.julia/dev/NTFk/src/*.jl",
-			"/Users/monty/.julia/dev/NTFk/src*.jl",
-			"/Users/monty/.julia/dev/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/.julia/dev/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/.julia/dev/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/.julia/dev/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/.julia/dev/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/www,*.html",
-			"/Users/monty/.julia/dev/Mads,*.md",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/.julia/dev/Mads,*.md",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/www,*.html",
-			"/Users/monty/.julia/dev/NTFK,*.jl",
-			"/Users/monty/www,*.html",
-			"/Users/monty/.julia/dev/NTFk,*.jl",
-			"/Users/monty/.julia/dev/NTFK,*.jl",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/.julia/dev/CanDecomp,*.jl",
-			"/Users/monty/Julia/NMFk,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/NTFk.jl,*.jl",
-			"/Users/monty/Julia/rMF/GTI,*.jl",
-			"/Users/monty/Julia/TensorDecompositions.jl,*.jl",
-			"/Users/monty/Julia/TensorDecompositions,*.jl",
-			"/Users/monty/Julia/TensorDecompositions.jl,*.jl",
-			"/Users/monty/Julia/TensorDecompositions,*.jl",
-			"/Users/monty/Julia/TensorDecompositions.jl,*.jl",
-			"/Users/monty/Julia/TensorDecompositions,*.jl",
-			"/Users/monty/Julia/TensorDecompositions.jl,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/rMF/Juelich,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/Julia/TensorDecompositions,*.jl",
-			"/Users/monty/Julia/TensorDecompositions.,*.jl",
-			"/Users/monty/Julia/TensorDecompositions.*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/.julia/dev/Mads/src,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/Julia/NTFk,*.jl",
-			"/Users/monty/Julia/rMF,*.jl"
+			"/Users/monty/.julia/dev/NTFk/src/*.jl"
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
-			"min",
-			"JLD.load(",
-			"logenergy2011monthly-l0-97_118_30.jld",
-			"all_log-l0-sig",
-			"order",
-			"@show",
-			"gl",
-			"gm",
-			"defa",
-			"2003",
-			"2013",
-			"Geom.line",
-			"Geom.",
-			"mag[",
-			"plotse",
-			"init.js",
-			"convert",
-			":SS",
-			"Vector",
-			"Array",
-			"Base.source_path()",
-			"getmadsdir",
-			"madsdir",
-			"VERSION",
-			"JLD.load",
-			"VERSION",
-			"dlm(",
-			"readdlm",
-			"Dates",
-			"Date(",
-			"VERSION",
-			"Date(",
-			"Dates",
-			"STDERR",
-			"@show",
-			":none",
-			"Gadfly.Geom.bar",
-			"Colors",
-			"Gadfly.Geom.bar",
-			"colors",
-			"label",
-			"Theme",
-			"cases",
-			"err",
-			"mixture-setup",
-			"mixer",
-			"mixer.png",
-			"Chro",
-			"TensorD",
-			"chrotr",
-			"P[",
-			"P",
-			"covna",
-			"namecase",
-			"Supre",
-			"Suppre",
-			"Supre",
-			"autop",
-			"wells",
-			"error",
-			"cornan",
-			"covnan",
-			"ie",
-			"sortp",
-			"all_log-l0-seismicity-3t",
-			"cornan",
-			"normn",
-			"normnan",
-			"Interpolations",
-			"BSpline",
-			"isdefin",
-			"rep",
-			"Arra",
-			"wellfracgrowthup",
-			"linsp",
-			"stop",
-			"nstop",
-			"Dates",
-			"find",
-			"presentations/",
-			"papers/",
-			"img",
-			"class=\"text-white\" ",
-			"testimonial",
-			"png",
-			"are",
-			"url",
-			"//",
-			"-mf",
-			"width",
-			"img",
-			"lansc",
-			"href",
-			"testimonial",
-			"test",
-			"resea",
-			"testimonial",
-			"testimonials",
-			"research",
-			"content",
-			"content-test",
-			"content-te",
-			"research",
-			"testimonial",
-			"testimonial-mf",
-			"testimonial",
-			"vidoes",
-			"Prese",
-			"owl-d",
-			"text-muted",
-			"grey-text text-darken-2",
-			"^.a",
-			".a",
-			"text-primary",
-			"upper",
-			"author",
-			"soon",
-			"author",
-			");\n",
-			"paralax",
-			"parallax",
-			"red",
-			"navbar-red",
-			"navbar",
-			"background-color",
-			"45",
+			"wellnames",
+			"sample_noise",
+			"atype",
+			"@sho",
+			"minvalue",
+			"dnet",
+			"sgan30r3_",
+			"_dloss",
+			"></",
+			"h3",
+			"plot",
 			"color",
-			"navbar"
+			"build",
+			"winit \\* randn(.*, fdim)",
+			"_initwd(a",
+			"fdim",
+			"winit=0.01, zdim=10000, embed=10000, nlabels=10000",
+			"winit=0.01; zdim=100, embed=100, nlabels=100",
+			"zdim",
+			"fdim",
+			"atype",
+			"fdim",
+			"Array",
+			"Knet.",
+			"bsgan30r1",
+			"beyo",
+			"@@",
+			"bsgan30_gnet",
+			"sample_noise",
+			"Floa",
+			"convert",
+			"bsgan30_gnet",
+			" Knet.mini",
+			"dtrn",
+			"loss",
+			"KnetA",
+			"Knet",
+			"graphics",
+			"quiet",
+			"@sh",
+			"colors",
+			"pur",
+			"bbl",
+			"Leakoff",
+			"converty",
+			"vcat",
+			"infotime",
+			"outd",
+			"converty",
+			"atype",
+			"converty",
+			"vcat",
+			"KnetArray",
+			"conddim",
+			"nchannels",
+			"height",
+			"make_image_grid",
+			"color",
+			"@s",
+			")\n",
+			"@sh",
+			")\n",
+			"condsize",
+			"perm",
+			"bsize",
+			"atype",
+			"optim",
+			"aty",
+			"batctrainsize",
+			"length(",
+			"plot_dream",
+			"weight",
+			"dtrn",
+			"gpu",
+			"nz",
+			"binary_cross_entropy",
+			"sample_z",
+			"nh",
+			"encode",
+			"Dz",
+			"z",
+			"autograd",
+			"Variable",
+			"\nlr",
+			"init",
+			"rand",
+			"sample_z",
+			"randn",
+			"decode",
+			"rand",
+			"Tylor",
+			"out",
+			"decode",
+			"train",
+			"disp",
+			"@sho",
+			"displ",
+			"@show",
+			"encode",
+			"plot_dream",
+			"Float32",
+			"binary_cross_entropy",
+			"28",
+			"784",
+			"aveloss",
+			"dec",
+			"enc",
+			"bsgan30",
+			"retur",
+			"@show  ",
+			"# @show",
+			"bsgan30",
+			"sgan30_",
+			"@show",
+			"bsgan30_gnet",
+			"glayer2",
+			"str",
+			"# @show",
+			"bsgan100r4",
+			"randn(bsize",
+			"bsgan100r4",
+			"@show",
+			"initwg",
+			"train_discriminator",
+			"bsgan30_dnet",
+			"@show ",
+			"stride=2",
+			"stride="
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
-			"https://montyv.github.io/presentations/",
-			"https://montyv.github.io/papers/",
+			"sgan30r3ssqr_",
+			"winit=0.01; fdim=5000, zdim=10000, embed=10000, nlabels=10000",
+			"winit=0.01; fdim=500, zdim=100, embed=100, nlabels=100",
+			"bsgan30r3",
+			"@",
+			"batchtrainsize",
+			"plot",
+			"bsgan30r2",
+			"# @show  ",
+			"@show ",
+			"bsgan30r1",
+			"sgan30r1_",
+			"# @show ",
+			"@show ",
+			"bsgan100r5",
+			"# @show ",
+			"bsgan30",
+			"bsgan30_",
+			"900",
+			"bsgan30_",
+			"bsize",
+			"bsize2",
+			"FileIO.save",
+			".$(outputformat)",
+			"flipdim=",
 			"",
+			"\\t# @show size",
+			"# @show size",
+			"show size",
+			"iterembed",
+			"bsgan100r4",
+			"# @show",
+			"predictsize",
+			"trainsize",
+			"# @show",
+			"@show",
+			"sgan100r3",
+			"# @show",
+			"@show",
+			"sgan100r2",
+			"sgan100r1_",
+			"bsgan100r1",
+			"# @show",
+			"@show",
+			"# @show",
+			"bsgan100_",
+			"dcgan100_",
+			"bsgan10a_",
+			"bsgan10a",
+			"a\" _\"O,",
+			"b\" _\"O,",
+			"g\" _\"O,",
+			"Base.parse(Colors",
+			"dpi=imagedpi",
+			"bsgan10m",
+			"xtrn",
+			"ytrn",
+			"objective_value",
+			"trn",
+			"prd",
+			"bsgan10_",
+			"bsize2",
+			"dcgan_",
+			"100",
+			"bsize2",
+			"dcgan10_",
+			"winit * ",
+			"parse",
+			"Float64",
+			"plot",
+			"savemodel",
+			"loadmodel",
+			"",
+			"import",
+			"Float64",
+			"options",
+			"Wd",
+			"Wg",
+			"epsilon",
+			"GradJ",
+			"Omega",
+			"O",
+			"J",
+			"N",
+			"W",
 			" ",
-			"research",
+			"sdp_log",
+			"sr_",
+			"colormap_ncar",
+			"",
+			"300",
+			"JuMP.optimize!(",
+			"value.(",
+			"jumpvalues - JuMP.value.(jumpvariables)",
+			"value.(",
+			"Energy",
+			"colormap_ncar",
+			"sd",
+			"maxvalue=5, minvalue=1",
+			"maxvalue=5",
+			"mask=1",
+			"colormap_ncar",
+			"firstpeak=true",
+			"Energy",
+			"pressure-recovery",
+			"colormap_ncar",
+			"sr_log",
+			"sd_log",
+			"srd_log",
+			"sprd_log",
+			"sprg_log",
+			"Pr",
+			"Xr",
+			"@info(",
+			"normnan",
+			"sample_all",
+			"sample",
+			"Xe",
+			"Xa",
+			"Xe",
+			"@info(",
+			"normnan",
+			"@info(",
 			"/",
-			"text-white",
-			"text-muted",
-			"parallax",
-			"TensorDecompostions",
-			"repeat",
-			"=Dates.Date(",
-			"NTFk.compose",
-			"j1check",
-			"freadfail",
-			"freadstatus",
-			"ftensor",
-			"freadfail",
-			"all_log",
-			"fn2",
-			"fn",
-			"Distributed.addprocs(",
-			"Distributed.nprocs(",
-			".md",
-			"flipdim",
-			"getptdimensions",
-			"getpttdimensions(pdim, ",
-			"getpttdimensions(dim, pdim, l",
-			"pdim::Union{Integer,Tuple}=dim",
-			"getpttdimensions",
-			"getplottdimensions",
-			"logenergy2011monthly",
-			"xmatrix=[minlon, maxlon], ymatrix=[minlat, maxlat]",
-			"pressure",
-			"volume",
-			"xmatrix=[minlon, maxlon], ymatrix=[minlat, maxlat], ",
-			"xmatrix=[-99.72743, -95.00255], ymatrix=[33.86259, 37.72636795], ",
-			"datestart=mindate, dateend=maxdate, ",
-			"weekly2011monthly",
+			"tensors.lanl.gov",
 			"BHT",
-			"%20",
-			"\\ldots",
-			"%20",
-			"\"p",
-			"grey",
-			"018-12-20",
-			"wells.gitlab.io",
-			"_blank",
-			"https://www.lanl.gov/orgs/ees/staff/monty/",
-			"%20",
-			"norm(",
-			"Random.seed!(",
-			"Matrix{\\1}\\(undef, ",
-			"Vector{\\1}\\(undef, ",
-			"Array{\\1}\\(undef, ",
-			"@info(",
-			"@warn(",
-			"Test",
-			"Nothing",
-			"@Test.test",
-			"norm",
-			"permutedims",
-			"Vector{\\1}(undef, ",
-			"@warn(",
-			"norm",
-			"Array{\\1}(undef, ",
-			"Array{Float32, 2}(undef, ",
-			"@info(",
-			"Random.seed!(",
-			"Random.seed!",
-			"stdout",
-			"stderr",
-			"Test.test",
-			"AbstractRange",
-			":remote",
-			"%20",
-			"lime-text",
-			"mads.lanl.gov",
-			"mads.gitlab.io",
-			"montyvesselinov.github.io",
-			"montyv.github.io",
-			"csize_est",
-			"tucker_est",
-			"T_est",
-			"NTFkAnalysis",
-			". <a",
-			"o",
-			"weekly2008coarse-energy",
-			"weekly2008coarse-energy-",
-			"Mads.imagedpi",
-			"dpi=dpi",
-			"SDIC",
-			"key_label_font_size=12Gadfly.pt",
-			"line_width=3Gadfly.pt",
-			"major_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt, key_title_font_size=16Gadfly.pt, key_label_font_size=12Gadfly.pt, line_width=2Gadfly.pt",
-			"major_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt, key_title_font_size=16Gadfly.pt, key_label_font_size=12Gadfly.pt",
-			"minor_label_font_size=12",
-			"y",
-			"savetensorslices",
-			"SDLC",
-			"SDHC",
-			"nanmask!(",
-			"SDHC",
-			"",
-			"mask=",
-			";",
-			"",
-			"mads=0.1, ",
-			";",
-			"maxvalue",
-			"weekly2008coarse",
-			"undef,",
-			"Array{\\1}(undef, ",
-			" target=\"_blank\">PDF</a>",
-			"target=\"_blank\">PDF</a>",
-			">PDF</a>",
-			" target=\"_blank\">PDF</a>",
-			"daily",
-			"datestart=datestart, dateend=dateend, ",
-			"weekly2008",
-			"weekly2005",
-			"dayly",
-			"date[id][end]",
-			"date[id][1]",
-			"weekly-l0",
-			"weekly",
-			"::AbstractVector",
-			"::AbstractMatrix"
+			"Xr",
+			"ncases"
 		],
 		"reverse": false,
 		"show_context": false,
@@ -1215,8 +1271,1197 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/Users/monty/.julia/dev/CGAN/src/CGAN.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 28021,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								278,
+								278
+							]
+						],
+						"settings":
+						{
+							"SL.129.region_keys":
+							[
+							],
+							"SL.13.region_keys":
+							[
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										17477,
+										17478
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										17421,
+										17422
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										277,
+										278
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										258,
+										259
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"markdonw_live_preview_last_run": 1553641558.78,
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/monty/Julia/rMF/GTI/postprocess-nmfk-all-j1.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								60,
+								30
+							]
+						],
+						"settings":
+						{
+							"SL.18.region_keys":
+							[
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3251,
+										3252
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										3241,
+										3242
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										59,
+										60
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										37,
+										38
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"markdonw_live_preview_last_run": 1554771003.71,
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/monty/Julia/rMF/GTI/process-nmfk-predictions.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 479,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								274,
+								274
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"markdonw_live_preview_last_run": 1554771281.77,
+							"syntax": "Packages/Julia/Julia.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/monty/Julia/rMF/GTI/process-12-18-j1.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 31746,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25496,
+								25496
+							]
+						],
+						"settings":
+						{
+							"SL.19.region_keys":
+							[
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										25402,
+										25403
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										25391,
+										25392
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										25561,
+										25562
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										25164,
+										25165
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"markdonw_live_preview_last_run": 1554771057.22,
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11244.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/monty/Julia/rMF/CGAN/flux-lsgan-h.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3029,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								3029
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"markdonw_live_preview_last_run": 1554423849.64,
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/monty/.julia/dev/CGAN/src/cgan-bsgan30r3ssqr.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7562,
+								7562
+							]
+						],
+						"settings":
+						{
+							"SL.21.region_keys":
+							[
+							],
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										7561,
+										7562
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										7462,
+										7463
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"markdonw_live_preview_last_run": 1554386188.94,
+							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1313,7 +2558,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 322.0,
+	"side_bar_width": 274.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

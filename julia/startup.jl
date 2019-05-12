@@ -1,5 +1,7 @@
 ENV["PYTHON"]="/usr/local/bin/python3"
 
+mytoken = "LANL-5162867576190545e1ea1453cfeb87f598d09591"
+
 import Pkg
 
 atreplinit() do repl
