@@ -1,0 +1,1 @@
+sed '/includegra/!d' $1 | sed  's/.*{//g' f | sed 's/}.*//g'
