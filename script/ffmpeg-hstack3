@@ -1,0 +1,2 @@
+ffmpeg -i $1 -i $2 -i $3 -filter_complex "[0]pad=iw+20:color=white;[left][1]pad=iw+20:color=white;[left][2]hstack=inputs=3" $4
+
