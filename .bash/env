@@ -1,8 +1,8 @@
 # vim: set filetype=sh:
 [[ -f "${HOME}/.bash-local/env" ]] && source "${HOME}/.bash-local/env"
 
-export DESCARTESLABS_CLIENT_ID=vvv@lanl.gov
-export DESCARTESLABS_CLIENT_SECRET=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc19hbm9uIjpmYWxzZSwiZ3JvdXBzIjpbImJldGEiLCJwdWJsaWMiLCJzdHVkaW8iXSwibmFtZSI6InZ2dkBsYW5sLmdvdiIsImVtYWlsIjoidnZ2QGxhbmwuZ292IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm9yZyI6IiIsImlzcyI6Imh0dHBzOi8vZGVzY2FydGVzbGFicy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWQwMTdiNjYzZGIxMjEwZWI0ZGIzZDgwIiwiYXVkIjoiWk9CQWk0VVJPbDVnS1pJcHh4bHdPRWZ4OEtwcVhmMmMiLCJpYXQiOjE1NjAzNzgyNjcsImV4cCI6MTU2MDM4NTQ3OH0.IJp3lasFsglz913ZH6pX7LUI2zebf4eYUp7rl8qol4U
+export DESCARTESLABS_CLIENT_ID=ZOBAi4UROl5gKZIpxxlwOEfx8KpqXf2c
+export DESCARTESLABS_CLIENT_SECRET=n60pg0-P6zDFrPz2VF832HL5jBX3dUkada8JBMA1uGH_y
 
 export __SAMOS=`uname -s`;
 export XAUTHORITY=${HOME}/.Xauthority
