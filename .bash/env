@@ -1,6 +1,7 @@
 # vim: set filetype=sh:
 [[ -f "${HOME}/.bash-local/env" ]] && source "${HOME}/.bash-local/env"
 
+export MPLBACKEND="module://itermplot"
 export DESCARTESLABS_CLIENT_ID=ZOBAi4UROl5gKZIpxxlwOEfx8KpqXf2c
 export DESCARTESLABS_CLIENT_SECRET=n60pg0-P6zDFrPz2VF832HL5jBX3dUkada8JBMA1uGH_y
 
