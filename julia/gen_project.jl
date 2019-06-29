@@ -87,7 +87,7 @@ function semver(intervals)
     return join(spec, ", ")
 end
 
-function gen_proj(arg=pwd(); force=false)
+function gen_project(arg=pwd(); force=false)
     dir = abspath(expanduser(arg))
     isdir(dir) ||
         error("$arg does not appear to be a package (not a directory)")
