@@ -26,10 +26,10 @@
 			"path": "/Users/monty/.julia/dev/NMFk"
 		},
 		{
-			"path": "/Users/monty/.julia/dev/CanDecomp"
+			"path": "/Users/monty/.julia/dev/NTNk"
 		},
 		{
-			"path": "/Users/monty/.julia/dev/TensorDecompositions"
+			"path": "/Users/monty/.julia/dev/CanDecomp"
 		},
 		{
 			"path": "/Users/monty/www"
@@ -66,6 +66,18 @@
 		},
 		{
 			"path": "/Users/monty/.julia/dev/DocumentFunction"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/BIGUQ"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/RobustPmap"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/GeostatInversion"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/LoadTensorDecompositions"
 		}
 	]
 }

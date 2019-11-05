@@ -12,17 +12,18 @@ atreplinit() do repl
 end
 
 if Sys.isapple()
+	ENV["MPLBACKEND"]="TkCairo"
 	atreplinit((_)->Base.require(Base, :TerminalExtensions))
 	try
-		@eval import Gadfly
-		import Cairo, Fontconfig
+		import Gadfly
 		import Base: display
 		function Base.display(p::Gadfly.Plot)
 			Gadfly.draw(Gadfly.PNG(), p)
 			print("\r")
 		end
-	catch
-		@warn("Gadfly is not available")
+	catch errmsg
+		println(errmsg)
+		@warn("Base.display(p::Gadfly.Plot) could not be extended!")
 	end
 end
 
