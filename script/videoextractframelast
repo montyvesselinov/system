@@ -1,0 +1,8 @@
+#!/bin/bash
+for v in *.mp4; do
+	r="${v%.*}"
+	lf=`ffprobe -show_streams "$v" 2> /dev/null | grep nb_frames | head -1 | cut -d \= -f 2`
+	let "lf = $lf - 1"
+	echo $lf
+	ffmpeg -y -i $v -vf select=\'eq\(n,$lf\) -vframes 1 -f image2 $r.jpg
+done

@@ -24,6 +24,7 @@ ln -sf ./system/.profile .profile
 ln -sf ./system/.vimrc .vimrc
 ln -sf ./system/.vim .vim
 ln -sf ./system/.juliarc.jl .juliarc.jl
+mkdir .julia
 mkdir .julia/config
 ln -sf ../../system/julia/startup.jl .julia/config/startup.jl
 mkdir .ssh
