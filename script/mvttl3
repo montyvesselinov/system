@@ -1,0 +1,8 @@
+#!/bin/sh
+find . -print | grep $1 |
+while read line
+do
+	#rm -f $line
+	# mv -f $line `echo $line|sed "s/$1/$2/"`
+	echo $line
+done

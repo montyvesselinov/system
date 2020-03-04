@@ -5,19 +5,13 @@
 			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
 			"name": "Anaconda Python Builder",
 			"selector": "source.python",
-			"shell_cmd": "\"python3\" -u \"$file\""
+			"shell_cmd": "\"python\" -u \"$file\""
 		}
 	],
 	"folders":
 	[
 		{
-			"path": "/Users/monty/.julia/dev/CGAN"
-		},
-		{
 			"path": "/Users/monty/.julia/dev/Mads"
-		},
-		{
-			"path": "/Users/monty/Julia/rMF"
 		},
 		{
 			"path": "/Users/monty/.julia/dev/NTFk"
@@ -29,31 +23,19 @@
 			"path": "/Users/monty/.julia/dev/NTNk"
 		},
 		{
-			"path": "/Users/monty/.julia/dev/CanDecomp"
+			"path": "/Users/monty/Julia/rMF"
 		},
 		{
 			"path": "/Users/monty/www"
 		},
 		{
-			"path": "/Users/monty/Julia/FiniteVolume.jl"
-		},
-		{
-			"path": "/Users/monty/Julia/LinearAdjoints.jl"
-		},
-		{
-			"path": "/Users/monty/Julia/ThreeQ.jl"
-		},
-		{
-			"path": "/Users/monty/Julia/Origami.jl"
-		},
-		{
 			"path": "/Users/monty/python"
 		},
 		{
-			"path": "/Users/monty/.julia/dev/SVR"
+			"path": "/Users/monty/.julia/dev/Anasol"
 		},
 		{
-			"path": "/Users/monty/.julia/dev/Anasol"
+			"path": "/Users/monty/.julia/dev/SVR"
 		},
 		{
 			"path": "/Users/monty/.julia/dev/Kriging"
@@ -78,6 +60,21 @@
 		},
 		{
 			"path": "/Users/monty/.julia/dev/LoadTensorDecompositions"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/TensorDecompositions"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/CanDecomp"
+		},
+		{
+			"path": "/Users/monty/Julia/LinearAdjoints.jl"
+		},
+		{
+			"path": "/Users/monty/Julia/FiniteVolume.jl"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/CGAN"
 		}
 	]
 }
