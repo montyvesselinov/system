@@ -146,6 +146,10 @@ if [[ $HOSTNAME_ORIG =~ "ruml.lanl.gov" ]]; then
 	source ~/system/export-proxy-lanl
 	export PATH=${PATH}:/usr/local/cuda/bin
 	export JULIA_DEPOT_PATH="/home/vvv/.julia-ruml"
+	eval $(/home/vvv/.linuxbrew/bin/brew shellenv)
+else
+	echo "Mads"
+	eval $(/home/vvv/.linuxbrew-mads/bin/brew shellenv)
 fi
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 	umask g+w
