@@ -11,8 +11,8 @@
 #       mvpref for f            renames for* to f*
 #
 #-----------------------------------------------------------------------
-ls -d $1*|
+ls -d "$1"*|
 while read line
 do
-	mv $line `echo $line|sed "s/$1/$2/"`
+	mv "$line" `echo $line|sed "s/$1/$2/"`
 done

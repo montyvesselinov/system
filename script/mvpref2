@@ -1,4 +1,4 @@
 #!/bin/tcsh -f
-foreach i ( $1* )
-	mv $i `echo $i|sed "s/$1/$2/"`
+foreach i ( "$1"* )
+	mv "$i" `echo $i|sed "s/$1/$2/"`
 	end

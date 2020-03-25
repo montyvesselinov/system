@@ -1,0 +1,47 @@
+# ssh from local desktop to LOBO front end
+ssh -t -X wtrw ssh lo-fe1
+
+# scp between local desktop to LOBO front end
+scp -p -C ~/localfile.txt wtrw:lo-fe1:~/
+scp -p -C wtrw:lo-fe1:~/remotefile.txt ~/
+
+# rsync from local desktop to LOBO front end
+rsync -e "ssh -t wtrw.lanl.gov ssh lo-fe1" localfile.txt :/users/ollie/
+rsync -v -e "ssh -t wtrw.lanl.gov ssh lo-fe1" :/users/ollie/remotefile.txt ./
+
+    or
+
+rsync -e "ssh -t wtrw.lanl.gov ssh" localfile.txt lo-fe1:/users/ollie/
+rsync -v -e "ssh -t wtrw.lanl.gov ssh" lo-fe1:/users/ollie/remotefile.txt ./
+
+
+# port forwarding from local desktop to a backend node (loa105) on LOBO
+# with three hops of ssh encryption/decryption
+ssh -t -L 11111:localhost:11113 wtrw.lanl.gov \
+ssh -t -L 11113:localhost:11115 lo-fe1 \
+ssh -t -L 11115:localhost:11111 loa105
+
+# another port forwarding from local desktop to a backend on LOBO with 2
+# hops of ssh encryption/decryption
+# forwarding connection to desktop:12001 to wtrw:12002, here "localhost"
+# means wtrw
+ssh -t -L 12001:localhost:12002 wtrw \
+# forwarding connection to wtrw:12002 to lob116:11111 through lo-fe1.
+# The communction from wtrw to lo-fe1 is encrypted but from lo-fe1 to
+# lob116 is not.
+ssh -t -L 12002:lob116:11111 lo-fe1
+
+# there is a 3rd possible way to do it with only one hop of encryption
+# but it seems that wtrw doesn't allow it.
+# 1. Make desktop client connect to wtrw:12001
+# 2. On wtrw:
+    ssh -t -L 12001:lob116:11111 lo-fe1
+# forwarding connection to wtrw:12001 to lob116:11111 through lo-fe1
+# Communication from desktop client to wtrw is NOT encrypted, communcation
+# between wtrw to lo-fe1 is encrypted, communication from lo-fe1 to lo-be
+# is again NOT encrypted
+
+# wtrw also doesn't allow encrypted communication to lo-fe1 so this one
+# (forwarding desktop:19001 to lo-fe1:19002 through wtrw, means
+# desktop<-ssh->wtrw and wtrw<-tcp->lo-fe1) does NOT work
+    ssh -t -L 19001:lo-fe1:19002 wtrw
