@@ -166,3 +166,6 @@ if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 		module load git
 	fi
 fi
+
+# added by Miniconda3 installer
+export PATH="/home/vvv/miniconda3/bin:$PATH"
