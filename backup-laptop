@@ -1,0 +1,2 @@
+#!/bin/bash
+rsync -av --progress -delete -e ssh /Users/vvv/Docs vvv@es01.lanl.gov:/home/vvv/laptops/ml/Docs
