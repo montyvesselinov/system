@@ -15,6 +15,7 @@ if Sys.isapple()
 	ENV["MPLBACKEND"]="TkCairo"
 	atreplinit((_)->Base.require(Base, :TerminalExtensions))
 	try
+		import Cairo, Fontconfig
 		import Gadfly
 		import Base: display
 		function Base.display(p::Gadfly.Plot)

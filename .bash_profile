@@ -36,3 +36,6 @@ if [ -d $HOME/DWave/qOp ]; then
 fi
 
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
+# added by Miniconda3 installer
+export PATH="/Users/monty/miniconda3/bin:$PATH"

@@ -141,7 +141,7 @@ source ${HOME}/.bash/func
 source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
 source ${HOME}/system/tmux.completion.bash
-export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:/usr/projects/hpcsoft/toss2/common/gcc/4.9.2/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:${HOME}/.julia/conda/3/lib/:$LD_LIBRARY_PATH
 if [[ $HOSTNAME_ORIG =~ "ruml.lanl.gov" ]]; then
 	source ~/system/export-proxy-lanl
 	export PATH=${PATH}:/usr/local/cuda/bin
