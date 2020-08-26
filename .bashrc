@@ -148,7 +148,7 @@ if [[ $HOSTNAME_ORIG =~ "ruml.lanl.gov" ]]; then
 	export JULIA_DEPOT_PATH="/home/vvv/.julia-ruml"
 	eval $(/home/vvv/.linuxbrew/bin/brew shellenv)
 else
-	echo "Mads"
+	# echo "Mads"
 	eval $(/home/vvv/.linuxbrew-mads/bin/brew shellenv)
 fi
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
