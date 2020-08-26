@@ -142,15 +142,7 @@ source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
 source ${HOME}/system/tmux.completion.bash
 export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:${HOME}/.julia/conda/3/lib/:$LD_LIBRARY_PATH
-if [[ $HOSTNAME_ORIG =~ "ruml.lanl.gov" ]]; then
-	source ~/system/export-proxy-lanl
-	export PATH=${PATH}:/usr/local/cuda/bin
-	export JULIA_DEPOT_PATH="/home/vvv/.julia-ruml"
-	eval $(/home/vvv/.linuxbrew/bin/brew shellenv)
-else
-	echo "Mads"
-	eval $(/home/vvv/.linuxbrew-mads/bin/brew shellenv)
-fi
+eval $(brew shellenv)
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 	umask g+w
 	module load git
@@ -166,6 +158,4 @@ if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 		module load git
 	fi
 fi
-
-# added by Miniconda3 installer
 export PATH="/home/vvv/miniconda3/bin:$PATH"

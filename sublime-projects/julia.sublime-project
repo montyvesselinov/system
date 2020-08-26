@@ -75,6 +75,21 @@
 		},
 		{
 			"path": "/Users/monty/.julia/dev/CGAN"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/PhysicsInformedML"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/DPFEHM"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/NonlinearEquations"
+		},
+		{
+			"path": "/Users/monty/.julia/dev/DifferentiableBackwardEuler"
+		},
+		{
+			"path": "/Users/monty/Julia/AdjointLearning.jl"
 		}
 	]
 }
