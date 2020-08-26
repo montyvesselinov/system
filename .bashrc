@@ -142,7 +142,13 @@ source ${HOME}/.bash/func-common
 source ${HOME}/system/git-completion.bash
 source ${HOME}/system/tmux.completion.bash
 export LD_LIBRARY_PATH=/users/vvv/mads/repo/tpls/lib:${HOME}/.julia/conda/3/lib/:$LD_LIBRARY_PATH
-eval $(brew shellenv)
+if [[ $HOSTNAME_ORIG =~ "ml.lanl.gov" ]]; then
+	source ~/system/export-proxy-lanl
+	export PATH=${PATH}:/usr/local/cuda/bin
+	eval $(brew shellenv)
+else
+	eval $(/home/vvv/.linuxbrew-mads/bin/brew shellenv)
+fi
 if [[ $HOSTNAME_ORIG =~ $TURQ_REGEXP ]]; then
 	umask g+w
 	module load git

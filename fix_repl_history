@@ -1,0 +1,3 @@
+egrep  "^(#|\t)" ~/.julia/logs/repl_history.jl > ~/.julia/logs/repl_history_fix.jl
+mv ~/.julia/logs/repl_history.jl ~/.julia/logs/repl_history_old.jl
+mv ~/.julia/logs/repl_history_fix.jl ~/.julia/logs/repl_history.jl
