@@ -1,0 +1,1 @@
+convert -density 300 -trim ../geothermal-swnm-driver.pdf -quality 100 geothermal-swnm-%04d.jpg
