@@ -129,7 +129,6 @@ endsw
 
 source ~/.tcsh/alias
 source ~/.tcsh/set
-source ~/.tcsh/setenv
 source ~/.tcsh/complete
 source ~/.git-completion.tcsh
 source ~/.tcsh/print
