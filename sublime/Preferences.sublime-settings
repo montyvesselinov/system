@@ -54,6 +54,9 @@
 	"font_size": 13,
 	"ignored_packages":
 	[
+		"Julia",
+		"JuliaCompletions",
+		"Markdown",
 		"Vintage"
 	],
 	"line_padding_bottom": 1,

@@ -27,6 +27,7 @@ ln -sf ./system/.juliarc.jl .juliarc.jl
 mkdir .julia
 mkdir .julia/config
 ln -sf ../../system/julia/startup.jl .julia/config/startup.jl
+ln -sf ../../system/julia/gen_project.jl .julia/config/gen_project.jl
 mkdir .ssh
 ln -sf ../system/.ssh/config .ssh/config
 echo "Script ..."
