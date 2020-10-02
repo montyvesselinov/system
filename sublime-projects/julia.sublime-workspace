@@ -520,46 +520,29 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/monty/Julia/rMF/Catostrofire/process.jl",
+			"file": "/Users/vvv/Julia/Catostrofire.jl/load-frap-maca-all.jl",
 			"settings":
 			{
-				"buffer_size": 7740,
+				"buffer_size": 5711,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Searching 47 files for \"discrete_highlight_color\" (case sensitive)\n\n0 matches\n\nSearching 62 files for \"discrete_highlight_color\" (case sensitive)\n\n0 matches\n\nSearching 243 files for \"discrete_highlight_color\" (case sensitive)\n\n/Users/monty/.julia/dev/Mads/src/MadsPlot.jl:\n 1172: \t\t\t\tGadfly.Theme(line_width=linewidth, line_style=[linestyle], point_size=pointsize, highlight_width=0Gadfly.pt, discrete_highlight_color=c->nothing, default_color=Colors.RGBA(parse(Colors.Colorant, colors[i]), opacity)))\n 1179: \t\t\t\tGadfly.Theme(background_color=background_color, discrete_highlight_color=c->nothing, key_position=key_position, highlight_width=0Gadfly.pt, major_label_font_size=major_label_font_size, minor_label_font_size=minor_label_font_size),\n 1240: \t\t\t    Gadfly.Theme(line_width=linewidth, line_style=[linestyle], point_size=pointsize, highlight_width=0Gadfly.pt, background_color=background_color, discrete_highlight_color=c->nothing, key_position=key_position, major_label_font_size=major_label_font_size, minor_label_font_size=minor_label_font_size),\n 1254: \t\t\tpp[i] = Gadfly.plot(Gadfly.layer(x=xaxis, y=X[:,i], glog..., geometry..., gm...), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), Gadfly.Theme(background_color=background_color, discrete_highlight_color=c->nothing), Gadfly.Guide.title(\"$(names[i])\"), Gadfly.Coord.Cartesian(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), gl...)\n\n4 matches in 1 file\n\n\nSearching 62 files for \"Gadfly.Theme\" (case sensitive)\n\n/Users/monty/.julia/dev/NTFk/examples/imshow.jl:\n   15: \t\t\t\tGadfly.Theme(grid_color=\"black\", grid_line_width=0Gadfly.pt),\n\n/Users/monty/.julia/dev/NTFk/examples/scaling/distributed-benchmark.jl:\n   58: push!(l, Gadfly.layer(x=d[:Size], y=d[:Time], Gadfly.Geom.line, Gadfly.Geom.point, Gadfly.Theme(default_color=\"red\", line_width=2.5Gadfly.pt, point_size=3.5Gadfly.pt, highlight_width=0Gadfly.pt)))\n   61: \tpush!(l, Gadfly.layer(x=d[:Size], y=d[:Time], Gadfly.Geom.line, Gadfly.Geom.point, Gadfly.Theme(default_color=colors[i+1], line_width=2.5Gadfly.pt, point_size=3.5Gadfly.pt, highlight_width=0Gadfly.pt)))\n   64: p = Gadfly.plot(l..., Gadfly.Guide.XLabel(\"Matrix Size [-]\"), Gadfly.Guide.YLabel(\"Time [ms]\"), Gadfly.Coord.cartesian(xmin=1, xmax=4), Gadfly.Scale.x_log10(), Gadfly.Scale.y_log10(), Gadfly.Guide.manual_color_key(\"\", [\"Local\", \"2 nodes\", \"3 nodes\", \"4 nodes\"], colors[1:4]), Gadfly.Theme(major_label_font_size=16Gadfly.pt, key_label_font_size=14Gadfly.pt, minor_label_font_size=8Gadfly.pt))\n\n/Users/monty/.julia/dev/NTFk/examples/scaling/distributed-elemental-benchmark.jl:\n   63: push!(l, Gadfly.layer(x=d[:Size], y=d[:Time], Gadfly.Geom.line, Gadfly.Geom.point, Gadfly.Theme(default_color=\"red\", line_width=2.5Gadfly.pt, point_size=3.5Gadfly.pt, highlight_width=0Gadfly.pt)))\n   66: \tpush!(l, Gadfly.layer(x=d[:Size], y=d[:Time], Gadfly.Geom.line, Gadfly.Geom.point, Gadfly.Theme(default_color=colors[i+1], line_width=2.5Gadfly.pt, point_size=3.5Gadfly.pt, highlight_width=0Gadfly.pt)))\n   69: p = Gadfly.plot(l..., Gadfly.Guide.XLabel(\"Matrix Size [-]\"), Gadfly.Guide.YLabel(\"Time [ms]\"), Gadfly.Coord.cartesian(xmin=1, xmax=4), Gadfly.Scale.x_log10(), Gadfly.Scale.y_log10(), Gadfly.Guide.manual_color_key(\"\", [\"Local\", \"2 nodes\", \"3 nodes\", \"4 nodes\"], colors[1:4]), Gadfly.Theme(major_label_font_size=16Gadfly.pt, key_label_font_size=14Gadfly.pt, minor_label_font_size=8Gadfly.pt))\n\n/Users/monty/.julia/dev/NTFk/examples/tensordecomposition/runtests-nmf-tucker.jl:\n   37: \tGadfly.layer(x=1:length(W[:,1]), y=W[:,1], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"blue\"))),\n   38: \tGadfly.layer(x=1:length(W[:,1]), y=tsf[ibest].factors[1][:,1], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"red\"))))\n   42: \tGadfly.layer(x=1:length(W[:,2]), y=W[:,2], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"blue\"))),\n   43: \tGadfly.layer(x=1:length(W[:,2]), y=tsf[ibest].factors[1][:,2], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"red\"))))\n   47: \tGadfly.layer(x=1:length(H[1,:]), y=H[1,:], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"blue\"))),\n   48: \tGadfly.layer(x=1:length(H[1,:]), y=tsf[ibest].factors[2][:,1], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"red\"))))\n   52: \tGadfly.layer(x=1:length(H[2,:]), y=H[2,:], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"blue\"))),\n   53: \tGadfly.layer(x=1:length(H[2,:]), y=tsf[ibest].factors[2][:,2], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"red\"))))\n   57: \tGadfly.layer(x=1:length(Q), y=Q, Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"blue\"))),\n   58: \tGadfly.layer(x=1:length(Q), y=tsf[ibest].factors[3][:,1], Gadfly.Geom.line, Gadfly.Theme(default_color=parse(Colors.Colorant, \"red\"))))\n\n/Users/monty/.julia/dev/NTFk/src/NTFkAnalysis-seismic.jl:\n   62: \t\tl = Gadfly.layer(x=fielddstbin, y=fieldcntbinn, Gadfly.Geom.line(), Gadfly.Geom.point(), Gadfly.Theme(line_width=3Gadfly.pt, point_size=2Gadfly.pt, highlight_width=0Gadfly.pt, default_color=parse(Gadfly.Colorant, colors[s])))\n   65: \t\t# display(Gadfly.plot(x=fielddstbin, y=fieldmagbin, Gadfly.Guide.XLabel(\"log10 Density\"), Gadfly.Guide.YLabel(\"log10 Distance\"), Gadfly.Geom.line(), Gadfly.Geom.point(), Gadfly.Theme(line_width=4Gadfly.pt, point_size=5Gadfly.pt, default_color=parse(Gadfly.Colorant, colors[s])), Gadfly.Scale.x_log10(), Gadfly.Scale.y_log10()))\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlot2d.jl:\n   88: \t\tpl[i] = Gadfly.layer(x=xvalues[xfilter], y=p[xfilter, order[filter[i]]], Gadfly.Geom.line(), Gadfly.Theme(line_width=linewidth, default_color=cc))\n   99: \t\t\tff = Gadfly.plot(Gadfly.layer(x=xvalues[xfilter], y=p[xfilter, order[filter[i]]], Gadfly.Geom.line(), Gadfly.Theme(line_width=linewidth, default_color=parse(Colors.Colorant, \"red\"))), Gadfly.Guide.title(tt), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), gm..., Gadfly.Coord.Cartesian(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax))\n  156: \t\tpl[i] = Gadfly.layer(x=xvalues, y=tm, Gadfly.Geom.line(), Gadfly.Theme(line_width=linewidth, default_color=cc))\n  213: \t\tpl[i] = Gadfly.layer(x=xvalues, y=tm, Gadfly.Geom.line(), Gadfly.Theme(line_width=linewidth, default_color=cc))\n  216: \tpl[crank+1] = Gadfly.layer(x=xvalues, y=tm, Gadfly.Geom.line(), Gadfly.Theme(line_width=linewidth+1Gadfly.pt, line_style=[:dot], default_color=\"gray\"))\n  219: \tpl[crank+2] = Gadfly.layer(x=xvalues, y=tm, Gadfly.Geom.line(), Gadfly.Theme(line_width=linewidth, default_color=\"gray85\"))\n  235: gm=[Gadfly.Guide.manual_color_key(\"\", [\"Oil\", \"Gas\", \"Water\"], colors[1:3]), Gadfly.Theme(major_label_font_size=16Gadfly.pt, key_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt)]\n  237: function plot2d(T::AbstractArray, Te::AbstractArray=T; quiet::Bool=false, wellnames=nothing, Tmax=nothing, Tmin=nothing, xtitle::String=\"\", ytitle::String=\"\", titletext::String=\"\", figuredir::String=\"results\", hsize=8Gadfly.inch, vsize=4Gadfly.inch, dpi::Integer=imagedpi, keyword::String=\"\", dimname::String=\"Column\", colors=NTFk.colors, linewidth::Measures.Length{:mm,Float64}=2Gadfly.pt, gm=[Gadfly.Theme(key_position=:right, background_color=nothing, major_label_font_size=16Gadfly.pt, key_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt)], xaxis=1:size(Te,2), xmin=nothing, xmax=nothing, ymin=nothing, ymax=nothing, xintercept=[])\n  285: \t\t\tp[pc] = Gadfly.layer(x=xaxis, y=y, xintercept=xintercept, Gadfly.Geom.line, Gadfly.Theme(line_width=linewidth, default_color=colors[i]), Gadfly.Geom.vline)\n  287: \t\t\tp[pc] = Gadfly.layer(x=xaxis, y=ye, xintercept=xintercept, Gadfly.Geom.line, Gadfly.Theme(line_style=[:dot], line_width=linewidth, default_color=colors[i]), Gadfly.Geom.vline)\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlotMatrix.jl:\n   30: \tcs = colorkey ? [Gadfly.Guide.ColorKey(title=key_tilte)] : [Gadfly.Theme(key_position = :none)]\n   90: \tgt = [Gadfly.Guide.title(title), Gadfly.Guide.xlabel(xlabel), Gadfly.Guide.ylabel(ylabel), Gadfly.Theme(major_label_font_size=major_label_font_size, key_label_font_size=key_label_font_size, key_title_font_size=key_title_font_size, bar_spacing=0Gadfly.mm), Gadfly.Coord.cartesian(yflip=yflip, fixed=true, xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), Gadfly.Scale.x_continuous, Gadfly.Scale.y_continuous]\n   94: \t\t\t\tl = [Gadfly.layer(x=xs, y=ys, color=vs, Gadfly.Theme(point_size=pointsize, highlight_width=0Gadfly.pt))]\n  105: \t\t\tl = [Gadfly.layer(x=xs, y=ys, Gadfly.Theme(default_color=defaultcolor, point_size=pointsize, highlight_width=0Gadfly.pt))]\n  114: \t\t\t\tsum(id) > 0 && (l = [l..., Gadfly.layer(x=xs[id], y=ys[id], Gadfly.Theme(default_color=c, point_size=pointsize, highlight_width=0Gadfly.pt))])\n  121: \t\tl = Gadfly.layer(x=[xmin, xmax], y=[ymin, ymax], color=[minvalue, maxvalue], Gadfly.Theme(point_size=0Gadfly.pt, highlight_width=0Gadfly.pt))\n  128: \t\t\tpush!(c, Gadfly.layer(x=polygon[:,1], y=polygon[:,2], Gadfly.Geom.polygon(preserve_order=true, fill=false), Gadfly.Theme(line_width=linewidth, default_color=linecolor)))\n  131: \t\t\tpush!(c, Gadfly.layer(x=dots[:,1], y=dots[:,2], Gadfly.Theme(point_size=dotsize, highlight_width=0Gadfly.pt, default_color=dotcolor)))\n  134: \t\t\tpush!(c, Gadfly.layer(z=permutedims(contour .* (maxvalue - minvalue) .+ minvalue), x=collect(1:size(contour, 2)), y=collect(1:size(contour, 1)), Gadfly.Geom.contour(levels=[minvalue]), Gadfly.Theme(line_width=linewidth, default_color=linecolor)))\n\n38 matches across 7 files\n\n\nSearching 62 files for \"key_position\" (case sensitive)\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlot2d.jl:\n  237: function plot2d(T::AbstractArray, Te::AbstractArray=T; quiet::Bool=false, wellnames=nothing, Tmax=nothing, Tmin=nothing, xtitle::String=\"\", ytitle::String=\"\", titletext::String=\"\", figuredir::String=\"results\", hsize=8Gadfly.inch, vsize=4Gadfly.inch, dpi::Integer=imagedpi, keyword::String=\"\", dimname::String=\"Column\", colors=NTFk.colors, linewidth::Measures.Length{:mm,Float64}=2Gadfly.pt, gm=[Gadfly.Theme(key_position=:right, discrete_highlight_color=c->nothing, background_color=nothing, major_label_font_size=16Gadfly.pt, key_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt)], xaxis=1:size(Te,2), xmin=nothing, xmax=nothing, ymin=nothing, ymax=nothing, xintercept=[])\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlotMatrix.jl:\n   30: \tcs = colorkey ? [Gadfly.Guide.ColorKey(title=key_tilte)] : [Gadfly.Theme(key_position = :none)]\n\n2 matches across 2 files\n\n\nSearching 62 files for \"discrete_highlight_color\" (case sensitive)\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlot2d.jl:\n  237: function plot2d(T::AbstractArray, Te::AbstractArray=T; quiet::Bool=false, wellnames=nothing, Tmax=nothing, Tmin=nothing, xtitle::String=\"\", ytitle::String=\"\", titletext::String=\"\", figuredir::String=\"results\", hsize=8Gadfly.inch, vsize=4Gadfly.inch, dpi::Integer=imagedpi, keyword::String=\"\", dimname::String=\"Column\", colors=NTFk.colors, linewidth::Measures.Length{:mm,Float64}=2Gadfly.pt, gm=[Gadfly.Theme(key_position=:right, discrete_highlight_color=c->nothing, background_color=nothing, major_label_font_size=16Gadfly.pt, key_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt)], xaxis=1:size(Te,2), xmin=nothing, xmax=nothing, ymin=nothing, ymax=nothing, xintercept=[])\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlotMatrix.jl:\n   90: \tgt = [Gadfly.Guide.title(title), Gadfly.Guide.xlabel(xlabel), Gadfly.Guide.ylabel(ylabel), Gadfly.Theme(major_label_font_size=major_label_font_size, key_label_font_size=key_label_font_size, discrete_highlight_color=c->nothing, key_title_font_size=key_title_font_size, bar_spacing=0Gadfly.mm), Gadfly.Coord.cartesian(yflip=yflip, fixed=true, xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), Gadfly.Scale.x_continuous, Gadfly.Scale.y_continuous]\n\n2 matches across 2 files\n\n\nSearching 62 files for \"key_position\" (case sensitive)\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlot2d.jl:\n  237: function plot2d(T::AbstractArray, Te::AbstractArray=T; quiet::Bool=false, wellnames=nothing, Tmax=nothing, Tmin=nothing, xtitle::String=\"\", ytitle::String=\"\", titletext::String=\"\", figuredir::String=\"results\", hsize=8Gadfly.inch, vsize=4Gadfly.inch, dpi::Integer=imagedpi, keyword::String=\"\", dimname::String=\"Column\", colors=NTFk.colors, linewidth::Measures.Length{:mm,Float64}=2Gadfly.pt, gm=[Gadfly.Theme(key_position=:right, discrete_highlight_color=c->nothing, background_color=nothing, major_label_font_size=16Gadfly.pt, key_label_font_size=14Gadfly.pt, minor_label_font_size=12Gadfly.pt)], xaxis=1:size(Te,2), xmin=nothing, xmax=nothing, ymin=nothing, ymax=nothing, xintercept=[])\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlotMatrix.jl:\n   30: \tcs = colorkey ? [Gadfly.Guide.ColorKey(title=key_tilte, discrete_highlight_color=c->nothing)] : [Gadfly.Theme(key_position = :none)]\n\n2 matches across 2 files\n\n\nSearching 47 files for \"key_position\" (case sensitive)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlot.jl:\n   97: \t\tp = Gadfly.plot(dfw, x=:x, y=:y, label=:label, color=:label, Gadfly.Scale.color_discrete(colormap), Gadfly.Geom.point, Gadfly.Geom.label, Gadfly.Theme(highlight_width=0Gadfly.pt, point_label_font_size=point_label_font_size, background_color=background_color, key_position=:none), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), Gadfly.Guide.YLabel(ytitle), Gadfly.Coord.Cartesian(xmin=0, xmax=1, ymin=0, ymax=1))\n   98: \t\t# p = Gadfly.plot([x y label], x=Gadfly.Col.value(1), y=Gadfly.Col.value(2), label=Gadfly.Col.value(3), color=Gadfly.Col.value(3), Gadfly.Scale.color_discrete(colormap), Gadfly.Geom.point(), Gadfly.Geom.label(; position=:dynamic, hide_overlaps=true), Gadfly.Theme(highlight_width=0Gadfly.pt, point_label_font_size=point_label_font_size, background_color=background_color, key_position=:none), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), Gadfly.Coord.Cartesian(xmin=0, xmax=1, ymin=0, ymax=1))\n  320: \tff = Gadfly.plot(df, x=\"Values\", y=\"Attributes\", color=\"Attributes\", Gadfly.Geom.bar(position=:dodge, orientation=:horizontal), Gadfly.Guide.title(title), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), tc..., gm..., Gadfly.Theme(key_position=:none, major_label_font_size=major_label_font_size, minor_label_font_size=minor_label_font_size))\n  625: \tNMFk.plotmatrix(NMFk.normalize!(D)[1]; kw..., key_position=:none)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlotMatrix.jl:\n   10: function plotmatrix(X::AbstractMatrix; minvalue=minimumnan(X), maxvalue=maximumnan(X), key_tilte=\"\", title=\"\", xlabel=\"\", ylabel=\"\", xticks=nothing, yticks=nothing, xplot=nothing, yplot=nothing, xmatrix=nothing, ymatrix=nothing, gl=[], gm=[Gadfly.Guide.xticks(label=false, ticks=nothing), Gadfly.Guide.yticks(label=false, ticks=nothing)], masize::Int64=0, colormap=colormap_gyr, filename::String=\"\", hsize=6Compose.inch, vsize=6Compose.inch, figuredir::String=\".\", colorkey::Bool=true, key_position::Symbol=:right, mask=nothing, dots=nothing, polygon=nothing, contour=nothing, linewidth::Measures.Length{:mm,Float64}=2Gadfly.pt, key_title_font_size=10Gadfly.pt, key_label_font_size=10Gadfly.pt, major_label_font_size=12Gadfly.pt, dotcolor=\"purple\", linecolor=\"gray\", defaultcolor=nothing, pointsize=1.5Gadfly.pt, dotsize=1.5Gadfly.pt, transform=nothing, code::Bool=false, quiet::Bool=true, nbins::Integer=0, flatten::Bool=false, rectbin::Bool=(nbins>0) ? false : true, dpi::Number=imagedpi)\n   39: \t\tkey_position = :none\n   98: \tgt = [Gadfly.Guide.title(title), Gadfly.Guide.xlabel(xlabel), Gadfly.Guide.ylabel(ylabel), Gadfly.Theme(major_label_font_size=major_label_font_size, key_label_font_size=key_label_font_size, key_title_font_size=key_title_font_size, bar_spacing=0Gadfly.mm, key_position=key_position), Gadfly.Coord.cartesian(yflip=yflip, fixed=true, xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), Gadfly.Scale.x_continuous, Gadfly.Scale.y_continuous]\n\n8 matches across 2 files\n\n\nSearching 47 files for \"Gadfly.Theme\" (case sensitive)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlot.jl:\n   81: \t\t\tplotline && push!(l, Gadfly.layer(x=[0, x[i]], y=[0, y[i]], Gadfly.Geom.line, Gadfly.Theme(default_color=Colors.RGBA(parse(Colors.Colorant, colors[ic]), opacity))))\n   83: \t\t\t\tpush!(l, Gadfly.layer(x=[x[i]], y=[y[i]], label=[label[i]], Gadfly.Geom.point, Gadfly.Geom.label, Gadfly.Theme(default_color=Colors.RGBA(parse(Colors.Colorant, colors[ic]), opacity), highlight_width=0Gadfly.pt, point_label_font_size=point_label_font_size, point_label_color=Colors.RGBA(parse(Colors.Colorant, colors[ic])))))\n   85: \t\t\t\tpush!(l, Gadfly.layer(x=[x[i]], y=[y[i]], Gadfly.Geom.point, Gadfly.Theme(default_color=Colors.RGBA(parse(Colors.Colorant, colors[ic]), opacity), highlight_width=0Gadfly.pt)))\n   88: \t\tpush!(l, Gadfly.layer(x=[1.], y=[1.], Gadfly.Geom.nil, Gadfly.Theme(point_size=0Gadfly.pt)))\n   89: \t\tp = Gadfly.plot(l..., Gadfly.Theme(background_color=background_color), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), gm...)\n   97: \t\tp = Gadfly.plot(dfw, x=:x, y=:y, label=:label, color=:label, Gadfly.Scale.color_discrete(colormap), Gadfly.Geom.point, Gadfly.Geom.label, Gadfly.Theme(highlight_width=0Gadfly.pt, point_label_font_size=point_label_font_size, background_color=background_color, key_position=:none), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), Gadfly.Guide.YLabel(ytitle), Gadfly.Coord.Cartesian(xmin=0, xmax=1, ymin=0, ymax=1))\n   98: \t\t# p = Gadfly.plot([x y label], x=Gadfly.Col.value(1), y=Gadfly.Col.value(2), label=Gadfly.Col.value(3), color=Gadfly.Col.value(3), Gadfly.Scale.color_discrete(colormap), Gadfly.Geom.point(), Gadfly.Geom.label(; position=:dynamic, hide_overlaps=true), Gadfly.Theme(highlight_width=0Gadfly.pt, point_label_font_size=point_label_font_size, background_color=background_color, key_position=:none), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), Gadfly.Coord.Cartesian(xmin=0, xmax=1, ymin=0, ymax=1))\n  183: \t\tpush!(l, Gadfly.layer(xmin=xmina, xmax=xmaxa, y=ya, Gadfly.Geom.bar, Gadfly.Theme(default_color=Colors.RGBA(parse(Colors.Colorant, colors[j]), opacity))))\n  244: \tff = Gadfly.plot(Gadfly.layer(df, x=\"Truth\", y=\"Prediction\", color=\"Attribute\", Gadfly.Theme(highlight_width=0Gadfly.pt)), Gadfly.layer(x=[minimum(df[!, :Truth]), maximum(df[!, :Truth])], y=[minimum(df[!, :Truth]), maximum(df[!, :Truth])], Gadfly.Geom.line(), Gadfly.Theme(line_width=4Gadfly.pt,default_color=\"red\")), Gadfly.Coord.Cartesian(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), Gadfly.Guide.title(title), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), gm..., tc...)\n  280: \t\tpm = [Gadfly.layer(x=polygon[:,1], y=polygon[:,2], Gadfly.Geom.polygon(preserve_order=true, fill=false), Gadfly.Theme(line_width=linewidth, default_color=linecolor))]\n  286: \t\tone2oneline = [Gadfly.layer(x=m, y=m, Gadfly.Geom.line(), Gadfly.Theme(line_width=linewidth * 2, default_color=linecolor))]\n  290: \tff = Gadfly.plot(Gadfly.layer(x=x, y=y, color=color, size=size, Gadfly.Theme(highlight_width=0Gadfly.pt, default_color=pointcolor, point_size=point_size)), pm...,one2oneline..., Gadfly.Coord.Cartesian(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), Gadfly.Guide.title(title), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), gm..., cm...)\n  320: \tff = Gadfly.plot(df, x=\"Values\", y=\"Attributes\", color=\"Attributes\", Gadfly.Geom.bar(position=:dodge, orientation=:horizontal), Gadfly.Guide.title(title), Gadfly.Guide.XLabel(xtitle), Gadfly.Guide.YLabel(ytitle), tc..., gm..., Gadfly.Theme(key_position=:none, major_label_font_size=major_label_font_size, minor_label_font_size=minor_label_font_size))\n  345: \t\t\tpl[i] = Gadfly.layer(x=xvalues, y=M[:, order[i]], Gadfly.Geom.line(), Gadfly.Theme(line_width=2Gadfly.pt, default_color=cc))\n  347: \t\t\tpl[i] = Gadfly.layer(x=xvalues, y=M[order[i], :], Gadfly.Geom.line(), Gadfly.Theme(line_width=2Gadfly.pt, default_color=cc))\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlotMatrix.jl:\n   98: \tgt = [Gadfly.Guide.title(title), Gadfly.Guide.xlabel(xlabel), Gadfly.Guide.ylabel(ylabel), Gadfly.Theme(major_label_font_size=major_label_font_size, key_label_font_size=key_label_font_size, key_title_font_size=key_title_font_size, bar_spacing=0Gadfly.mm, key_position=key_position, discrete_highlight_color=c->nothing), Gadfly.Coord.cartesian(yflip=yflip, fixed=true, xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax), Gadfly.Scale.x_continuous, Gadfly.Scale.y_continuous]\n  102: \t\t\t\tl = [Gadfly.layer(x=xs, y=ys, color=vs, Gadfly.Theme(point_size=pointsize, highlight_width=0Gadfly.pt))]\n  113: \t\t\tl = [Gadfly.layer(x=xs, y=ys, Gadfly.Theme(default_color=defaultcolor, point_size=pointsize, highlight_width=0Gadfly.pt))]\n  122: \t\t\t\tsum(id) > 0 && (l = [l..., Gadfly.layer(x=xs[id], y=ys[id], Gadfly.Theme(default_color=c, point_size=pointsize, highlight_width=0Gadfly.pt))])\n  129: \t\tl = Gadfly.layer(x=[xmin, xmax], y=[ymin, ymax], color=[minvalue, maxvalue], Gadfly.Theme(point_size=0Gadfly.pt, highlight_width=0Gadfly.pt))\n  136: \t\t\tpush!(c, Gadfly.layer(x=polygon[:,1], y=polygon[:,2], Gadfly.Geom.polygon(preserve_order=true, fill=false), Gadfly.Theme(line_width=linewidth, default_color=linecolor)))\n  139: \t\t\tpush!(c, Gadfly.layer(x=dots[:,1], y=dots[:,2], Gadfly.Theme(point_size=dotsize, highlight_width=0Gadfly.pt, default_color=dotcolor)))\n  142: \t\t\tpush!(c, Gadfly.layer(z=permutedims(contour .* (maxvalue - minvalue) .+ minvalue), x=collect(1:size(contour, 2)), y=collect(1:size(contour, 1)), Gadfly.Geom.contour(levels=[minvalue]), Gadfly.Theme(line_width=linewidth, default_color=linecolor)))\n\n24 matches across 2 files\n\n\nSearching 47 files for \"plotma\" (case sensitive)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkMap.jl:\n    5: function plotmap(W::AbstractMatrix, H::AbstractMatrix, fips::AbstractVector, dim::Integer=1; dates=nothing, kw...)\n   18: \t\tNMFk.plotmap(Ha, fips, dim, so; signalid=signalid, dates=dates, kw...)\n   29: \t\tNMFk.plotmap(Wa, fips, dim, so; signalid=signalid, dates=dates, kw...)\n   33: function plotmap(X::AbstractMatrix, fips::AbstractVector, dim::Integer=1, order=1:size(X, dim); signalid=1:size(X, dim), us10m=VegaDatasets.dataset(\"us-10m\"), goodcounties=trues(length(fips)), dates=nothing, casefilename=\"\", figuredir=\".\", title::Bool=false, datetext=\"Date\", titletext=\"\", leadingzeros=2, quiet::Bool=false, scheme=\"redyellowgreen\", zmin=0, zmax=1)\n   86: function plotmap(X::AbstractVector, fips::AbstractVector; us10m=VegaDatasets.dataset(\"us-10m\"), goodcounties=trues(length(fips)), dates=nothing, casefilename=\"\", figuredir=\".\", title::Bool=false, datetext=\"Date\", titletext=\"\", leadingzeros=2, quiet::Bool=false, scheme=\"category10\", zmin=0, zmax=1)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlot.jl:\n  367: function plotmatrix(A::Matrix, fig::PyPlot.Figure, x0::Number, y0::Number, pixelsize::Number; linewidth::Number=2, alpha::Number=1)\n  393: \tax, w, h = plotmatrix(X, fig, x0, y0, pixelsize; alpha=alpha) # why does not start at the \"x\" symbol above\n  400: \t_, ww, hw = plotmatrix(W, fig, x0 + w - oww * pixelsize / 4, y0, pixelsize, alpha=alpha)\n  406: \t_, wh, hh = plotmatrix(H, fig, x0 + w + ww - ohw * pixelsize / 4, y0 + (size(W, 1) - size(H, 1)) / 2 * pixelsize, pixelsize; alpha=alpha)\n  414: \tax, w, h = plotmatrix(X, fig, x0, y0, pixelsize; alpha=alpha) # why does not start at the \"x\" symbol above\n  421: \t_, ww, hw = plotmatrix(W, fig, x0 + w - oww * pixelsize / 3, y0, pixelsize, alpha=alpha)\n  427: \t_, wh, hh = plotmatrix(H, fig, x0 + w + ww - ohw * pixelsize / 1.8, y0 + (size(W, 1) - size(H, 1)) / 2 * pixelsize, pixelsize; alpha=alpha)\n  625: \tNMFk.plotmatrix(NMFk.normalize!(D)[1]; kw..., key_position=:none)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlotColors.jl:\n    8: # NTFk.plotmatrix(r; colormap=NTFk.colormap_hsv2);\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlotMatrix.jl:\n    6: function plotmatrix(X::AbstractVector; kw...)\n    7: \tplotmatrix(convert(Array{Float64,2}, permutedims(X)); kw...)\n   10: function plotmatrix(X::AbstractMatrix; minvalue=minimumnan(X), maxvalue=maximumnan(X), key_tilte=\"\", title=\"\", xlabel=\"\", ylabel=\"\", xticks=nothing, yticks=nothing, xplot=nothing, yplot=nothing, xmatrix=nothing, ymatrix=nothing, gl=[], gm=[Gadfly.Guide.xticks(label=false, ticks=nothing), Gadfly.Guide.yticks(label=false, ticks=nothing)], masize::Int64=0, colormap=colormap_gyr, filename::String=\"\", hsize=6Compose.inch, vsize=6Compose.inch, figuredir::String=\".\", colorkey::Bool=true, key_position::Symbol=:right, mask=nothing, dots=nothing, polygon=nothing, contour=nothing, linewidth::Measures.Length{:mm,Float64}=2Gadfly.pt, key_title_font_size=10Gadfly.pt, key_label_font_size=10Gadfly.pt, major_label_font_size=12Gadfly.pt, dotcolor=\"purple\", linecolor=\"gray\", defaultcolor=nothing, pointsize=1.5Gadfly.pt, dotsize=1.5Gadfly.pt, transform=nothing, code::Bool=false, quiet::Bool=true, nbins::Integer=0, flatten::Bool=false, rectbin::Bool=(nbins>0) ? false : true, dpi::Number=imagedpi)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPostprocess.jl:\n   64: \t\tNMFk.plotmatrix(permutedims(H[k]) ./ maximum(H[k]); filename=\"$figuredir/$(casefilenameH)-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(locations[i]) $(c[i])\" for i=1:length(c)], colorkey=false)\n   65: \t\tNMFk.plotmatrix((permutedims(H[k]) ./ maximum(H[k]))[cs,is]; filename=\"$figuredir/$(casefilenameH)-sorted-$(k).png\", xticks=clustermap[is], yticks=[\"$(locations[cs][i]) $(c[cs][i])\" for i=1:length(c)], colorkey=false, quiet=false)\n   66: \t\tNMFk.plotmatrix(permutedims((H[k] ./ sum(H[k]; dims=2)))[cs,is]; filename=\"$figuredir/$(casefilenameH)-sorted-sumrows-$(k).png\", xticks=clustermap[is], yticks=[\"$(locationnametype[cs][i]) $(c[cs][i])\" for i=1:length(c)], colorkey=false)\n  138: \t\t\tNMFk.plotmatrix(Wa ./ maximum(Wa); filename=\"$figuredir/$(casefilenameW)-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(attributes[i]) $(c[i])\" for i=1:length(c)], colorkey=false)\n  144: \t\t\tNMFk.plotmatrix((Wa ./ maximum(Wa))[:,ws]; filename=\"$figuredir/$(casefilenameW)-signals-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(attributes[i])\" for i=1:length(c)], colorkey=false)\n  145: \t\t\tNMFk.plotmatrix((Wa ./ maximum(Wa))[cs,is]; filename=\"$figuredir/$(casefilenameW)-sorted-$(k).png\", xticks=clustermap[is], yticks=[\"$(attributes[cs][i]) $(cnew[cs][i])\" for i=1:length(c)], colorkey=false, quiet=false)\n  146: \t\t\t# NMFk.plotmatrix(Wa./sum(Wa; dims=1); filename=\"$figuredir/$(casefilenameW)-sum-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(attributes[i]) $(c[i])\" for i=1:length(cols)], colorkey=false)\n  147: \t\t\t# NMFk.plotmatrix((Wa./sum(Wa; dims=1))[cs,:]; filename=\"$figuredir/$(casefilenameW)-sum2-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(attributes[cs][i]) $(c[cs][i])\" for i=1:length(cols)], colorkey=false)\n  148: \t\t\tNMFk.plotmatrix((Wa ./ sum(Wa; dims=1))[cs,is]; filename=\"$figuredir/$(casefilenameW)-sorted-sumrows-$(k).png\", xticks=clustermap[is], yticks=[\"$(attributes[cs][i]) $(cnew[cs][i])\" for i=1:length(c)], colorkey=false)\n\n26 matches across 5 files\n\n\nSearching 47 files for \"plotma\" (case sensitive)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkMap.jl:\n    5: function plotmap(W::AbstractMatrix, H::AbstractMatrix, fips::AbstractVector, dim::Integer=1; dates=nothing, kw...)\n   18: \t\tNMFk.plotmap(Ha, fips, dim, so; signalid=signalid, dates=dates, kw...)\n   29: \t\tNMFk.plotmap(Wa, fips, dim, so; signalid=signalid, dates=dates, kw...)\n   33: function plotmap(X::AbstractMatrix, fips::AbstractVector, dim::Integer=1, order=1:size(X, dim); signalid=1:size(X, dim), us10m=VegaDatasets.dataset(\"us-10m\"), goodcounties=trues(length(fips)), dates=nothing, casefilename=\"\", figuredir=\".\", title::Bool=false, datetext=\"Date\", titletext=\"\", leadingzeros=2, quiet::Bool=false, scheme=\"redyellowgreen\", zmin=0, zmax=1)\n   86: function plotmap(X::AbstractVector, fips::AbstractVector; us10m=VegaDatasets.dataset(\"us-10m\"), goodcounties=trues(length(fips)), dates=nothing, casefilename=\"\", figuredir=\".\", title::Bool=false, datetext=\"Date\", titletext=\"\", leadingzeros=2, quiet::Bool=false, scheme=\"category10\", zmin=0, zmax=1)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlot.jl:\n  367: function plotmatrix(A::Matrix, fig::PyPlot.Figure, x0::Number, y0::Number, pixelsize::Number; linewidth::Number=2, alpha::Number=1)\n  393: \tax, w, h = plotmatrix(X, fig, x0, y0, pixelsize; alpha=alpha) # why does not start at the \"x\" symbol above\n  400: \t_, ww, hw = plotmatrix(W, fig, x0 + w - oww * pixelsize / 4, y0, pixelsize, alpha=alpha)\n  406: \t_, wh, hh = plotmatrix(H, fig, x0 + w + ww - ohw * pixelsize / 4, y0 + (size(W, 1) - size(H, 1)) / 2 * pixelsize, pixelsize; alpha=alpha)\n  414: \tax, w, h = plotmatrix(X, fig, x0, y0, pixelsize; alpha=alpha) # why does not start at the \"x\" symbol above\n  421: \t_, ww, hw = plotmatrix(W, fig, x0 + w - oww * pixelsize / 3, y0, pixelsize, alpha=alpha)\n  427: \t_, wh, hh = plotmatrix(H, fig, x0 + w + ww - ohw * pixelsize / 1.8, y0 + (size(W, 1) - size(H, 1)) / 2 * pixelsize, pixelsize; alpha=alpha)\n  625: \tNMFk.plotmatrix(NMFk.normalize!(D)[1]; kw..., key_position=:none)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlotColors.jl:\n    8: # NTFk.plotmatrix(r; colormap=NTFk.colormap_hsv2);\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPlotMatrix.jl:\n    6: function plotmatrix(X::AbstractVector; kw...)\n    7: \tplotmatrix(convert(Array{Float64,2}, permutedims(X)); kw...)\n   10: function plotmatrix(X::AbstractMatrix; minvalue=minimumnan(X), maxvalue=maximumnan(X), key_tilte=\"\", title=\"\", xlabel=\"\", ylabel=\"\", xticks=nothing, yticks=nothing, xplot=nothing, yplot=nothing, xmatrix=nothing, ymatrix=nothing, gl=[], gm=[Gadfly.Guide.xticks(label=false, ticks=nothing), Gadfly.Guide.yticks(label=false, ticks=nothing)], masize::Int64=0, colormap=colormap_gyr, filename::String=\"\", hsize=6Compose.inch, vsize=6Compose.inch, figuredir::String=\".\", colorkey::Bool=true, key_position::Symbol=:right, mask=nothing, dots=nothing, polygon=nothing, contour=nothing, linewidth::Measures.Length{:mm,Float64}=2Gadfly.pt, key_title_font_size=10Gadfly.pt, key_label_font_size=10Gadfly.pt, major_label_font_size=12Gadfly.pt, dotcolor=\"purple\", linecolor=\"gray\", defaultcolor=nothing, pointsize=1.5Gadfly.pt, dotsize=1.5Gadfly.pt, transform=nothing, code::Bool=false, quiet::Bool=true, nbins::Integer=0, flatten::Bool=false, rectbin::Bool=(nbins>0) ? false : true, dpi::Number=imagedpi)\n\n/Users/monty/.julia/dev/NMFk/src/NMFkPostprocess.jl:\n   64: \t\tNMFk.plotmatrix(permutedims(H[k]) ./ maximum(H[k]); filename=\"$figuredir/$(casefilenameH)-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(locations[i]) $(c[i])\" for i=1:length(c)], colorkey=false)\n   65: \t\tNMFk.plotmatrix((permutedims(H[k]) ./ maximum(H[k]))[cs,is]; filename=\"$figuredir/$(casefilenameH)-sorted-$(k).png\", xticks=clustermap[is], yticks=[\"$(locations[cs][i]) $(c[cs][i])\" for i=1:length(c)], colorkey=false, quiet=false)\n   66: \t\tNMFk.plotmatrix(permutedims((H[k] ./ sum(H[k]; dims=2)))[cs,is]; filename=\"$figuredir/$(casefilenameH)-sorted-sumrows-$(k).png\", xticks=clustermap[is], yticks=[\"$(locationnametype[cs][i]) $(c[cs][i])\" for i=1:length(c)], colorkey=false)\n  138: \t\t\tNMFk.plotmatrix(Wa ./ maximum(Wa); filename=\"$figuredir/$(casefilenameW)-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(attributes[i]) $(c[i])\" for i=1:length(c)], colorkey=false)\n  144: \t\t\tNMFk.plotmatrix((Wa ./ maximum(Wa))[:,ws]; filename=\"$figuredir/$(casefilenameW)-signals-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(attributes[i])\" for i=1:length(c)], colorkey=false)\n  145: \t\t\tNMFk.plotmatrix((Wa ./ maximum(Wa))[cs,is]; filename=\"$figuredir/$(casefilenameW)-sorted-$(k).png\", xticks=clustermap[is], yticks=[\"$(attributes[cs][i]) $(cnew[cs][i])\" for i=1:length(c)], colorkey=false, quiet=false)\n  146: \t\t\t# NMFk.plotmatrix(Wa./sum(Wa; dims=1); filename=\"$figuredir/$(casefilenameW)-sum-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(attributes[i]) $(c[i])\" for i=1:length(cols)], colorkey=false)\n  147: \t\t\t# NMFk.plotmatrix((Wa./sum(Wa; dims=1))[cs,:]; filename=\"$figuredir/$(casefilenameW)-sum2-$(k).png\", xticks=[\"S$i\" for i=1:k], yticks=[\"$(attributes[cs][i]) $(c[cs][i])\" for i=1:length(cols)], colorkey=false)\n  148: \t\t\tNMFk.plotmatrix((Wa ./ sum(Wa; dims=1))[cs,is]; filename=\"$figuredir/$(casefilenameW)-sorted-sumrows-$(k).png\", xticks=clustermap[is], yticks=[\"$(attributes[cs][i]) $(cnew[cs][i])\" for i=1:length(c)], colorkey=false)\n\n26 matches across 5 files\n\n\nSearching 62 files for \"plotma\" (case sensitive)\n\n/Users/monty/.julia/dev/NTFk/examples/tensordecomposition/runtests-signal-tucker.jl:\n   19: NTFk.plotmatrix(t[ibest].factors[1])\n   20: NTFk.plotmatrix(t[ibest].factors[2])\n   21: NTFk.plotmatrix(t[ibest].factors[3])\n   22: NTFk.plotmatrix(t[ibest].core[1,:,:])\n\n/Users/monty/.julia/dev/NTFk/src/NTFkAnalysis-seismic.jl:\n    9: \t\tdisplay(NTFk.plotmatrix(Xs[s]; dots=[fieldx fieldy;], dotsize=10Gadfly.pt, xmatrix=xmatrix, ymatrix=ymatrix))\n   47: \t\t\t# display(NTFk.plotmatrix(Xs[s]; dots=[fieldx fieldy;], dotsize=10Gadfly.pt, xmatrix=[minx, maxx], ymatrix=[miny, maxy]))\n\n/Users/monty/.julia/dev/NTFk/src/NTFkCP.jl:\n   45: \t\t# p = NTFk.plotmatrix(cpi[n].factors[1]')\n   47: \t\t# p = NTFk.plotmatrix(f)\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlot.jl:\n   10: \tplotmatrix(getfactor(t, dim, cutoff); kw...)\n   52: \t\tg = plotmatrix(M; minvalue=minvalue, maxvalue=maxvalue, title=title, colormap=colormap, kw...)\n   95: \t\tg1 = plotmatrix(X1[nt...]; minvalue=minvalue, maxvalue=maxvalue, title=ltitle, colormap=colormap, kw...)\n   96: \t\tg2 = plotmatrix(X2[nt...]; minvalue=minvalue2, maxvalue=maxvalue2, title=rtitle, colormap=colormap, kw...)\n  167: \t\t\tg1 = plotmatrix(X1[nt...]; minvalue=minvalue, maxvalue=maxvalue, key_label_font_size=key_label_font_size, title=ltitle, colormap=nothing, defaultcolor=Colors.RGBA(1.0,0.0,0.0,opacity), code=true, gl=gla[1], kw...)\n  168: \t\t\tg2 = plotmatrix(X2[nt...]; minvalue=minvalue2, maxvalue=maxvalue2, key_label_font_size=key_label_font_size, title=ctitle, colormap=nothing, defaultcolor=Colors.RGBA(0.0,0.0,1.0,opacity), code=true, gl=gla[2], kw...)\n  169: \t\t\tg3 = plotmatrix(X3[nt...]; minvalue=minvalue3, maxvalue=maxvalue3, key_label_font_size=key_label_font_size, title=rtitle, colormap=nothing, defaultcolor=Colors.RGBA(0.0,0.502,0.0,opacity), code=true, gl=gla[3], kw...)\n  172: \t\t\tg1 = plotmatrix(X1[nt...]; minvalue=minvalue, maxvalue=maxvalue, title=ltitle, colormap=colormap1, key_label_font_size=key_label_font_size, gl=gla[1], kw...)\n  173: \t\t\tg2 = plotmatrix(X2[nt...]; minvalue=minvalue2, maxvalue=maxvalue2, title=ctitle, colormap=colormap2, key_label_font_size=key_label_font_size, gl=gla[2], kw...)\n  174: \t\t\tg3 = plotmatrix(X3[nt...]; minvalue=minvalue3, maxvalue=maxvalue3, title=rtitle, colormap=colormap3, key_label_font_size=key_label_font_size, gl=gla[3], kw...)\n  245: \t\t\t\tgv[m] = plotmatrix(X[m][nt...]; minvalue=minvalue, maxvalue=maxvalue, key_label_font_size=key_label_font_size, title=ltitle, colormap=nothing, defaultcolor=Colors.RGBA(parse.(Colors.Colorant, colors[m]),opacity), code=true, kw...)\n  251: \t\t\t\t\tgv[m] = plotmatrix(X[m][nt...]; minvalue=minvalue, maxvalue=maxvalue, key_label_font_size=key_label_font_size, title=ltitle, colormap=colormap[m], kw...)\n  253: \t\t\t\t\tgv[m] = plotmatrix(X[m][nt...]; minvalue=minvalue, maxvalue=maxvalue, key_label_font_size=key_label_font_size, title=ltitle, colormap=colormap, kw...)\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlotColors.jl:\n    8: # NTFk.plotmatrix(r; colormap=NTFk.colormap_hsv2);\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlotComponents.jl:\n  130: \t\tp1 = plotmatrix(X[nt...]; minvalue=minvalue, maxvalue=maxvalue, kw...)\n  313: \t\tp = plotmatrix(permutedims(X[order[i]], pt)[mdfilter...]; filename=filename, kw...)\n\n/Users/monty/.julia/dev/NTFk/src/NTFkPlotMatrix.jl:\n    6: function plotmatrix(X::AbstractVector; kw...)\n    7: \tplotmatrix(convert(Array{Float64,2}, permutedims(X)); kw...)\n   10: function plotmatrix(X::AbstractMatrix; minvalue=NMFk.minimumnan(X), maxvalue=NMFk.maximumnan(X), key_tilte=\"\", title=\"\", xlabel=\"\", ylabel=\"\", xticks=nothing, yticks=nothing, xplot=nothing, yplot=nothing, xmatrix=nothing, ymatrix=nothing, gl=[], gm=[Gadfly.Guide.xticks(label=false, ticks=nothing), Gadfly.Guide.yticks(label=false, ticks=nothing)], masize::Int64=0, colormap=colormap_gyr, filename::String=\"\", hsize=6Compose.inch, vsize=6Compose.inch, figuredir::String=\".\", colorkey::Bool=true, mask=nothing, dots=nothing, polygon=nothing, contour=nothing, linewidth::Measures.Length{:mm,Float64}=2Gadfly.pt, key_title_font_size=10Gadfly.pt, key_label_font_size=10Gadfly.pt, major_label_font_size=12Gadfly.pt, dotcolor=\"purple\", linecolor=\"gray\", defaultcolor=nothing, pointsize=1.5Gadfly.pt, dotsize=1.5Gadfly.pt, transform=nothing, code::Bool=false, nbins::Integer=0, flatten::Bool=false, rectbin::Bool=(nbins>0) ? false : true, dpi::Number=imagedpi, quiet::Bool=true)\n\n/Users/monty/.julia/dev/NTFk/src/NTFkTucker.jl:\n  142: \t\t\t# p = NTFk.plotmatrix(cpi[n].factors[1]')\n  144: \t\t\t# p = NTFk.plotmatrix(f)\n\n/Users/monty/.julia/dev/NTFk/test/runtests.jl:\n   10: # \td = NTFk.plotmatrix(r; colormap=NTFk.colormap_hsv2);\n   12: # \td = NTFk.plotmatrix(r; colormap=NTFk.colormap_hsv);\n\n31 matches across 9 files\n",
+			"file": "/Users/vvv/Julia/Catostrofire.jl/load-frap-maca.jl",
 			"settings":
 			{
-				"buffer_size": 37019,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "/Users/monty/.julia/dev/NMFk/src/NMFkPlotMatrix.jl",
-			"settings":
-			{
-				"buffer_size": 7359,
+				"buffer_size": 7371,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/monty/.julia/dev/NMFk/src/NTFkPlotMatrix.jl",
+			"file": "/Users/vvv/Julia/Catostrofire.jl/process-frap-maca.jl",
 			"settings":
 			{
-				"buffer_size": 7112,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/monty/Julia/rMF/Geysers/read-geysers.jl",
-			"settings":
-			{
-				"buffer_size": 12603,
+				"buffer_size": 1843,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -620,15 +603,23 @@
 		"selected_items":
 		[
 			[
-				"packag",
-				"Package Control: Install Package"
-			],
-			[
 				"inst",
 				"Package Control: Install Package"
 			],
 			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
 				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
 				"Package Control: Install Package"
 			],
 			[
@@ -676,10 +667,6 @@
 				"Package Control: Upgrade Package"
 			],
 			[
-				"pack",
-				"Package Control: Install Package"
-			],
-			[
 				"pac",
 				"Package Control: Install Package"
 			],
@@ -719,6 +706,45 @@
 	],
 	"file_history":
 	[
+		"/Users/vvv/.julia/dev/NMFk/docker/setup.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkCluster.jl",
+		"/Users/vvv/.julia/dev/NMFk/docker/Dockerfile",
+		"/Users/vvv/docker/descartes/requirements.txt",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkPostprocess.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkExecute.jl",
+		"/Users/vvv/.julia/dev/NMFk/Project.toml",
+		"/Users/vvv/docker/descartes/Dockerfile",
+		"/Users/vvv/Docs/lanl/Projects/Pajaroto/Data/all_params.txt",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkHelpers.jl",
+		"/Users/vvv/system/sublime/Preferences.sublime-settings",
+		"/Users/vvv/Julia/Catostrofire.jl/load-frap-livneh.jl",
+		"/Users/vvv/Julia/Catostrofire.jl/load-frap-maca.jl",
+		"/Users/vvv/Julia/Catostrofire.jl/process-frap-livneh.jl",
+		"/Users/vvv/Julia/Catostrofire.jl/process-frap-maca.jl",
+		"/Users/vvv/Julia/Catostrofire.jl/process-livneh.jl",
+		"/Users/vvv/Julia/Covid-19.jl/process-v2-transient.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkMap.jl",
+		"/Users/vvv/.julia/dev/NTFk/src/NTFkPlot.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkPlotProgressBar.jl",
+		"/Users/vvv/.julia/dev/Mads/src/MadsPlot.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkMovie.jl",
+		"/Users/vvv/.julia/dev/NTFk/Project.toml",
+		"/Users/vvv/.julia/dev/NTFk/src/NTFkPlotProgressBar.jl",
+		"/Volumes/2020MLbackup/Backups.backupdb/ml.lanl.gov/2020-06-11-231800/ML/Users/monty/Julia/rMF/Mixing/analyze.jl",
+		"/Volumes/2020MLbackup/Backups.backupdb/ml.lanl.gov/2020-09-10-104345/ML/Users/monty/Julia/MLanalyses.jl/ReactiveMixing.jl/analyze-5D.jl",
+		"/Users/vvv/Julia/Covid-19.jl/process-v1.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFk.jl",
+		"/Volumes/2020MLbackup/Backups.backupdb/ml.lanl.gov/2020-09-10-104345/ML/Users/monty/Julia/MLanalyses-cleaned.jl/LBM/data/Ca10.dat",
+		"/Users/vvv/.julia/dev/NTFk/src/NTFkHelpers.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkPlotColors.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkPlotMatrix.jl",
+		"/Users/vvv/.julia/dev/NTFk/src/NTFkPlotMatrix.jl",
+		"/Users/vvv/.julia/dev/NMFk/src/NMFkGeoChem.jl",
+		"/Applications/iTerm.app/Contents/Resources/graphic_icons.json",
+		"/Users/monty/Julia/rMF/Geysers/read-geysers.jl",
+		"/Users/monty/.julia/dev/NMFk/src/NMFkPlotMatrix.jl",
+		"/Users/monty/Julia/rMF/Catostrofire/process.jl",
+		"/Users/monty/.julia/dev/NMFk/src/NTFkPlotMatrix.jl",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkPlotComponents.jl",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkPlotMatrix.jl",
 		"/Users/monty/.julia/dev/NMFk/src/NMFkPlot.jl",
@@ -732,7 +758,6 @@
 		"/Users/monty/Julia/rMF/TRUDAS/run-relatives-nojv-oil_v01.jl",
 		"/Users/monty/Julia/rMF/TRUDAS/load-nojv_v02.jl",
 		"/Users/monty/Julia/rMF/TRUDAS/read-nojv_v02.jl",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkPlotMatrix.jl",
 		"/Users/monty/.julia/dev/NMFk/Project.toml",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkHelpers.jl",
 		"/Users/monty/Julia/rMF/Oklahoma/process_all_log.jl",
@@ -755,14 +780,12 @@
 		"/Users/monty/Julia/rMF/OilPIML/process-8point-svr_v02.jl",
 		"/Users/monty/Julia/rMF/OilPIML/process-8point-svr.jl",
 		"/Users/monty/Julia/rMF/GTCloud/NM/process-pepin.jl",
-		"/Users/monty/Julia/rMF/Geysers/read-geysers.jl",
 		"/Users/monty/.julia/dev/NTFk/.gitlab-ci.yml",
 		"/Users/monty/Julia/rMF/Catostrofire/data/California_FRAPprojection.csv",
 		"/Users/monty/Julia/rMF/Colorado/read-katrina.jl",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkPlotProgressBar.jl",
 		"/Users/monty/.julia/dev/NTFk/src/NTFkTucker.jl",
 		"/Users/monty/Julia/rMF/Juelich/read-tasc42.jl",
-		"/Users/monty/Julia/rMF/Catostrofire/process.jl",
 		"/Users/monty/.julia/dev/Mads/src/MadsPlot.jl",
 		"/Users/monty/.julia/dev/NMFk/src/NMFkPostprocess.jl",
 		"/Users/monty/Julia/rMF/GTI/read-seismic1.jl",
@@ -810,43 +833,7 @@
 		"/Users/monty/.julia/dev/NMFk/src/NMFkChecks.jl",
 		"/Users/monty/.julia/dev/NTFk/.github/workflows/dockerimage.yml",
 		"/Users/monty/.julia/dev/PIML/CompatHelper.yml",
-		"/Users/monty/www/monty/index.html",
-		"/Users/monty/www/TensorDecompostions/index.html",
-		"/Users/monty/.julia/dev/Mads/examples/learn_julia/plot3D.jl",
-		"/Users/monty/.julia/dev/Mads/examples/learn_julia/krige.jl",
-		"/Users/monty/.julia/dev/NTFk/src/NTFkPlot3d.jl",
-		"/Users/monty/.julia/conda/3/lib/python3.6/site-packages/matplotlib/figure.py",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkBootstrap.jl",
-		"/Users/monty/.julia/dev/SVR/test/runtests.jl",
-		"/Users/monty/.julia/dev/SVR/deps/libsvm-3.22/svm.h",
-		"/Users/monty/Julia/rMF/OilPIML/load_8point.jl",
-		"/Users/monty/Julia/rMF/OilPIML/load_8point_v02.jl",
-		"/Users/monty/Downloads/geothermal.ris",
-		"/Users/monty/.julia/dev/NMFk/src/NMFkPreprocess.jl",
-		"/Users/monty/Julia/rMF/OilPIML/process-nmfk.jl",
-		"/Users/monty/.julia/dev/Mads/examples/anasol/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/test/io.jl",
-		"/Users/monty/.julia/dev/Mads/Project.toml",
-		"/Users/monty/.julia/dev/Mads/src/MadsSenstivityAnalysis.jl",
-		"/Users/monty/.julia/dev/RobustPmap/src/RobustPmap.jl",
-		"/Users/monty/.julia/dev/Mads/examples/sensitivity/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/src-interactive/MadsParallel.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsForward.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsFunc.jl",
-		"/Users/monty/.julia/dev/Mads/src-new/MadsMathProgBase.jl",
-		"/Users/monty/.julia/dev/Mads/src-old/MadsEmcee.jl",
-		"/Users/monty/.julia/dev/Mads/examples/learn_julia/paralleldot.jl",
-		"/Users/monty/.julia/dev/Mads/examples/parallel/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsLevenbergMarquardt.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsMonteCarlo.jl",
-		"/Users/monty/.julia/dev/Mads/src/Mads.jl",
-		"/Users/monty/.julia/dev/Mads/test/miscellaneous.jl",
-		"/Users/monty/.julia/dev/Mads/src-external/MadsSimulators.jl",
-		"/Users/monty/.julia/dev/Mads/examples/model_coupling/runtests.jl",
-		"/Users/monty/.julia/dev/Mads/src/MadsCalibrate.jl",
-		"/Users/monty/.julia/dev/Mads/examples/parallel/slurm-parallel-pmap.jl",
-		"/Users/monty/.julia/dev/Mads/examples/parallel/slurm-parallel-pmap2.jl",
-		"/Users/monty/.julia/dev/Mads/examples/embed_c/embed_c.jl"
+		"/Users/monty/www/monty/index.html"
 	],
 	"find":
 	{
@@ -857,6 +844,21 @@
 		"height": 158.0,
 		"where_history":
 		[
+			"/Users/vvv/.julia/dev/NMFk,*.jl",
+			"/Users/vvv/.julia/dev/NTFk,*.jl",
+			"/Users/vvv/Julia,*.jl",
+			"/Users/vvv/.julia/dev/NTFk,*.jl",
+			"/Users/vvv/.julia/dev/NMFk,*.jl",
+			"/Users/vvv/Julia,*.jl",
+			"/Users/vvv/.julia/dev/NMFk,*.jl",
+			"/Users/vvv/Julia,*.jl",
+			"/Users/vvv/Julia/Covid-19.jl,*.jl",
+			"/Users/vvv/.julia/dev/Mads,*.jl",
+			"/Users/vvv/.julia/dev/NTFk,*.jl",
+			"/Users/vvv/.julia/dev/NMFk,*.jl",
+			"/Users/vvv/.julia/dev/NTFk,*.jl",
+			"/Users/vvv/.julia/dev/NMFk,*.jl",
+			"/Users/monty/.julia/dev/NMFk,*.jl",
 			"/Users/monty/.julia/dev/NTFk,*.jl",
 			"/Users/monty/.julia/dev/NMFk,*.jl",
 			"/Users/monty/.julia/dev/NTFk,*.jl",
@@ -969,29 +971,98 @@
 			"/Users/monty/.julia/dev,*.jl",
 			"/Users/monty/.julia/dev/Mads,*.jl",
 			"/Users/monty/Julia/rMF/WellDB,*.jl",
-			"/Users/monty/.julia/dev/NMFk,*.jl",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/Julia/rMF,*.jl",
-			"/Users/monty/.julia/dev,*.jl",
-			"/Users/monty/.julia/dev/GeostatInversion,*.jl",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/.julia/dev/,Project.toml",
-			"/Users/monty/.julia/dev/,appveyor.yml",
-			"/Users/monty/.julia/dev/*,appveyor.yml",
-			"/Users/monty/.julia/dev*,appveyor.yml",
-			"/Users/monty/.julia/dev/,appveyor.yml",
-			"/Users/monty/.julia/dev,appveyor.yml",
-			"/Users/monty/.julia/dev/Mads,*.jl",
-			"/Users/monty/.julia/dev/,Project.toml",
-			"/Users/monty/.julia/dev/RobustPmap,*.jl",
-			"/Users/monty/.julia/dev/ReusableFunctions,*.jl"
+			"/Users/monty/.julia/dev/NMFk,*.jl"
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"1000",
+			"lat",
+			"clu",
+			"i",
+			"h",
+			"clusterWmatrix",
+			"cluster",
+			"f",
+			"q",
+			"h",
+			"@info",
+			"Mads",
+			"fireacres",
+			" [",
+			"CCSM4",
+			"Livneh",
+			"varflip",
+			"parflip",
+			"liv",
+			"fire_yearly",
+			"Livneh_monthly",
+			"NT",
+			"clust",
+			"vsize",
+			"progressbar",
+			"progressbar_2d",
+			"progressbar",
+			"progressbar(",
+			"make_progressbar",
+			"progressbar",
+			"make_progressbar_2d",
+			"progressbar",
+			"bar",
+			"showsignatures",
+			"plotseriesonly",
+			"plotseriesonly=true, ",
+			"plotse",
+			"Mads.plotseries",
+			"select",
+			"showsignatures",
+			"order",
+			"i",
+			"signalid",
+			"si",
+			"so",
+			"dim",
+			"opulation-signal",
+			"deaths-normalized_population-20200825",
+			"cases-normalized_population-20200825",
+			"signalid",
+			"goodcounties",
+			"plottransients",
+			"\tif dates != nothing\n\t\t@assert length(dates) == size(Ma, 2)\n\t\tndates = dates[si]\n\telse\n\t\tndates = dates\n\tend",
+			"vspeed",
+			"plotmap",
+			"datetext",
+			"titletext",
+			"goodcounties",
+			"title",
+			"datetext",
+			"leadingzeros",
+			"dates",
+			"keyword",
+			"reenable_sigint",
+			"movie",
+			"intege=",
+			"order",
+			"colormap",
+			"NTFk",
+			"vec(col",
+			"ntuple",
+			"ntu",
+			"NMFk",
+			"NMFK",
+			"length(size(",
+			"order",
+			"Livneh_yearly_allparams",
+			"for k in [NMFk.getk(nkrange, robustness[nkrange])]\n\tMe = Matrix{eltype(W[k])}(undef, (153 * 168, 64 * length(parshortnames)))\n\tMe .= NaN\n\tMe[goodcells,:] = W[k] * H[k]\n\tXme = reshape(Me, (153, 168, 64 * length(parshortnames)))\n\tNTFk.nanmask!(Xme, mask, 3)\n\t@info(\"Reconstruction: $(NMFk.sumnan((Xmt - Xme).^2))\")\n\tWe = Matrix{eltype(W[k])}(undef, (153 * 168, k))\n\tWe .= NaN\n\tWe[goodcells, :] =  W[k]\n\tTw, twmin, twmax = NMFk.normalizearray!(reshape(We, (153, 168, k)), 3)\n\tNTFk.plotMtensors(map(i->Tw[:,:,i:i], 1:k), 3; prefix=\"figures-nmfk/Livneh_yearly_allparams-signals-$k-spatial-$(nruns)\", mask=mask, progressbar=nothing, key_position=:none)\n\tfor i = 1:length(parshortnames)\n\t\tis = (i - 1) * 64 + 1\n\t\tie = i * 64\n\t\tHkp = H[k][:,is:ie]\n\t\tMads.plotseries(permutedims(Hkp .* (twmax .- twmin) .* (tamax[i] .- tamin[i])), \"figures-nmfk/Livneh_yearly_allparams-$(parshortnames[i])-signals-$k-temporal-$(nruns).png\"; xaxis=Dates.Date(1950, 1, 1):Dates.Year(1):Dates.Date(2013, 12, 1), xmin=Dates.Date(1950, 1, 1), xmax=Dates.Date(2013, 12, 1), ytitle=\"\", title=\"Livneh: All attributes $(parlongnames[i])\", gm=gm_years)\n\t\tNTFk.plotallMslices_factors(map(i->Tw[:,:,i:i], 1:k), permutedims(Hkp .* (twmax .- twmin) .* (tamax[i] .- tamin[i])), k, 3; mask=mask, datestart=Dates.Date(1950, 1, 1), dateincrement=\"Dates.Year\", dateend=Dates.Date(2013, 12, 1), prefix=\"figures-nmfk/Livneh_yearly_allparams-$(parshortnames[i])-all-$(nruns)\", maxcomponent=true, normalizeslices=true, xtitle=\"\", ytitle=parlongnames[i], key_position=:none, gm=gm_years)\n\t\t# NTFk.plotallMslices_factors(map(i->Tw[:,:,i:i], 1:k), permutedims(H[k] .* (twmax .- twmin) .* (tamax[i] .- tamin[i])), k, 3; mask=mask, datestart=Dates.Date(1950, 1, 1), dateincrement=\"Dates.Year\", dateend=Dates.Date(2013, 12, 1), prefix=\"movies-nmfk/Livneh_yearly_allparams-all-$(nruns)\", movie=true, normalizeslices=true, xtitle=\"\", ytitle=parlongnames[i], key_position=:none, gm=gm_years, quiet=true, vspeed=1)\n\tend\nend",
+			"i",
+			"is",
+			"signalmap",
+			"is",
+			"allpa",
+			"jul",
 			"poly",
 			"plotma",
 			"Gadfly.Theme",
@@ -1035,91 +1106,7 @@
 			"edges",
 			"classes",
 			"xax",
-			"title",
-			"key_title",
-			"title",
-			"key_",
-			"colormap",
-			"Gadfly.Scale.color_continuous",
-			"yyyy",
-			"Dates.date",
-			"Dates",
-			"PlotlyJS.savefig",
-			"HDF5.h5open",
-			"savehtml",
-			"sasefilename",
-			"Hclusterlabelsasefilename",
-			"cutoff_s",
-			"quiet",
-			"c_new",
-			"CosineDist",
-			"distance",
-			"silhouettes",
-			"rm(",
-			"rm",
-			"0.6.4",
-			"plotwells",
-			"vdynamic",
-			"ptq",
-			"ispkgavailable",
-			"Pkg",
-			"unl",
-			"rm(",
-			"wipetrain",
-			"dynamicpredall",
-			"allattributes",
-			"traindata",
-			"attrv_uncert",
-			"supp",
-			"loado",
-			"wipetrain",
-			"glo",
-			"data_b",
-			"pred_b",
-			"he",
-			"hea",
-			"dstatic",
-			"pred_b",
-			"@eval(",
-			"HDF",
-			"plotmap",
-			"heel_x",
-			"_b",
-			"rmse",
-			"pred_b",
-			"oils",
-			"nooil",
-			"oilsym...",
-			"oilsym",
-			":oil",
-			"uppercasefirst(string(predict))",
-			"oil",
-			"vb",
-			"oil_b",
-			"pred_b",
-			"oil_nojv",
-			"oil",
-			"Mads.plots",
-			"wipe",
-			"wipeall",
-			"dynamicpredall",
-			"traindata",
-			"wipetrain",
-			"attrv_uncert",
-			"name",
-			"attributes",
-			"ia",
-			"attributes",
-			"norma",
-			"parse",
-			"parsse",
-			"NaN",
-			"rm",
-			"ttimes",
-			"@warn",
-			"Number of c",
-			"ntimes",
-			"is"
+			"title"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1127,6 +1114,24 @@
 		"regex": false,
 		"replace_history":
 		[
+			"m",
+			"$(model)",
+			"MACA_CCSM4",
+			"varflip",
+			"",
+			"signalorder",
+			"signalpeakindex",
+			"signalorder",
+			"signalpeakindex",
+			"signalorder",
+			"opulation-1000-signal",
+			"deaths-20200825-normalized_population",
+			"cases-20200825-normalized_population",
+			"ndims(",
+			"Livneh_yearly_allattributes-space",
+			"hsignalmap",
+			"wsignalmap",
+			"signalmap",
 			"oregon",
 			"casefilename",
 			"1.4.2",
@@ -1236,25 +1241,7 @@
 			"\"$(problemcase)_",
 			"cuttoff_index",
 			"record_length",
-			"selected_indeces",
-			"grandparents",
-			"fdidgood",
-			"parents",
-			"oil_nojv",
-			"did_nojv",
-			"nojv",
-			"\",",
-			"\"",
-			"nochem",
-			"cols_nochem",
-			"MLTRU_reduced_variable_and_dynamic_CVX_wells_norm",
-			"MLTRU_reduced_variable_and_dynamic_CVX_wells_log_norm",
-			"oil",
-			"(NMFk.plot_wells",
-			" Base.findfirst",
-			"Pkg.add(Pkg.PackageSpec(name=\"\\1\", rev=\"master\"))",
-			"ldynamic",
-			"gwellindices"
+			"selected_indeces"
 		],
 		"reverse": false,
 		"show_context": false,
@@ -1265,24 +1252,24 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/monty/Julia/rMF/Catostrofire/process.jl",
+					"file": "/Users/vvv/Julia/Catostrofire.jl/load-frap-maca-all.jl",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7740,
+						"buffer_size": 5711,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4250,
-								4665
+								5702,
+								5702
 							]
 						],
 						"settings":
@@ -1310,851 +1297,82 @@
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
-								"bh_tag_content"
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
 							],
-							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1690.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 37019,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										393,
-										417
-									],
-									[
-										561,
-										585
-									],
-									[
-										902,
-										926
-									],
-									[
-										1255,
-										1279
-									],
-									[
-										1542,
-										1554
-									],
-									[
-										1767,
-										1779
-									],
-									[
-										1972,
-										1984
-									],
-									[
-										2375,
-										2387
-									],
-									[
-										2664,
-										2676
-									],
-									[
-										2869,
-										2881
-									],
-									[
-										3272,
-										3284
-									],
-									[
-										3540,
-										3552
-									],
-									[
-										3690,
-										3702
-									],
-									[
-										3819,
-										3831
-									],
-									[
-										3969,
-										3981
-									],
-									[
-										4098,
-										4110
-									],
-									[
-										4248,
-										4260
-									],
-									[
-										4377,
-										4389
-									],
-									[
-										4527,
-										4539
-									],
-									[
-										4646,
-										4658
-									],
-									[
-										4791,
-										4803
-									],
-									[
-										5008,
-										5020
-									],
-									[
-										5324,
-										5336
-									],
-									[
-										5633,
-										5645
-									],
-									[
-										5799,
-										5811
-									],
-									[
-										6105,
-										6117
-									],
-									[
-										6226,
-										6238
-									],
-									[
-										6352,
-										6364
-									],
-									[
-										6512,
-										6524
-									],
-									[
-										6656,
-										6668
-									],
-									[
-										7175,
-										7187
-									],
-									[
-										7517,
-										7529
-									],
-									[
-										7684,
-										7696
-									],
-									[
-										7904,
-										7916
-									],
-									[
-										8039,
-										8051
-									],
-									[
-										8402,
-										8414
-									],
-									[
-										8507,
-										8519
-									],
-									[
-										8671,
-										8683
-									],
-									[
-										8840,
-										8852
-									],
-									[
-										9023,
-										9035
-									],
-									[
-										9143,
-										9155
-									],
-									[
-										9425,
-										9437
-									],
-									[
-										10035,
-										10047
-									],
-									[
-										10449,
-										10461
-									],
-									[
-										11052,
-										11076
-									],
-									[
-										11562,
-										11586
-									],
-									[
-										12359,
-										12371
-									],
-									[
-										12810,
-										12822
-									],
-									[
-										13231,
-										13243
-									],
-									[
-										13776,
-										13788
-									],
-									[
-										14159,
-										14171
-									],
-									[
-										14324,
-										14336
-									],
-									[
-										14890,
-										14902
-									],
-									[
-										15404,
-										15416
-									],
-									[
-										15688,
-										15700
-									],
-									[
-										15701,
-										15713
-									],
-									[
-										16081,
-										16093
-									],
-									[
-										16277,
-										16289
-									],
-									[
-										16576,
-										16588
-									],
-									[
-										16755,
-										16767
-									],
-									[
-										16824,
-										16836
-									],
-									[
-										17085,
-										17097
-									],
-									[
-										17630,
-										17642
-									],
-									[
-										17964,
-										17976
-									],
-									[
-										18138,
-										18150
-									],
-									[
-										18318,
-										18330
-									],
-									[
-										18657,
-										18669
-									],
-									[
-										18786,
-										18798
-									],
-									[
-										18924,
-										18936
-									],
-									[
-										19440,
-										19452
-									],
-									[
-										19644,
-										19656
-									],
-									[
-										19779,
-										19791
-									],
-									[
-										19986,
-										19998
-									],
-									[
-										20413,
-										20425
-									],
-									[
-										20518,
-										20530
-									],
-									[
-										20682,
-										20694
-									],
-									[
-										20851,
-										20863
-									],
-									[
-										21034,
-										21046
-									],
-									[
-										21154,
-										21166
-									],
-									[
-										21436,
-										21448
-									],
-									[
-										21638,
-										21644
-									],
-									[
-										21758,
-										21764
-									],
-									[
-										21838,
-										21844
-									],
-									[
-										21920,
-										21926
-									],
-									[
-										22293,
-										22299
-									],
-									[
-										22646,
-										22652
-									],
-									[
-										22788,
-										22794
-									],
-									[
-										22904,
-										22910
-									],
-									[
-										23001,
-										23007
-									],
-									[
-										23146,
-										23152
-									],
-									[
-										23262,
-										23268
-									],
-									[
-										23359,
-										23365
-									],
-									[
-										23500,
-										23506
-									],
-									[
-										23628,
-										23634
-									],
-									[
-										23741,
-										23747
-									],
-									[
-										23786,
-										23792
-									],
-									[
-										23863,
-										23869
-									],
-									[
-										24913,
-										24919
-									],
-									[
-										25119,
-										25125
-									],
-									[
-										25359,
-										25365
-									],
-									[
-										25606,
-										25612
-									],
-									[
-										25797,
-										25803
-									],
-									[
-										25996,
-										26002
-									],
-									[
-										26226,
-										26232
-									],
-									[
-										26428,
-										26434
-									],
-									[
-										26645,
-										26651
-									],
-									[
-										26997,
-										27003
-									],
-									[
-										27117,
-										27123
-									],
-									[
-										27197,
-										27203
-									],
-									[
-										27279,
-										27285
-									],
-									[
-										27652,
-										27658
-									],
-									[
-										28005,
-										28011
-									],
-									[
-										28147,
-										28153
-									],
-									[
-										28263,
-										28269
-									],
-									[
-										28360,
-										28366
-									],
-									[
-										28505,
-										28511
-									],
-									[
-										28621,
-										28627
-									],
-									[
-										28718,
-										28724
-									],
-									[
-										28859,
-										28865
-									],
-									[
-										28987,
-										28993
-									],
-									[
-										29100,
-										29106
-									],
-									[
-										29145,
-										29151
-									],
-									[
-										29222,
-										29228
-									],
-									[
-										30272,
-										30278
-									],
-									[
-										30478,
-										30484
-									],
-									[
-										30718,
-										30724
-									],
-									[
-										30965,
-										30971
-									],
-									[
-										31156,
-										31162
-									],
-									[
-										31355,
-										31361
-									],
-									[
-										31585,
-										31591
-									],
-									[
-										31787,
-										31793
-									],
-									[
-										32004,
-										32010
-									],
-									[
-										32392,
-										32398
-									],
-									[
-										32436,
-										32442
-									],
-									[
-										32480,
-										32486
-									],
-									[
-										32524,
-										32530
-									],
-									[
-										32638,
-										32644
-									],
-									[
-										32760,
-										32766
-									],
-									[
-										32932,
-										32938
-									],
-									[
-										32983,
-										32989
-									],
-									[
-										33052,
-										33058
-									],
-									[
-										33110,
-										33116
-									],
-									[
-										33215,
-										33221
-									],
-									[
-										33329,
-										33335
-									],
-									[
-										33446,
-										33452
-									],
-									[
-										33670,
-										33676
-									],
-									[
-										33896,
-										33902
-									],
-									[
-										34124,
-										34130
-									],
-									[
-										34292,
-										34298
-									],
-									[
-										34462,
-										34468
-									],
-									[
-										34636,
-										34642
-									],
-									[
-										34879,
-										34885
-									],
-									[
-										35045,
-										35051
-									],
-									[
-										35255,
-										35261
-									],
-									[
-										35370,
-										35376
-									],
-									[
-										35449,
-										35455
-									],
-									[
-										35598,
-										35604
-									],
-									[
-										35643,
-										35649
-									],
-									[
-										35720,
-										35726
-									],
-									[
-										36753,
-										36759
-									],
-									[
-										36805,
-										36811
-									],
-									[
-										36886,
-										36892
-									],
-									[
-										36949,
-										36955
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								35564,
-								35564
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
-							],
-							"default_dir": "/Users/monty/Julia/rMF/Catostrofire",
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 12,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 6187.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/Users/monty/.julia/dev/NMFk/src/NMFkPlotMatrix.jl",
+					"buffer": 1,
+					"file": "/Users/vvv/Julia/Catostrofire.jl/load-frap-maca.jl",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7359,
+						"buffer_size": 7371,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2491,
-								2495
+								1235,
+								1267
 							]
 						],
 						"settings":
@@ -2166,24 +1384,24 @@
 								{
 									"1":
 									[
-										2503,
-										2504
+										1266,
+										1267
 									]
 								},
 								"icon":
 								{
 									"1":
 									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"region.yellowish"
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"region.greenish"
 									]
 								},
 								"open":
 								{
 									"1":
 									[
-										2490,
-										2491
+										1262,
+										1263
 									]
 								},
 								"unmatched":
@@ -2192,276 +1410,187 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
-							],
-							"syntax": "Packages/Julia/Julia.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 409.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/monty/.julia/dev/NMFk/src/NTFkPlotMatrix.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7112,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
-							],
-							"syntax": "Packages/Julia/Julia.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/monty/Julia/rMF/Geysers/read-geysers.jl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12603,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4457,
-								4457
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content"
 							],
-							"syntax": "Packages/Julia/Julia.sublime-syntax",
+							"syntax": "Packages/IJulia/Syntax/Julia.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 440.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/vvv/Julia/Catostrofire.jl/process-frap-maca.jl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1843,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								192,
+								466
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										466,
+										467
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/square_bracket.png",
+										"region.bluish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										191,
+										192
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Julia/Julia.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -2515,6 +1644,10 @@
 		"height": 0.0
 	},
 	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
 	{
 		"height": 0.0
 	},

@@ -15,6 +15,15 @@ if Sys.isapple()
 	ENV["MPLBACKEND"]="TkCairo"
 	atreplinit((_)->Base.require(Base, :TerminalExtensions))
 	try
+		import Compose
+		global function reset_default_graphic_size()
+			Compose.set_default_graphic_size(141.4213562373095Compose.mm, 100.0Compose.mm)
+		end
+	catch errmsg
+		println(errmsg)
+		@info("Compose is not available!")
+	end
+	try
 		import Cairo, Fontconfig
 		import Gadfly
 		import Base: display
