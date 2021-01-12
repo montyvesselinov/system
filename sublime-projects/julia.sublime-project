@@ -93,6 +93,15 @@
 		},
 		{
 			"path": "/Users/vvv/Julia/AdjointLearning.jl"
+		},
+		{
+			"path": "/Users/vvv/Julia/UnconventionalML.jl"
+		},
+		{
+			"path": "/Users/vvv/Julia/WellDataBase.jl"
+		},
+		{
+			"path": "/Users/vvv/Julia/WellDataBaseML.jl"
 		}
 	]
 }

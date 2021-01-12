@@ -1,2 +1,2 @@
 #!/bin/tcsh
-rsync -av --progress -delete -e ssh /Users/vvv/Docs vvv@es01.lanl.gov:/home/vvv/laptops/ml/Docs
+rsync -av --progress -delete /Users/vvv/Docs /Volumes/GoogleDrive/Shared\ drives/Laptops\ \(No\ CUI\)/PIML\ laptop/Docs

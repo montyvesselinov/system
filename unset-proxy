@@ -1,3 +1,4 @@
+unset proxy
 unset ftp_proxy
 unset socks_proxy
 unset rsync_proxy

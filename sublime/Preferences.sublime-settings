@@ -78,12 +78,13 @@
 		"advection",
 		"nonnegativity",
 		"indices",
-		"Evapotranspiration"
+		"Evapotranspiration",
+		"geothermometer"
 	],
 	"color_scheme": "Packages/User/Material-Theme-Darker (SublimePythonIDE).tmTheme",
 	"detect_indentation": true,
 	"dictionary": "Packages/Language - English/en_US.dic",
-	"font_size": 14,
+	"font_size": 15,
 	"ignored_packages":
 	[
 		"1Self",
