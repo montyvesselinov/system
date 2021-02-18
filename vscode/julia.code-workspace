@@ -1,7 +1,83 @@
 {
 	"folders": [
 		{
-			"path": "/Users/monty/.julia/dev/Mads"
+			"name": "NMFk",
+			"path": "../../.julia/dev/NMFk"
+		},
+		{
+			"name": "NTFk",
+			"path": "../../.julia/dev/NTFk"
+		},
+		{
+			"name": "NTNk",
+			"path": "../../.julia/dev/NTNk"
+		},
+		{
+			"name": "Mads",
+			"path": "../../.julia/dev/Mads"
+		},
+		{
+			"name": "SVR",
+			"path": "../../.julia/dev/SVR"
+		},
+		{
+			"name": "AffineInvariantMCMC",
+			"path": "../../.julia/dev/AffineInvariantMCMC"
+		},
+		{
+			"path": "../../.julia/dev/CanDecomp"
+		},
+		{
+			"path": "../../.julia/dev/Kriging"
+		},
+		{
+			"path": "../../.julia/dev/ReusableFunctions"
+		},
+		{
+			"path": "../../.julia/dev/RobustPmap"
+		},
+		{
+			"path": "../../.julia/dev/TensorDecompositions"
+		},
+		{
+			"path": "../../.julia/dev/MetaProgTools"
+		},
+		{
+			"path": "../../.julia/dev/Anasol"
+		},
+		{
+			"path": "../../.julia/dev/DocumentFunction"
+		},
+		{
+			"path": "../../.julia/dev/FEHM"
+		},
+		{
+			"path": "../../.julia/dev/ZEM"
+		},
+		{
+			"path": "../../.julia/dev/GroundwaterPlots"
+		},
+		{
+			"path": "../../Julia/UnconventionalML.jl"
+		},
+		{
+			"path": "../../Julia/WellDataBase.jl"
+		},
+		{
+			"path": "../../Julia/WellDataBaseML.jl"
+		},
+		{
+			"path": "../../Julia/GTcloud-SmartTensors.jl"
+		},
+		{
+			"path": "../../Julia/GTCloud.jl"
+		},
+		{
+			"path": "../../Julia/ML4Geo.jl"
+		},
+		{
+			"path": "../../.julia/dev/DPFEHM"
 		}
-	]
+	],
+	"settings": {}
 }

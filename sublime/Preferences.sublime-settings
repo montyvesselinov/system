@@ -88,10 +88,12 @@
 	"ignored_packages":
 	[
 		"1Self",
+		"BracketHighlighter",
 		"Color Highlighter",
 		"Emmet",
 		"Go To Definition",
 		"GotoDocumentation",
+		"MarkdownEditing",
 		"Matlab Completions",
 		"Vintage"
 	],

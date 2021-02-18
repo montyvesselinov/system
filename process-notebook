@@ -1,0 +1,4 @@
+python3 ~/system/notebook-clean.py $1.ipynb
+jupyter-nbconvert --to html $1.ipynb
+jupyter-nbconvert --to markdown $1.ipynb
+jupyter-nbconvert --to pdf $1.ipynb
