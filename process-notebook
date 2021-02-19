@@ -1,4 +1,6 @@
 python3 ~/system/notebook-clean.py $1.ipynb
 jupyter-nbconvert --to html $1.ipynb
 jupyter-nbconvert --to markdown $1.ipynb
-jupyter-nbconvert --to pdf $1.ipynb
+jupyter-nbconvert --to latex $1.ipynb
+xelatex $1 --quiet
+rm -f $1.log $1.aux $1.out
