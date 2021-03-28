@@ -2,9 +2,7 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"BracketHighlighter",
-		"Go To Definition",
-		"MarkdownEditing"
+		"Go To Definition"
 	],
 	"installed_packages":
 	[

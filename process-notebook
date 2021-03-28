@@ -1,6 +1,12 @@
 python3 ~/system/notebook-clean.py $1.ipynb
+jupyter-nbconvert --to script $1.ipynb
 jupyter-nbconvert --to html $1.ipynb
 jupyter-nbconvert --to markdown $1.ipynb
+jq -j '
+  .cells
+  | map( select(.cell_type != "code") | .source + ["\n\n"] )
+  | .[][]
+  ' $1.ipynb > $1.txt
 jupyter-nbconvert --to latex $1.ipynb
 xelatex $1 --quiet
 rm -f $1.log $1.aux $1.out
