@@ -67,9 +67,6 @@
 			"path": "../../Julia/WellDataBaseML.jl"
 		},
 		{
-			"path": "../../Julia/GTcloud-SmartTensors.jl"
-		},
-		{
 			"path": "../../Julia/GTCloud.jl"
 		},
 		{
@@ -77,8 +74,18 @@
 		},
 		{
 			"path": "../../.julia/dev/DPFEHM"
+		},
+		{
+			"path": "../../Julia/OilPIML.jl"
+		},
+		{
+			"path": "../../.julia/dev/GeoThermalCloud"
+		},
+		{
+			"path": "../../.julia/dev/PhysicsInformedML"
 		}
 	],
 	"settings": {
+		"julia.environmentPath": "/Users/vvv/.julia/environments/v1.6"
 	}
 }

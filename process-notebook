@@ -9,4 +9,4 @@ jq -j '
   ' $1.ipynb > $1.txt
 jupyter-nbconvert --to latex $1.ipynb
 xelatex $1 --quiet
-rm -f $1.log $1.aux $1.out
+rm -f $1.log $1.aux $1.out texput.log
