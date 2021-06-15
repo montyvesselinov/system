@@ -1,0 +1,7 @@
+This is a personalized AddLanlCA.sh script for you that should work in sh. 
+If you are the only one that uses the particular server that was exhibiting 
+the error feel free to put this file in /etc/profile.d/ directory and overwrite
+the previous version. If this server is being used by others and they are not
+all using sh as their preferred shell, put this file somewhere else and 
+manually run it. You may also want to create a cron job that runs this script
+on a regular basis.  

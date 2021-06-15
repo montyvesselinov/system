@@ -119,10 +119,14 @@ case "$OSTYPE" in
 		# echo "OSX"
 		export CDPATH=.:${HOME}:${HOME}/lanl:${HOME}/Documents:${HOME}/Documents/lanl
 		export CLICOLOR=1
-		export PATH=${PATH}:/Users/monty/Library/Python/3.6/bin:/usr/local/opt/openssl/bin
+		export PATH=${PATH}:/Users/vvv/Library/Python/3.6/bin:/usr/local/opt/openssl/bin
 		export LDFLAGS="-L/usr/local/opt/openssl/lib"
 		export CPPFLAGS="-I/usr/local/opt/openssl/include"
-		export LSCOLORS=gxfxcxdxbxegedabagaced ;;
+		export LSCOLORS=gxfxcxdxbxegedabagaced 
+		export PFLOTRAN_DIR=/Users/vvv/pflotran
+		export PYFLOTRAN_DIR=/Users/vvv/python/pyflotran-lanl
+		export PETSC_DIR=/Users/vvv/petsc
+		export PETSC_ARCH=arch-darwin-c-opt ;;
     linux*)
 		# echo "LINUX"
 		export CDPATH=.:${HOME}:/scratch/er/monty:/scratch/ymp/monty:/scratch/nts/monty:/scratch/gwpa/monty:/scratch/rigel10/monty:/scratch/indigo2/monty:/scratch/fiesta2/monty ;;

@@ -2,7 +2,11 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"Go To Definition"
+		"BracketHighlighter",
+		"Go To Definition",
+		"MarkdownEditing",
+		"MarkdownPreview",
+		"SublimeLinter"
 	],
 	"installed_packages":
 	[

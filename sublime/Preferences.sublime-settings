@@ -88,11 +88,15 @@
 	"ignored_packages":
 	[
 		"1Self",
+		"BracketHighlighter",
 		"Color Highlighter",
 		"Emmet",
 		"Go To Definition",
 		"GotoDocumentation",
+		"MarkdownEditing",
+		"MarkdownPreview",
 		"Matlab Completions",
+		"SublimeLinter",
 		"Vintage"
 	],
 	"indent_guide_options":
