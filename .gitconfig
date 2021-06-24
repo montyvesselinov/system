@@ -1,9 +1,9 @@
 [user]
-	name = sevar
-	email = sevar.vv@gmail.com
+	name = monty
+	email = velimir.vesselinov@gmail.com
 
 [github]
-	user = sevar.vv@gmail.com
+	user = velimir.vesselinov@gmail.com
 
 [core]
 	editor = /usr/bin/vim

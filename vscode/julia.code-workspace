@@ -86,6 +86,11 @@
 		}
 	],
 	"settings": {
-		"julia.environmentPath": "/Users/vvv/.julia/environments/v1.6"
+		"julia.environmentPath": "/Users/vvv/.julia/environments/v1.6",
+		"cSpell.enableFiletypes": [
+			"html",
+			"ipynb",
+			"julia"
+		]
 	}
 }

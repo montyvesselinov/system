@@ -9,5 +9,14 @@
 		{
 			"path": "../../www/monty"
 		}
-	]
+	],
+	"settings": {
+		"cSpell.diagnosticLevel": "Hint",
+		"cSpell.enableFiletypes": [
+			"ipynb",
+			"julia",
+			"plaintext"
+		],
+		"cSpell.enabled": true
+	}
 }
