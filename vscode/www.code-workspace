@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "../../www/envitrace"
+		},
+		{
+			"path": "../../www/SmartTensors"
+		},
+		{
+			"path": "../../www/monty"
 		}
 	]
 }
