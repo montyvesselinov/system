@@ -1,2 +1,3 @@
 git config --global user.name "monty"
 git config --global user.email velimir.vesselinov@gmail.com
+git config --global github.user velimir.vesselinov@gmail.com

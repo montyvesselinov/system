@@ -77,6 +77,12 @@
 		},
 		{
 			"path": "../../.julia/dev/PhysicsInformedML"
+		},
+		{
+			"path": "../../Julia/PFLOTRAN-CO2-BIGUQ"
+		},
+		{
+			"path": "../../python/pyflotran-lanl"
 		}
 	],
 	"settings": {
